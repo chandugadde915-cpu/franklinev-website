@@ -45,7 +45,9 @@ export function ModelCard({ name, tagline, image, alt, chips, accent = "blue" }:
       style={{ rotateX: tRx, rotateY: tRy, transformPerspective: 1000 }}
       className="group relative rounded-3xl bg-surface border border-border shadow-soft hover:shadow-lift transition-shadow overflow-hidden"
     >
-      <div className={`relative aspect-[4/3] bg-gradient-to-br ${accentMap[accent]} grid place-items-center overflow-hidden`}>
+      <div
+        className={`relative aspect-[4/3] bg-gradient-to-br ${accentMap[accent]} grid place-items-center overflow-hidden`}
+      >
         <div className="absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_60%,oklch(0.62_0.18_248/0.15),transparent_70%)]" />
         <img
           src={image}
@@ -59,7 +61,10 @@ export function ModelCard({ name, tagline, image, alt, chips, accent = "blue" }:
         <p className="mt-1 text-sm text-muted-foreground">{tagline}</p>
         <div className="mt-4 flex flex-wrap gap-2">
           {chips.map((c) => (
-            <span key={c} className="text-xs font-medium px-3 py-1 rounded-full bg-primary/10 text-primary">
+            <span
+              key={c}
+              className="text-xs font-medium px-3 py-1 rounded-full bg-primary/10 text-primary"
+            >
               {c}
             </span>
           ))}

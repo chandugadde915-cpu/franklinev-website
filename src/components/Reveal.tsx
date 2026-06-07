@@ -2,17 +2,25 @@ import { motion, type Variants } from "framer-motion";
 import type { ReactNode } from "react";
 
 const variants: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 18 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.42, ease: [0.22, 1, 0.36, 1] } },
 };
 
-export function Reveal({ children, className, delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
+export function Reveal({
+  children,
+  className,
+  delay = 0,
+}: {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+}) {
   return (
     <motion.div
       variants={variants}
-      initial="hidden"
+      initial={false}
       whileInView="show"
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, margin: "120px 0px" }}
       transition={{ delay }}
       className={className}
     >
@@ -24,10 +32,10 @@ export function Reveal({ children, className, delay = 0 }: { children: ReactNode
 export function StaggerGroup({ children, className }: { children: ReactNode; className?: string }) {
   return (
     <motion.div
-      initial="hidden"
+      initial={false}
       whileInView="show"
-      viewport={{ once: true, margin: "-80px" }}
-      variants={{ show: { transition: { staggerChildren: 0.12 } } }}
+      viewport={{ once: true, margin: "120px 0px" }}
+      variants={{ show: { transition: { staggerChildren: 0.06 } } }}
       className={className}
     >
       {children}

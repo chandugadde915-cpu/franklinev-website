@@ -13,10 +13,42 @@ interface FloatObject {
 }
 
 const objects: FloatObject[] = [
-  { Icon: Zap, label: "60 km/h", x: "8%", y: "20%", delay: 0, depth: 30, tint: "from-primary/20 to-accent/10" },
-  { Icon: Battery, label: "~100 km range", x: "82%", y: "18%", delay: 0.6, depth: 50, tint: "from-accent/20 to-primary/10" },
-  { Icon: Leaf, label: "Zero emissions", x: "12%", y: "72%", delay: 1.2, depth: 40, tint: "from-accent/25 to-primary/10" },
-  { Icon: Gauge, label: "Cruise control", x: "85%", y: "68%", delay: 0.3, depth: 35, tint: "from-primary/20 to-accent/15" },
+  {
+    Icon: Zap,
+    label: "60 km/h",
+    x: "8%",
+    y: "20%",
+    delay: 0,
+    depth: 30,
+    tint: "from-primary/20 to-accent/10",
+  },
+  {
+    Icon: Battery,
+    label: "~100 km range",
+    x: "82%",
+    y: "18%",
+    delay: 0.6,
+    depth: 50,
+    tint: "from-accent/20 to-primary/10",
+  },
+  {
+    Icon: Leaf,
+    label: "Zero emissions",
+    x: "12%",
+    y: "72%",
+    delay: 1.2,
+    depth: 40,
+    tint: "from-accent/25 to-primary/10",
+  },
+  {
+    Icon: Gauge,
+    label: "Cruise control",
+    x: "85%",
+    y: "68%",
+    delay: 0.3,
+    depth: 35,
+    tint: "from-primary/20 to-accent/15",
+  },
 ];
 
 export function FloatingObjects() {
