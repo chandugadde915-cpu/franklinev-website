@@ -177,7 +177,7 @@ const faqSchema = {
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="flex min-h-[clamp(14rem,34vh,22rem)] items-center justify-center bg-background px-4 py-8">
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-ink">404</h1>
         <h2 className="mt-4 text-xl font-semibold text-ink">Page not found</h2>
@@ -205,7 +205,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   }, [error]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="flex min-h-[clamp(14rem,34vh,22rem)] items-center justify-center bg-background px-4 py-8">
       <div className="max-w-md text-center">
         <h1 className="text-xl font-semibold tracking-tight text-ink">This page didn't load</h1>
         <p className="mt-2 text-sm text-muted-foreground">
@@ -324,7 +324,6 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const location = useLocation();
-  const isHomePage = location.pathname === "/";
 
   useSiteMotion(location.pathname);
 
@@ -332,7 +331,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <ScrollProgressBar />
       <Navbar />
-      <main className={isHomePage ? "pt-16 pb-0" : "pt-16 pb-24 md:pb-10"}>
+      <main className="pt-16 pb-0">
         <Outlet />
       </main>
       <Footer />
