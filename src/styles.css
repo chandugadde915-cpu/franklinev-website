@@ -6021,45 +6021,7 @@ div[class~="space-y-24"] + section {
 
 /* Remaining production fixes: launch-safe hero, clean counters, forms, FABs, pricing, imagery. */
 .cinema-hero-content {
-  --launch-progress: 1 !important;
   width: min(100%, 1400px);
-  opacity: 0;
-  filter: blur(4px);
-  transform: translateY(12px);
-  animation: cinemaLaunch 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
-}
-
-.cinema-hero-content,
-.cinema-hero-content.is-launching,
-.cinema-hero-copy,
-.cinema-hero-copy::before,
-.cinema-hero-copy::after,
-.cinema-hero-title > span,
-.cinema-hero-title > span::before,
-.cinema-hero-sub,
-.cinema-hero-sub::before,
-.cinema-hero .cinema-eyebrow {
-  opacity: 1 !important;
-}
-
-.cinema-hero-title > span,
-.cinema-hero-sub,
-.cinema-hero .cinema-eyebrow {
-  transform: none !important;
-}
-
-@keyframes cinemaLaunch {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-    filter: blur(4px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
 }
 
 .stat-value {
@@ -6606,5 +6568,81 @@ button:disabled {
   .journey-year {
     justify-content: flex-start;
     width: fit-content;
+  }
+}
+
+/* Scroll-synced hero lift: text rises from the scooter light area without scroll locking. */
+.cinema-hero {
+  min-height: 138svh !important;
+  padding-bottom: 0 !important;
+}
+
+.cinema-hero-content {
+  pointer-events: none;
+  opacity: clamp(0, calc(var(--launch-progress, 0) * 1.35), 1) !important;
+  filter: blur(calc((1 - var(--launch-progress, 0)) * 10px));
+  transform:
+    translate3d(
+      calc((1 - var(--launch-progress, 0)) * min(22vw, 280px)),
+      calc((1 - var(--launch-progress, 0)) * min(34vh, 300px)),
+      0
+    )
+    scale(calc(0.88 + (var(--launch-progress, 0) * 0.12))) !important;
+  transform-origin: 72% 58%;
+  transition: none !important;
+}
+
+.cinema-hero-content.is-launching {
+  pointer-events: auto;
+}
+
+.cinema-hero-copy {
+  opacity: clamp(0, calc(var(--launch-progress, 0) * 1.4), 1) !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+.cinema-hero .cinema-eyebrow {
+  opacity: clamp(0, calc((var(--launch-progress, 0) - 0.02) * 1.6), 1) !important;
+  transform: translate3d(0, calc((1 - var(--launch-progress, 0)) * 18px), 0) !important;
+}
+
+.cinema-hero-title > span {
+  opacity: clamp(0, calc((var(--launch-progress, 0) - 0.08) * 1.55), 1) !important;
+  transform: translate3d(0, calc((1 - var(--launch-progress, 0)) * 46px), 0) !important;
+}
+
+.cinema-hero-title > span:nth-child(2) {
+  opacity: clamp(0, calc((var(--launch-progress, 0) - 0.18) * 1.65), 1) !important;
+  transform: translate3d(0, calc((1 - var(--launch-progress, 0)) * 62px), 0) !important;
+}
+
+.cinema-hero-title > span::before {
+  opacity: clamp(0, calc(var(--launch-progress, 0) * 0.46), 0.46) !important;
+}
+
+.cinema-hero-sub,
+.cinema-hero-actions,
+.cinema-trust {
+  opacity: clamp(0, calc((var(--launch-progress, 0) - 0.36) * 1.8), 1) !important;
+  transform: translate3d(0, calc((1 - var(--launch-progress, 0)) * 32px), 0) !important;
+}
+
+.cinema-hero-copy::before,
+.cinema-hero-copy::after,
+.cinema-hero-sub::before {
+  opacity: clamp(0, calc(var(--launch-progress, 0) * 0.58), 0.58) !important;
+}
+
+@media (max-width: 768px) {
+  .cinema-hero {
+    min-height: 122svh !important;
+  }
+
+  .cinema-hero-content {
+    transform:
+      translate3d(0, calc((1 - var(--launch-progress, 0)) * 26vh), 0)
+      scale(calc(0.94 + (var(--launch-progress, 0) * 0.06))) !important;
+    transform-origin: 50% 74%;
   }
 }

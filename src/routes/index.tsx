@@ -311,26 +311,31 @@ function HeroSection() {
   const heroImageCacheRef = useRef<(HTMLImageElement | null)[]>([]);
   const lastDrawnHeroFrameRef = useRef(-1);
   const heroFrameProgressRef = useRef(0);
-  const heroProgressFrameRef = useRef(0);
-  const heroProgressDeltaRef = useRef(0);
-  const heroTouchStartYRef = useRef<number | null>(null);
-  const heroViewportLockedRef = useRef(false);
-  const heroOverflowStylesRef = useRef<{ html: string; body: string } | null>(null);
+  const heroScrollFrameRef = useRef(0);
   const [heroFrameIndex, setHeroFrameIndex] = useState(0);
   const [isHeroFrameReady, setIsHeroFrameReady] = useState(false);
   const [useCompactHero, setUseCompactHero] = useState(false);
+  const [heroLaunchProgress, setHeroLaunchProgress] = useState(0);
 
   const activeHeroFrame = heroFrameIndex;
+
+  const syncHeroLaunchProgress = useCallback((progress: number) => {
+    const nextProgress = Math.min(Math.max(progress * 1.05, 0), 1);
+    setHeroLaunchProgress((current) =>
+      Math.abs(current - nextProgress) < 0.012 ? current : nextProgress,
+    );
+  }, []);
 
   const setHeroProgress = useCallback((nextProgress: number) => {
     const clampedProgress = Math.min(Math.max(nextProgress, 0), 1);
     heroFrameProgressRef.current = clampedProgress;
+    syncHeroLaunchProgress(clampedProgress);
     const nextFrameIndex = Math.min(
       heroSequenceFrameCount - 1,
       Math.round(clampedProgress * (heroSequenceFrameCount - 1)),
     );
     setHeroFrameIndex((current) => (current !== nextFrameIndex ? nextFrameIndex : current));
-  }, []);
+  }, [syncHeroLaunchProgress]);
 
   const loadHeroFrameImage = useCallback((index: number, priority: "high" | "low" = "low") => {
     const src = heroSequenceFrames[index];
@@ -362,28 +367,6 @@ function HeroSection() {
     }
 
     void image.decode().catch(() => undefined);
-  }, []);
-
-  const setHeroViewportLocked = useCallback((locked: boolean) => {
-    if (typeof document === "undefined" || heroViewportLockedRef.current === locked) {
-      return;
-    }
-
-    if (locked) {
-      heroOverflowStylesRef.current = {
-        html: document.documentElement.style.overflowY,
-        body: document.body.style.overflowY,
-      };
-      document.documentElement.style.overflowY = "hidden";
-      document.body.style.overflowY = "hidden";
-    } else {
-      const previousOverflowStyles = heroOverflowStylesRef.current;
-      document.documentElement.style.overflowY = previousOverflowStyles?.html ?? "";
-      document.body.style.overflowY = previousOverflowStyles?.body ?? "";
-      heroOverflowStylesRef.current = null;
-    }
-
-    heroViewportLockedRef.current = locked;
   }, []);
 
   const drawHeroFrame = useCallback(
@@ -465,6 +448,7 @@ function HeroSection() {
       setUseCompactHero(compact);
       if (compact) {
         setHeroProgress(0.24);
+        setHeroLaunchProgress(1);
       }
     };
 
@@ -488,183 +472,46 @@ function HeroSection() {
       return;
     }
 
-    const getScrubDistance = () =>
-      Math.max(hero.offsetHeight - window.innerHeight, window.innerHeight * 0.9, 1);
-
-    const isHeroPinned = () => {
-      const rect = hero.getBoundingClientRect();
-      return rect.top <= 1 && rect.bottom >= window.innerHeight - 1;
-    };
-
     const syncHeroProgressFromViewport = () => {
       const rect = hero.getBoundingClientRect();
 
       if (rect.top >= 0) {
-        setHeroViewportLocked(false);
         setHeroProgress(0);
         return;
       }
 
       if (rect.bottom <= window.innerHeight) {
-        setHeroViewportLocked(false);
         setHeroProgress(1);
         return;
       }
 
-      const heroDocumentTop = window.scrollY + rect.top;
-      const scrubDistance = getScrubDistance();
-      const traveled = Math.min(Math.max(window.scrollY - heroDocumentTop, 0), scrubDistance);
-      setHeroViewportLocked(true);
-      setHeroProgress(traveled / scrubDistance);
+      const visibleTravel = Math.max(hero.offsetHeight - window.innerHeight, 1);
+      const traveled = Math.min(Math.max(-rect.top, 0), visibleTravel);
+      setHeroProgress(traveled / visibleTravel);
     };
 
-    const flushHeroProgressDelta = () => {
-      heroProgressFrameRef.current = 0;
-
-      if (heroProgressDeltaRef.current === 0) {
+    const requestHeroProgressSync = () => {
+      if (heroScrollFrameRef.current) {
         return;
       }
 
-      const scrubDistance = getScrubDistance();
-      const progressDelta = heroProgressDeltaRef.current;
-      const currentProgress = heroFrameProgressRef.current;
-      const unclampedProgress = currentProgress + progressDelta;
-      const clampedProgress = Math.min(Math.max(unclampedProgress, 0), 1);
-      const overflowProgress = unclampedProgress - clampedProgress;
-
-      heroProgressDeltaRef.current = 0;
-      setHeroProgress(clampedProgress);
-      setHeroViewportLocked(clampedProgress < 0.999 && isHeroPinned());
-
-      if (overflowProgress !== 0) {
-        window.scrollBy(0, overflowProgress * scrubDistance);
-      }
-    };
-
-    const queueHeroProgressDelta = (deltaY: number) => {
-      heroProgressDeltaRef.current += deltaY / getScrubDistance();
-
-      if (heroProgressFrameRef.current) {
-        return;
-      }
-
-      heroProgressFrameRef.current = requestAnimationFrame(flushHeroProgressDelta);
-    };
-
-    const shouldCaptureScroll = (deltaY: number) => {
-      if (!Number.isFinite(deltaY) || deltaY === 0 || !isHeroPinned()) {
-        return false;
-      }
-
-      if (deltaY > 0) {
-        return heroFrameProgressRef.current < 0.999;
-      }
-
-      return heroFrameProgressRef.current > 0.001;
-    };
-
-    const handleWheel = (event: WheelEvent) => {
-      if (!shouldCaptureScroll(event.deltaY)) {
-        return;
-      }
-
-      event.preventDefault();
-      queueHeroProgressDelta(event.deltaY);
-    };
-
-    const handleTouchStart = (event: TouchEvent) => {
-      heroTouchStartYRef.current = event.touches[0]?.clientY ?? null;
-    };
-
-    const handleTouchMove = (event: TouchEvent) => {
-      const nextTouchY = event.touches[0]?.clientY;
-      const previousTouchY = heroTouchStartYRef.current;
-
-      if (nextTouchY == null || previousTouchY == null) {
-        return;
-      }
-
-      const deltaY = previousTouchY - nextTouchY;
-      heroTouchStartYRef.current = nextTouchY;
-
-      if (!shouldCaptureScroll(deltaY)) {
-        return;
-      }
-
-      event.preventDefault();
-      queueHeroProgressDelta(deltaY);
-    };
-
-    const handleTouchEnd = () => {
-      heroTouchStartYRef.current = null;
-    };
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      const target = event.target;
-      if (
-        event.defaultPrevented ||
-        event.metaKey ||
-        event.ctrlKey ||
-        event.altKey ||
-        (target instanceof HTMLElement &&
-          (target.isContentEditable ||
-            target.tagName === "INPUT" ||
-            target.tagName === "TEXTAREA" ||
-            target.tagName === "SELECT"))
-      ) {
-        return;
-      }
-
-      let deltaY = 0;
-
-      switch (event.key) {
-        case "ArrowDown":
-          deltaY = 72;
-          break;
-        case "ArrowUp":
-          deltaY = -72;
-          break;
-        case "PageDown":
-          deltaY = window.innerHeight * 0.72;
-          break;
-        case "PageUp":
-          deltaY = window.innerHeight * -0.72;
-          break;
-        case " ":
-          deltaY = window.innerHeight * (event.shiftKey ? -0.72 : 0.72);
-          break;
-        default:
-          return;
-      }
-
-      if (!shouldCaptureScroll(deltaY)) {
-        return;
-      }
-
-      event.preventDefault();
-      queueHeroProgressDelta(deltaY);
+      heroScrollFrameRef.current = requestAnimationFrame(() => {
+        heroScrollFrameRef.current = 0;
+        syncHeroProgressFromViewport();
+      });
     };
 
     syncHeroProgressFromViewport();
-    window.addEventListener("wheel", handleWheel, { passive: false, capture: true });
-    window.addEventListener("touchstart", handleTouchStart, { passive: true });
-    window.addEventListener("touchmove", handleTouchMove, { passive: false, capture: true });
-    window.addEventListener("touchend", handleTouchEnd, { passive: true });
-    window.addEventListener("keydown", handleKeyDown, { capture: true });
+    window.addEventListener("scroll", requestHeroProgressSync, { passive: true });
+    window.addEventListener("resize", requestHeroProgressSync);
 
     return () => {
-      cancelAnimationFrame(heroProgressFrameRef.current);
-      heroProgressFrameRef.current = 0;
-      heroProgressDeltaRef.current = 0;
-      heroTouchStartYRef.current = null;
-      setHeroViewportLocked(false);
-      window.removeEventListener("wheel", handleWheel, true);
-      window.removeEventListener("touchstart", handleTouchStart);
-      window.removeEventListener("touchmove", handleTouchMove, true);
-      window.removeEventListener("touchend", handleTouchEnd);
-      window.removeEventListener("keydown", handleKeyDown, true);
+      cancelAnimationFrame(heroScrollFrameRef.current);
+      heroScrollFrameRef.current = 0;
+      window.removeEventListener("scroll", requestHeroProgressSync);
+      window.removeEventListener("resize", requestHeroProgressSync);
     };
-  }, [setHeroProgress, setHeroViewportLocked, useCompactHero]);
+  }, [setHeroProgress, useCompactHero]);
 
   useEffect(() => {
     if (useCompactHero) {
@@ -816,7 +663,10 @@ function HeroSection() {
         <div className="cinema-hero-shade" />
       </div>
 
-      <div className="cinema-hero-content">
+      <div
+        className={`cinema-hero-content${heroLaunchProgress > 0.04 ? " is-launching" : ""}`}
+        style={{ "--launch-progress": heroLaunchProgress } as CSSProperties}
+      >
         <div className="cinema-hero-copy">
           <div className="cinema-eyebrow">
             <Sparkles className="h-4 w-4" />
