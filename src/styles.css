@@ -6571,9 +6571,9 @@ button:disabled {
   }
 }
 
-/* Scroll-synced hero lift: text rises from the scooter light area without scroll locking. */
+/* Scroll-synced hero lift: frames scrub while the sticky hero stays in view. */
 .cinema-hero {
-  min-height: 138svh !important;
+  min-height: 220svh !important;
   padding-bottom: 0 !important;
 }
 
@@ -6636,7 +6636,7 @@ button:disabled {
 
 @media (max-width: 768px) {
   .cinema-hero {
-    min-height: 122svh !important;
+    min-height: 190svh !important;
   }
 
   .cinema-hero-content {
