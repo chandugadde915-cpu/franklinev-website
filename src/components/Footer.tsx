@@ -9,10 +9,15 @@ export function Footer() {
           <div className="footer-logo">
             <img src="/assets/franklin-ev-logo.png" alt="Franklin EV" className="site-logo-image" />
           </div>
-          <p>Cleaner. Quieter. Smarter.</p>
+          <p>Franklin EV - Smart Electric Scooters In Hyderabad</p>
           <p>
-            Electric scooters for Indian city riders, with KORO, NIX-DLX and POWER+ model options,
-            low running cost and dealer support in Telangana and Andhra Pradesh.
+            Franklin EV is a leading electric scooter company in Hyderabad offering innovative,
+            reliable and affordable electric mobility solutions for modern riders.
+          </p>
+          <p>
+            Whether you're searching for a long range electric scooter in Hyderabad, a smart
+            electric scooter with cruise control or an electric scooter for daily commute, Franklin
+            EV delivers the performance, technology and value you need.
           </p>
           <div className="footer-socials">
             {[
@@ -53,9 +58,8 @@ export function Footer() {
 
         <div className="footer-column">
           <h4>Our Models</h4>
-          <Link to="/vehicles">KORO</Link>
-          <Link to="/vehicles">NIX-DLX</Link>
-          <Link to="/vehicles">POWER+</Link>
+          <Link to="/vehicles">Power ++</Link>
+          <Link to="/vehicles">Rapid</Link>
         </div>
 
         <div className="footer-column footer-contact">

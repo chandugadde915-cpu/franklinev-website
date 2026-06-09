@@ -10,7 +10,7 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "Learn about Franklin EV India Pvt. Ltd., an electric scooter company based in Hyderabad with KORO, NIX-DLX and POWER+ models, low running cost, BLDC hub motor technology and dealer support in Telangana and Andhra Pradesh.",
+          "Learn about Franklin EV India Pvt. Ltd., an electric scooter company based in Hyderabad with Power ++ and Rapid models, low running cost, BLDC hub motor technology and dealer support in Telangana and Andhra Pradesh.",
       },
       {
         name: "keywords",
@@ -169,7 +169,7 @@ function AboutPage() {
             },
             {
               t: "A range takes shape",
-              b: "KORO, NIX-DLX and POWER+ give riders clear choices across everyday commuting, premium styling and flagship road presence.",
+              b: "Power ++ and Rapid give riders clear choices across flagship performance and practical daily commuting.",
             },
             {
               t: "Connected riding",

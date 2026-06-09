@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import {
@@ -8,7 +7,6 @@ import {
   BatteryCharging,
   Bell,
   Check,
-  Cpu,
   Gauge,
   LockKeyhole,
   MapPin,
@@ -21,56 +19,54 @@ import {
   Zap,
 } from "lucide-react";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
-import scooterFront from "@/assets/scooter-front.jpg.asset.json";
-import scooterSide from "@/assets/scooter-side.jpg.asset.json";
-import scooterTQ from "@/assets/scooter-three-quarter.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       {
-        title: "Franklin EV Electric Scooters in Hyderabad | KORO, NIX-DLX, POWER+",
+        title: "Franklin EV | Hyderabad's Smart Electric Scooter Brand for Everyday Freedom",
       },
       {
         name: "description",
         content:
-          "Explore Franklin EV electric scooters in Hyderabad, Telangana and Andhra Pradesh. Compare KORO, NIX-DLX and POWER+ with ~100 km range, 60 km/h top speed, BLDC hub motor, cruise control, anti-theft alerts and battery & motor warranty.",
+          "Experience Franklin EV in Hyderabad with smart electric scooters built for everyday freedom, up to 120 km range, cruise control, home charging, smart features and low running cost.",
       },
       {
         name: "keywords",
         content:
-          "Franklin EV, electric scooter Hyderabad, electric scooter Telangana, electric scooter Andhra Pradesh, Franklin EV POWER+, Franklin EV KORO, Franklin EV NIX-DLX, removable battery scooter, BLDC hub motor scooter, electric two-wheeler Telangana, EV scooter dealer Hyderabad",
+          "best electric scooter in Hyderabad, affordable electric scooter in Hyderabad, long range electric scooter in Hyderabad, electric scooter with cruise control in India, best electric scooter for daily commute in Hyderabad, smart electric scooter with app connectivity, electric scooter showroom in Hyderabad, electric scooter test ride in Hyderabad, electric scooter dealer near Gachibowli, electric scooter charging cost in Hyderabad",
       },
       { name: "robots", content: "index, follow, max-image-preview:large" },
       { name: "geo.region", content: "IN-TG" },
       { name: "geo.placename", content: "Hyderabad, Telangana" },
       {
         property: "og:title",
-        content: "Franklin EV Electric Scooters in Hyderabad | POWER+, KORO, NIX-DLX",
+        content: "Franklin EV - Hyderabad's Smart Electric Scooter Brand for Everyday Freedom",
       },
       {
         property: "og:description",
         content:
-          "Book a Franklin EV test ride and compare electric scooters with ~100 km range, BLDC hub motor, cruise control, anti-theft alerts and dealer support in Telangana and Andhra Pradesh.",
+          "Discover smarter city commuting with Franklin EV electric scooters built for Hyderabad riders, everyday freedom, lower running costs, convenient home charging and intelligent technology.",
       },
       { property: "og:type", content: "website" },
       { property: "og:image", content: "https://www.franklinev.co.in/assets/hero-powerplus.jpg" },
       {
         property: "og:image:alt",
-        content: "Franklin EV POWER+ premium electric scooter launch hero.",
+        content: "Franklin EV Power ++ premium electric scooter launch hero.",
       },
       { property: "og:url", content: "https://www.franklinev.co.in" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Franklin EV Electric Scooters | Hyderabad & Telangana" },
+      { name: "twitter:title", content: "Franklin EV Smart Electric Scooters in Hyderabad" },
       {
         name: "twitter:description",
         content:
-          "Explore Franklin EV POWER+, KORO and NIX-DLX electric scooters with city-ready range, BLDC motor performance and battery & motor warranty.",
+          "Explore Franklin EV smart electric scooters for daily commute, home charging, low running cost and local test ride support in Hyderabad.",
       },
       { name: "twitter:image", content: "https://www.franklinev.co.in/assets/hero-powerplus.jpg" },
     ],
     links: [
       { rel: "canonical", href: "https://www.franklinev.co.in/" },
+      { rel: "preload", as: "image", href: "/assets/hero-powerplus.jpg" },
       { rel: "preload", as: "image", href: "/assets/hero-sequence/frame-001.jpg" },
     ],
   }),
@@ -111,446 +107,211 @@ const dealerGroups = [
   },
 ] as const;
 
-const vehicleLineup = [
-  {
-    name: "KORO",
-    tagline: "The everyday essential.",
-    image: scooterSide.url,
-    alt: "Franklin EV KORO electric scooter — side view",
-    chips: ["60 km/h top speed", "~100 km range per charge", "Cruise control included"],
-    badge: "City Model",
-    cta: "Explore KORO",
-  },
-  {
-    name: "NIX-DLX",
-    tagline: "Style meets substance.",
-    image: scooterTQ.url,
-    alt: "Franklin EV NIX-DLX electric scooter — three-quarter view",
-    chips: ["Premium finish & design", "Anti-theft smart alerts", "BLDC hub motor"],
-    badge: "Premium Variant",
-    cta: "Explore NIX-DLX",
-  },
-  {
-    name: "POWER+",
-    tagline: "Maximum presence, maximum performance.",
-    image: scooterFront.url,
-    alt: "Franklin EV POWER+ electric scooter — front view",
-    chips: ["Flagship stance & build", "Battery & motor warranty", "Smart ride support"],
-    badge: "Flagship Variant",
-    cta: "Explore POWER+",
-  },
+const frameRailSegments = [
+  { step: "01", title: "Clean Roll-In" },
+  { step: "02", title: "Wake Signal" },
+  { step: "03", title: "Headlamp Pulse" },
+  { step: "04", title: "Front Lock" },
+  { step: "05", title: "Side Glide" },
+  { step: "06", title: "Body Scan" },
+  { step: "07", title: "Rider Zone" },
+  { step: "08", title: "Wheel Roll" },
+  { step: "09", title: "Brake Detail" },
+  { step: "10", title: "Floorboard Pass" },
+  { step: "11", title: "Rear Perspective" },
+  { step: "12", title: "Cockpit Align" },
+  { step: "13", title: "Tail Glow" },
+  { step: "14", title: "Drive Sync" },
+  { step: "15", title: "Left Profile" },
+  { step: "16", title: "Tail Detail" },
+  { step: "17", title: "Battery Ready" },
+  { step: "18", title: "Range Core" },
+  { step: "19", title: "Controller Check" },
+  { step: "20", title: "App Sync" },
+  { step: "21", title: "Safety Seal" },
+  { step: "22", title: "Countdown" },
+  { step: "23", title: "Final Walkaround" },
+  { step: "24", title: "Ride Ready" },
 ] as const;
 
-type HeroFrameMoment = {
-  step: string;
-  title: string;
-  image: string;
-  alt: string;
-  kind: "hero" | "detail" | "wide";
-  accent: string;
-  position: string;
-  scale: string;
-  copy: string;
-};
-
-const heroSequenceFrameCount = 192;
+const heroSequenceFrameCount = 92;
 const heroSequenceFrames = Array.from(
   { length: heroSequenceFrameCount },
   (_, index) => `/assets/hero-sequence/frame-${String(index + 1).padStart(3, "0")}.jpg`,
 );
 const heroSequenceSize = { width: 1600, height: 817 } as const;
 
-const heroFrameKeyframes: HeroFrameMoment[] = [
-  {
-    step: "01",
-    title: "Clean Roll-In",
-    image: "/assets/scroll-frames/powerplus-front.jpg",
-    alt: "Franklin EV POWER+ front view with LED headlamp signature",
-    kind: "hero",
-    accent: "#00aee8",
-    position: "50% 50%",
-    scale: "0.98",
-    copy: "The scooter owns the first frame before the launch interface wakes up.",
-  },
-  {
-    step: "02",
-    title: "Wake Signal",
-    image: "/assets/scroll-frames/powerplus-front.jpg",
-    alt: "Franklin EV POWER+ LED headlamp wake frame",
-    kind: "detail",
-    accent: "#00e5ff",
-    position: "50% 34%",
-    scale: "1.34",
-    copy: "The launch system fades in only after the rider begins scrolling.",
-  },
-  {
-    step: "03",
-    title: "Headlamp Pulse",
-    image: "/assets/scroll-frames/powerplus-front.jpg",
-    alt: "Franklin EV POWER+ front LED lighting check",
-    kind: "detail",
-    accent: "#36d7ff",
-    position: "52% 39%",
-    scale: "1.5",
-    copy: "The POWER+ face gets a brighter LED-style launch beat.",
-  },
-  {
-    step: "04",
-    title: "Front Lock",
-    image: "/assets/scroll-frames/powerplus-front.jpg",
-    alt: "Franklin EV POWER+ front alignment frame",
-    kind: "detail",
-    accent: "#00aee8",
-    position: "50% 58%",
-    scale: "1.22",
-    copy: "The front stance settles before the walkaround begins.",
-  },
-  {
-    step: "05",
-    title: "Side Glide",
-    image: "/assets/scroll-frames/powerplus-side.jpg",
-    alt: "Franklin EV POWER+ side profile scooter frame",
-    kind: "wide",
-    accent: "#f5a623",
-    position: "50% 50%",
-    scale: "0.96",
-    copy: "The side profile comes in like a smooth product-trailer move.",
-  },
-  {
-    step: "06",
-    title: "Body Scan",
-    image: "/assets/scroll-frames/powerplus-side.jpg",
-    alt: "Franklin EV POWER+ side body scan frame",
-    kind: "detail",
-    accent: "#f5a623",
-    position: "40% 44%",
-    scale: "1.28",
-    copy: "The side body line moves through the frame like a premium product scan.",
-  },
-  {
-    step: "07",
-    title: "Rider Zone",
-    image: "/assets/scroll-frames/powerplus-side.jpg",
-    alt: "Franklin EV POWER+ seat and rider zone frame",
-    kind: "detail",
-    accent: "#00c978",
-    position: "50% 40%",
-    scale: "1.38",
-    copy: "The seat, floorboard, and daily riding geometry get a focused launch moment.",
-  },
-  {
-    step: "08",
-    title: "Wheel Roll",
-    image: "/assets/scroll-frames/powerplus-side.jpg",
-    alt: "Franklin EV POWER+ front wheel motion frame",
-    kind: "detail",
-    accent: "#ff4d4d",
-    position: "24% 70%",
-    scale: "1.42",
-    copy: "The wheel frame adds movement so the scooter feels like it is rolling through the video.",
-  },
-  {
-    step: "09",
-    title: "Brake Detail",
-    image: "/assets/scroll-frames/powerplus-side.jpg",
-    alt: "Franklin EV POWER+ close crop of front brake and wheel hardware",
-    kind: "detail",
-    accent: "#ff4d4d",
-    position: "82% 68%",
-    scale: "1.5",
-    copy: "A wheel-and-brake crop gives the sequence a sharper engineering beat.",
-  },
-  {
-    step: "10",
-    title: "Floorboard Pass",
-    image: "/assets/scroll-frames/powerplus-side.jpg",
-    alt: "Franklin EV POWER+ floorboard launch frame",
-    kind: "detail",
-    accent: "#00c978",
-    position: "58% 58%",
-    scale: "1.34",
-    copy: "The usable riding space gets a clean, bright pass.",
-  },
-  {
-    step: "11",
-    title: "Rear Perspective",
-    image: "/assets/scroll-frames/powerplus-rear-angle.jpg",
-    alt: "Franklin EV POWER+ rear three-quarter view frame",
-    kind: "wide",
-    accent: "#36d7ff",
-    position: "50% 50%",
-    scale: "0.96",
-    copy: "A rear three-quarter angle adds depth, body volume, and a more cinematic product reveal.",
-  },
-  {
-    step: "12",
-    title: "Cockpit Align",
-    image: "/assets/scroll-frames/powerplus-rear-angle.jpg",
-    alt: "Franklin EV POWER+ cockpit alignment frame",
-    kind: "detail",
-    accent: "#00aee8",
-    position: "64% 50%",
-    scale: "1.36",
-    copy: "The cockpit and rider channel settle into view with a smoother technical readout.",
-  },
-  {
-    step: "13",
-    title: "Tail Glow",
-    image: "/assets/scroll-frames/powerplus-rear-angle.jpg",
-    alt: "Franklin EV POWER+ tail lamp launch frame",
-    kind: "detail",
-    accent: "#ff6b3d",
-    position: "38% 52%",
-    scale: "1.38",
-    copy: "The tail section gets a brighter launch glow before the next angle.",
-  },
-  {
-    step: "14",
-    title: "Drive Sync",
-    image: "/assets/scroll-frames/powerplus-rear-angle.jpg",
-    alt: "Franklin EV POWER+ drivetrain sync frame",
-    kind: "detail",
-    accent: "#36d7ff",
-    position: "58% 64%",
-    scale: "1.3",
-    copy: "The drivetrain moment adds one more mechanical beat before the full reveal.",
-  },
-  {
-    step: "15",
-    title: "Left Profile",
-    image: "/assets/scroll-frames/powerplus-left-profile.jpg",
-    alt: "Franklin EV POWER+ left side profile frame",
-    kind: "wide",
-    accent: "#00c978",
-    position: "50% 50%",
-    scale: "0.96",
-    copy: "The opposite profile makes the frame section feel like a true walkaround experience.",
-  },
-  {
-    step: "16",
-    title: "Tail Detail",
-    image: "/assets/scroll-frames/powerplus-left-profile.jpg",
-    alt: "Franklin EV POWER+ close crop of tail lamp and rear body graphic",
-    kind: "detail",
-    accent: "#ff6b3d",
-    position: "72% 48%",
-    scale: "1.36",
-    copy: "The tail lamp, rear badging, and orange graphics get their own high-contrast frame.",
-  },
-  {
-    step: "17",
-    title: "Battery Ready",
-    image: "/assets/scroll-frames/powerplus-left-profile.jpg",
-    alt: "Franklin EV POWER+ battery-ready side frame",
-    kind: "detail",
-    accent: "#00ff99",
-    position: "46% 58%",
-    scale: "1.32",
-    copy: "The electric system reads as armed, efficient, and ready for city range.",
-  },
-  {
-    step: "18",
-    title: "Range Core",
-    image: "/assets/scroll-frames/powerplus-left-profile.jpg",
-    alt: "Franklin EV POWER+ range system launch frame",
-    kind: "detail",
-    accent: "#00c978",
-    position: "54% 50%",
-    scale: "1.24",
-    copy: "The range system gets a calm, readable moment in the launch sequence.",
-  },
-  {
-    step: "19",
-    title: "Controller Check",
-    image: "/assets/scroll-frames/powerplus-front.jpg",
-    alt: "Franklin EV POWER+ controller system launch frame",
-    kind: "detail",
-    accent: "#00e5ff",
-    position: "46% 44%",
-    scale: "1.22",
-    copy: "The smart controller check brings the interface back to the scooter face.",
-  },
-  {
-    step: "20",
-    title: "App Sync",
-    image: "/assets/scroll-frames/powerplus-front.jpg",
-    alt: "Franklin EV POWER+ connected app sync launch frame",
-    kind: "detail",
-    accent: "#36d7ff",
-    position: "52% 46%",
-    scale: "1.18",
-    copy: "Connected ownership gets a futuristic launch-system cue.",
-  },
-  {
-    step: "21",
-    title: "Safety Seal",
-    image: "/assets/scroll-frames/powerplus-side.jpg",
-    alt: "Franklin EV POWER+ safety system launch frame",
-    kind: "detail",
-    accent: "#00c978",
-    position: "50% 64%",
-    scale: "1.22",
-    copy: "The sequence gives safety and stability a confident visual lock.",
-  },
-  {
-    step: "22",
-    title: "Countdown",
-    image: "/assets/scroll-frames/powerplus-front.jpg",
-    alt: "Franklin EV POWER+ launch ready front frame",
-    kind: "hero",
-    accent: "#00aee8",
-    position: "50% 50%",
-    scale: "1",
-    copy: "The launch interface is nearly complete, with the scooter centered and ready.",
-  },
-  {
-    step: "23",
-    title: "Final Walkaround",
-    image: "/assets/scroll-frames/powerplus-left-profile.jpg",
-    alt: "Franklin EV POWER+ full side walkaround closing frame",
-    kind: "hero",
-    accent: "#00aee8",
-    position: "50% 50%",
-    scale: "0.95",
-    copy: "The sequence closes on a clean full-body profile for a confident product finish.",
-  },
-  {
-    step: "24",
-    title: "Ride Ready",
-    image: "/assets/scroll-frames/powerplus-front.jpg",
-    alt: "Franklin EV POWER+ ride ready launch frame",
-    kind: "hero",
-    accent: "#00aee8",
-    position: "50% 50%",
-    scale: "1",
-    copy: "The scooter is bright, clear, and ready for the rest of the Franklin EV experience.",
-  },
-];
-
-const heroFrameMoments: HeroFrameMoment[] = Array.from(
-  { length: heroSequenceFrameCount },
-  (_, index) => {
-    const keyframeIndex = Math.min(
-      heroFrameKeyframes.length - 1,
-      Math.floor((index / heroSequenceFrameCount) * heroFrameKeyframes.length),
-    );
-    const source = heroFrameKeyframes[keyframeIndex];
-
-    return {
-      ...source,
-      step: String(index + 1).padStart(2, "0"),
-    };
-  },
-);
-
 const features = [
   {
-    Icon: Wallet,
-    title: "Lower Running Cost",
-    body: "Electric charging keeps daily running costs predictable and low. Use the savings calculator to compare Franklin EV ownership with petrol riding for your commute.",
+    Icon: Gauge,
+    title: "Cruise Control",
+    body: "Enjoy smoother journeys with one of the most sought-after features in a modern electric scooter with cruise control.",
+  },
+  {
+    Icon: Smartphone,
+    title: "Smart Connectivity",
+    body: "Stay connected through intelligent vehicle monitoring, ride information, battery status and maintenance insights.",
   },
   {
     Icon: BatteryCharging,
-    title: "Removable Battery",
-    body: "Charge with a standard 15 A plug-and-play setup at home, at work, or with dealer guidance — made for Indian city riders who need simple charging.",
+    title: "Long Range Performance",
+    body: "Travel confidently with a long range electric scooter in Hyderabad designed to support daily commuting needs.",
   },
   {
-    Icon: Cpu,
-    title: "Smart Connected Ownership",
-    body: "Connected features support live location tracking, battery status, trip information and anti-theft alerts, giving riders a clearer view of everyday ownership.",
+    Icon: Zap,
+    title: "Home Charging Convenience",
+    body: "Charge easily at home and eliminate unnecessary trips to fuel stations.",
   },
   {
-    Icon: ShieldCheck,
-    title: "3-Year Warranty Coverage",
-    body: "Franklin EV scooters are backed by battery and motor warranty coverage, with model details available from the nearest Franklin EV dealer.",
+    Icon: LockKeyhole,
+    title: "Anti-Theft Security",
+    body: "Advanced security features help provide greater peace of mind wherever you ride.",
+  },
+  {
+    Icon: Wallet,
+    title: "Low Ownership Cost",
+    body: "Spend less on maintenance while enjoying a dependable and efficient mobility solution.",
+  },
+] as const;
+
+const riderStories = [
+  {
+    title: "Professionals",
+    body: "Professionals appreciate the savings and the practical city commute experience for routes across Hyderabad.",
+  },
+  {
+    title: "Students",
+    body: "Students enjoy the convenience, easier charging routine and simple daily mobility.",
+  },
+  {
+    title: "Families",
+    body: "Families value reliable performance, low running cost and simple ownership support.",
+  },
+  {
+    title: "Business Owners",
+    body: "Business owners benefit from lower operating costs and fewer maintenance interruptions every month.",
+  },
+] as const;
+
+const faqItems = [
+  {
+    question: "How far can a Franklin EV scooter travel on a single charge?",
+    answer:
+      "Range depends on model, riding mode, load and road conditions. Franklin EV highlights up to 120 km range for suitable model configurations.",
+  },
+  {
+    question: "How much does it cost to charge an electric scooter?",
+    answer:
+      "Charging cost depends on your electricity tariff and battery usage, but daily electric scooter charging is typically much lower than petrol running cost.",
+  },
+  {
+    question: "How long does charging take?",
+    answer:
+      "Charging time varies by model, battery condition and charger type, but most riders can plan charging comfortably around home or overnight routines.",
+  },
+  {
+    question: "Can I charge my Franklin EV scooter at home?",
+    answer:
+      "Yes. Franklin EV ownership is designed around convenient home charging with a standard compatible socket and dealer guidance.",
+  },
+  {
+    question: "What warranty coverage is available?",
+    answer:
+      "Warranty coverage depends on the model and battery package, and Franklin EV provides warranty support guidance through its sales and service network before delivery.",
+  },
+  {
+    question: "What maintenance does an electric scooter require?",
+    answer:
+      "Electric scooters have fewer moving parts than petrol scooters, helping reduce engine oil changes, fuel-system maintenance and regular running expenses.",
+  },
+  {
+    question: "Where are Franklin EV service centres located?",
+    answer:
+      "Franklin EV supports riders through dealer and service locations across Hyderabad, Telangana and Andhra Pradesh. Contact the team before visiting to confirm availability.",
+  },
+  {
+    question: "Why choose Franklin EV over a petrol scooter?",
+    answer:
+      "Franklin EV offers lower running costs, convenient charging, smart features, quieter riding and a cleaner commuting experience for city riders.",
   },
 ] as const;
 
 const modelColors = [
   {
-    id: "red",
-    name: "Red",
-    swatch: "#d32122",
-    image: "/assets/model-colors/bike_1_red_transparent.png",
-  },
-  {
-    id: "light-blue",
-    name: "Light Blue",
-    swatch: "#9fc8df",
-    image: "/assets/model-colors/bike_2_light_blue_transparent.png",
-  },
-  {
     id: "silver",
     name: "Silver",
-    swatch: "#b9c1c8",
-    image: "/assets/model-colors/bike_4_silver_transparent.png",
-  },
-  {
-    id: "black",
-    name: "Black",
-    swatch: "#161616",
-    image: "/assets/model-colors/bike_5_black_transparent.png",
+    swatch: "#bbb19b",
+    image: "/assets/models/premium-colors-layout/power-silver-angle-layout.png",
+    preview: "/assets/models/premium-colors-layout/power-silver-front-layout.png",
   },
   {
     id: "blue",
-    name: "Blue",
-    swatch: "#1457a8",
-    image: "/assets/model-colors/bike_6_blue_transparent.png",
+    name: "Sky Blue",
+    swatch: "#8fd5f3",
+    image: "/assets/models/premium-colors-layout/power-blue-angle-layout.png",
+    preview: "/assets/models/premium-colors-layout/power-blue-front-layout.png",
+  },
+  {
+    id: "maroon",
+    name: "Maroon",
+    swatch: "#9f2438",
+    image: "/assets/models/premium-colors-layout/power-maroon-angle-layout.png",
+    preview: "/assets/models/premium-colors-layout/power-maroon-front-layout.png",
   },
 ] as const;
 
-const heroScrollRangeMultiplier = 6.4;
-type ModelId = "power" | "koro" | "nix";
+const heroTrustItems = [
+  "Up to 120 KM Range",
+  "Cruise Control",
+  "Smart Features",
+  "Home Charging",
+  "Low Running Cost",
+] as const;
 
-function Home() {
+const heroCalloutItems = [
+  { value: "120", unit: "km", label: "Up to range", icon: "zap" },
+  { value: "4.5", unit: "hrs", label: "0-80% charge time", icon: "battery" },
+  { value: "60", unit: "km/h", label: "Top speed", icon: "gauge" },
+  { value: "3", unit: "yrs", label: "Battery & motor warranty", icon: "shield" },
+] as const;
+
+function HeroSection() {
   const heroRef = useRef<HTMLElement | null>(null);
   const heroCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const heroImageCacheRef = useRef<(HTMLImageElement | null)[]>([]);
   const lastDrawnHeroFrameRef = useRef(-1);
-  const [heroFrameProgress, setHeroFrameProgress] = useState(0);
-  const [dailyRide, setDailyRide] = useState(32);
-  const [petrolPrice, setPetrolPrice] = useState(110);
-  const [range, setRange] = useState(110);
-  const [model, setModel] = useState<ModelId>("power");
-  const [colorId, setColorId] = useState<(typeof modelColors)[number]["id"]>("light-blue");
+  const heroFrameProgressRef = useRef(0);
+  const heroProgressFrameRef = useRef(0);
+  const heroProgressDeltaRef = useRef(0);
+  const heroTouchStartYRef = useRef<number | null>(null);
+  const heroViewportLockedRef = useRef(false);
+  const heroOverflowStylesRef = useRef<{ html: string; body: string } | null>(null);
+  const [heroFrameIndex, setHeroFrameIndex] = useState(0);
+  const [useCompactHero, setUseCompactHero] = useState(false);
+  const heroFrameProgress =
+    heroSequenceFrameCount > 1 ? heroFrameIndex / (heroSequenceFrameCount - 1) : 0;
 
-  const selectedColor = modelColors.find((color) => color.id === colorId) ?? modelColors[0];
-  const activeHeroFrame = Math.min(
-    heroFrameMoments.length - 1,
-    Math.floor(heroFrameProgress * heroFrameMoments.length),
+  const activeHeroFrame = heroFrameIndex;
+  const activeFrameRailSegment = Math.min(
+    frameRailSegments.length - 1,
+    Math.floor(heroFrameProgress * frameRailSegments.length),
   );
-  const launchRevealProgress = Math.min(Math.max((heroFrameProgress - 0.055) / 0.18, 0), 1);
-  const launchIsActive = heroFrameProgress > 0.055;
-  const monthlyEvCost = Math.round(dailyRide * 30 * 0.22);
-  const monthlyFuelCost = Math.round(((dailyRide * 30) / 42) * petrolPrice);
-  const monthlySavings = Math.max(0, monthlyFuelCost - monthlyEvCost);
-  const threeYearSavings = monthlySavings * 36;
-  const models = {
-    power: {
-      name: "Franklin EV Power+",
-      buttonLabel: "Power+",
-      badge: "Flagship electric scooter for confident city rides.",
-      body: "Franklin EV POWER+ is the flagship model for riders who want a bold road presence, ~100 km range, 60 km/h top speed, BLDC hub motor performance, cruise control and anti-theft alert support.",
-      specs: ["~100 km range per charge", "60 km/h top speed", "BLDC hub motor"],
-    },
-    koro: {
-      name: "Franklin EV KORO",
-      buttonLabel: "KORO",
-      badge: "Practical electric scooter for daily city commutes.",
-      body: "Franklin EV KORO focuses on everyday electric mobility with ~100 km range, 60 km/h top speed, cruise control, anti-theft key alerts and low running cost for city riders.",
-      specs: ["~100 km range", "Cruise control", "Anti-theft key alerts"],
-    },
-    nix: {
-      name: "Franklin EV NIX-DLX",
-      buttonLabel: "NIX-DLX",
-      badge: "Premium styling with smart electric ownership.",
-      body: "Franklin EV NIX-DLX pairs refined styling with the same practical electric scooter essentials: BLDC hub motor performance, smart alerts, ~100 km range and dealer support.",
-      specs: ["Premium body design", "Smart anti-theft alerts", "BLDC hub motor"],
-    },
-  } as const;
-  const activeModel = models[model];
+  const launchRevealProgress = useCompactHero
+    ? 1
+    : Math.min(Math.max((heroFrameProgress - 0.055) / 0.18, 0), 1);
+  const launchIsActive = useCompactHero || heroFrameProgress > 0.055;
 
-  const loadHeroFrameImage = useCallback((index: number) => {
+  const setHeroProgress = useCallback((nextProgress: number) => {
+    const clampedProgress = Math.min(Math.max(nextProgress, 0), 1);
+    heroFrameProgressRef.current = clampedProgress;
+    const nextFrameIndex = Math.min(
+      heroSequenceFrameCount - 1,
+      Math.round(clampedProgress * (heroSequenceFrameCount - 1)),
+    );
+    setHeroFrameIndex((current) => (current !== nextFrameIndex ? nextFrameIndex : current));
+  }, []);
+
+  const loadHeroFrameImage = useCallback((index: number, priority: "high" | "low" = "low") => {
     const src = heroSequenceFrames[index];
     if (!src) {
       return null;
@@ -558,14 +319,50 @@ function Home() {
 
     const cached = heroImageCacheRef.current[index];
     if (cached) {
+      if (priority === "high" && "fetchPriority" in cached) {
+        cached.fetchPriority = "high";
+      }
       return cached;
     }
 
     const image = new Image();
     image.decoding = "async";
+    if ("fetchPriority" in image) {
+      image.fetchPriority = priority;
+    }
     image.src = src;
     heroImageCacheRef.current[index] = image;
     return image;
+  }, []);
+
+  const decodeHeroFrameImage = useCallback((image: HTMLImageElement | null) => {
+    if (!image || typeof image.decode !== "function") {
+      return;
+    }
+
+    void image.decode().catch(() => undefined);
+  }, []);
+
+  const setHeroViewportLocked = useCallback((locked: boolean) => {
+    if (typeof document === "undefined" || heroViewportLockedRef.current === locked) {
+      return;
+    }
+
+    if (locked) {
+      heroOverflowStylesRef.current = {
+        html: document.documentElement.style.overflowY,
+        body: document.body.style.overflowY,
+      };
+      document.documentElement.style.overflowY = "hidden";
+      document.body.style.overflowY = "hidden";
+    } else {
+      const previousOverflowStyles = heroOverflowStylesRef.current;
+      document.documentElement.style.overflowY = previousOverflowStyles?.html ?? "";
+      document.body.style.overflowY = previousOverflowStyles?.body ?? "";
+      heroOverflowStylesRef.current = null;
+    }
+
+    heroViewportLockedRef.current = locked;
   }, []);
 
   const drawHeroFrame = useCallback(
@@ -628,177 +425,330 @@ function Home() {
   );
 
   useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const compactQuery = window.matchMedia("(max-width: 768px)");
+    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const navigatorWithConnection = navigator as Navigator & {
+      connection?: { effectiveType?: string; saveData?: boolean };
+    };
+
+    const syncHeroMode = () => {
+      const connection = navigatorWithConnection.connection;
+      const saveData = connection?.saveData === true;
+      const slowNetwork = /(^|-)2g$/.test(connection?.effectiveType ?? "");
+      const compact = compactQuery.matches || reducedMotionQuery.matches || saveData || slowNetwork;
+
+      setUseCompactHero(compact);
+      if (compact) {
+        setHeroProgress(0.24);
+      }
+    };
+
+    syncHeroMode();
+    compactQuery.addEventListener("change", syncHeroMode);
+    reducedMotionQuery.addEventListener("change", syncHeroMode);
+
+    return () => {
+      compactQuery.removeEventListener("change", syncHeroMode);
+      reducedMotionQuery.removeEventListener("change", syncHeroMode);
+    };
+  }, [setHeroProgress]);
+
+  useEffect(() => {
     const hero = heroRef.current;
 
     if (!hero) {
       return;
     }
 
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reducedMotion) {
-      setHeroFrameProgress(0.24);
+    if (useCompactHero) {
+      setHeroProgress(0.24);
       return;
     }
 
-    let frame = 0;
-    let targetProgress = 0;
-    let renderedProgress = 0;
-    let touchStartY: number | null = null;
+    const getScrubDistance = () =>
+      Math.max(hero.offsetHeight - window.innerHeight, window.innerHeight * 0.9, 1);
 
-    const clampProgress = (value: number) => Math.min(Math.max(value, 0), 1);
-
-    const getHeroTop = () => hero.getBoundingClientRect().top + window.scrollY;
-
-    const getFrameScrollRange = () =>
-      Math.max(window.innerHeight * heroScrollRangeMultiplier, 1200);
-
-    const softenInputDelta = (deltaY: number) => {
-      const maxDelta = Math.max(64, window.innerHeight * 0.34);
-      return Math.sign(deltaY) * Math.min(Math.abs(deltaY), maxDelta);
-    };
-
-    const normalizeWheelDelta = (event: WheelEvent) => {
-      if (event.deltaMode === 1) {
-        return event.deltaY * 16;
-      }
-
-      if (event.deltaMode === 2) {
-        return event.deltaY * window.innerHeight;
-      }
-
-      return event.deltaY;
-    };
-
-    const updateHeroFrame = () => {
-      const delta = targetProgress - renderedProgress;
-      renderedProgress += delta * 0.16;
-
-      if (Math.abs(delta) < 0.0007) {
-        renderedProgress = targetProgress;
-      }
-
-      setHeroFrameProgress((current) =>
-        Math.abs(current - renderedProgress) > 0.0007 ? renderedProgress : current,
-      );
-
-      if (Math.abs(targetProgress - renderedProgress) > 0.0007) {
-        frame = requestAnimationFrame(updateHeroFrame);
-      } else {
-        frame = 0;
-      }
-    };
-
-    const requestFrame = () => {
-      if (!frame) {
-        frame = requestAnimationFrame(updateHeroFrame);
-      }
-    };
-
-    const syncProgressFromPagePosition = () => {
-      const heroTop = getHeroTop();
-
-      if (window.scrollY > heroTop + 6) {
-        targetProgress = 1;
-        renderedProgress = 1;
-        setHeroFrameProgress(1);
-      }
-    };
-
-    const consumeHeroScroll = (deltaY: number, event: Event) => {
-      if (Math.abs(deltaY) < 0.1) {
-        return false;
-      }
-
+    const isHeroPinned = () => {
       const rect = hero.getBoundingClientRect();
-      const heroTop = getHeroTop();
-      const heroIsPinned = rect.top <= 1 && rect.bottom >= window.innerHeight * 0.72;
-      const movingForward = deltaY > 0;
-      const movingBackward = deltaY < 0;
-      const shouldAdvanceFrames =
-        movingForward && heroIsPinned && (targetProgress < 1 || renderedProgress < 0.995);
-      const shouldReverseFrames =
-        movingBackward && heroIsPinned && (targetProgress > 0 || renderedProgress > 0.005);
-
-      if (!shouldAdvanceFrames && !shouldReverseFrames) {
-        return false;
-      }
-
-      event.preventDefault();
-
-      if (Math.abs(window.scrollY - heroTop) > 1) {
-        window.scrollTo({ top: heroTop, behavior: "auto" });
-      }
-
-      targetProgress = clampProgress(
-        targetProgress + softenInputDelta(deltaY) / getFrameScrollRange(),
-      );
-      requestFrame();
-      return true;
+      return rect.top <= 1 && rect.bottom >= window.innerHeight - 1;
     };
 
-    const handleWheel = (event: WheelEvent) => {
-      consumeHeroScroll(normalizeWheelDelta(event), event);
-    };
+    const syncHeroProgressFromViewport = () => {
+      const rect = hero.getBoundingClientRect();
 
-    const handleTouchStart = (event: TouchEvent) => {
-      touchStartY = event.touches[0]?.clientY ?? null;
-    };
-
-    const handleTouchMove = (event: TouchEvent) => {
-      const currentY = event.touches[0]?.clientY;
-
-      if (touchStartY === null || currentY === undefined) {
+      if (rect.top >= 0) {
+        setHeroViewportLocked(false);
+        setHeroProgress(0);
         return;
       }
 
-      const deltaY = (touchStartY - currentY) * 0.72;
+      if (rect.bottom <= window.innerHeight) {
+        setHeroViewportLocked(false);
+        setHeroProgress(1);
+        return;
+      }
 
-      if (consumeHeroScroll(deltaY, event)) {
-        touchStartY = currentY;
+      const heroDocumentTop = window.scrollY + rect.top;
+      const scrubDistance = getScrubDistance();
+      const traveled = Math.min(Math.max(window.scrollY - heroDocumentTop, 0), scrubDistance);
+      setHeroViewportLocked(true);
+      setHeroProgress(traveled / scrubDistance);
+    };
+
+    const flushHeroProgressDelta = () => {
+      heroProgressFrameRef.current = 0;
+
+      if (heroProgressDeltaRef.current === 0) {
+        return;
+      }
+
+      const scrubDistance = getScrubDistance();
+      const progressDelta = heroProgressDeltaRef.current;
+      const currentProgress = heroFrameProgressRef.current;
+      const unclampedProgress = currentProgress + progressDelta;
+      const clampedProgress = Math.min(Math.max(unclampedProgress, 0), 1);
+      const overflowProgress = unclampedProgress - clampedProgress;
+
+      heroProgressDeltaRef.current = 0;
+      setHeroProgress(clampedProgress);
+      setHeroViewportLocked(clampedProgress < 0.999 && isHeroPinned());
+
+      if (overflowProgress !== 0) {
+        window.scrollBy(0, overflowProgress * scrubDistance);
       }
     };
 
-    window.addEventListener("wheel", handleWheel, { passive: false });
+    const queueHeroProgressDelta = (deltaY: number) => {
+      heroProgressDeltaRef.current += deltaY / getScrubDistance();
+
+      if (heroProgressFrameRef.current) {
+        return;
+      }
+
+      heroProgressFrameRef.current = requestAnimationFrame(flushHeroProgressDelta);
+    };
+
+    const shouldCaptureScroll = (deltaY: number) => {
+      if (!Number.isFinite(deltaY) || deltaY === 0 || !isHeroPinned()) {
+        return false;
+      }
+
+      if (deltaY > 0) {
+        return heroFrameProgressRef.current < 0.999;
+      }
+
+      return heroFrameProgressRef.current > 0.001;
+    };
+
+    const handleWheel = (event: WheelEvent) => {
+      if (!shouldCaptureScroll(event.deltaY)) {
+        return;
+      }
+
+      event.preventDefault();
+      queueHeroProgressDelta(event.deltaY);
+    };
+
+    const handleTouchStart = (event: TouchEvent) => {
+      heroTouchStartYRef.current = event.touches[0]?.clientY ?? null;
+    };
+
+    const handleTouchMove = (event: TouchEvent) => {
+      const nextTouchY = event.touches[0]?.clientY;
+      const previousTouchY = heroTouchStartYRef.current;
+
+      if (nextTouchY == null || previousTouchY == null) {
+        return;
+      }
+
+      const deltaY = previousTouchY - nextTouchY;
+      heroTouchStartYRef.current = nextTouchY;
+
+      if (!shouldCaptureScroll(deltaY)) {
+        return;
+      }
+
+      event.preventDefault();
+      queueHeroProgressDelta(deltaY);
+    };
+
+    const handleTouchEnd = () => {
+      heroTouchStartYRef.current = null;
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const target = event.target;
+      if (
+        event.defaultPrevented ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.altKey ||
+        (target instanceof HTMLElement &&
+          (target.isContentEditable ||
+            target.tagName === "INPUT" ||
+            target.tagName === "TEXTAREA" ||
+            target.tagName === "SELECT"))
+      ) {
+        return;
+      }
+
+      let deltaY = 0;
+
+      switch (event.key) {
+        case "ArrowDown":
+          deltaY = 72;
+          break;
+        case "ArrowUp":
+          deltaY = -72;
+          break;
+        case "PageDown":
+          deltaY = window.innerHeight * 0.72;
+          break;
+        case "PageUp":
+          deltaY = window.innerHeight * -0.72;
+          break;
+        case " ":
+          deltaY = window.innerHeight * (event.shiftKey ? -0.72 : 0.72);
+          break;
+        default:
+          return;
+      }
+
+      if (!shouldCaptureScroll(deltaY)) {
+        return;
+      }
+
+      event.preventDefault();
+      queueHeroProgressDelta(deltaY);
+    };
+
+    syncHeroProgressFromViewport();
+    window.addEventListener("wheel", handleWheel, { passive: false, capture: true });
     window.addEventListener("touchstart", handleTouchStart, { passive: true });
-    window.addEventListener("touchmove", handleTouchMove, { passive: false });
-    window.addEventListener("resize", requestFrame);
-    syncProgressFromPagePosition();
-    requestFrame();
+    window.addEventListener("touchmove", handleTouchMove, { passive: false, capture: true });
+    window.addEventListener("touchend", handleTouchEnd, { passive: true });
+    window.addEventListener("keydown", handleKeyDown, { capture: true });
 
     return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("wheel", handleWheel);
+      cancelAnimationFrame(heroProgressFrameRef.current);
+      heroProgressFrameRef.current = 0;
+      heroProgressDeltaRef.current = 0;
+      heroTouchStartYRef.current = null;
+      setHeroViewportLocked(false);
+      window.removeEventListener("wheel", handleWheel, true);
       window.removeEventListener("touchstart", handleTouchStart);
-      window.removeEventListener("touchmove", handleTouchMove);
-      window.removeEventListener("resize", requestFrame);
+      window.removeEventListener("touchmove", handleTouchMove, true);
+      window.removeEventListener("touchend", handleTouchEnd);
+      window.removeEventListener("keydown", handleKeyDown, true);
     };
-  }, [loadHeroFrameImage]);
+  }, [setHeroProgress, setHeroViewportLocked, useCompactHero]);
 
   useEffect(() => {
-    const preloadStart = Math.max(0, activeHeroFrame - 4);
-    const preloadEnd = Math.min(heroSequenceFrames.length, activeHeroFrame + 10);
+    if (useCompactHero) {
+      return;
+    }
+
+    const preloadStart = Math.max(0, activeHeroFrame - 2);
+    const preloadEnd = Math.min(heroSequenceFrames.length, activeHeroFrame + 9);
 
     for (let index = preloadStart; index < preloadEnd; index += 1) {
-      const image = loadHeroFrameImage(index);
+      const image = loadHeroFrameImage(index, index <= activeHeroFrame + 2 ? "high" : "low");
+      decodeHeroFrameImage(image);
 
       if (index === activeHeroFrame && image && !image.complete) {
-        image.onload = () => {
-          drawHeroFrame(index);
-        };
+        image.addEventListener(
+          "load",
+          () => {
+            drawHeroFrame(index);
+          },
+          { once: true },
+        );
       }
     }
 
     if (!drawHeroFrame(activeHeroFrame)) {
-      const image = loadHeroFrameImage(activeHeroFrame);
+      const image = loadHeroFrameImage(activeHeroFrame, "high");
+      decodeHeroFrameImage(image);
       if (image) {
-        image.onload = () => {
-          drawHeroFrame(activeHeroFrame);
-        };
+        image.addEventListener(
+          "load",
+          () => {
+            drawHeroFrame(activeHeroFrame);
+          },
+          { once: true },
+        );
       }
     }
-  }, [activeHeroFrame, drawHeroFrame, loadHeroFrameImage]);
+  }, [activeHeroFrame, decodeHeroFrameImage, drawHeroFrame, loadHeroFrameImage, useCompactHero]);
 
   useEffect(() => {
+    if (useCompactHero) {
+      return;
+    }
+
+    let cancelled = false;
+    let idleCallbackId = 0;
+    let warmupTimer = 0;
+    let nextIndex = Math.min(10, heroSequenceFrames.length);
+
+    for (let index = 0; index < nextIndex; index += 1) {
+      decodeHeroFrameImage(loadHeroFrameImage(index, index < 4 ? "high" : "low"));
+    }
+
+    const warmRemainingFrames = (deadline?: IdleDeadline) => {
+      if (cancelled) {
+        return;
+      }
+
+      let framesProcessed = 0;
+
+      while (
+        nextIndex < heroSequenceFrames.length &&
+        framesProcessed < 10 &&
+        (deadline ? deadline.timeRemaining() > 6 : true)
+      ) {
+        decodeHeroFrameImage(loadHeroFrameImage(nextIndex, "low"));
+        nextIndex += 1;
+        framesProcessed += 1;
+      }
+
+      if (nextIndex >= heroSequenceFrames.length || cancelled) {
+        return;
+      }
+
+      if ("requestIdleCallback" in window) {
+        idleCallbackId = window.requestIdleCallback(warmRemainingFrames, { timeout: 1200 });
+      } else {
+        warmupTimer = window.setTimeout(() => warmRemainingFrames(), 180);
+      }
+    };
+
+    if ("requestIdleCallback" in window) {
+      idleCallbackId = window.requestIdleCallback(warmRemainingFrames, { timeout: 900 });
+    } else {
+      warmupTimer = window.setTimeout(() => warmRemainingFrames(), 240);
+    }
+
+    return () => {
+      cancelled = true;
+      if (idleCallbackId) {
+        window.cancelIdleCallback(idleCallbackId);
+      }
+      if (warmupTimer) {
+        window.clearTimeout(warmupTimer);
+      }
+    };
+  }, [decodeHeroFrameImage, loadHeroFrameImage, useCompactHero]);
+
+  useEffect(() => {
+    if (useCompactHero) {
+      return;
+    }
+
     const redrawCurrentFrame = () => {
       const frameToDraw =
         lastDrawnHeroFrameRef.current >= 0 ? lastDrawnHeroFrameRef.current : activeHeroFrame;
@@ -809,9 +759,189 @@ function Home() {
     window.addEventListener("resize", redrawCurrentFrame);
 
     return () => window.removeEventListener("resize", redrawCurrentFrame);
-  }, [activeHeroFrame, drawHeroFrame]);
+  }, [activeHeroFrame, drawHeroFrame, useCompactHero]);
+
+  return (
+    <section
+      className={`cinema-hero${useCompactHero ? " is-compact" : ""}`}
+      id="hero"
+      ref={heroRef}
+    >
+      <div className="cinema-hero-stage" aria-hidden="true">
+        <canvas
+          ref={heroCanvasRef}
+          className="cinema-hero-video"
+          width={heroSequenceSize.width}
+          height={heroSequenceSize.height}
+          aria-hidden="true"
+        />
+        <img
+          src="/assets/hero-powerplus.jpg"
+          alt="Franklin EV Power ++ electric scooter hero poster"
+          className="cinema-hero-poster"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
+        />
+        <div className="cinema-hero-rings">
+          <span />
+          <span />
+          <span />
+        </div>
+        <div className="cinema-road" />
+        <div className="cinema-hero-shade" />
+        <div
+          className={`cinema-frame-hud${launchIsActive ? " is-active" : ""}`}
+          style={
+            {
+              "--frame-progress": `${heroFrameProgress * 100}%`,
+              "--launch-progress": `${launchRevealProgress}`,
+            } as CSSProperties
+          }
+        >
+          <div className="cinema-frame-hud-top">
+            <span>Launch Framing</span>
+            <strong>
+              {String(activeFrameRailSegment + 1).padStart(2, "0")}/
+              {String(frameRailSegments.length).padStart(2, "0")}
+            </strong>
+          </div>
+          <div className="cinema-frame-meter">
+            <span />
+          </div>
+          <div className="cinema-frame-rail">
+            {frameRailSegments.map((segment, index) => (
+              <span
+                key={segment.step}
+                aria-label={`Frame ${segment.step}: ${segment.title}`}
+                className={
+                  index === activeFrameRailSegment
+                    ? "is-current"
+                    : index < activeFrameRailSegment
+                      ? "is-complete"
+                      : undefined
+                }
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div
+        className={`cinema-hero-content${launchIsActive ? " is-launching" : ""}`}
+        style={{ "--launch-progress": `${launchRevealProgress}` } as CSSProperties}
+      >
+        <div className="cinema-hero-copy">
+          <div className="cinema-eyebrow">
+            <Sparkles className="h-4 w-4" />
+            Hyderabad's Smart Electric Scooter Brand
+          </div>
+          <h1 className="cinema-hero-title">
+            <span>Hyderabad's smart electric</span>
+            <span>
+              scooter brand for <em>everyday freedom</em>.
+            </span>
+          </h1>
+          <p className="cinema-hero-sub">
+            Experience smart electric scooters built for Hyderabad riders, with long range
+            performance, cruise control, home charging and low running cost for daily commute.
+          </p>
+          <div className="cinema-hero-actions">
+            <Link to="/vehicles" className="cinema-btn cinema-btn-ghost">
+              Explore Models
+            </Link>
+            <Link to="/contact" className="cinema-btn cinema-btn-primary">
+              Book a Test Ride <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+          <div className="cinema-trust">
+            {heroTrustItems.map((item, index) => (
+              <div key={item} className="inline-flex items-center gap-3">
+                {index > 0 ? <b /> : <span />}
+                <strong>{item}</strong>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="cinema-callouts">
+          {heroCalloutItems.map(({ value, unit, label, icon }) => (
+            <div key={label} className="cinema-callout">
+              <span className="cinema-callout-icon">
+                {icon === "battery" ? (
+                  <BatteryCharging />
+                ) : icon === "gauge" ? (
+                  <Gauge />
+                ) : icon === "shield" ? (
+                  <ShieldCheck />
+                ) : (
+                  <Zap />
+                )}
+              </span>
+              <span>
+                <strong>
+                  <span data-count-to={value} data-count-decimals={value.includes(".") ? "1" : "0"}>
+                    {value}
+                  </span>{" "}
+                  <small>{unit}</small>
+                </strong>
+                {label}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AmbientDepthBackdrop() {
+  return (
+    <div className="cinema-depth-bg" aria-hidden="true">
+      <div className="cinema-depth-grid" />
+      <div className="cinema-depth-beam cinema-depth-beam-a" />
+      <div className="cinema-depth-beam cinema-depth-beam-b" />
+      <div className="cinema-depth-beam cinema-depth-beam-c" />
+      <div className="cinema-depth-orbit cinema-depth-orbit-a">
+        <span />
+      </div>
+      <div className="cinema-depth-orbit cinema-depth-orbit-b">
+        <span />
+      </div>
+      <div className="cinema-depth-sphere cinema-depth-sphere-a" />
+      <div className="cinema-depth-sphere cinema-depth-sphere-b" />
+    </div>
+  );
+}
+
+function Home() {
+  const [dailyRide, setDailyRide] = useState(32);
+  const [petrolPrice, setPetrolPrice] = useState(110);
+  const [range, setRange] = useState(110);
+  const [colorId, setColorId] = useState<(typeof modelColors)[number]["id"]>("silver");
+
+  const selectedColor = modelColors.find((color) => color.id === colorId) ?? modelColors[0];
+  const monthlyEvCost = Math.round(dailyRide * 30 * 0.22);
+  const monthlyFuelCost = Math.round(((dailyRide * 30) / 42) * petrolPrice);
+  const monthlySavings = Math.max(0, monthlyFuelCost - monthlyEvCost);
+  const threeYearSavings = monthlySavings * 36;
+  const activeModel = {
+    name: "Franklin EV Power ++",
+    buttonLabel: "Power ++",
+    badge:
+      "Available now in the real three-color lineup with a cleaner, production-ready presentation.",
+    body: "This updated showcase uses the supplied scooter photography only, with website-matched backgrounds and the currently available Silver, Sky Blue and Maroon finishes.",
+    specs: ["Silver finish available", "Sky Blue finish available", "Maroon finish available"],
+  } as const;
 
   useEffect(() => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const navigatorWithConnection = navigator as Navigator & {
+      connection?: { effectiveType?: string; saveData?: boolean };
+    };
+    const connection = navigatorWithConnection.connection;
+    const saveData = connection?.saveData === true;
+    const slowNetwork = /(^|-)2g$/.test(connection?.effectiveType ?? "");
     const videos = Array.from(
       document.querySelectorAll<HTMLVideoElement>("video[data-lazy-video]"),
     );
@@ -820,19 +950,25 @@ function Home() {
       return;
     }
 
-    const loadVideo = (video: HTMLVideoElement) => {
-      if (video.dataset.loaded === "true") {
+    const loadVideo = (video: HTMLVideoElement, mode: "metadata" | "full" = "full") => {
+      if (video.dataset.loaded === "full") {
         return;
       }
 
-      video.dataset.loaded = "true";
+      if (mode === "metadata" && video.dataset.loaded === "metadata") {
+        return;
+      }
+
       video.querySelectorAll<HTMLSourceElement>("source[data-src]").forEach((source) => {
         if (source.dataset.src && source.src !== source.dataset.src) {
           source.src = source.dataset.src;
         }
       });
+      video.preload = mode === "metadata" ? "metadata" : "auto";
       video.load();
-      if (video.autoplay) {
+      video.dataset.loaded = mode;
+
+      if (mode === "full" && video.autoplay) {
         void video.play().catch(() => undefined);
       }
     };
@@ -846,142 +982,46 @@ function Home() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && entry.target instanceof HTMLVideoElement) {
-            loadVideo(entry.target);
+            loadVideo(entry.target, "full");
             observer.unobserve(entry.target);
           }
         });
       },
-      { rootMargin: "650px 0px", threshold: 0.01 },
+      { rootMargin: "360px 0px", threshold: 0.01 },
     );
 
     videos.forEach((video) => observer.observe(video));
 
-    return () => observer.disconnect();
+    let idleCallbackId = 0;
+    let warmupTimer = 0;
+
+    if (!saveData && !slowNetwork && !reducedMotion) {
+      const warmup = () => {
+        videos.slice(0, 1).forEach((video) => loadVideo(video, "metadata"));
+      };
+
+      if ("requestIdleCallback" in window) {
+        idleCallbackId = window.requestIdleCallback(warmup, { timeout: 1400 });
+      } else {
+        warmupTimer = window.setTimeout(warmup, 700);
+      }
+    }
+
+    return () => {
+      observer.disconnect();
+      if (idleCallbackId) {
+        window.cancelIdleCallback(idleCallbackId);
+      }
+      if (warmupTimer) {
+        window.clearTimeout(warmupTimer);
+      }
+    };
   }, []);
 
   return (
     <div className="cinema-home">
-      <section className="cinema-hero" id="hero" ref={heroRef}>
-        <div className="cinema-hero-stage" aria-hidden="true">
-          <canvas
-            ref={heroCanvasRef}
-            className="cinema-hero-video"
-            width={heroSequenceSize.width}
-            height={heroSequenceSize.height}
-            aria-hidden="true"
-          />
-          <div className="cinema-hero-rings">
-            <span />
-            <span />
-            <span />
-          </div>
-          <div className="cinema-road" />
-          <div className="cinema-hero-shade" />
-          <div
-            className={`cinema-frame-hud${launchIsActive ? " is-active" : ""}`}
-            style={
-              {
-                "--frame-progress": `${heroFrameProgress * 100}%`,
-                "--launch-progress": `${launchRevealProgress}`,
-              } as CSSProperties
-            }
-          >
-            <div className="cinema-frame-meter">
-              <span />
-            </div>
-            <div className="cinema-frame-rail">
-              {heroFrameMoments.map((frame, index) => (
-                <span
-                  key={frame.step}
-                  aria-label={`Frame ${frame.step}: ${frame.title}`}
-                  className={
-                    index === activeHeroFrame
-                      ? "is-current"
-                      : index < activeHeroFrame
-                        ? "is-complete"
-                        : undefined
-                  }
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div
-          className={`cinema-hero-content${launchIsActive ? " is-launching" : ""}`}
-          style={{ "--launch-progress": `${launchRevealProgress}` } as CSSProperties}
-        >
-          <motion.div
-            className="cinema-hero-copy"
-            initial={false}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <div className="cinema-eyebrow">
-              <Sparkles className="h-4 w-4" />
-              Franklin EV Launchpad
-            </div>
-            <h1 className="cinema-hero-title">
-              <span>Welcome to </span>
-              <span>
-                the <em>electric era</em>.
-              </span>
-            </h1>
-            <p className="cinema-hero-sub">
-              Explore Franklin EV electric scooters for Hyderabad, Telangana and Andhra Pradesh.
-              Compare KORO, NIX-DLX and POWER+ with city-ready range, BLDC motor performance, cruise
-              control, anti-theft alerts and local dealer support.
-            </p>
-            <div className="cinema-hero-actions">
-              <Link to="/contact" className="cinema-btn cinema-btn-primary">
-                Book Your Test Ride <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link to="/vehicles" className="cinema-btn cinema-btn-ghost">
-                Explore All Models
-              </Link>
-            </div>
-            <div className="cinema-trust">
-              <span />
-              <strong>100 km</strong> approx. single-charge range
-              <b />
-              <strong>60 km/h</strong> top speed
-            </div>
-          </motion.div>
-
-          <div className="cinema-callouts">
-            {[
-              ["100", "km", "Approx. range"],
-              ["4.5", "hrs", "0-80% charge time"],
-              ["60", "km/h", "Top speed"],
-              ["3", "yrs", "Battery & motor warranty"],
-            ].map(([value, unit, label], index) => (
-              <motion.div
-                key={label}
-                className="cinema-callout"
-                initial={false}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ delay: 0.3 + index * 0.12, duration: 0.55 }}
-              >
-                <span className="cinema-callout-icon">
-                  {index === 1 ? <BatteryCharging /> : index === 2 ? <Gauge /> : <Zap />}
-                </span>
-                <span>
-                  <strong>
-                    <span
-                      data-count-to={value}
-                      data-count-decimals={value.includes(".") ? "1" : "0"}
-                    >
-                      {value}
-                    </span>{" "}
-                    <small>{unit}</small>
-                  </strong>
-                  {label}
-                </span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <AmbientDepthBackdrop />
+      <HeroSection />
 
       <section
         className="cinema-stat-strip"
@@ -990,9 +1030,9 @@ function Home() {
       >
         {[
           { value: 60, suffix: "km/h", label: "Top speed" },
-          { value: 100, suffix: "km", label: "Approx. single-charge range" },
+          { value: 120, suffix: "km", label: "Up to single-charge range" },
           { value: 3, suffix: "yrs", label: "Battery and motor warranty" },
-          { value: 20, suffix: "+", label: "Listed dealer locations" },
+          { value: 20, suffix: "+", label: "Hyderabad, TG & AP touchpoints" },
         ].map(({ value, suffix, label }) => (
           <div key={label}>
             <strong>
@@ -1006,23 +1046,29 @@ function Home() {
 
       <section className="cinema-section cinema-split" id="battery" data-animate="fade-up">
         <Reveal className="cinema-copy">
-          <div className="cinema-eyebrow">Battery Architecture</div>
+          <div className="cinema-eyebrow">The Future of Commuting</div>
           <h2 className="cinema-title">
-            Removable power, <em>real</em> range.
+            The future of commuting <em>starts here</em>.
           </h2>
           <p>
-            Franklin EV charging is designed around daily convenience. Use the 650 W plug-and-play
-            charger with a standard 15 A socket, charge at home or work, and speak with your nearest
-            dealer for model-specific battery guidance and warranty support.
+            Cities are evolving. Roads are becoming smarter. Transportation is becoming cleaner. The
+            modern rider expects more than just a vehicle. They expect efficiency, convenience,
+            technology and sustainability. Franklin EV is helping redefine urban transportation by
+            creating smart electric scooters for city commuting that fit seamlessly into everyday
+            life.
+          </p>
+          <p>
+            From professionals travelling to Hitech City and Gachibowli to students, families and
+            business owners across Hyderabad, more people are making the switch to electric mobility
+            because it delivers a better ownership experience. This isn't just about replacing
+            petrol. It's about upgrading the way you move.
           </p>
           <div className="cinema-mini-stats">
-            {[
-              "~4.5 hr 0-80% charge",
-              "650 W plug-and-play charger",
-              "3-year battery & motor warranty",
-            ].map((item) => (
-              <span key={item}>{item}</span>
-            ))}
+            {["Smart city commuting", "Convenient home charging", "Low running cost"].map(
+              (item) => (
+                <span key={item}>{item}</span>
+              ),
+            )}
           </div>
         </Reveal>
         <Reveal className="cinema-media-frame" delay={0.1}>
@@ -1031,11 +1077,11 @@ function Home() {
             muted
             loop
             playsInline
-            preload="none"
+            preload="metadata"
             poster="/assets/detail-battery.jpg"
             data-lazy-video
           >
-            <source data-src="/frames/battery-charge.mp4" type="video/mp4" />
+            <source data-src="/frames/battery-charge-optimized.mp4" type="video/mp4" />
           </video>
         </Reveal>
       </section>
@@ -1044,8 +1090,14 @@ function Home() {
         <Reveal className="motor-copy">
           <div className="cinema-eyebrow">The Heart of the Machine</div>
           <h2 className="cinema-title">
-            A BLDC hub motor, <em>built to perform</em>.
+            Technology that works <em>behind every ride</em>.
           </h2>
+          <p>
+            Great performance isn't just about speed. It's about delivering confidence every time
+            you ride. Franklin EV combines advanced battery systems, intelligent energy management,
+            efficient motors and rider-focused engineering to create a seamless ownership
+            experience.
+          </p>
         </Reveal>
         <div className="motor-stage">
           <video
@@ -1053,7 +1105,7 @@ function Home() {
             muted
             loop
             playsInline
-            preload="none"
+            preload="metadata"
             poster="/assets/detail-brakes.jpg"
             data-lazy-video
           >
@@ -1061,9 +1113,12 @@ function Home() {
           </video>
           <div className="motor-callout-row">
             {[
-              "Precision-wound stator for consistent torque",
-              "7 precision-machined components",
-              "Ventilated disc brake for responsive stopping",
+              "Smart battery technology",
+              "BLDC motor efficiency",
+              "Multiple riding modes",
+              "Cruise control functionality",
+              "Digital instrument cluster",
+              "Reverse mode assistance",
             ].map((item) => (
               <span key={item}>
                 <Check className="h-4 w-4" /> {item}
@@ -1077,8 +1132,12 @@ function Home() {
         <Reveal className="cinema-copy cinema-copy-wide">
           <div className="cinema-eyebrow">Thoughtfully Designed</div>
           <h2 className="cinema-title">
-            Practical details, <em>built for daily EV riding</em>.
+            Engineered around <em>real riders</em>.
           </h2>
+          <p>
+            Every Franklin EV scooter is designed around practical features that improve everyday
+            riding for professionals, students, families and business owners across Hyderabad.
+          </p>
         </Reveal>
         <StaggerGroup className="cinema-feature-grid">
           {features.map(({ Icon, title, body }) => (
@@ -1095,40 +1154,42 @@ function Home() {
         </StaggerGroup>
       </section>
 
-      <section className="cinema-section vehicle-lineup-section" id="lineup" data-animate="fade-up">
+      <section className="cinema-section" data-animate="fade-up">
         <Reveal className="cinema-copy cinema-copy-wide">
-          <div className="cinema-eyebrow">Vehicle Lineup</div>
+          <div className="cinema-eyebrow">Why Riders Switch</div>
           <h2 className="cinema-title">
-            Choose your <em>electric signature</em>.
+            Why more riders are choosing <em>electric over petrol</em>.
           </h2>
           <p>
-            KORO, NIX-DLX, and POWER+ each carry the Franklin EV promise: cleaner commutes, quieter
-            rides, low running costs and connected ownership support through listed dealer locations
-            across Telangana and Andhra Pradesh.
+            Every month, commuters spend a significant portion of their income on fuel, servicing,
+            engine maintenance and rising operating costs. Franklin EV offers a smarter alternative:
+            a smoother, quieter and more convenient riding experience for daily commute in
+            Hyderabad.
           </p>
         </Reveal>
-        <div className="vehicle-lineup-grid">
-          {vehicleLineup.map((vehicle) => (
-            <article className="vehicle-lineup-card" key={vehicle.name}>
-              <div className="vehicle-card-media">
-                <span className="vehicle-card-badge">{vehicle.badge}</span>
-                <img src={vehicle.image} alt={vehicle.alt} loading="lazy" />
-              </div>
-              <div className="vehicle-card-body">
-                <h3>{vehicle.name}</h3>
-                <p>{vehicle.tagline}</p>
-                <div className="vehicle-card-chips">
-                  {vehicle.chips.map((chip) => (
-                    <span key={chip}>{chip}</span>
-                  ))}
-                </div>
-                <Link to="/vehicles" className="vehicle-card-link">
-                  {vehicle.cta} <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </article>
+        <StaggerGroup className="cinema-feature-grid">
+          {[
+            "Lower charging costs",
+            "Reduced maintenance requirements",
+            "No engine oil changes",
+            "Convenient home charging",
+            "Sustainable transportation",
+            "Long-term ownership savings",
+          ].map((item) => (
+            <StaggerItem key={item}>
+              <article className="cinema-feature-card">
+                <span>
+                  <Check className="h-5 w-5" />
+                </span>
+                <h3>{item}</h3>
+                <p>
+                  Franklin EV makes electric mobility easier to compare, easier to own and easier to
+                  justify for everyday city travel.
+                </p>
+              </article>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
       </section>
 
       <section
@@ -1139,12 +1200,12 @@ function Home() {
         <Reveal className="cinema-copy">
           <div className="cinema-eyebrow">Cost Comparison</div>
           <h2 className="cinema-title">
-            Compare petrol costs with
-            <em> electric riding.</em>
+            Save more with <em>every ride.</em>
           </h2>
           <p>
-            Adjust your daily ride distance and petrol price to estimate monthly running cost and
-            possible savings with a Franklin EV electric scooter.
+            Compared to conventional petrol scooters, Franklin EV helps reduce daily operating costs
+            while delivering reliable performance. Adjust your daily ride distance and petrol price
+            to estimate monthly savings.
           </p>
           <p className="savings-callout">
             Estimated 3-year savings <strong>Rs. {threeYearSavings.toLocaleString("en-IN")}</strong>
@@ -1237,20 +1298,21 @@ function Home() {
 
       <section className="cinema-section cinema-split app-section" id="app" data-animate="fade-up">
         <Reveal className="cinema-copy">
-          <div className="cinema-eyebrow">Connected App Support</div>
+          <div className="cinema-eyebrow">Ownership Experience</div>
           <h2 className="cinema-title">
-            Your scooter, <em>clearer to manage</em>.
+            Simple to own. <em>Easy to love.</em>
           </h2>
           <p>
-            Franklin EV connected features help riders check live location, battery status,
-            anti-theft alerts and trip information from a smartphone. Ask your dealer which app
-            features are available for your selected model.
+            Owning an electric scooter should feel easier, not more complicated. Franklin EV
+            simplifies ownership with convenient charging, low maintenance requirements, smart
+            diagnostics, warranty support and dependable customer service.
           </p>
           <div className="app-feature-list">
             {[
-              { Icon: Navigation, label: "Live GPS location tracking" },
-              { Icon: Bell, label: "Battery status alerts" },
-              { Icon: LockKeyhole, label: "Anti-theft notifications" },
+              { Icon: Zap, label: "Charge at home" },
+              { Icon: Bell, label: "Smart diagnostics" },
+              { Icon: ShieldCheck, label: "Warranty coverage" },
+              { Icon: LockKeyhole, label: "Service support" },
             ].map(({ Icon, label }) => (
               <span key={label}>
                 <Icon className="h-4 w-4" /> {label}
@@ -1282,22 +1344,22 @@ function Home() {
               </div>
               <div className="phone-map-card">
                 <Navigation className="h-6 w-6" />
-                <strong>Franklin EV POWER+</strong>
+                <strong>Franklin EV Power ++</strong>
                 <span>Hyderabad · 82% battery</span>
               </div>
               <div className="phone-metric-grid">
                 <span>
                   <strong>100</strong>
-                  km approx. range
+                  km estimated range
                 </span>
                 <span>
                   <strong>4.5</strong>
-                  hrs to 80% charge
+                  hrs to practical charge
                 </span>
               </div>
               <div className="phone-alert">
                 <Bell className="h-4 w-4" />
-                Anti-theft protection active
+                Smart diagnostics active
               </div>
             </div>
           </div>
@@ -1312,36 +1374,24 @@ function Home() {
       >
         <div className="model-stage">
           <div className="model-glow" />
-          <motion.img
-            key={`${model}-${colorId}`}
+          <img
+            key={colorId}
             src={selectedColor.image}
-            alt={`Franklin EV ${activeModel.buttonLabel} electric scooter in ${selectedColor.name} color`}
-            initial={false}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 0.45 }}
+            alt={`Franklin EV ${activeModel.buttonLabel} electric scooter in ${selectedColor.name}`}
+            loading="eager"
+            decoding="async"
+            fetchPriority="low"
           />
           <div className="model-platform" />
         </div>
         <Reveal className="model-info">
-          <div className="cinema-eyebrow">POWER+ / KORO / NIX-DLX</div>
+          <div className="cinema-eyebrow">Available Colors</div>
           <p className="model-badge">{activeModel.badge}</p>
           <h2>{activeModel.name}</h2>
           <p>{activeModel.body}</p>
           <div className="model-pills">
             {activeModel.specs.map((spec) => (
               <span key={spec}>{spec}</span>
-            ))}
-          </div>
-          <div className="model-switch" aria-label="Choose Franklin EV model">
-            {(["power", "koro", "nix"] as const).map((id) => (
-              <button
-                key={id}
-                type="button"
-                className={model === id ? "active" : undefined}
-                onClick={() => setModel(id)}
-              >
-                {models[id].buttonLabel}
-              </button>
             ))}
           </div>
           <div className="color-grid" aria-label={`Choose ${activeModel.name} color`}>
@@ -1355,9 +1405,11 @@ function Home() {
                 aria-label={`Show ${activeModel.buttonLabel} in ${color.name}`}
               >
                 <img
-                  src={color.image}
-                  alt={`Franklin EV ${activeModel.buttonLabel} electric scooter in ${color.name}`}
+                  src={color.preview}
+                  alt={`Franklin EV ${activeModel.buttonLabel} preview in ${color.name}`}
                   loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
                 />
                 <span />
                 <strong>{color.name}</strong>
@@ -1374,12 +1426,13 @@ function Home() {
         <Reveal className="cinema-copy cinema-copy-wide">
           <div className="cinema-eyebrow">Find Us Near You</div>
           <h2 className="cinema-title">
-            Dealers across <em>Telangana & Andhra Pradesh</em>.
+            Experience Franklin EV <em>in person</em>.
           </h2>
           <p>
-            Find Franklin EV dealer locations in Hyderabad, Telangana and Andhra Pradesh for model
-            enquiries, test ride support and service guidance. Contact the team before visiting to
-            confirm current availability.
+            Visit a Franklin EV Experience Centre or dealer location to explore models, compare
+            features, take a test ride and speak with EV experts. Whether you're looking for an
+            affordable electric scooter in Hyderabad or exploring the latest advancements in
+            electric mobility, our team is ready to help.
           </p>
         </Reveal>
         <div
@@ -1406,16 +1459,70 @@ function Home() {
         </div>
       </section>
 
+      <section className="cinema-section" data-animate="fade-up">
+        <Reveal className="cinema-copy cinema-copy-wide">
+          <div className="cinema-eyebrow">Hyderabad's Electric Future</div>
+          <h2 className="cinema-title">
+            Proudly powering <em>Hyderabad's electric future</em>.
+          </h2>
+          <p>
+            As a Hyderabad electric vehicle company, Franklin EV understands the needs of local
+            riders better than anyone. From Hitech City and Financial District to Miyapur,
+            Kukatpally, Uppal, Kompally, Gachibowli and LB Nagar, Franklin EV is helping commuters
+            embrace smarter transportation. If you're searching for an electric scooter showroom in
+            Hyderabad, a trusted local EV brand or a dependable electric scooter for everyday
+            travel, Franklin EV is built for your city and your lifestyle.
+          </p>
+        </Reveal>
+        <StaggerGroup className="cinema-feature-grid">
+          {riderStories.map((story) => (
+            <StaggerItem key={story.title}>
+              <article className="cinema-feature-card">
+                <span>
+                  <Sparkles className="h-5 w-5" />
+                </span>
+                <h3>{story.title}</h3>
+                <p>{story.body}</p>
+              </article>
+            </StaggerItem>
+          ))}
+        </StaggerGroup>
+      </section>
+
+      <section className="cinema-section" data-animate="fade-up">
+        <Reveal className="cinema-copy cinema-copy-wide">
+          <div className="cinema-eyebrow">FAQ</div>
+          <h2 className="cinema-title">
+            Frequently asked <em>questions</em>.
+          </h2>
+          <p>
+            Quick answers for riders comparing electric scooter ownership, charging, maintenance and
+            test rides in Hyderabad.
+          </p>
+        </Reveal>
+        <div className="cinema-feature-grid">
+          {faqItems.map((item) => (
+            <article className="cinema-feature-card" key={item.question}>
+              <span>
+                <Check className="h-5 w-5" />
+              </span>
+              <h3>{item.question}</h3>
+              <p>{item.answer}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="cinema-section test-ride-panel" id="test-ride" data-animate="fade-up">
         <Reveal>
           <div className="cinema-eyebrow">Experience It Yourself</div>
           <h2>
-            Book a <em>test ride</em> today.
+            Ready to experience <em>smarter mobility?</em>
           </h2>
           <p>
-            Compare the ride quality, acceleration, comfort and connected features in person. Share
-            your city and preferred model, and the Franklin EV team will help you plan the next
-            step.
+            Join the growing community of riders choosing cleaner, smarter and more affordable
+            transportation. Discover why Franklin EV is becoming one of the most trusted names for
+            riders searching for the best electric scooter in Hyderabad.
           </p>
           <Link to="/contact" className="cinema-btn cinema-btn-primary">
             Book My Test Ride <ArrowRight className="h-4 w-4" />

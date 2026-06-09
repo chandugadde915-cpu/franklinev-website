@@ -1,10 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const links = [
-  { to: "/", label: "Home", title: "Franklin EV electric scooters India" },
+  { to: "/", label: "Home", title: "Franklin EV smart electric scooters in Hyderabad" },
   {
     to: "/vehicles",
     label: "Vehicles",
@@ -80,32 +79,24 @@ export function Navbar() {
         </div>
       </nav>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            className="site-mobile-menu"
-            initial={{ opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.25 }}
-          >
-            {links.map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                onClick={() => setOpen(false)}
-                className="site-mobile-link"
-                title={link.title}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Link to="/contact" onClick={() => setOpen(false)} className="site-mobile-cta">
-              Book a Test Ride
+      {open ? (
+        <div className="site-mobile-menu">
+          {links.map((link) => (
+            <Link
+              key={link.to}
+              to={link.to}
+              onClick={() => setOpen(false)}
+              className="site-mobile-link"
+              title={link.title}
+            >
+              {link.label}
             </Link>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          ))}
+          <Link to="/contact" onClick={() => setOpen(false)} className="site-mobile-cta">
+            Book a Test Ride
+          </Link>
+        </div>
+      ) : null}
     </header>
   );
 }

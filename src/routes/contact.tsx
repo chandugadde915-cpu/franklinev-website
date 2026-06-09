@@ -22,7 +22,7 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Contact Franklin EV India Pvt. Ltd. in Hyderabad to book a test ride, enquire about KORO, NIX-DLX and POWER+, or find listed dealer locations across Telangana and Andhra Pradesh.",
+          "Contact Franklin EV India Pvt. Ltd. in Hyderabad to book a test ride, enquire about Power ++ and Rapid, or find listed dealer locations across Telangana and Andhra Pradesh.",
       },
       {
         name: "keywords",
@@ -238,9 +238,8 @@ function ContactForm() {
                   className="w-full px-4 py-3 rounded-xl bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-ink"
                 >
                   <option>Not sure yet</option>
-                  <option>KORO</option>
-                  <option>NIX-DLX</option>
-                  <option>POWER+</option>
+                  <option>Power ++</option>
+                  <option>Rapid</option>
                 </select>
               </div>
               <div className="sm:col-span-2">

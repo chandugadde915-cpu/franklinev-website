@@ -26,7 +26,7 @@ const organizationSchema = {
   image: `${siteUrl}/assets/hero-powerplus.jpg`,
   logo: `${siteUrl}/assets/franklin-ev-logo.png`,
   description:
-    "Franklin EV India Pvt. Ltd. offers electric scooters for Indian city riders, including KORO, NIX-DLX and POWER+ with BLDC hub motor performance, city-ready range and dealer support.",
+    "Franklin EV India Pvt. Ltd. offers smart electric scooters in Hyderabad for everyday freedom, daily commute, home charging, cruise control, low running cost and local dealer support.",
   priceRange: "INR",
   address: {
     "@type": "PostalAddress",
@@ -61,11 +61,11 @@ const productCatalogSchema = {
       position: 1,
       item: {
         "@type": "Product",
-        name: "Franklin EV POWER+",
+        name: "Franklin EV Power ++",
         brand: { "@type": "Brand", name: "Franklin EV" },
         image: `${siteUrl}/assets/hero-powerplus.jpg`,
         description:
-          "Flagship Franklin EV electric scooter with ~100 km range, 60 km/h top speed, BLDC hub motor performance, cruise control, anti-theft alerts and battery & motor warranty support.",
+          "Flagship Franklin EV electric scooter designed for longer daily rides, intelligent performance, cruise control, smart features and battery & motor warranty support.",
         offers: {
           "@type": "Offer",
           priceCurrency: "INR",
@@ -79,29 +79,11 @@ const productCatalogSchema = {
       position: 2,
       item: {
         "@type": "Product",
-        name: "Franklin EV KORO",
+        name: "Franklin EV Rapid",
         brand: { "@type": "Brand", name: "Franklin EV" },
         image: `${siteUrl}/assets/scroll-frames/powerplus-side.jpg`,
         description:
-          "Franklin EV KORO is a practical electric scooter for daily city commutes with ~100 km range, low running cost, cruise control, anti-theft key alerts and BLDC hub motor performance.",
-        offers: {
-          "@type": "Offer",
-          priceCurrency: "INR",
-          availability: "https://schema.org/InStock",
-          url: `${siteUrl}/vehicles`,
-        },
-      },
-    },
-    {
-      "@type": "ListItem",
-      position: 3,
-      item: {
-        "@type": "Product",
-        name: "Franklin EV NIX-DLX",
-        brand: { "@type": "Brand", name: "Franklin EV" },
-        image: `${siteUrl}/assets/scroll-frames/powerplus-front.jpg`,
-        description:
-          "Franklin EV NIX-DLX combines premium styling, smart anti-theft alerts, cruise control and efficient electric scooter performance for Hyderabad and Telangana riders.",
+          "Franklin EV Rapid is a practical electric scooter for daily city commutes with smart ownership, low running cost, cruise control support and convenient charging.",
         offers: {
           "@type": "Offer",
           priceCurrency: "INR",
@@ -119,7 +101,78 @@ const webSiteSchema = {
   name: "Franklin EV",
   url: siteUrl,
   description:
-    "Official Franklin EV website for electric scooter test rides, model comparison, dealer locations, and ownership information.",
+    "Official Franklin EV website for smart electric scooters in Hyderabad, electric scooter test rides, model comparison, dealer locations, savings information, charging guidance and ownership support.",
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "How far can a Franklin EV scooter travel on a single charge?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Range depends on model, riding mode, load and road conditions. Franklin EV highlights up to 120 km range for suitable model configurations.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How much does it cost to charge an electric scooter?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Charging cost depends on your electricity tariff and battery usage, but daily electric scooter charging is typically much lower than petrol running cost.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How long does charging take?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Charging time varies by model, battery condition and charger type, but most riders can plan charging comfortably around home or overnight routines.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Can I charge my Franklin EV scooter at home?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. Franklin EV ownership is designed around convenient home charging with a compatible socket and dealer guidance.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What warranty coverage is available?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Warranty coverage depends on the model and battery package, and Franklin EV provides warranty support guidance through its sales and service network before delivery.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What maintenance does an electric scooter require?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Electric scooters have fewer moving parts than petrol scooters, helping reduce engine oil changes, fuel-system maintenance and regular running expenses.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Where are Franklin EV service centres located?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Franklin EV supports riders through dealer and service locations across Hyderabad, Telangana and Andhra Pradesh. Contact the team before visiting to confirm availability.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Why choose Franklin EV over a petrol scooter?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Franklin EV offers lower running costs, convenient charging, smart features, quieter riding and a cleaner commuting experience for city riders.",
+      },
+    },
+  ],
 };
 
 function NotFoundComponent() {
@@ -187,35 +240,35 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "theme-color", content: "#EEF5F9" },
       {
-        title: "Franklin EV Electric Scooters in Hyderabad | KORO, NIX-DLX, POWER+",
+        title: "Franklin EV | Hyderabad's Smart Electric Scooter Brand",
       },
       {
         name: "description",
         content:
-          "Franklin EV offers KORO, NIX-DLX and POWER+ electric scooters for Hyderabad, Telangana and Andhra Pradesh riders. Compare ~100 km range, 60 km/h top speed, BLDC hub motor, cruise control, anti-theft alerts and warranty support.",
+          "Franklin EV offers smart electric scooters in Hyderabad for everyday freedom, daily commute, low running cost, home charging, cruise control, smart features and local test ride support.",
       },
       {
         name: "keywords",
         content:
-          "electric scooter Hyderabad, buy EV scooter Telangana, Franklin EV KORO, Franklin EV POWER+, NIX-DLX scooter, removable battery electric scooter, low running cost scooter India, BLDC motor scooter, electric two-wheeler Telangana",
+          "best electric scooter in Hyderabad, affordable electric scooter in Hyderabad, electric scooter showroom in Hyderabad, electric scooter test ride in Hyderabad, long range electric scooter in Hyderabad, electric scooter with cruise control in India, electric scooter charging cost in Hyderabad, electric scooter dealer near Hitech City",
       },
       { name: "author", content: "Franklin EV India Pvt. Ltd." },
       { property: "og:site_name", content: "Franklin EV" },
       { property: "og:type", content: "website" },
       {
         property: "og:title",
-        content: "Franklin EV Electric Scooters | Hyderabad, Telangana & Andhra Pradesh",
+        content: "Franklin EV - Hyderabad's Smart Electric Scooter Brand for Everyday Freedom",
       },
       {
         property: "og:description",
         content:
-          "Discover Franklin EV KORO, NIX-DLX and POWER+ with ~100 km range, 60 km/h top speed, BLDC hub motor performance, cruise control, anti-theft alerts and dealer support.",
+          "Experience smarter mobility with Franklin EV electric scooters built for Hyderabad riders, everyday freedom, home charging, lower running costs and intelligent features.",
       },
       { property: "og:url", content: "https://www.franklinev.co.in" },
       { property: "og:image", content: "https://www.franklinev.co.in/assets/hero-powerplus.jpg" },
       {
         property: "og:image:alt",
-        content: "Franklin EV POWER+ electric scooter launch image.",
+        content: "Franklin EV Power ++ electric scooter launch image.",
       },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@franklinev" },
@@ -255,6 +308,10 @@ function RootShell({ children }: { children: ReactNode }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
       </head>
       <body>
         {children}
@@ -267,6 +324,7 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   useSiteMotion(location.pathname);
 
@@ -274,7 +332,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <ScrollProgressBar />
       <Navbar />
-      <main className="pt-16">
+      <main className={isHomePage ? "pt-16 pb-0" : "pt-16 pb-24 md:pb-10"}>
         <Outlet />
       </main>
       <Footer />
@@ -326,7 +384,7 @@ function useSiteMotion(pathname: string) {
           }
         });
       },
-      { threshold: 0.12, rootMargin: "120px 0px" },
+      { threshold: 0.01, rootMargin: "360px 0px" },
     );
 
     const countObserver = new IntersectionObserver(
@@ -358,7 +416,7 @@ function useSiteMotion(pathname: string) {
           countObserver.unobserve(entry.target);
         });
       },
-      { threshold: 0.18, rootMargin: "120px 0px" },
+      { threshold: 0.01, rootMargin: "280px 0px" },
     );
 
     document.querySelectorAll<HTMLElement>("[data-animate]").forEach((element) => {
