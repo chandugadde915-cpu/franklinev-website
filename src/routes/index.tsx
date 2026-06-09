@@ -54,6 +54,12 @@ export const Route = createFileRoute("/")({
         content: "https://franklinev-website.vercel.app/assets/hero-powerplus.jpg",
       },
       {
+        property: "og:image:secure_url",
+        content: "https://franklinev-website.vercel.app/assets/hero-powerplus.jpg",
+      },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      {
         property: "og:image:alt",
         content: "Franklin EV Power ++ premium electric scooter launch hero.",
       },
@@ -221,21 +227,27 @@ const modelColors = [
     name: "Silver",
     swatch: "#bbb19b",
     image: "/assets/models/premium-colors-layout/power-silver-angle-layout.png",
+    imageWebp: "/assets/models/premium-colors-layout/power-silver-angle-layout.webp",
     preview: "/assets/models/premium-colors-layout/power-silver-front-layout.png",
+    previewWebp: "/assets/models/premium-colors-layout/power-silver-front-layout.webp",
   },
   {
     id: "blue",
     name: "Sky Blue",
     swatch: "#8fd5f3",
     image: "/assets/models/premium-colors-layout/power-blue-angle-layout.png",
+    imageWebp: "/assets/models/premium-colors-layout/power-blue-angle-layout.webp",
     preview: "/assets/models/premium-colors-layout/power-blue-front-layout.png",
+    previewWebp: "/assets/models/premium-colors-layout/power-blue-front-layout.webp",
   },
   {
     id: "maroon",
     name: "Maroon",
     swatch: "#9f2438",
     image: "/assets/models/premium-colors-layout/power-maroon-angle-layout.png",
+    imageWebp: "/assets/models/premium-colors-layout/power-maroon-angle-layout.webp",
     preview: "/assets/models/premium-colors-layout/power-maroon-front-layout.png",
+    previewWebp: "/assets/models/premium-colors-layout/power-maroon-front-layout.webp",
   },
 ] as const;
 
@@ -248,10 +260,22 @@ const heroTrustItems = [
 ] as const;
 
 const heroCalloutItems = [
-  { value: "120", unit: "km", label: "Up to range", icon: "zap" },
-  { value: "4.5", unit: "hrs", label: "0-80% charge time", icon: "battery" },
-  { value: "60", unit: "km/h", label: "Top speed", icon: "gauge" },
-  { value: "3", unit: "yrs", label: "Battery & motor warranty", icon: "shield" },
+  { value: "120", unit: "km", label: "Up to range", icon: "zap", ariaLabel: "Up to 120 km range" },
+  {
+    value: "4.5",
+    unit: "hrs",
+    label: "0-80% charge time",
+    icon: "battery",
+    ariaLabel: "4.5 hours 0 to 80 percent charge time",
+  },
+  { value: "60", unit: "km/h", label: "Top speed", icon: "gauge", ariaLabel: "60 kilometres per hour top speed" },
+  {
+    value: "3",
+    unit: "yrs",
+    label: "Battery & motor warranty",
+    icon: "shield",
+    ariaLabel: "3 years battery and motor warranty",
+  },
 ] as const;
 
 const riderSwitchBenefits = [
@@ -763,6 +787,7 @@ function HeroSection() {
       }`}
       id="hero"
       ref={heroRef}
+      aria-label="Franklin EV hero - Smart electric scooters Hyderabad"
     >
       <div className="cinema-hero-stage" aria-hidden="true">
         <canvas
@@ -826,8 +851,8 @@ function HeroSection() {
         </div>
 
         <div className="cinema-callouts">
-          {heroCalloutItems.map(({ value, unit, label, icon }) => (
-            <div key={label} className="cinema-callout">
+          {heroCalloutItems.map(({ value, unit, label, icon, ariaLabel }) => (
+            <div key={label} className="cinema-callout" aria-label={ariaLabel}>
               <span className="cinema-callout-icon">
                 {icon === "battery" ? (
                   <BatteryCharging />
@@ -839,8 +864,8 @@ function HeroSection() {
                   <Zap />
                 )}
               </span>
-              <span>
-                <strong>
+              <span className="cinema-callout-text">
+                <strong className="cinema-callout-value">
                   <span
                     className="stat-number"
                     data-stat-number
@@ -851,7 +876,8 @@ function HeroSection() {
                   </span>{" "}
                   <small>{unit}</small>
                 </strong>
-                {label}
+                {" "}
+                <span className="cinema-callout-label">{label}</span>
               </span>
             </div>
           ))}
@@ -898,9 +924,8 @@ function Home() {
   const activeModel = {
     name: "Franklin EV Power ++",
     buttonLabel: "Power ++",
-    badge:
-      "Available now in the real three-color lineup with a cleaner, production-ready presentation.",
-    body: "This updated showcase uses the supplied scooter photography only, with website-matched backgrounds and the currently available Silver, Sky Blue and Maroon finishes.",
+    badge: "Available in 3 finishes - built for everyday Hyderabad riders.",
+    body: "Franklin EV Power ++ combines commanding road presence with practical long-range performance. Available in Silver, Sky Blue and Maroon - choose your finish and book a test ride at a dealer near you.",
     specs: ["Silver finish available", "Sky Blue finish available", "Maroon finish available"],
   } as const;
 
@@ -1187,16 +1212,24 @@ function Home() {
           </div>
           <div className="ride-controls">
             <RideControl
+              id="daily-km"
+              name="daily_km"
               label="Daily ride distance"
               value={`${dailyRide} km`}
+              ariaLabel="Daily ride distance in kilometres"
+              ariaValueText={`${dailyRide} km per day`}
               min={8}
               max={90}
               current={dailyRide}
               onChange={setDailyRide}
             />
             <RideControl
+              id="petrol-price"
+              name="petrol_price"
               label="Petrol price"
               value={`Rs. ${petrolPrice}/L`}
+              ariaLabel="Petrol price per litre in rupees"
+              ariaValueText={`Rs. ${petrolPrice} per litre`}
               min={85}
               max={140}
               current={petrolPrice}
@@ -1311,23 +1344,25 @@ function Home() {
       >
         <div className="model-stage">
           <div className="model-glow" />
-          <img
-            key={colorId}
-            src={selectedColor.image}
-            alt={`Franklin EV ${activeModel.buttonLabel} electric scooter in ${selectedColor.name}`}
-            loading="eager"
-            decoding="async"
-            fetchPriority="low"
-            width={1800}
-            height={1800}
-          />
+          <picture key={colorId}>
+            <source srcSet={selectedColor.imageWebp} type="image/webp" />
+            <img
+              src={selectedColor.image}
+              alt={`Franklin EV ${activeModel.buttonLabel} electric scooter in ${selectedColor.name}`}
+              loading="eager"
+              decoding="async"
+              fetchPriority="low"
+              width={1200}
+              height={1200}
+            />
+          </picture>
           <div className="model-platform" />
         </div>
         <Reveal className="model-info">
           <div className="cinema-eyebrow">Available Colors</div>
-          <p className="model-badge">{activeModel.badge}</p>
+          <p className="model-badge model-note">{activeModel.badge}</p>
           <h2>{activeModel.name}</h2>
-          <p>{activeModel.body}</p>
+          <p className="model-description">{activeModel.body}</p>
           <div className="model-pills">
             {activeModel.specs.map((spec) => (
               <span key={spec}>{spec}</span>
@@ -1343,15 +1378,18 @@ function Home() {
                 onClick={() => setColorId(color.id)}
                 aria-label={`Show ${activeModel.buttonLabel} in ${color.name}`}
               >
-                <img
-                  src={color.preview}
-                  alt={`Franklin EV ${activeModel.buttonLabel} preview in ${color.name}`}
-                  loading="eager"
-                  decoding="async"
-                  fetchPriority="low"
-                  width={1800}
-                  height={1800}
-                />
+                <picture>
+                  <source srcSet={color.previewWebp} type="image/webp" />
+                  <img
+                    src={color.preview}
+                    alt={`Franklin EV ${activeModel.buttonLabel} preview in ${color.name}`}
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="low"
+                    width={1200}
+                    height={1200}
+                  />
+                </picture>
                 <span />
                 <strong>{color.name}</strong>
               </button>
@@ -1475,15 +1513,23 @@ function Home() {
 }
 
 function RideControl({
+  id,
+  name,
   label,
   value,
+  ariaLabel,
+  ariaValueText,
   min,
   max,
   current,
   onChange,
 }: {
+  id: string;
+  name: string;
   label: string;
   value: string;
+  ariaLabel: string;
+  ariaValueText: string;
   min: number;
   max: number;
   current: number;
@@ -1494,7 +1540,14 @@ function RideControl({
       <span>{label}</span>
       <strong>{value}</strong>
       <input
+        id={id}
+        name={name}
         type="range"
+        aria-label={ariaLabel}
+        aria-valuenow={current}
+        aria-valuemin={min}
+        aria-valuemax={max}
+        aria-valuetext={ariaValueText}
         min={min}
         max={max}
         value={current}

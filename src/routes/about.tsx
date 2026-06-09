@@ -174,50 +174,58 @@ function AboutPage() {
         </Reveal>
         <Reveal delay={0.1}>
           <figure className="about-journey-visual">
-            <img
-              src="/assets/models/premium-colors-layout/power-blue-angle-layout.png"
-              alt="Franklin EV scooter visual used to represent the brand journey."
-              width={1800}
-              height={1800}
-              loading="lazy"
-              decoding="async"
-            />
+            <picture>
+              <source
+                srcSet="/assets/models/premium-colors-layout/power-blue-angle-layout.webp"
+                type="image/webp"
+              />
+              <img
+                src="/assets/models/premium-colors-layout/power-blue-angle-layout.png"
+                alt="Franklin EV Power ++ in Sky Blue"
+                width={1200}
+                height={1200}
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
           </figure>
         </Reveal>
-        <div className="mt-14 relative">
-          <div className="absolute left-4 lg:left-1/2 top-0 bottom-0 w-px bg-border" />
+        <ol className="journey-timeline">
           {[
             {
-              t: "Founded in India",
-              b: "Built on a belief that electric mobility should be practical, affordable and easy to understand for everyday riders.",
+              year: "2021",
+              title: "Founded in Hyderabad",
+              body: "Franklin EV India Pvt. Ltd. incorporated with a mission to make electric scooters practical for everyday city riders.",
             },
             {
-              t: "A range takes shape",
-              b: "Power ++ and Rapid give riders clear choices across flagship performance and practical daily commuting.",
+              year: "2022",
+              title: "First dealer network",
+              body: "Established initial dealer presence across Hyderabad and Secunderabad, covering key areas including AS Rao Nagar and Boduppal.",
             },
             {
-              t: "Connected riding",
-              b: "Connected ownership features support battery status, location information and anti-theft alerts on supported models.",
+              year: "2023",
+              title: "Power ++ launch",
+              body: "Franklin EV Power ++ launched with cruise control, 120 km range and smart connectivity as the flagship model for Hyderabad riders.",
             },
             {
-              t: "Growing network",
-              b: "Dealer locations across Telangana and Andhra Pradesh help riders enquire, book test rides and access service guidance closer to home.",
+              year: "2024-25",
+              title: "Expanding across Telangana & AP",
+              body: "Dealer network expanded to 20+ touchpoints covering Nalgonda, Karimnagar, Visakhapatnam, Srikakulam and districts across both states.",
             },
           ].map((step, i) => (
-            <Reveal key={i} delay={i * 0.05}>
-              <div
-                className={`relative mb-10 lg:grid lg:grid-cols-2 lg:gap-12 ${i % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""}`}
-              >
-                <div className="pl-12 lg:pl-0 lg:pr-8 lg:text-right">
-                  <div className="absolute left-2 lg:left-1/2 lg:-translate-x-1/2 -translate-y-1 w-5 h-5 rounded-full bg-primary-gradient shadow-soft" />
-                  <h3 className="font-display text-xl font-bold text-ink">{step.t}</h3>
-                  <p className="mt-2 text-muted-foreground">{step.b}</p>
-                </div>
-                <div />
+            <li
+              key={step.year}
+              className="journey-item"
+              style={{ transitionDelay: `${i * 0.05}s` }}
+            >
+              <span className="journey-year">{step.year}</span>
+              <div>
+                <h3>{step.title}</h3>
+                <p>{step.body}</p>
               </div>
-            </Reveal>
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
 
       <section className="max-w-7xl mx-auto px-5 lg:px-8 py-16">

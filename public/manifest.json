@@ -1,0 +1,21 @@
+{
+  "name": "Franklin EV",
+  "short_name": "Franklin EV",
+  "description": "Smart electric scooters for Hyderabad riders",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#EEF5F9",
+  "theme_color": "#009fe8",
+  "icons": [
+    {
+      "src": "/assets/franklin-ev-logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/franklin-ev-logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown, Check, Download } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 
@@ -41,7 +40,7 @@ interface ModelData {
   price: string;
   chips: string[];
   features: string[];
-  images: { src: string; alt: string }[];
+  images: { src: string; webp: string; alt: string }[];
   accent: string;
   variants?: string[];
 }
@@ -69,6 +68,7 @@ const models: ModelData[] = [
     images: [
       {
         src: "/assets/models/premium-colors-layout/power-silver-angle-layout.png",
+        webp: "/assets/models/premium-colors-layout/power-silver-angle-layout.webp",
         alt: "Franklin EV Power ++ electric scooter in Silver, three-quarter front view.",
       },
     ],
@@ -96,8 +96,9 @@ const models: ModelData[] = [
     ],
     images: [
       {
-        src: "/assets/models/premium-colors-layout/power-silver-angle-layout.png",
-        alt: "Franklin EV Rapid electric scooter temporary visual in silver, three-quarter front view.",
+        src: "/assets/models/premium-colors-layout/power-maroon-angle-layout.png",
+        webp: "/assets/models/premium-colors-layout/power-maroon-angle-layout.webp",
+        alt: "Franklin EV Rapid electric scooter, city commute model in silver",
       },
     ],
     accent: "from-primary/15 to-accent/5",
@@ -183,16 +184,19 @@ function VehiclesPage() {
               >
                 <div className="absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_60%,oklch(0.62_0.18_248/0.15),transparent_70%)]" />
                 {m.key === "rapid" ? <span className="model-badge">Rapid</span> : null}
-                <motion.img
-                  src={m.images[0].src}
-                  alt={m.images[0].alt}
-                  loading="lazy"
-                  width={1800}
-                  height={1800}
-                  className="relative max-h-[80%] w-auto object-contain"
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                />
+                <picture className="relative max-h-[80%] w-auto">
+                  <source srcSet={m.images[0].webp} type="image/webp" />
+                  <motion.img
+                    src={m.images[0].src}
+                    alt={m.images[0].alt}
+                    loading="lazy"
+                    width={1200}
+                    height={1200}
+                    className="max-h-full w-auto object-contain"
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                </picture>
               </div>
               <div>
                 <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink">
@@ -330,31 +334,17 @@ function VehiclesPage() {
 }
 
 function FaqItem({ q, a }: { q: string; a: string }) {
-  const [open, setOpen] = useState(false);
   return (
-    <div className="rounded-2xl bg-surface border border-border shadow-soft overflow-hidden">
-      <button
-        onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center justify-between gap-4 p-5 text-left"
-        aria-expanded={open}
-      >
+    <details className="faq-item rounded-2xl bg-surface border border-border shadow-soft overflow-hidden">
+      <summary className="faq-question w-full flex items-center justify-between gap-4 p-5 text-left">
         <span className="font-semibold text-ink">{q}</span>
-        <motion.span animate={{ rotate: open ? 180 : 0 }} className="text-primary">
+        <span className="faq-chevron text-primary">
           <ChevronDown className="w-5 h-5" />
-        </motion.span>
-      </button>
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25 }}
-          >
-            <p className="px-5 pb-5 text-muted-foreground">{a}</p>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+        </span>
+      </summary>
+      <div className="faq-answer">
+        <p className="px-5 pb-5 text-muted-foreground">{a}</p>
+      </div>
+    </details>
   );
 }

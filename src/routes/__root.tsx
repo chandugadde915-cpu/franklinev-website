@@ -17,13 +17,14 @@ import { Footer } from "../components/Footer";
 import { FloatingDock } from "../components/FloatingDock";
 
 const siteUrl = "https://franklinev-website.vercel.app";
+const socialImageUrl = `${siteUrl}/assets/hero-powerplus.jpg`;
 
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "AutoDealer",
   name: "Franklin EV India Pvt. Ltd.",
   url: siteUrl,
-  image: `${siteUrl}/assets/hero-powerplus.jpg`,
+  image: socialImageUrl,
   logo: `${siteUrl}/assets/franklin-ev-logo.png`,
   description:
     "Franklin EV India Pvt. Ltd. offers smart electric scooters in Hyderabad for everyday freedom, daily commute, home charging, cruise control, low running cost and local dealer support.",
@@ -63,7 +64,7 @@ const productCatalogSchema = {
         "@type": "Product",
         name: "Franklin EV Power ++",
         brand: { "@type": "Brand", name: "Franklin EV" },
-        image: `${siteUrl}/assets/hero-powerplus.jpg`,
+        image: socialImageUrl,
         description:
           "Flagship Franklin EV electric scooter designed for longer daily rides, intelligent performance, cruise control, smart features and battery & motor warranty support.",
         offers: {
@@ -239,6 +240,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "theme-color", content: "#EEF5F9" },
+      { name: "mobile-web-app-capable", content: "yes" },
+      { name: "apple-mobile-web-app-status-bar-style", content: "default" },
       {
         title: "Franklin EV | Hyderabad's Smart Electric Scooter Brand",
       },
@@ -265,20 +268,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Experience smarter mobility with Franklin EV electric scooters built for Hyderabad riders, everyday freedom, home charging, lower running costs and intelligent features.",
       },
       { property: "og:url", content: siteUrl },
-      { property: "og:image", content: `${siteUrl}/assets/hero-powerplus.jpg` },
+      { property: "og:image", content: socialImageUrl },
+      { property: "og:image:secure_url", content: socialImageUrl },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       {
         property: "og:image:alt",
         content: "Franklin EV Power ++ electric scooter launch image.",
       },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@franklinev" },
-      { name: "twitter:image", content: `${siteUrl}/assets/hero-powerplus.jpg` },
+      { name: "twitter:image", content: socialImageUrl },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      { rel: "manifest", href: "/manifest.json" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "canonical", href: `${siteUrl}/` },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&display=swap",
@@ -314,6 +320,9 @@ function RootShell({ children }: { children: ReactNode }) {
         />
       </head>
       <body>
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
         {children}
         <Scripts />
       </body>
@@ -331,7 +340,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <ScrollProgressBar />
       <Navbar />
-      <main className="pt-16 pb-0">
+      <main id="main-content" className="pt-16 pb-0">
         <Outlet />
       </main>
       <Footer />

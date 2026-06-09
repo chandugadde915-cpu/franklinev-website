@@ -7,6 +7,19 @@ export function FloatingDock() {
   const [footerVisible, setFooterVisible] = useState(false);
 
   useEffect(() => {
+    const mobileQuery = window.matchMedia("(max-width: 768px)");
+    setCollapsed(mobileQuery.matches);
+
+    const handleMobileChange = (event: MediaQueryListEvent) => {
+      setCollapsed(event.matches);
+    };
+
+    mobileQuery.addEventListener("change", handleMobileChange);
+
+    return () => mobileQuery.removeEventListener("change", handleMobileChange);
+  }, []);
+
+  useEffect(() => {
     const footer = document.querySelector("footer");
     if (!footer || !("IntersectionObserver" in window)) {
       return;
@@ -16,7 +29,7 @@ export function FloatingDock() {
       ([entry]) => {
         setFooterVisible(entry.isIntersecting);
       },
-      { threshold: 0.1 },
+      { threshold: 0.2 },
     );
 
     observer.observe(footer);

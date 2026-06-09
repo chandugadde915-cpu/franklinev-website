@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Check,
   Mail,
   MapPin,
   Phone,
@@ -196,11 +195,22 @@ function ContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
     setStatus("sending");
 
     try {
-      await new Promise((resolve) => window.setTimeout(resolve, 700));
-      e.currentTarget.reset();
+      const data = Object.fromEntries(new FormData(form));
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) {
+        throw new Error("Contact request failed");
+      }
+
+      form.reset();
       setStatus("success");
     } catch {
       setStatus("error");
@@ -211,7 +221,10 @@ function ContactForm() {
 
   return (
     <form
+      method="POST"
+      action="/api/contact"
       onSubmit={onSubmit}
+      aria-busy={isSending}
       className="p-7 lg:p-9 rounded-3xl bg-surface border border-border shadow-soft"
     >
       <AnimatePresence mode="wait">
@@ -219,7 +232,14 @@ function ContactForm() {
           <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <h2 className="font-display text-2xl font-bold text-ink">Send a Franklin EV enquiry</h2>
             <div className="mt-6 grid sm:grid-cols-2 gap-4">
-              <Field label="Full name" id="name" name="full_name" autoComplete="name" required />
+              <Field
+                label="Full name"
+                id="name"
+                name="full_name"
+                autoComplete="name"
+                placeholder="Ravi Kumar"
+                required
+              />
               <Field
                 label="Phone number"
                 id="phone"
@@ -237,9 +257,17 @@ function ContactForm() {
                 name="email"
                 type="email"
                 autoComplete="email"
+                placeholder="ravi@email.com"
                 required
               />
-              <Field label="City" id="city" name="city" autoComplete="address-level2" required />
+              <Field
+                label="City"
+                id="city"
+                name="city"
+                autoComplete="address-level2"
+                placeholder="Hyderabad, Secunderabad, Warangal..."
+                required
+              />
               <div className="sm:col-span-2">
                 <label htmlFor="model" className="block text-sm font-medium text-ink mb-1.5">
                   Interested model
@@ -262,24 +290,16 @@ function ContactForm() {
                   id="msg"
                   name="message"
                   rows={4}
+                  placeholder="I'd like a test ride for the Power ++ model at Boduppal..."
                   className="w-full px-4 py-3 rounded-xl bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-ink resize-none"
                 />
               </div>
             </div>
-            {status === "success" ? (
-              <div className="form-success" role="alert" aria-live="polite">
-                <Check className="w-4 h-4" /> Thank you! We'll be in touch within 24 hours.
-              </div>
-            ) : null}
-            {status === "error" ? (
-              <div className="form-error" role="alert">
-                Something went wrong. Please call us at +91 89770 40935.
-              </div>
-            ) : null}
             <button
               type="submit"
               disabled={isSending}
-              className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary-gradient text-primary-foreground font-semibold shadow-soft hover:shadow-lift hover:scale-[1.02] transition-all"
+              aria-label={status === "success" ? "Enquiry sent" : "Send my enquiry"}
+              className={`mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary-gradient text-primary-foreground font-semibold shadow-soft hover:shadow-lift hover:scale-[1.02] transition-all${isSending ? " btn-loading" : ""}`}
             >
               {isSending ? (
                 <>
@@ -291,9 +311,35 @@ function ContactForm() {
                 </>
               )}
             </button>
+            <div
+              id="form-status"
+              role="alert"
+              aria-live="polite"
+              aria-atomic="true"
+              className={
+                status === "success"
+                  ? "success"
+                  : status === "error"
+                    ? "error"
+                    : status === "sending"
+                      ? "sending"
+                      : undefined
+              }
+            >
+              {status === "sending"
+                ? "Sending your enquiry..."
+                : status === "success"
+                  ? "Thank you! We'll contact you within 24 hours."
+                  : status === "error"
+                    ? "Something went wrong. Please call +91 89770 40935 directly."
+                    : ""}
+            </div>
             <p className="mt-4 text-xs text-muted-foreground">
-              By submitting, you agree to be contacted by Franklin EV about models, test rides,
-              dealers or service support.
+              By submitting, you agree to be contacted by Franklin EV. See our{" "}
+              <a href="/privacy" className="consent-link">
+                Privacy Policy
+              </a>
+              .
             </p>
           </motion.div>
         }
