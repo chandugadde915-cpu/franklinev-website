@@ -163,7 +163,7 @@ function ContactPage() {
                   href={href}
                   aria-label={label}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="w-9 h-9 grid place-items-center rounded-full border border-border text-muted-foreground hover:text-primary hover:border-primary"
                 >
                   <Icon className="w-4 h-4" />
@@ -193,48 +193,60 @@ function ContactPage() {
 }
 
 function ContactForm() {
-  const [sent, setSent] = useState(false);
-  const onSubmit = (e: React.FormEvent) => {
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSent(true);
+    setStatus("sending");
+
+    try {
+      await new Promise((resolve) => window.setTimeout(resolve, 700));
+      e.currentTarget.reset();
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
   };
+
+  const isSending = status === "sending";
+
   return (
     <form
       onSubmit={onSubmit}
       className="p-7 lg:p-9 rounded-3xl bg-surface border border-border shadow-soft"
     >
       <AnimatePresence mode="wait">
-        {sent ? (
-          <motion.div
-            key="ok"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="text-center py-14"
-          >
-            <div className="w-16 h-16 mx-auto rounded-full bg-accent/20 grid place-items-center text-accent">
-              <Check className="w-8 h-8" />
-            </div>
-            <h2 className="mt-5 font-display text-2xl font-bold text-ink">
-              Thanks — your enquiry is on its way
-            </h2>
-            <p className="mt-2 text-muted-foreground">
-              A Franklin EV expert will reach out shortly.
-            </p>
-          </motion.div>
-        ) : (
+        {
           <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <h2 className="font-display text-2xl font-bold text-ink">Send a Franklin EV enquiry</h2>
             <div className="mt-6 grid sm:grid-cols-2 gap-4">
-              <Field label="Full name" id="name" required />
-              <Field label="Phone number" id="phone" type="tel" required />
-              <Field label="Email" id="email" type="email" required />
-              <Field label="City" id="city" required />
+              <Field label="Full name" id="name" name="full_name" autoComplete="name" required />
+              <Field
+                label="Phone number"
+                id="phone"
+                name="phone"
+                type="tel"
+                autoComplete="tel"
+                inputMode="numeric"
+                pattern="[6-9][0-9]{9}"
+                placeholder="9876543210"
+                required
+              />
+              <Field
+                label="Email"
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+              />
+              <Field label="City" id="city" name="city" autoComplete="address-level2" required />
               <div className="sm:col-span-2">
                 <label htmlFor="model" className="block text-sm font-medium text-ink mb-1.5">
                   Interested model
                 </label>
                 <select
                   id="model"
+                  name="model_interest"
                   className="w-full px-4 py-3 rounded-xl bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-ink"
                 >
                   <option>Not sure yet</option>
@@ -248,23 +260,43 @@ function ContactForm() {
                 </label>
                 <textarea
                   id="msg"
+                  name="message"
                   rows={4}
                   className="w-full px-4 py-3 rounded-xl bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-ink resize-none"
                 />
               </div>
             </div>
+            {status === "success" ? (
+              <div className="form-success" role="alert" aria-live="polite">
+                <Check className="w-4 h-4" /> Thank you! We'll be in touch within 24 hours.
+              </div>
+            ) : null}
+            {status === "error" ? (
+              <div className="form-error" role="alert">
+                Something went wrong. Please call us at +91 89770 40935.
+              </div>
+            ) : null}
             <button
               type="submit"
+              disabled={isSending}
               className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary-gradient text-primary-foreground font-semibold shadow-soft hover:shadow-lift hover:scale-[1.02] transition-all"
             >
-              Send my enquiry <Send className="w-4 h-4" />
+              {isSending ? (
+                <>
+                  <span className="spinner" aria-hidden="true" /> Sending...
+                </>
+              ) : (
+                <>
+                  Send my enquiry <Send className="w-4 h-4" />
+                </>
+              )}
             </button>
             <p className="mt-4 text-xs text-muted-foreground">
               By submitting, you agree to be contacted by Franklin EV about models, test rides,
               dealers or service support.
             </p>
           </motion.div>
-        )}
+        }
       </AnimatePresence>
     </form>
   );
@@ -273,12 +305,22 @@ function ContactForm() {
 function Field({
   label,
   id,
+  name,
   type = "text",
+  autoComplete,
+  inputMode,
+  pattern,
+  placeholder,
   required,
 }: {
   label: string;
   id: string;
+  name: string;
   type?: string;
+  autoComplete?: string;
+  inputMode?: "none" | "text" | "tel" | "url" | "email" | "numeric" | "decimal" | "search";
+  pattern?: string;
+  placeholder?: string;
   required?: boolean;
 }) {
   return (
@@ -288,7 +330,12 @@ function Field({
       </label>
       <input
         id={id}
+        name={name}
         type={type}
+        autoComplete={autoComplete}
+        inputMode={inputMode}
+        pattern={pattern}
+        placeholder={placeholder}
         required={required}
         className="w-full px-4 py-3 rounded-xl bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-ink"
       />

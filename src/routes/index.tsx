@@ -295,14 +295,8 @@ function HeroSection() {
   const [heroFrameIndex, setHeroFrameIndex] = useState(0);
   const [isHeroFrameReady, setIsHeroFrameReady] = useState(false);
   const [useCompactHero, setUseCompactHero] = useState(false);
-  const heroFrameProgress =
-    heroSequenceFrameCount > 1 ? heroFrameIndex / (heroSequenceFrameCount - 1) : 0;
 
   const activeHeroFrame = heroFrameIndex;
-  const launchRevealProgress = useCompactHero
-    ? 1
-    : Math.min(Math.max((heroFrameProgress - 0.055) / 0.18, 0), 1);
-  const launchIsActive = useCompactHero || heroFrameProgress > 0.055;
 
   const setHeroProgress = useCallback((nextProgress: number) => {
     const clampedProgress = Math.min(Math.max(nextProgress, 0), 1);
@@ -797,10 +791,7 @@ function HeroSection() {
         <div className="cinema-hero-shade" />
       </div>
 
-      <div
-        className={`cinema-hero-content${launchIsActive ? " is-launching" : ""}`}
-        style={{ "--launch-progress": `${launchRevealProgress}` } as CSSProperties}
-      >
+      <div className="cinema-hero-content">
         <div className="cinema-hero-copy">
           <div className="cinema-eyebrow">
             <Sparkles className="h-4 w-4" />
@@ -850,7 +841,12 @@ function HeroSection() {
               </span>
               <span>
                 <strong>
-                  <span data-count-to={value} data-count-decimals={value.includes(".") ? "1" : "0"}>
+                  <span
+                    className="stat-number"
+                    data-stat-number
+                    data-target={value}
+                    data-decimals={value.includes(".") ? "1" : "0"}
+                  >
                     {value}
                   </span>{" "}
                   <small>{unit}</small>
@@ -909,13 +905,6 @@ function Home() {
   } as const;
 
   useEffect(() => {
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const navigatorWithConnection = navigator as Navigator & {
-      connection?: { effectiveType?: string; saveData?: boolean };
-    };
-    const connection = navigatorWithConnection.connection;
-    const saveData = connection?.saveData === true;
-    const slowNetwork = /(^|-)2g$/.test(connection?.effectiveType ?? "");
     const videos = Array.from(
       document.querySelectorAll<HTMLVideoElement>("video[data-lazy-video]"),
     );
@@ -967,29 +956,8 @@ function Home() {
 
     videos.forEach((video) => observer.observe(video));
 
-    let idleCallbackId = 0;
-    let warmupTimer = 0;
-
-    if (!saveData && !slowNetwork && !reducedMotion) {
-      const warmup = () => {
-        videos.slice(0, 1).forEach((video) => loadVideo(video, "metadata"));
-      };
-
-      if ("requestIdleCallback" in window) {
-        idleCallbackId = window.requestIdleCallback(warmup, { timeout: 1400 });
-      } else {
-        warmupTimer = window.setTimeout(warmup, 700);
-      }
-    }
-
     return () => {
       observer.disconnect();
-      if (idleCallbackId) {
-        window.cancelIdleCallback(idleCallbackId);
-      }
-      if (warmupTimer) {
-        window.clearTimeout(warmupTimer);
-      }
     };
   }, []);
 
@@ -1010,9 +978,11 @@ function Home() {
           { value: 20, suffix: "+", label: "Hyderabad, TG & AP touchpoints" },
         ].map(({ value, suffix, label }) => (
           <div key={label}>
-            <strong>
-              <span data-count-to={value}>{value}</span>
-              {suffix}
+            <strong className="stat-value">
+              <span className="stat-number" data-stat-number data-target={value}>
+                {value}
+              </span>
+              <span className="stat-unit">{suffix}</span>
             </strong>
             <small>{label}</small>
           </div>
@@ -1055,6 +1025,7 @@ function Home() {
             preload="none"
             poster="/assets/detail-battery.jpg"
             data-lazy-video
+            data-src="/frames/battery-charge-optimized.mp4"
           >
             <source data-src="/frames/battery-charge-optimized.mp4" type="video/mp4" />
           </video>
@@ -1083,12 +1054,9 @@ function Home() {
             preload="none"
             poster="/assets/detail-brakes.jpg"
             data-lazy-video
+            data-src="/frames/motor-explode-scrub.mp4"
           >
-            <source
-              src="/frames/motor-explode-scrub.mp4"
-              data-src="/frames/motor-explode-scrub.mp4"
-              type="video/mp4"
-            />
+            <source data-src="/frames/motor-explode-scrub.mp4" type="video/mp4" />
           </video>
           <div className="motor-callout-row">
             {[

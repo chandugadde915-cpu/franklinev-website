@@ -34,15 +34,27 @@ function AboutPage() {
   return (
     <>
       <section className="bg-hero-gradient">
-        <div className="max-w-7xl mx-auto px-5 lg:px-8 pt-20 pb-20 text-center">
+        <div className="about-hero-grid max-w-7xl mx-auto px-5 lg:px-8 pt-20 pb-20">
           <Reveal>
-            <h1 className="font-display text-5xl sm:text-6xl font-bold text-ink max-w-3xl mx-auto leading-[1.1]">
+            <h1 className="font-display text-5xl sm:text-6xl font-bold text-ink max-w-3xl leading-[1.1]">
               Electric mobility, <span className="text-primary-gradient">built around you</span>
             </h1>
-            <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="mt-6 text-lg text-muted-foreground max-w-2xl">
               Franklin EV India Pvt. Ltd. makes electric scooter ownership easier for city riders
               with practical range, low running cost, connected features and local dealer support.
             </p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <figure className="about-hero-image">
+              <img
+                src="/assets/hero-powerplus.jpg"
+                alt="Franklin EV Power ++ electric scooter showcased for city riders."
+                width={2000}
+                height={1334}
+                loading="eager"
+                decoding="async"
+              />
+            </figure>
           </Reveal>
         </div>
       </section>
@@ -160,6 +172,18 @@ function AboutPage() {
             The Franklin EV journey
           </h2>
         </Reveal>
+        <Reveal delay={0.1}>
+          <figure className="about-journey-visual">
+            <img
+              src="/assets/models/premium-colors-layout/power-blue-angle-layout.png"
+              alt="Franklin EV scooter visual used to represent the brand journey."
+              width={1800}
+              height={1800}
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        </Reveal>
         <div className="mt-14 relative">
           <div className="absolute left-4 lg:left-1/2 top-0 bottom-0 w-px bg-border" />
           {[
@@ -198,7 +222,18 @@ function AboutPage() {
 
       <section className="max-w-7xl mx-auto px-5 lg:px-8 py-16">
         <Reveal>
-          <div className="p-10 lg:p-14 rounded-3xl bg-surface border border-border shadow-soft">
+          <div className="about-showroom-card p-10 lg:p-14 rounded-3xl bg-surface border border-border shadow-soft">
+            <figure>
+              <img
+                src="/assets/detail-hero1.jpg"
+                alt="Franklin EV scooter detail for showroom and test ride enquiries."
+                width={1400}
+                height={735}
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <div>
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-ink">
               Why ride with Franklin EV
             </h2>
@@ -222,6 +257,7 @@ function AboutPage() {
                   <MapPin className="w-3 h-3" /> {c}
                 </span>
               ))}
+            </div>
             </div>
           </div>
         </Reveal>

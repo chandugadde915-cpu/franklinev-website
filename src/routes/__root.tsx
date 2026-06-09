@@ -374,6 +374,8 @@ function useSiteMotion(pathname: string) {
   useEffect(() => {
     let startTimer = 0;
     let revealObserver: IntersectionObserver | null = null;
+    let statObserver: IntersectionObserver | null = null;
+    const animationFrames = new Set<number>();
 
     const startObservers = () => {
       revealObserver = new IntersectionObserver(
@@ -388,8 +390,57 @@ function useSiteMotion(pathname: string) {
         { threshold: 0.01, rootMargin: "360px 0px" },
       );
 
+      statObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting || !(entry.target instanceof HTMLElement)) {
+              return;
+            }
+
+            if (entry.target.dataset.statAnimated === "true") {
+              statObserver?.unobserve(entry.target);
+              return;
+            }
+
+            entry.target.dataset.statAnimated = "true";
+            const target = Number(entry.target.dataset.target ?? entry.target.textContent ?? 0);
+            const decimals = Number(entry.target.dataset.decimals ?? 0);
+            const duration = 900;
+            const start = performance.now();
+
+            const tick = (now: number) => {
+              const progress = Math.min(Math.max((now - start) / duration, 0), 1);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              entry.target.textContent = (target * eased).toLocaleString("en-IN", {
+                maximumFractionDigits: decimals,
+                minimumFractionDigits: decimals,
+              });
+
+              if (progress < 1) {
+                const frame = requestAnimationFrame(tick);
+                animationFrames.add(frame);
+              } else {
+                entry.target.textContent = target.toLocaleString("en-IN", {
+                  maximumFractionDigits: decimals,
+                  minimumFractionDigits: decimals,
+                });
+              }
+            };
+
+            entry.target.textContent = decimals > 0 ? "0.0" : "0";
+            const frame = requestAnimationFrame(tick);
+            animationFrames.add(frame);
+            statObserver?.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.2, rootMargin: "120px 0px" },
+      );
+
       document.querySelectorAll<HTMLElement>("[data-animate]").forEach((element) => {
         revealObserver?.observe(element);
+      });
+      document.querySelectorAll<HTMLElement>("[data-stat-number]").forEach((element) => {
+        statObserver?.observe(element);
       });
     };
 
@@ -398,6 +449,9 @@ function useSiteMotion(pathname: string) {
     return () => {
       window.clearTimeout(startTimer);
       revealObserver?.disconnect();
+      statObserver?.disconnect();
+      animationFrames.forEach((frame) => cancelAnimationFrame(frame));
+      animationFrames.clear();
     };
   }, [pathname]);
 }

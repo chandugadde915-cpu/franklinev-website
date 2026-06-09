@@ -38,6 +38,7 @@ interface ModelData {
   name: string;
   tagline: string;
   body: string;
+  price: string;
   chips: string[];
   features: string[];
   images: { src: string; alt: string }[];
@@ -51,6 +52,7 @@ const models: ModelData[] = [
     name: "Power ++",
     tagline: "Maximum presence, maximum confidence",
     body: "Power ++ is Franklin EV's flagship electric scooter for riders who want stronger road presence, practical long-range confidence and smart everyday ownership in Hyderabad.",
+    price: "Contact dealer for pricing",
     chips: [
       "Top speed 60 km/h",
       "Range up to 120 km",
@@ -78,27 +80,28 @@ const models: ModelData[] = [
     name: "Rapid",
     tagline: "Daily city riding, made simple",
     body: "Rapid is Franklin EV's focused city scooter for riders who want quick daily mobility, smart essentials and low running costs without unnecessary complexity.",
+    price: "Contact dealer for pricing",
     chips: [
-      "Top speed 60 km/h",
+      "Top speed 50 km/h",
       "Range ~100 km",
-      "Cruise control",
-      "Anti-theft + key alerts",
-      "BLDC hub motor (up to 2.5 kW peak)",
+      "City ride mode",
+      "Anti-theft key alerts",
+      "BLDC hub motor tuned for city use",
     ],
     features: [
       "City-focused electric scooter for everyday travel",
       "Comfortable, practical ride for regular commutes",
-      "Cruise control for relaxed open-road use",
-      "Anti-theft protection with key alerts",
+      "Simpler controls for budget-conscious riders",
+      "Anti-theft key alerts for everyday parking confidence",
     ],
     images: [
       {
-        src: "/assets/models/premium-colors-layout/power-maroon-front-layout.png",
-        alt: "Franklin EV Rapid electric scooter in Maroon, front view on a light background.",
+        src: "/assets/models/premium-colors-layout/power-silver-angle-layout.png",
+        alt: "Franklin EV Rapid electric scooter temporary visual in silver, three-quarter front view.",
       },
     ],
     accent: "from-primary/15 to-accent/5",
-    variants: ["Silver", "Sky Blue", "Maroon"],
+    variants: ["Silver", "Blue accent", "Maroon accent"],
   },
 ];
 
@@ -138,16 +141,18 @@ const faqs = [
 ];
 
 const comparisonRows = [
-  ["Top speed", "60 km/h", "60 km/h"],
+  ["Ex-showroom price", "Contact dealer for pricing", "Contact dealer for pricing"],
+  ["Top speed", "60 km/h", "50 km/h"],
   ["Range per charge", "Up to 120 km", "~100 km"],
-  ["Motor", "BLDC hub, up to 2.5 kW peak", "BLDC hub, up to 2.5 kW peak"],
-  ["Cruise control", "Yes", "Yes"],
-  ["Anti-theft + key alerts", "Yes", "Yes"],
+  ["Motor", "BLDC hub, up to 2.5 kW peak", "BLDC hub tuned for city efficiency"],
+  ["Cruise control", "Yes", "Ask dealer for current Rapid availability"],
+  ["Anti-theft + key alerts", "Yes", "Key alerts on supported variants"],
   ["Charger", "650 W plug-and-play (15 A socket)", "650 W plug-and-play (15 A socket)"],
   ["Charge time", "~4 h 30 m (0-80%)", "~4 h 30 m (0-80%)"],
   ["Full-charge cost", "~Rs. 24.50 (~3.5 units)", "~Rs. 24.50 (~3.5 units)"],
   ["Warranty", "3 yrs / 50,000 km", "3 yrs / 50,000 km"],
-  ["Colours", "Silver, Sky Blue, Maroon", "Silver, Sky Blue, Maroon"],
+  ["Colours", "Silver, Sky Blue, Maroon", "Silver with Rapid accent options"],
+  ["Recommended for", "Long commutes and tech-focused riders", "Short city hops and value-focused riders"],
 ] as const;
 
 function VehiclesPage() {
@@ -174,9 +179,10 @@ function VehiclesPage() {
               className={`grid lg:grid-cols-2 gap-12 items-center ${i % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""}`}
             >
               <div
-                className={`relative rounded-[2.5rem] aspect-square bg-gradient-to-br ${m.accent} border border-border shadow-soft overflow-hidden grid place-items-center`}
+                className={`model-image-wrapper relative rounded-[2.5rem] aspect-square bg-gradient-to-br ${m.accent} border border-border shadow-soft overflow-hidden grid place-items-center`}
               >
                 <div className="absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_60%,oklch(0.62_0.18_248/0.15),transparent_70%)]" />
+                {m.key === "rapid" ? <span className="model-badge">Rapid</span> : null}
                 <motion.img
                   src={m.images[0].src}
                   alt={m.images[0].alt}
@@ -195,6 +201,10 @@ function VehiclesPage() {
                     — {m.tagline}
                   </span>
                 </h2>
+                <div className="model-price">
+                  <span className="price-label">Ex-showroom price</span>
+                  <span className="price-value">{m.price}</span>
+                </div>
                 <p className="mt-5 text-muted-foreground leading-relaxed">{m.body}</p>
                 {m.variants && (
                   <div className="mt-4 flex flex-wrap gap-2">
@@ -269,7 +279,6 @@ function VehiclesPage() {
                     <td className="p-4 font-medium text-ink">{row[0]}</td>
                     <td className="p-4 text-muted-foreground">{row[1]}</td>
                     <td className="p-4 text-muted-foreground">{row[2]}</td>
-                    <td className="p-4 text-muted-foreground">{row[3]}</td>
                   </tr>
                 ))}
               </tbody>

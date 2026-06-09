@@ -40,7 +40,13 @@ export function Footer() {
               },
               { Icon: Facebook, label: "Facebook", href: "https://www.facebook.com/franklinev" },
             ].map(({ Icon, label, href }) => (
-              <a key={label} href={href} aria-label={label} target="_blank" rel="noreferrer">
+              <a
+                key={label}
+                href={href}
+                aria-label={label}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Icon />
               </a>
             ))}
