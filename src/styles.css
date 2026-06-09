@@ -5673,3 +5673,79 @@ body {
     border-radius: 1rem;
   }
 }
+
+/* Site-wide continuous rhythm: no empty bands between page sections on any screen. */
+section,
+.cinema-home > *,
+.cinema-home > section,
+main > section {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.cinema-stat-strip,
+.cinema-section,
+.cost-section,
+.dealer-section,
+.app-section,
+.test-ride-section,
+section[class~="py-16"],
+section[class~="py-20"],
+div[class~="py-16"],
+div[class~="py-20"] {
+  padding-top: clamp(1.1rem, 2.3vw, 1.95rem) !important;
+  padding-bottom: clamp(1.1rem, 2.3vw, 1.95rem) !important;
+}
+
+section[class~="bg-hero-gradient"] > div {
+  padding-bottom: clamp(1.15rem, 2.4vw, 2rem) !important;
+}
+
+.cinema-home > section + section,
+main > section + section,
+section[class~="bg-hero-gradient"] + section,
+section[class~="bg-hero-gradient"] + div,
+div[class~="space-y-24"] + section {
+  border-top: 1px solid rgba(0, 174, 232, 0.08);
+}
+
+.cinema-home > .cinema-section + .cinema-section,
+.cinema-home > .cinema-section + .test-ride-panel,
+.cinema-home > .dealer-section + .cinema-section,
+.cinema-home > .model-showcase + .dealer-section {
+  margin-top: 0;
+}
+
+.space-y-24 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: clamp(1.1rem, 2.6vw, 2rem) !important;
+}
+
+.mt-14 {
+  margin-top: clamp(1.25rem, 3vw, 2.25rem) !important;
+}
+
+.mt-12,
+.mt-10,
+.mt-8 {
+  margin-top: clamp(1rem, 2.4vw, 1.8rem) !important;
+}
+
+@media (max-width: 768px) {
+  .cinema-stat-strip,
+  .cinema-section,
+  .cost-section,
+  .dealer-section,
+  .app-section,
+  .test-ride-section,
+  section[class~="py-16"],
+  section[class~="py-20"],
+  div[class~="py-16"],
+  div[class~="py-20"] {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  .space-y-24 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 1rem !important;
+  }
+}
