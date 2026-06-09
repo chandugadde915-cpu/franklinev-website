@@ -32,6 +32,21 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!open) {
+      return;
+    }
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+
   return (
     <header className={`site-navbar ${scrolled ? "is-scrolled" : ""}`}>
       <nav className="site-navbar-inner" aria-label="Franklin EV main navigation">
@@ -41,7 +56,13 @@ export function Navbar() {
           onClick={() => setOpen(false)}
           aria-label="Franklin EV — Electric Scooters India"
         >
-          <img src="/assets/franklin-ev-logo.png" alt="Franklin EV" className="site-logo-image" />
+          <img
+            src="/assets/franklin-ev-logo.png"
+            alt="Franklin EV"
+            className="site-logo-image"
+            width={2674}
+            height={598}
+          />
         </Link>
 
         <ul className="site-nav-links">
@@ -71,6 +92,8 @@ export function Navbar() {
           <button
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="site-mobile-menu"
             className="site-menu-button"
             onClick={() => setOpen((value) => !value)}
           >
@@ -80,7 +103,7 @@ export function Navbar() {
       </nav>
 
       {open ? (
-        <div className="site-mobile-menu">
+        <div className="site-mobile-menu" id="site-mobile-menu">
           {links.map((link) => (
             <Link
               key={link.to}

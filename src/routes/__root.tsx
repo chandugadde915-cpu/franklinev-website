@@ -16,7 +16,7 @@ import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { FloatingDock } from "../components/FloatingDock";
 
-const siteUrl = "https://www.franklinev.co.in";
+const siteUrl = "https://franklinev-website.vercel.app";
 
 const organizationSchema = {
   "@context": "https://schema.org",
@@ -177,7 +177,7 @@ const faqSchema = {
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-[clamp(14rem,34vh,22rem)] items-center justify-center bg-background px-4 py-8">
+    <div className="flex items-center justify-center bg-background px-4 py-3">
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-ink">404</h1>
         <h2 className="mt-4 text-xl font-semibold text-ink">Page not found</h2>
@@ -205,8 +205,8 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   }, [error]);
 
   return (
-    <div className="flex min-h-[clamp(14rem,34vh,22rem)] items-center justify-center bg-background px-4 py-8">
-      <div className="max-w-md text-center">
+    <div className="fixed left-1/2 top-20 z-[90] w-[min(92vw,26rem)] -translate-x-1/2 rounded-2xl border border-border bg-surface/95 px-4 py-3 text-center shadow-lift backdrop-blur">
+      <div>
         <h1 className="text-xl font-semibold tracking-tight text-ink">This page didn't load</h1>
         <p className="mt-2 text-sm text-muted-foreground">
           Something went wrong. Try refreshing or head back home.
@@ -264,21 +264,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Experience smarter mobility with Franklin EV electric scooters built for Hyderabad riders, everyday freedom, home charging, lower running costs and intelligent features.",
       },
-      { property: "og:url", content: "https://www.franklinev.co.in" },
-      { property: "og:image", content: "https://www.franklinev.co.in/assets/hero-powerplus.jpg" },
+      { property: "og:url", content: siteUrl },
+      { property: "og:image", content: `${siteUrl}/assets/hero-powerplus.jpg` },
       {
         property: "og:image:alt",
         content: "Franklin EV Power ++ electric scooter launch image.",
       },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@franklinev" },
-      { name: "twitter:image", content: "https://www.franklinev.co.in/assets/hero-powerplus.jpg" },
+      { name: "twitter:image", content: `${siteUrl}/assets/hero-powerplus.jpg` },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "canonical", href: "https://www.franklinev.co.in/" },
+      { rel: "canonical", href: `${siteUrl}/` },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&display=swap",
@@ -372,60 +372,32 @@ function ScrollProgressBar() {
 
 function useSiteMotion(pathname: string) {
   useEffect(() => {
-    const countElements = Array.from(document.querySelectorAll<HTMLElement>("[data-count-to]"));
+    let startTimer = 0;
+    let revealObserver: IntersectionObserver | null = null;
 
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.01, rootMargin: "360px 0px" },
-    );
-
-    const countObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting || entry.target instanceof HTMLElement === false) {
-            return;
-          }
-
-          const target = Number(entry.target.dataset.countTo ?? 0);
-          const decimals = Number(entry.target.dataset.countDecimals ?? 0);
-          const duration = 700;
-          const start = performance.now();
-
-          const tick = (now: number) => {
-            const progress = Math.min((now - start) / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            entry.target.textContent = (target * eased).toLocaleString("en-IN", {
-              maximumFractionDigits: decimals,
-              minimumFractionDigits: decimals,
-            });
-
-            if (progress < 1) {
-              requestAnimationFrame(tick);
+    const startObservers = () => {
+      revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              revealObserver?.unobserve(entry.target);
             }
-          };
+          });
+        },
+        { threshold: 0.01, rootMargin: "360px 0px" },
+      );
 
-          requestAnimationFrame(tick);
-          countObserver.unobserve(entry.target);
-        });
-      },
-      { threshold: 0.01, rootMargin: "280px 0px" },
-    );
+      document.querySelectorAll<HTMLElement>("[data-animate]").forEach((element) => {
+        revealObserver?.observe(element);
+      });
+    };
 
-    document.querySelectorAll<HTMLElement>("[data-animate]").forEach((element) => {
-      revealObserver.observe(element);
-    });
-    countElements.forEach((element) => countObserver.observe(element));
+    startTimer = window.setTimeout(startObservers, 900);
 
     return () => {
-      revealObserver.disconnect();
-      countObserver.disconnect();
+      window.clearTimeout(startTimer);
+      revealObserver?.disconnect();
     };
   }, [pathname]);
 }

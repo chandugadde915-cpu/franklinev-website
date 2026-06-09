@@ -35,9 +35,9 @@ export const Route = createFileRoute("/contact")({
         content:
           "Reach Franklin EV for model enquiries, test ride support, dealer locations and ownership questions.",
       },
-      { property: "og:url", content: "https://www.franklinev.co.in/contact" },
+      { property: "og:url", content: "https://franklinev-website.vercel.app/contact" },
     ],
-    links: [{ rel: "canonical", href: "https://www.franklinev.co.in/contact" }],
+    links: [{ rel: "canonical", href: "https://franklinev-website.vercel.app/contact" }],
   }),
   component: ContactPage,
 });

@@ -24,9 +24,9 @@ export const Route = createFileRoute("/vehicles")({
         content:
           "Explore Franklin EV scooter specs, model features, battery charging details and test ride options.",
       },
-      { property: "og:url", content: "https://www.franklinev.co.in/vehicles" },
+      { property: "og:url", content: "https://franklinev-website.vercel.app/vehicles" },
     ],
-    links: [{ rel: "canonical", href: "https://www.franklinev.co.in/vehicles" }],
+    links: [{ rel: "canonical", href: "https://franklinev-website.vercel.app/vehicles" }],
   }),
   component: VehiclesPage,
 });
@@ -181,6 +181,8 @@ function VehiclesPage() {
                   src={m.images[0].src}
                   alt={m.images[0].alt}
                   loading="lazy"
+                  width={1800}
+                  height={1800}
                   className="relative max-h-[80%] w-auto object-contain"
                   animate={{ y: [0, -10, 0] }}
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}

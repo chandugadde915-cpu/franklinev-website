@@ -53,6 +53,8 @@ export function ModelCard({ name, tagline, image, alt, chips, accent = "blue" }:
           src={image}
           alt={alt}
           loading="lazy"
+          width={1800}
+          height={1800}
           className="relative max-h-[85%] w-auto object-contain transition-transform duration-500 group-hover:scale-105"
         />
       </div>

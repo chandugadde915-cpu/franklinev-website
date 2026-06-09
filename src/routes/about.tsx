@@ -23,9 +23,9 @@ export const Route = createFileRoute("/about")({
         content:
           "Read Franklin EV's mission, model story and electric scooter support network for Telangana and Andhra Pradesh riders.",
       },
-      { property: "og:url", content: "https://www.franklinev.co.in/about" },
+      { property: "og:url", content: "https://franklinev-website.vercel.app/about" },
     ],
-    links: [{ rel: "canonical", href: "https://www.franklinev.co.in/about" }],
+    links: [{ rel: "canonical", href: "https://franklinev-website.vercel.app/about" }],
   }),
   component: AboutPage,
 });

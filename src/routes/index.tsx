@@ -49,12 +49,15 @@ export const Route = createFileRoute("/")({
           "Discover smarter city commuting with Franklin EV electric scooters built for Hyderabad riders, everyday freedom, lower running costs, convenient home charging and intelligent technology.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: "https://www.franklinev.co.in/assets/hero-powerplus.jpg" },
+      {
+        property: "og:image",
+        content: "https://franklinev-website.vercel.app/assets/hero-powerplus.jpg",
+      },
       {
         property: "og:image:alt",
         content: "Franklin EV Power ++ premium electric scooter launch hero.",
       },
-      { property: "og:url", content: "https://www.franklinev.co.in" },
+      { property: "og:url", content: "https://franklinev-website.vercel.app" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Franklin EV Smart Electric Scooters in Hyderabad" },
       {
@@ -62,10 +65,13 @@ export const Route = createFileRoute("/")({
         content:
           "Explore Franklin EV smart electric scooters for daily commute, home charging, low running cost and local test ride support in Hyderabad.",
       },
-      { name: "twitter:image", content: "https://www.franklinev.co.in/assets/hero-powerplus.jpg" },
+      {
+        name: "twitter:image",
+        content: "https://franklinev-website.vercel.app/assets/hero-powerplus.jpg",
+      },
     ],
     links: [
-      { rel: "canonical", href: "https://www.franklinev.co.in/" },
+      { rel: "canonical", href: "https://franklinev-website.vercel.app/" },
       { rel: "preload", as: "image", href: "/assets/hero-powerplus.jpg" },
       { rel: "preload", as: "image", href: "/assets/hero-sequence/frame-001.jpg" },
     ],
@@ -246,6 +252,33 @@ const heroCalloutItems = [
   { value: "4.5", unit: "hrs", label: "0-80% charge time", icon: "battery" },
   { value: "60", unit: "km/h", label: "Top speed", icon: "gauge" },
   { value: "3", unit: "yrs", label: "Battery & motor warranty", icon: "shield" },
+] as const;
+
+const riderSwitchBenefits = [
+  {
+    title: "Lower charging costs",
+    body: "Electricity costs roughly Rs. 0.08-0.12 per km vs Rs. 3-4/km for petrol, saving most Hyderabad riders Rs. 1,800-2,500 per month.",
+  },
+  {
+    title: "Reduced maintenance requirements",
+    body: "No engine oil, coolant, or spark plugs. Fewer moving parts means fewer workshop visits and fewer unexpected repair bills.",
+  },
+  {
+    title: "No engine oil changes",
+    body: "Electric motors need no oil changes. Remove Rs. 400-800 oil change costs every 3 months from your ownership equation.",
+  },
+  {
+    title: "Convenient home charging",
+    body: "Charge overnight with a standard compatible socket. Wake up with a full charge and skip petrol station detours.",
+  },
+  {
+    title: "Sustainable transportation",
+    body: "Zero tailpipe emissions reduce your personal carbon footprint and support cleaner air across Hyderabad.",
+  },
+  {
+    title: "Long-term ownership savings",
+    body: "Over 3 years, Franklin EV riders typically save over Rs. 82,000 compared with equivalent petrol scooter ownership costs.",
+  },
 ] as const;
 
 function HeroSection() {
@@ -752,6 +785,8 @@ function HeroSection() {
           loading="eager"
           decoding="async"
           fetchPriority="high"
+          width={2000}
+          height={1334}
         />
         <div className="cinema-hero-rings">
           <span />
@@ -826,6 +861,10 @@ function HeroSection() {
           ))}
         </div>
       </div>
+      <div className="scroll-hint" aria-hidden="true">
+        <span>Scroll</span>
+        <b>↓</b>
+      </div>
     </section>
   );
 }
@@ -895,8 +934,9 @@ function Home() {
       }
 
       video.querySelectorAll<HTMLSourceElement>("source[data-src]").forEach((source) => {
-        if (source.dataset.src && source.src !== source.dataset.src) {
-          source.src = source.dataset.src;
+        const sourcePath = source.dataset.src;
+        if (sourcePath && source.getAttribute("src") !== sourcePath) {
+          source.setAttribute("src", sourcePath);
         }
       });
       video.preload = mode === "metadata" ? "metadata" : "auto";
@@ -1012,7 +1052,7 @@ function Home() {
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="none"
             poster="/assets/detail-battery.jpg"
             data-lazy-video
           >
@@ -1040,11 +1080,15 @@ function Home() {
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="none"
             poster="/assets/detail-brakes.jpg"
             data-lazy-video
           >
-            <source data-src="/frames/motor-explode-scrub.mp4" type="video/mp4" />
+            <source
+              src="/frames/motor-explode-scrub.mp4"
+              data-src="/frames/motor-explode-scrub.mp4"
+              type="video/mp4"
+            />
           </video>
           <div className="motor-callout-row">
             {[
@@ -1103,24 +1147,14 @@ function Home() {
           </p>
         </Reveal>
         <StaggerGroup className="cinema-feature-grid">
-          {[
-            "Lower charging costs",
-            "Reduced maintenance requirements",
-            "No engine oil changes",
-            "Convenient home charging",
-            "Sustainable transportation",
-            "Long-term ownership savings",
-          ].map((item) => (
-            <StaggerItem key={item}>
+          {riderSwitchBenefits.map((item) => (
+            <StaggerItem key={item.title}>
               <article className="cinema-feature-card">
                 <span>
                   <Check className="h-5 w-5" />
                 </span>
-                <h3>{item}</h3>
-                <p>
-                  Franklin EV makes electric mobility easier to compare, easier to own and easier to
-                  justify for everyday city travel.
-                </p>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
               </article>
             </StaggerItem>
           ))}
@@ -1316,6 +1350,8 @@ function Home() {
             loading="eager"
             decoding="async"
             fetchPriority="low"
+            width={1800}
+            height={1800}
           />
           <div className="model-platform" />
         </div>
@@ -1342,9 +1378,11 @@ function Home() {
                 <img
                   src={color.preview}
                   alt={`Franklin EV ${activeModel.buttonLabel} preview in ${color.name}`}
-                  loading="lazy"
+                  loading="eager"
                   decoding="async"
                   fetchPriority="low"
+                  width={1800}
+                  height={1800}
                 />
                 <span />
                 <strong>{color.name}</strong>

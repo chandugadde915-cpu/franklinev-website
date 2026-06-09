@@ -7,7 +7,13 @@ export function Footer() {
       <div className="site-footer-inner">
         <div className="site-footer-brand">
           <div className="footer-logo">
-            <img src="/assets/franklin-ev-logo.png" alt="Franklin EV" className="site-logo-image" />
+            <img
+              src="/assets/franklin-ev-logo.png"
+              alt="Franklin EV"
+              className="site-logo-image"
+              width={2674}
+              height={598}
+            />
           </div>
           <p>Franklin EV - Smart Electric Scooters In Hyderabad</p>
           <p>
