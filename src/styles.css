@@ -5131,10 +5131,6 @@ body {
   }
 
   .cinema-hero-content {
-    opacity: 1;
-    pointer-events: auto;
-    transform: none;
-    filter: none;
     padding-bottom: 5.75rem;
   }
 
@@ -5200,7 +5196,7 @@ body {
 
 /* Speed and readability pass: keep the page quick, calm, and text-safe. */
 .cinema-hero {
-  min-height: 100svh;
+  min-height: 176svh;
   padding-bottom: 0;
 }
 
@@ -5209,20 +5205,32 @@ body {
   backface-visibility: hidden;
   display: block !important;
   filter: brightness(1.12) contrast(1.03) saturate(1.08);
+  opacity: 1;
   transform: translateZ(0);
+  transition: opacity 260ms var(--ev-ease-soft);
 }
 
-.cinema-hero-poster {
-  display: none !important;
+.cinema-hero-video {
+  opacity: 0;
+}
+
+.cinema-hero.is-sequence-ready .cinema-hero-video {
+  opacity: 1;
+}
+
+.cinema-hero.is-sequence-ready .cinema-hero-poster {
+  opacity: 0;
 }
 
 .cinema-hero.is-compact .cinema-hero-video,
 .cinema-hero.is-compact .cinema-hero-rings {
   display: none !important;
+  opacity: 0;
 }
 
 .cinema-hero.is-compact .cinema-hero-poster {
   display: block !important;
+  opacity: 1;
 }
 
 .cinema-hero-content {
@@ -5458,10 +5466,7 @@ body {
   }
 
   .cinema-frame-hud {
-    right: 1rem;
-    bottom: 1rem;
-    left: auto;
-    width: min(310px, calc(100vw - 2rem));
+    display: none !important;
   }
 
   .cinema-road {
@@ -5471,13 +5476,18 @@ body {
 
 @media (max-width: 768px) {
   .cinema-hero {
-    min-height: 100svh;
+    min-height: 176svh;
+  }
+
+  .cinema-hero-stage {
+    height: 100svh;
   }
 
   .cinema-hero-content {
-    align-content: center;
+    align-content: end;
+    min-height: 100svh;
     padding-top: 5.25rem;
-    padding-bottom: 4rem;
+    padding-bottom: max(4.75rem, calc(env(safe-area-inset-bottom) + 3.5rem));
   }
 
   .cinema-hero-copy,
@@ -5488,23 +5498,10 @@ body {
     padding-right: 2.85rem;
   }
 
-  .cinema-hero-copy::before,
-  .cinema-hero-title > span::before,
-  .cinema-hero-sub::before {
-    display: none;
-  }
-
   .cinema-hero-title {
     max-width: 13ch;
-    font-size: clamp(2.1rem, 8.8vw, 2.9rem);
+    font-size: clamp(2rem, 8.5vw, 2.85rem);
     line-height: 1.08;
-  }
-
-  .cinema-hero-title > span,
-  .cinema-hero-sub,
-  .cinema-eyebrow {
-    opacity: 1;
-    transform: none;
   }
 
   .cinema-title,
@@ -5516,31 +5513,12 @@ body {
   .cinema-hero-sub {
     font-size: 0.92rem;
     line-height: 1.45;
-    padding-left: 0;
+    max-width: min(30rem, 100%);
+    padding-left: 0.85rem;
   }
 
   .cinema-frame-hud {
-    right: 4.25rem;
-    bottom: max(0.85rem, env(safe-area-inset-bottom));
-    left: 0.85rem;
-    width: auto;
-    padding: 0.5rem;
-  }
-
-  .cinema-frame-hud-top {
-    font-size: 0.54rem;
-  }
-
-  .cinema-frame-hud-top strong {
-    font-size: 0.78rem;
-  }
-
-  .cinema-frame-rail {
-    gap: 2px;
-  }
-
-  .cinema-frame-rail span {
-    height: 6px;
+    display: none !important;
   }
 
   .cinema-section {
@@ -5553,7 +5531,7 @@ body {
   }
 }
 
-@media (prefers-reduced-motion: reduce), (pointer: coarse) {
+@media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {

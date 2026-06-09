@@ -107,33 +107,6 @@ const dealerGroups = [
   },
 ] as const;
 
-const frameRailSegments = [
-  { step: "01", title: "Clean Roll-In" },
-  { step: "02", title: "Wake Signal" },
-  { step: "03", title: "Headlamp Pulse" },
-  { step: "04", title: "Front Lock" },
-  { step: "05", title: "Side Glide" },
-  { step: "06", title: "Body Scan" },
-  { step: "07", title: "Rider Zone" },
-  { step: "08", title: "Wheel Roll" },
-  { step: "09", title: "Brake Detail" },
-  { step: "10", title: "Floorboard Pass" },
-  { step: "11", title: "Rear Perspective" },
-  { step: "12", title: "Cockpit Align" },
-  { step: "13", title: "Tail Glow" },
-  { step: "14", title: "Drive Sync" },
-  { step: "15", title: "Left Profile" },
-  { step: "16", title: "Tail Detail" },
-  { step: "17", title: "Battery Ready" },
-  { step: "18", title: "Range Core" },
-  { step: "19", title: "Controller Check" },
-  { step: "20", title: "App Sync" },
-  { step: "21", title: "Safety Seal" },
-  { step: "22", title: "Countdown" },
-  { step: "23", title: "Final Walkaround" },
-  { step: "24", title: "Ride Ready" },
-] as const;
-
 const heroSequenceFrameCount = 92;
 const heroSequenceFrames = Array.from(
   { length: heroSequenceFrameCount },
@@ -287,15 +260,12 @@ function HeroSection() {
   const heroViewportLockedRef = useRef(false);
   const heroOverflowStylesRef = useRef<{ html: string; body: string } | null>(null);
   const [heroFrameIndex, setHeroFrameIndex] = useState(0);
+  const [isHeroFrameReady, setIsHeroFrameReady] = useState(false);
   const [useCompactHero, setUseCompactHero] = useState(false);
   const heroFrameProgress =
     heroSequenceFrameCount > 1 ? heroFrameIndex / (heroSequenceFrameCount - 1) : 0;
 
   const activeHeroFrame = heroFrameIndex;
-  const activeFrameRailSegment = Math.min(
-    frameRailSegments.length - 1,
-    Math.floor(heroFrameProgress * frameRailSegments.length),
-  );
   const launchRevealProgress = useCompactHero
     ? 1
     : Math.min(Math.max((heroFrameProgress - 0.055) / 0.18, 0), 1);
@@ -419,6 +389,7 @@ function HeroSection() {
         canvasHeight,
       );
       lastDrawnHeroFrameRef.current = index;
+      setIsHeroFrameReady(true);
       return true;
     },
     [loadHeroFrameImage],
@@ -429,7 +400,6 @@ function HeroSection() {
       return;
     }
 
-    const compactQuery = window.matchMedia("(max-width: 768px)");
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     const navigatorWithConnection = navigator as Navigator & {
       connection?: { effectiveType?: string; saveData?: boolean };
@@ -439,7 +409,7 @@ function HeroSection() {
       const connection = navigatorWithConnection.connection;
       const saveData = connection?.saveData === true;
       const slowNetwork = /(^|-)2g$/.test(connection?.effectiveType ?? "");
-      const compact = compactQuery.matches || reducedMotionQuery.matches || saveData || slowNetwork;
+      const compact = reducedMotionQuery.matches || saveData || slowNetwork;
 
       setUseCompactHero(compact);
       if (compact) {
@@ -448,11 +418,9 @@ function HeroSection() {
     };
 
     syncHeroMode();
-    compactQuery.addEventListener("change", syncHeroMode);
     reducedMotionQuery.addEventListener("change", syncHeroMode);
 
     return () => {
-      compactQuery.removeEventListener("change", syncHeroMode);
       reducedMotionQuery.removeEventListener("change", syncHeroMode);
     };
   }, [setHeroProgress]);
@@ -763,7 +731,9 @@ function HeroSection() {
 
   return (
     <section
-      className={`cinema-hero${useCompactHero ? " is-compact" : ""}`}
+      className={`cinema-hero${useCompactHero ? " is-compact" : ""}${
+        isHeroFrameReady ? " is-sequence-ready" : ""
+      }`}
       id="hero"
       ref={heroRef}
     >
@@ -790,41 +760,6 @@ function HeroSection() {
         </div>
         <div className="cinema-road" />
         <div className="cinema-hero-shade" />
-        <div
-          className={`cinema-frame-hud${launchIsActive ? " is-active" : ""}`}
-          style={
-            {
-              "--frame-progress": `${heroFrameProgress * 100}%`,
-              "--launch-progress": `${launchRevealProgress}`,
-            } as CSSProperties
-          }
-        >
-          <div className="cinema-frame-hud-top">
-            <span>Launch Framing</span>
-            <strong>
-              {String(activeFrameRailSegment + 1).padStart(2, "0")}/
-              {String(frameRailSegments.length).padStart(2, "0")}
-            </strong>
-          </div>
-          <div className="cinema-frame-meter">
-            <span />
-          </div>
-          <div className="cinema-frame-rail">
-            {frameRailSegments.map((segment, index) => (
-              <span
-                key={segment.step}
-                aria-label={`Frame ${segment.step}: ${segment.title}`}
-                className={
-                  index === activeFrameRailSegment
-                    ? "is-current"
-                    : index < activeFrameRailSegment
-                      ? "is-complete"
-                      : undefined
-                }
-              />
-            ))}
-          </div>
-        </div>
       </div>
 
       <div
