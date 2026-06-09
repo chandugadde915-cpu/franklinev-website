@@ -636,7 +636,7 @@ function HeroSection() {
       ref={heroRef}
       aria-label="Franklin EV hero - Smart electric scooters Hyderabad"
     >
-      <div className="cinema-hero-stage" aria-hidden="true">
+      <div className="cinema-hero-stage">
         <canvas
           ref={heroCanvasRef}
           className="cinema-hero-video"
@@ -646,91 +646,91 @@ function HeroSection() {
         />
         <img
           src="/assets/hero-powerplus.jpg"
-          alt="Franklin EV Power ++ electric scooter hero poster"
+          alt=""
           className="cinema-hero-poster"
           loading="eager"
           decoding="async"
           fetchPriority="high"
           width={2000}
           height={1334}
+          aria-hidden="true"
         />
-        <div className="cinema-hero-rings">
+        <div className="cinema-hero-rings" aria-hidden="true">
           <span />
           <span />
           <span />
         </div>
-        <div className="cinema-road" />
-        <div className="cinema-hero-shade" />
-      </div>
+        <div className="cinema-road" aria-hidden="true" />
+        <div className="cinema-hero-shade" aria-hidden="true" />
 
-      <div
-        className={`cinema-hero-content${heroLaunchProgress > 0.04 ? " is-launching" : ""}`}
-        style={{ "--launch-progress": heroLaunchProgress } as CSSProperties}
-      >
-        <div className="cinema-hero-copy">
-          <div className="cinema-eyebrow">
-            <Sparkles className="h-4 w-4" />
-            Hyderabad's Smart Electric Scooter Brand
+        <div
+          className={`cinema-hero-content${heroLaunchProgress > 0.04 ? " is-launching" : ""}`}
+          style={{ "--launch-progress": heroLaunchProgress } as CSSProperties}
+        >
+          <div className="cinema-hero-copy">
+            <div className="cinema-eyebrow">
+              <Sparkles className="h-4 w-4" />
+              Hyderabad's Smart Electric Scooter Brand
+            </div>
+            <h1 className="cinema-hero-title">
+              <span>Hyderabad's smart electric</span>
+              <span>
+                scooter brand for <em>everyday freedom</em>.
+              </span>
+            </h1>
+            <p className="cinema-hero-sub">
+              Experience smart electric scooters built for Hyderabad riders, with long range
+              performance, cruise control, home charging and low running cost for daily commute.
+            </p>
+            <div className="cinema-hero-actions">
+              <Link to="/vehicles" className="cinema-btn cinema-btn-ghost">
+                Explore Models
+              </Link>
+              <Link to="/contact" className="cinema-btn cinema-btn-primary">
+                Book a Test Ride <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+            <div className="cinema-trust">
+              {heroTrustItems.map((item, index) => (
+                <div key={item} className="inline-flex items-center gap-3">
+                  {index > 0 ? <b /> : <span />}
+                  <strong>{item}</strong>
+                </div>
+              ))}
+            </div>
           </div>
-          <h1 className="cinema-hero-title">
-            <span>Hyderabad's smart electric</span>
-            <span>
-              scooter brand for <em>everyday freedom</em>.
-            </span>
-          </h1>
-          <p className="cinema-hero-sub">
-            Experience smart electric scooters built for Hyderabad riders, with long range
-            performance, cruise control, home charging and low running cost for daily commute.
-          </p>
-          <div className="cinema-hero-actions">
-            <Link to="/vehicles" className="cinema-btn cinema-btn-ghost">
-              Explore Models
-            </Link>
-            <Link to="/contact" className="cinema-btn cinema-btn-primary">
-              Book a Test Ride <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-          <div className="cinema-trust">
-            {heroTrustItems.map((item, index) => (
-              <div key={item} className="inline-flex items-center gap-3">
-                {index > 0 ? <b /> : <span />}
-                <strong>{item}</strong>
+
+          <div className="cinema-callouts">
+            {heroCalloutItems.map(({ value, unit, label, icon, ariaLabel }) => (
+              <div key={label} className="cinema-callout" aria-label={ariaLabel}>
+                <span className="cinema-callout-icon">
+                  {icon === "battery" ? (
+                    <BatteryCharging />
+                  ) : icon === "gauge" ? (
+                    <Gauge />
+                  ) : icon === "shield" ? (
+                    <ShieldCheck />
+                  ) : (
+                    <Zap />
+                  )}
+                </span>
+                <span className="cinema-callout-text">
+                  <strong className="cinema-callout-value">
+                    <span
+                      className="stat-number"
+                      data-stat-number
+                      data-target={value}
+                      data-decimals={value.includes(".") ? "1" : "0"}
+                    >
+                      {value}
+                    </span>{" "}
+                    <small>{unit}</small>
+                  </strong>{" "}
+                  <span className="cinema-callout-label">{label}</span>
+                </span>
               </div>
             ))}
           </div>
-        </div>
-
-        <div className="cinema-callouts">
-          {heroCalloutItems.map(({ value, unit, label, icon, ariaLabel }) => (
-            <div key={label} className="cinema-callout" aria-label={ariaLabel}>
-              <span className="cinema-callout-icon">
-                {icon === "battery" ? (
-                  <BatteryCharging />
-                ) : icon === "gauge" ? (
-                  <Gauge />
-                ) : icon === "shield" ? (
-                  <ShieldCheck />
-                ) : (
-                  <Zap />
-                )}
-              </span>
-              <span className="cinema-callout-text">
-                <strong className="cinema-callout-value">
-                  <span
-                    className="stat-number"
-                    data-stat-number
-                    data-target={value}
-                    data-decimals={value.includes(".") ? "1" : "0"}
-                  >
-                    {value}
-                  </span>{" "}
-                  <small>{unit}</small>
-                </strong>
-                {" "}
-                <span className="cinema-callout-label">{label}</span>
-              </span>
-            </div>
-          ))}
         </div>
       </div>
       <div className="scroll-hint" aria-hidden="true">

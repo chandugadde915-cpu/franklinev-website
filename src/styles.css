@@ -6575,9 +6575,26 @@ button:disabled {
 .cinema-hero {
   min-height: 220svh !important;
   padding-bottom: 0 !important;
+  overflow: visible !important;
+}
+
+.cinema-home {
+  overflow: visible !important;
 }
 
 .cinema-hero-content {
+  position: absolute !important;
+  top: 0 !important;
+  right: 5vw !important;
+  bottom: 0 !important;
+  left: 5vw !important;
+  width: auto !important;
+  max-width: 1400px;
+  height: 100svh !important;
+  min-height: 100svh !important;
+  margin: 0 auto !important;
+  padding: clamp(5.5rem, 10vh, 7rem) 0 clamp(1.25rem, 3.5vh, 2.5rem) !important;
+  box-sizing: border-box;
   pointer-events: none;
   opacity: clamp(0, calc(var(--launch-progress, 0) * 1.35), 1) !important;
   filter: blur(calc((1 - var(--launch-progress, 0)) * 10px));
@@ -6640,6 +6657,11 @@ button:disabled {
   }
 
   .cinema-hero-content {
+    right: 24px !important;
+    left: 24px !important;
+    width: auto !important;
+    max-width: none !important;
+    padding: 0 0 max(40px, calc(env(safe-area-inset-bottom) + 28px)) !important;
     transform:
       translate3d(0, calc((1 - var(--launch-progress, 0)) * 26vh), 0)
       scale(calc(0.94 + (var(--launch-progress, 0) * 0.06))) !important;
