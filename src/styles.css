@@ -1364,6 +1364,15 @@
   font-weight: 850;
 }
 
+.vehicle-colors-title {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 7.2rem);
+  font-weight: 850;
+  line-height: 1.03;
+  letter-spacing: 0;
+}
+
 .model-info p:not(.model-badge) {
   margin-top: 1rem;
 }

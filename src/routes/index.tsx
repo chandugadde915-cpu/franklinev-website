@@ -222,36 +222,6 @@ const faqItems = [
   },
 ] as const;
 
-const modelColors = [
-  {
-    id: "silver",
-    name: "Silver",
-    swatch: "#bbb19b",
-    image: "/assets/models/premium-colors-layout/power-silver-angle-layout.png",
-    imageWebp: "/assets/models/premium-colors-layout/power-silver-angle-layout.webp",
-    preview: "/assets/models/premium-colors-layout/power-silver-front-layout.png",
-    previewWebp: "/assets/models/premium-colors-layout/power-silver-front-layout.webp",
-  },
-  {
-    id: "blue",
-    name: "Sky Blue",
-    swatch: "#8fd5f3",
-    image: "/assets/models/premium-colors-layout/power-blue-angle-layout.png",
-    imageWebp: "/assets/models/premium-colors-layout/power-blue-angle-layout.webp",
-    preview: "/assets/models/premium-colors-layout/power-blue-front-layout.png",
-    previewWebp: "/assets/models/premium-colors-layout/power-blue-front-layout.webp",
-  },
-  {
-    id: "maroon",
-    name: "Maroon",
-    swatch: "#9f2438",
-    image: "/assets/models/premium-colors-layout/power-maroon-angle-layout.png",
-    imageWebp: "/assets/models/premium-colors-layout/power-maroon-angle-layout.webp",
-    preview: "/assets/models/premium-colors-layout/power-maroon-front-layout.png",
-    previewWebp: "/assets/models/premium-colors-layout/power-maroon-front-layout.webp",
-  },
-] as const;
-
 const heroTrustItems = [
   "Up to 120 KM Range",
   "Cruise Control",
@@ -786,20 +756,11 @@ function Home() {
   const [dailyRide, setDailyRide] = useState(32);
   const [petrolPrice, setPetrolPrice] = useState(110);
   const [range, setRange] = useState(110);
-  const [colorId, setColorId] = useState<(typeof modelColors)[number]["id"]>("silver");
 
-  const selectedColor = modelColors.find((color) => color.id === colorId) ?? modelColors[0];
   const monthlyEvCost = Math.round(dailyRide * 30 * 0.22);
   const monthlyFuelCost = Math.round(((dailyRide * 30) / 42) * petrolPrice);
   const monthlySavings = Math.max(0, monthlyFuelCost - monthlyEvCost);
   const threeYearSavings = monthlySavings * 36;
-  const activeModel = {
-    name: "Franklin EV Power ++",
-    buttonLabel: "Power ++",
-    badge: "Available in 3 finishes - built for everyday Indian riders.",
-    body: "Franklin EV Power ++ combines commanding road presence with practical long-range performance. Available in Silver, Sky Blue and Maroon - choose your finish and book a test ride at a dealer near you.",
-    specs: ["Silver finish available", "Sky Blue finish available", "Maroon finish available"],
-  } as const;
 
   useEffect(() => {
     const videos = Array.from(
@@ -1261,69 +1222,26 @@ function Home() {
         </Reveal>
       </section>
 
-      <section
-        className="cinema-section model-showcase"
-        id="models"
-        data-animate="fade-up"
-        style={{ "--model-tone": selectedColor.swatch } as CSSProperties}
-      >
-        <div className="model-stage">
-          <div className="model-glow" />
-          <picture key={colorId}>
-            <source srcSet={selectedColor.imageWebp} type="image/webp" />
-            <img
-              src={selectedColor.image}
-              alt={`Franklin EV ${activeModel.buttonLabel} electric scooter in ${selectedColor.name}`}
-              loading="eager"
-              decoding="async"
-              fetchPriority="low"
-              width={1200}
-              height={1200}
-            />
-          </picture>
-          <div className="model-platform" />
+      <section className="home-range-transfer bg-hero-gradient" data-animate="fade-up">
+        <div className="max-w-7xl mx-auto px-5 lg:px-8 py-16 text-center">
+          <Reveal>
+            <h2 className="font-display text-5xl sm:text-6xl font-bold text-ink">
+              The Franklin EV <span className="text-primary-gradient">Range</span>
+            </h2>
+            <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto">
+              Compare Franklin EV Power ++ and Rapid by range, speed, motor, charging, connected
+              features and warranty support before you book a test ride.
+            </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
+              <Link to="/vehicles" className="cinema-btn cinema-btn-primary">
+                View Vehicles <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link to="/contact" className="cinema-btn cinema-btn-ghost">
+                Book a Test Ride
+              </Link>
+            </div>
+          </Reveal>
         </div>
-        <Reveal className="model-info">
-          <div className="cinema-eyebrow">Available Colors</div>
-          <p className="model-badge model-note">{activeModel.badge}</p>
-          <h2>{activeModel.name}</h2>
-          <p className="model-description">{activeModel.body}</p>
-          <div className="model-pills">
-            {activeModel.specs.map((spec) => (
-              <span key={spec}>{spec}</span>
-            ))}
-          </div>
-          <div className="color-grid" aria-label={`Choose ${activeModel.name} color`}>
-            {modelColors.map((color) => (
-              <button
-                key={color.id}
-                type="button"
-                className={color.id === colorId ? "active" : undefined}
-                style={{ "--swatch": color.swatch } as CSSProperties}
-                onClick={() => setColorId(color.id)}
-                aria-label={`Show ${activeModel.buttonLabel} in ${color.name}`}
-              >
-                <picture>
-                  <source srcSet={color.previewWebp} type="image/webp" />
-                  <img
-                    src={color.preview}
-                    alt={`Franklin EV ${activeModel.buttonLabel} preview in ${color.name}`}
-                    loading="eager"
-                    decoding="async"
-                    fetchPriority="low"
-                    width={1200}
-                    height={1200}
-                  />
-                </picture>
-                <span />
-                <strong>{color.name}</strong>
-              </button>
-            ))}
-          </div>
-          <Link to="/contact" className="cinema-btn cinema-btn-primary">
-            Book a Test Ride for This Model <ArrowRight className="h-4 w-4" />
-          </Link>
-        </Reveal>
       </section>
 
       <section className="cinema-section dealer-section" data-animate="fade-up">
