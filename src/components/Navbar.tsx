@@ -15,6 +15,11 @@ const links = [
     title: "About Franklin EV India Pvt. Ltd.",
   },
   {
+    to: "/blog",
+    label: "Blog",
+    title: "Read Franklin EV electric scooter guides and ownership tips",
+  },
+  {
     to: "/contact",
     label: "Contact",
     title: "Book a test ride or find a Franklin EV dealer near you",

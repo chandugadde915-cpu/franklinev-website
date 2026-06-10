@@ -62,6 +62,9 @@ export function Footer() {
           <Link to="/about" title="About Franklin EV India Pvt. Ltd.">
             About
           </Link>
+          <Link to="/blog" title="Read Franklin EV electric scooter guides and ownership tips">
+            Blog
+          </Link>
           <Link to="/contact" title="Book a test ride or find a Franklin EV dealer near you">
             Contact
           </Link>
