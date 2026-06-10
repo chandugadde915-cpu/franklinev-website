@@ -7697,3 +7697,304 @@ picture {
     display: none !important;
   }
 }
+
+/* Final alignment pass: keep text, videos, images and controls on one clean rhythm. */
+.cinema-home {
+  --section-max: 1240px;
+  --section-pad-x: clamp(1rem, 5vw, 4.5rem);
+  --section-gap: clamp(1.75rem, 4vw, 4.5rem);
+}
+
+.cinema-section,
+.model-showcase,
+.test-ride-panel {
+  width: min(100%, calc(var(--section-max) + (var(--section-pad-x) * 2))) !important;
+  max-width: none !important;
+  margin-inline: auto !important;
+  padding-inline: var(--section-pad-x) !important;
+}
+
+.dealer-section,
+.motor-cinema {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+.dealer-section > *,
+.motor-cinema > * {
+  width: min(100%, var(--section-max)) !important;
+  margin-inline: auto !important;
+}
+
+.cinema-split,
+.model-showcase,
+.app-section,
+.cost-section {
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr) !important;
+  gap: var(--section-gap) !important;
+  align-items: center !important;
+}
+
+.cinema-copy,
+.motor-copy,
+.model-info,
+.test-ride-panel > *,
+.dealer-section .cinema-copy,
+.cinema-copy-wide {
+  max-width: 42rem !important;
+}
+
+.cinema-copy-wide,
+.dealer-section .cinema-copy,
+.motor-copy {
+  margin-inline: auto !important;
+  text-align: center;
+}
+
+.cinema-copy-wide .cinema-title,
+.dealer-section .cinema-title,
+.motor-copy .cinema-title,
+.test-ride-panel h2 {
+  margin-inline: auto;
+}
+
+.cinema-copy p,
+.model-info p,
+.motor-copy p,
+.test-ride-panel p,
+.cinema-feature-card p {
+  max-width: 100%;
+  text-wrap: pretty;
+}
+
+.cinema-title,
+.model-info h2,
+.test-ride-panel h2 {
+  text-wrap: balance;
+}
+
+.cinema-media-frame,
+.motor-stage,
+.premium-gallery-focus,
+.ride-lab,
+.phone-stage,
+.model-stage {
+  align-self: center !important;
+  justify-self: stretch !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.cinema-media-frame,
+.motor-stage,
+.premium-gallery-focus {
+  min-height: 0 !important;
+  aspect-ratio: 16 / 9;
+}
+
+.cinema-media-frame video,
+.motor-stage video,
+.premium-gallery-focus img {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
+.motor-stage {
+  aspect-ratio: auto;
+  display: grid !important;
+  grid-template-rows: minmax(0, auto) auto;
+}
+
+.motor-stage video {
+  aspect-ratio: 16 / 9;
+  max-height: min(58vw, 640px) !important;
+}
+
+.motor-callout-row,
+.cinema-mini-stats,
+.model-pills,
+.app-feature-list,
+.app-store-row,
+.ride-results,
+.dealer-chip-grid {
+  align-items: stretch;
+}
+
+.motor-callout-row span,
+.cinema-mini-stats span,
+.model-pills span,
+.app-feature-list span,
+.app-store-row a,
+.dealer-chip-grid span,
+.ride-results span {
+  min-width: 0;
+  line-height: 1.25;
+}
+
+.cinema-feature-grid {
+  align-items: stretch;
+}
+
+.cinema-feature-card {
+  display: grid;
+  align-content: start;
+  min-height: 100%;
+}
+
+.model-stage {
+  min-height: clamp(320px, 42vw, 560px) !important;
+  overflow: visible;
+}
+
+.model-stage picture {
+  display: grid;
+  width: min(100%, 620px);
+  place-items: center;
+}
+
+.model-stage img {
+  width: min(100%, 560px) !important;
+  height: auto !important;
+  max-height: min(50vw, 520px) !important;
+}
+
+.color-grid {
+  grid-template-columns: repeat(auto-fit, minmax(88px, 1fr)) !important;
+}
+
+.color-grid button {
+  min-width: 0;
+}
+
+.test-ride-panel {
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.test-ride-panel > * {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 48rem);
+}
+
+@media (min-width: 1180px) {
+  .cinema-section:nth-of-type(even).cinema-split .cinema-copy {
+    justify-self: end;
+  }
+
+  .cinema-section:nth-of-type(even).cinema-split .cinema-media-frame,
+  .cinema-section:nth-of-type(even).cinema-split .ride-lab,
+  .cinema-section:nth-of-type(even).cinema-split .phone-stage {
+    justify-self: start !important;
+  }
+}
+
+@media (max-width: 1179px) {
+  .cinema-split,
+  .model-showcase,
+  .app-section,
+  .cost-section {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .cinema-copy,
+  .model-info,
+  .cinema-media-frame,
+  .motor-stage,
+  .ride-lab,
+  .phone-stage,
+  .model-stage {
+    justify-self: center !important;
+    max-width: min(100%, 760px) !important;
+  }
+
+  .cinema-copy,
+  .model-info {
+    text-align: center;
+  }
+
+  .cinema-copy .cinema-title,
+  .model-info h2 {
+    margin-inline: auto;
+  }
+
+  .cinema-mini-stats,
+  .model-pills,
+  .app-feature-list,
+  .app-store-row,
+  .ride-results {
+    justify-content: center;
+  }
+
+  .model-stage {
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .cinema-home {
+    --section-pad-x: 1rem;
+    --section-gap: 1.35rem;
+  }
+
+  .cinema-section,
+  .model-showcase,
+  .test-ride-panel {
+    padding-block: clamp(2.75rem, 8vh, 4.25rem) !important;
+  }
+
+  .cinema-copy,
+  .model-info,
+  .motor-copy,
+  .test-ride-panel > *,
+  .dealer-section .cinema-copy,
+  .cinema-copy-wide {
+    max-width: 100% !important;
+  }
+
+  .cinema-media-frame,
+  .motor-stage,
+  .premium-gallery-focus {
+    border-radius: 0.9rem !important;
+  }
+
+  .cinema-media-frame {
+    aspect-ratio: 4 / 3;
+  }
+
+  .motor-stage video {
+    aspect-ratio: 4 / 3;
+    max-height: none !important;
+  }
+
+  .motor-callout-row,
+  .ride-results,
+  .dealer-chip-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .app-store-row {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .model-stage {
+    min-height: min(96vw, 420px) !important;
+  }
+
+  .model-stage img {
+    max-height: min(86vw, 380px) !important;
+  }
+
+  .test-ride-panel {
+    width: calc(100% - 2rem) !important;
+    margin-inline: auto !important;
+    padding-inline: 1rem !important;
+  }
+}
