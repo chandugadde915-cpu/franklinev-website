@@ -19,6 +19,96 @@ import {
 } from "lucide-react";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 
+const siteUrl = "https://franklinev-website.vercel.app";
+const blogUrl = `${siteUrl}/blog`;
+
+const blogArticleMeta = [
+  {
+    slug: "power-plus-vs-rapid",
+    title: "Power ++ vs Rapid: choosing the right Franklin EV scooter",
+    description:
+      "Compare Franklin EV Power ++ and Rapid by range, riding feel, daily use case, smart features and ownership priorities before booking a test ride.",
+    keywords:
+      "Franklin EV Power ++, Franklin EV Rapid, electric scooter comparison, best Franklin EV scooter, electric scooter buying guide India",
+    image: "/assets/models/premium-colors-layout/power-blue-angle-layout.png",
+    category: "Buying Guide",
+    readTime: "5 min read",
+  },
+  {
+    slug: "best-electric-scooter-hyderabad-daily-commute",
+    title: "Best electric scooter in Hyderabad for daily commute",
+    description:
+      "Read the 2026 Franklin EV buyer guide for Hyderabad riders covering range, charging, running cost, service support and city-road readiness.",
+    keywords:
+      "best electric scooter in Hyderabad, electric scooter daily commute Hyderabad, Franklin EV Hyderabad, electric scooter charging cost Hyderabad",
+    image: "/assets/detail-hero1.jpg",
+    category: "Hyderabad Guide",
+    readTime: "7 min read",
+  },
+  {
+    slug: "home-charging-electric-scooter",
+    title: "Home charging explained for first-time EV riders",
+    description:
+      "Learn electric scooter home charging basics, charging time, safe charging habits and key questions to ask before Franklin EV delivery.",
+    keywords:
+      "electric scooter home charging, EV scooter charging guide, Franklin EV charging, electric scooter charging time India",
+    image: "/assets/detail-battery.jpg",
+    category: "Charging",
+    readTime: "6 min read",
+  },
+] as const;
+
+const blogArticleMetaTags = blogArticleMeta.flatMap((post, index) => {
+  const position = index + 1;
+  const postUrl = `${blogUrl}#${post.slug}`;
+
+  return [
+    { name: `blog:${position}:title`, content: post.title },
+    { name: `blog:${position}:description`, content: post.description },
+    { name: `blog:${position}:keywords`, content: post.keywords },
+    { name: `blog:${position}:url`, content: postUrl },
+    { name: `blog:${position}:category`, content: post.category },
+    { name: `blog:${position}:read_time`, content: post.readTime },
+  ];
+});
+
+const blogSchema = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  name: "Franklin EV Blog",
+  url: blogUrl,
+  description:
+    "Franklin EV guides for electric scooter buyers covering model comparison, Hyderabad commuting, home charging, running cost and ownership confidence.",
+  publisher: {
+    "@type": "Organization",
+    name: "Franklin EV India Pvt. Ltd.",
+    logo: {
+      "@type": "ImageObject",
+      url: `${siteUrl}/assets/franklin-ev-logo.png`,
+    },
+  },
+  blogPost: blogArticleMeta.map((post) => ({
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.description,
+    image: `${siteUrl}${post.image}`,
+    url: `${blogUrl}#${post.slug}`,
+    mainEntityOfPage: `${blogUrl}#${post.slug}`,
+    author: {
+      "@type": "Organization",
+      name: "Franklin EV India Pvt. Ltd.",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Franklin EV India Pvt. Ltd.",
+    },
+    articleSection: post.category,
+    keywords: post.keywords,
+    datePublished: "2026-06-10",
+    dateModified: "2026-06-10",
+  })),
+};
+
 export const Route = createFileRoute("/blog")({
   head: () => ({
     meta: [
@@ -39,39 +129,38 @@ export const Route = createFileRoute("/blog")({
         content:
           "Practical Franklin EV articles for choosing, charging, maintaining and saving with electric scooters.",
       },
-      { property: "og:url", content: "https://franklinev-website.vercel.app/blog" },
+      { property: "og:url", content: blogUrl },
+      { property: "og:type", content: "website" },
+      { property: "og:image", content: `${siteUrl}/assets/hero-powerplus.jpg` },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Franklin EV Blog - Electric Scooter Guides" },
+      {
+        name: "twitter:description",
+        content:
+          "Explore Franklin EV buying guides, Hyderabad commute tips, home charging advice and ownership cost explainers.",
+      },
+      { name: "twitter:image", content: `${siteUrl}/assets/hero-powerplus.jpg` },
+      ...blogArticleMetaTags,
     ],
-    links: [{ rel: "canonical", href: "https://franklinev-website.vercel.app/blog" }],
+    links: [{ rel: "canonical", href: blogUrl }],
   }),
   component: BlogPage,
 });
 
 const featuredPosts = [
   {
-    title: "Power ++ vs Rapid: choosing the right Franklin EV scooter",
-    summary:
-      "Compare range, riding feel, daily use cases and ownership priorities before booking a test ride.",
-    image: "/assets/models/premium-colors-layout/power-blue-angle-layout.png",
-    category: "Buying Guide",
-    readTime: "5 min read",
+    ...blogArticleMeta[0],
+    summary: blogArticleMeta[0].description,
     Icon: Gauge,
   },
   {
-    title: "Best electric scooter in Hyderabad for daily commute",
-    summary:
-      "A 2026 buyer guide covering range, charging, cost savings, service support and city-road readiness.",
-    image: "/assets/detail-hero1.jpg",
-    category: "Hyderabad Guide",
-    readTime: "7 min read",
+    ...blogArticleMeta[1],
+    summary: blogArticleMeta[1].description,
     Icon: RouteIcon,
   },
   {
-    title: "Home charging explained for first-time EV riders",
-    summary:
-      "A clear guide to plug-in charging, charging time, safe habits and what to ask before delivery.",
-    image: "/assets/detail-battery.jpg",
-    category: "Charging",
-    readTime: "6 min read",
+    ...blogArticleMeta[2],
+    summary: blogArticleMeta[2].description,
     Icon: PlugZap,
   },
 ] as const;
@@ -184,6 +273,7 @@ const latestPosts = [
 function BlogPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }} />
       <section className="blog-hero">
         <div className="blog-hero-inner">
           <Reveal className="blog-hero-copy">
@@ -236,9 +326,9 @@ function BlogPage() {
           </p>
         </Reveal>
         <StaggerGroup className="blog-card-grid">
-          {featuredPosts.map(({ title, summary, image, category, readTime, Icon }) => (
+          {featuredPosts.map(({ slug, title, summary, image, category, readTime, Icon }) => (
             <StaggerItem key={title}>
-              <article className="blog-card">
+              <article className="blog-card" id={slug}>
                 <figure>
                   <img src={image} alt="" loading="lazy" decoding="async" />
                 </figure>
