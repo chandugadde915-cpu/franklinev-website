@@ -3402,10 +3402,17 @@ body::-webkit-scrollbar-track {
 
 /* Blog page. */
 .blog-hero {
+  --blog-deep: #071722;
+  --blog-ink: #10283a;
+  --blog-body: #486272;
+  --blog-cyan: #00aee8;
+  --blog-green: #20d66b;
+  --blog-soft: #f4fbff;
   min-height: 82svh;
   background:
-    radial-gradient(circle at 72% 18%, rgba(0, 174, 232, 0.16), transparent 36%),
-    linear-gradient(135deg, #08151f 0%, #112a37 58%, #f4fbff 58.2%, #f7fcff 100%);
+    radial-gradient(circle at 84% 12%, rgba(32, 214, 107, 0.18), transparent 34%),
+    radial-gradient(circle at 14% 18%, rgba(0, 174, 232, 0.24), transparent 32%),
+    linear-gradient(135deg, #071722 0%, #10283a 52%, #eef8fd 100%);
   overflow: hidden;
 }
 
@@ -3427,11 +3434,20 @@ body::-webkit-scrollbar-track {
 .blog-hero-copy h1,
 .blog-section-heading h2,
 .blog-latest-copy h2 {
-  color: var(--ink);
+  color: #10283a;
   font-family: var(--font-display);
   font-weight: 850;
   letter-spacing: 0;
   text-wrap: balance;
+}
+
+.blog-hero-copy .cinema-eyebrow {
+  color: #8fffd0;
+}
+
+.blog-hero-copy h1 {
+  color: #f7fcff;
+  text-shadow: 0 16px 42px rgba(0, 0, 0, 0.22);
 }
 
 .blog-hero-copy h1 {
@@ -3442,9 +3458,13 @@ body::-webkit-scrollbar-track {
 .blog-hero-copy h1 em,
 .blog-section-heading h2 em,
 .blog-latest-copy h2 em {
-  color: var(--primary);
+  color: #00aee8;
   font-style: italic;
   font-weight: 500;
+}
+
+.blog-hero-copy h1 em {
+  color: #9cff2e;
 }
 
 .blog-hero-copy p,
@@ -3452,13 +3472,14 @@ body::-webkit-scrollbar-track {
 .blog-latest-copy p,
 .blog-card p,
 .blog-guide-card p {
-  color: var(--muted-foreground);
+  color: #486272;
   line-height: 1.7;
 }
 
 .blog-hero-copy p {
   max-width: 36rem;
   margin-top: 1.2rem;
+  color: #d7e9f2;
   font-size: clamp(1rem, 1.25vw, 1.16rem);
 }
 
@@ -3482,7 +3503,7 @@ body::-webkit-scrollbar-track {
   width: min(82%, 560px);
   aspect-ratio: 1 / 0.48;
   border-radius: 50%;
-  background: linear-gradient(90deg, rgba(0, 174, 232, 0.26), rgba(156, 255, 46, 0.22));
+  background: linear-gradient(90deg, rgba(0, 174, 232, 0.28), rgba(32, 214, 107, 0.24));
   filter: blur(34px);
   opacity: 0.62;
 }
@@ -3506,6 +3527,7 @@ body::-webkit-scrollbar-track {
   width: min(100%, 1280px);
   margin-inline: auto;
   padding: clamp(4rem, 9vh, 6.5rem) clamp(1rem, 5vw, 4rem);
+  background: #f7fcff;
 }
 
 .blog-section-heading {
@@ -3539,8 +3561,8 @@ body::-webkit-scrollbar-track {
   border: 1px solid var(--border);
   border-radius: 1rem;
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(234, 243, 249, 0.74)),
-    var(--surface);
+    linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(234, 247, 253, 0.82)),
+    #ffffff;
   box-shadow: 0 24px 70px rgba(45, 86, 112, 0.12);
 }
 
@@ -3571,7 +3593,7 @@ body::-webkit-scrollbar-track {
   display: inline-flex;
   align-items: center;
   gap: 0.42rem;
-  color: var(--primary);
+  color: #008cc2;
   font-size: 0.75rem;
   font-weight: 850;
   line-height: 1.25;
@@ -3581,7 +3603,7 @@ body::-webkit-scrollbar-track {
 .blog-card h3,
 .blog-guide-card h3 {
   margin-top: 0.85rem;
-  color: var(--ink);
+  color: #10283a;
   font-family: var(--font-display);
   font-size: clamp(1.35rem, 2vw, 1.75rem);
   font-weight: 800;
@@ -3600,14 +3622,20 @@ body::-webkit-scrollbar-track {
   gap: 0.35rem;
   width: fit-content;
   margin-top: 1rem;
-  color: var(--primary);
+  color: #007fb3;
   font-weight: 850;
+}
+
+.blog-card a:hover {
+  color: #20a85a;
 }
 
 .blog-guide-section {
   width: 100%;
   max-width: none;
-  background: linear-gradient(180deg, #edf7fb 0%, #f7fcff 100%);
+  background:
+    radial-gradient(circle at 12% 0%, rgba(0, 174, 232, 0.12), transparent 30%),
+    linear-gradient(180deg, #edf8fd 0%, #f7fcff 100%);
 }
 
 .blog-guide-grid {
@@ -3635,7 +3663,7 @@ body::-webkit-scrollbar-track {
   height: 2.7rem;
   place-items: center;
   border-radius: 0.8rem;
-  background: linear-gradient(135deg, var(--primary), #20d66b);
+  background: linear-gradient(135deg, #00aee8, #20d66b);
   color: white;
 }
 
@@ -3670,14 +3698,14 @@ body::-webkit-scrollbar-track {
   align-items: center;
   border: 1px solid var(--border);
   border-radius: 0.9rem;
-  background: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.9);
   padding: 0.95rem 1rem;
-  color: var(--ink);
+  color: #10283a;
   font-weight: 750;
 }
 
 .blog-topic-list svg {
-  color: var(--primary);
+  color: #00aee8;
 }
 
 @media (max-width: 1024px) {
