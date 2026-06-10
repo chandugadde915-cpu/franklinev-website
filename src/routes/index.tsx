@@ -646,7 +646,7 @@ function HeroSection() {
       }`}
       id="hero"
       ref={heroRef}
-      aria-label="Franklin EV hero - Smart electric scooters Hyderabad"
+      aria-label="Franklin EV hero - smart electric scooters in India"
     >
       <div className="cinema-hero-stage">
         <canvas
@@ -757,6 +757,16 @@ function AmbientDepthBackdrop() {
   return (
     <div className="cinema-depth-bg" aria-hidden="true">
       <div className="cinema-depth-grid" />
+      <div className="cinema-depth-tunnel">
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
+      <div className="cinema-depth-panel cinema-depth-panel-a" />
+      <div className="cinema-depth-panel cinema-depth-panel-b" />
+      <div className="cinema-depth-panel cinema-depth-panel-c" />
       <div className="cinema-depth-beam cinema-depth-beam-a" />
       <div className="cinema-depth-beam cinema-depth-beam-b" />
       <div className="cinema-depth-beam cinema-depth-beam-c" />
@@ -766,8 +776,8 @@ function AmbientDepthBackdrop() {
       <div className="cinema-depth-orbit cinema-depth-orbit-b">
         <span />
       </div>
-      <div className="cinema-depth-sphere cinema-depth-sphere-a" />
-      <div className="cinema-depth-sphere cinema-depth-sphere-b" />
+      <div className="cinema-depth-ribbon cinema-depth-ribbon-a" />
+      <div className="cinema-depth-ribbon cinema-depth-ribbon-b" />
     </div>
   );
 }
@@ -786,7 +796,7 @@ function Home() {
   const activeModel = {
     name: "Franklin EV Power ++",
     buttonLabel: "Power ++",
-    badge: "Available in 3 finishes - built for everyday Hyderabad riders.",
+    badge: "Available in 3 finishes - built for everyday Indian riders.",
     body: "Franklin EV Power ++ combines commanding road presence with practical long-range performance. Available in Silver, Sky Blue and Maroon - choose your finish and book a test ride at a dealer near you.",
     specs: ["Silver finish available", "Sky Blue finish available", "Maroon finish available"],
   } as const;
