@@ -216,71 +216,6 @@ function VehiclesPage() {
 
   return (
     <>
-      <section
-        className="cinema-section model-showcase vehicle-color-showcase"
-        id="available-colors"
-        data-animate="fade-up"
-        style={{ "--model-tone": selectedColor.swatch } as CSSProperties}
-      >
-        <div className="model-stage">
-          <div className="model-glow" />
-          <picture key={colorId}>
-            <source srcSet={selectedColor.imageWebp} type="image/webp" />
-            <img
-              src={selectedColor.image}
-              alt={`Franklin EV ${activeColorModel.buttonLabel} electric scooter in ${selectedColor.name}`}
-              loading="eager"
-              decoding="async"
-              fetchPriority="low"
-              width={1200}
-              height={1200}
-            />
-          </picture>
-          <div className="model-platform" />
-        </div>
-        <Reveal className="model-info">
-          <div className="cinema-eyebrow">Available Colors</div>
-          <p className="model-badge model-note">{activeColorModel.badge}</p>
-          <h1 className="vehicle-colors-title">{activeColorModel.name}</h1>
-          <p className="model-description">{activeColorModel.body}</p>
-          <div className="model-pills">
-            {activeColorModel.specs.map((spec) => (
-              <span key={spec}>{spec}</span>
-            ))}
-          </div>
-          <div className="color-grid" aria-label={`Choose ${activeColorModel.name} color`}>
-            {modelColors.map((color) => (
-              <button
-                key={color.id}
-                type="button"
-                className={color.id === colorId ? "active" : undefined}
-                style={{ "--swatch": color.swatch } as CSSProperties}
-                onClick={() => setColorId(color.id)}
-                aria-label={`Show ${activeColorModel.buttonLabel} in ${color.name}`}
-              >
-                <picture>
-                  <source srcSet={color.previewWebp} type="image/webp" />
-                  <img
-                    src={color.preview}
-                    alt={`Franklin EV ${activeColorModel.buttonLabel} preview in ${color.name}`}
-                    loading="eager"
-                    decoding="async"
-                    fetchPriority="low"
-                    width={1200}
-                    height={1200}
-                  />
-                </picture>
-                <span />
-                <strong>{color.name}</strong>
-              </button>
-            ))}
-          </div>
-          <Link to="/contact" className="cinema-btn cinema-btn-primary">
-            Book a Test Ride for This Model <ArrowRight className="h-4 w-4" />
-          </Link>
-        </Reveal>
-      </section>
-
       <div className="max-w-7xl mx-auto px-5 lg:px-8 py-16 space-y-24">
         {models.map((m, i) => (
           <Reveal key={m.key}>
@@ -374,6 +309,71 @@ function VehiclesPage() {
           </Reveal>
         ))}
       </div>
+
+      <section
+        className="cinema-section model-showcase vehicle-color-showcase"
+        id="available-colors"
+        data-animate="fade-up"
+        style={{ "--model-tone": selectedColor.swatch } as CSSProperties}
+      >
+        <div className="model-stage">
+          <div className="model-glow" />
+          <picture key={colorId}>
+            <source srcSet={selectedColor.imageWebp} type="image/webp" />
+            <img
+              src={selectedColor.image}
+              alt={`Franklin EV ${activeColorModel.buttonLabel} electric scooter in ${selectedColor.name}`}
+              loading="eager"
+              decoding="async"
+              fetchPriority="low"
+              width={1200}
+              height={1200}
+            />
+          </picture>
+          <div className="model-platform" />
+        </div>
+        <Reveal className="model-info">
+          <div className="cinema-eyebrow">Available Colors</div>
+          <p className="model-badge model-note">{activeColorModel.badge}</p>
+          <h1 className="vehicle-colors-title">{activeColorModel.name}</h1>
+          <p className="model-description">{activeColorModel.body}</p>
+          <div className="model-pills">
+            {activeColorModel.specs.map((spec) => (
+              <span key={spec}>{spec}</span>
+            ))}
+          </div>
+          <div className="color-grid" aria-label={`Choose ${activeColorModel.name} color`}>
+            {modelColors.map((color) => (
+              <button
+                key={color.id}
+                type="button"
+                className={color.id === colorId ? "active" : undefined}
+                style={{ "--swatch": color.swatch } as CSSProperties}
+                onClick={() => setColorId(color.id)}
+                aria-label={`Show ${activeColorModel.buttonLabel} in ${color.name}`}
+              >
+                <picture>
+                  <source srcSet={color.previewWebp} type="image/webp" />
+                  <img
+                    src={color.preview}
+                    alt={`Franklin EV ${activeColorModel.buttonLabel} preview in ${color.name}`}
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="low"
+                    width={1200}
+                    height={1200}
+                  />
+                </picture>
+                <span />
+                <strong>{color.name}</strong>
+              </button>
+            ))}
+          </div>
+          <Link to="/contact" className="cinema-btn cinema-btn-primary">
+            Book a Test Ride for This Model <ArrowRight className="h-4 w-4" />
+          </Link>
+        </Reveal>
+      </section>
 
       {/* SPEC TABLE */}
       <section className="max-w-7xl mx-auto px-5 lg:px-8 py-16">

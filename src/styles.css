@@ -1367,10 +1367,14 @@
 .vehicle-colors-title {
   color: var(--ink);
   font-family: var(--font-display);
-  font-size: clamp(3rem, 8vw, 7.2rem);
+  max-width: 11ch;
+  font-size: clamp(2.6rem, 5.4vw, 5.25rem);
   font-weight: 850;
-  line-height: 1.03;
+  line-height: 1.08;
   letter-spacing: 0;
+  overflow-wrap: normal;
+  text-wrap: balance;
+  word-break: normal;
 }
 
 .model-info p:not(.model-badge) {
