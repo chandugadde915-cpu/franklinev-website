@@ -1045,6 +1045,38 @@ function Home() {
             </StaggerItem>
           ))}
         </StaggerGroup>
+        <Reveal className="cinema-lifestyle-band" delay={0.1}>
+          <figure className="is-wide">
+            <img
+              src="/assets/editorial/commute-city-ride.jpg"
+              alt="Franklin EV electric scooter riding through a city business district."
+              width={1536}
+              height={1024}
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <figure>
+            <img
+              src="/assets/editorial/red-sunset-profile.jpg"
+              alt="Franklin EV red electric scooter at sunset near a city waterfront."
+              width={1536}
+              height={1024}
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <figure>
+            <img
+              src="/assets/editorial/silver-rider-arrival.jpg"
+              alt="Franklin EV silver scooter ready for a rider outside a residential entrance."
+              width={1536}
+              height={1024}
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        </Reveal>
       </section>
 
       <section

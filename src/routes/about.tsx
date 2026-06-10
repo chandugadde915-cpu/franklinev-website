@@ -47,10 +47,10 @@ function AboutPage() {
           <Reveal delay={0.1}>
             <figure className="about-hero-image">
               <img
-                src="/assets/hero-powerplus.jpg"
-                alt="Franklin EV Power ++ electric scooter showcased for city riders."
-                width={2000}
-                height={1334}
+                src="/assets/editorial/dual-riders-underpass.jpg"
+                alt="Two Franklin EV riders on electric scooters in an urban underpass."
+                width={1672}
+                height={941}
                 loading="eager"
                 decoding="async"
               />
@@ -176,14 +176,14 @@ function AboutPage() {
           <figure className="about-journey-visual">
             <picture>
               <source
-                srcSet="/assets/models/premium-colors-layout/power-blue-angle-layout.webp"
-                type="image/webp"
+                srcSet="/assets/editorial/blue-cafe-parking.jpg"
+                type="image/jpeg"
               />
               <img
-                src="/assets/models/premium-colors-layout/power-blue-angle-layout.png"
-                alt="Franklin EV Power ++ in Sky Blue"
-                width={1200}
-                height={1200}
+                src="/assets/editorial/blue-cafe-parking.jpg"
+                alt="Franklin EV Power ++ in sky blue parked near a city cafe."
+                width={1330}
+                height={1183}
                 loading="lazy"
                 decoding="async"
               />
@@ -233,10 +233,10 @@ function AboutPage() {
           <div className="about-showroom-card p-10 lg:p-14 rounded-3xl bg-surface border border-border shadow-soft">
             <figure>
               <img
-                src="/assets/detail-hero1.jpg"
-                alt="Franklin EV scooter detail for showroom and test ride enquiries."
-                width={1400}
-                height={735}
+                src="/assets/editorial/blue-school-family.jpg"
+                alt="Franklin EV sky blue scooter used for a family school commute."
+                width={1376}
+                height={1143}
                 loading="lazy"
                 decoding="async"
               />

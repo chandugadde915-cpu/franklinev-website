@@ -40,7 +40,7 @@ interface ModelData {
   price: string;
   chips: string[];
   features: string[];
-  images: { src: string; webp: string; alt: string }[];
+  images: { src: string; webp?: string; alt: string }[];
   accent: string;
   variants?: string[];
 }
@@ -67,9 +67,16 @@ const models: ModelData[] = [
     ],
     images: [
       {
-        src: "/assets/models/premium-colors-layout/power-silver-angle-layout.png",
-        webp: "/assets/models/premium-colors-layout/power-silver-angle-layout.webp",
-        alt: "Franklin EV Power ++ electric scooter in Silver, three-quarter front view.",
+        src: "/assets/editorial/silver-apartment-front.jpg",
+        alt: "Franklin EV Power ++ electric scooter in silver outside a premium apartment.",
+      },
+      {
+        src: "/assets/editorial/red-apartment-front.jpg",
+        alt: "Franklin EV Power ++ electric scooter in red at an apartment entrance.",
+      },
+      {
+        src: "/assets/editorial/blue-urban-side.jpg",
+        alt: "Franklin EV Power ++ electric scooter in sky blue parked near an urban cafe.",
       },
     ],
     accent: "from-maroon/15 to-primary/5",
@@ -96,9 +103,16 @@ const models: ModelData[] = [
     ],
     images: [
       {
-        src: "/assets/models/premium-colors-layout/power-maroon-angle-layout.png",
-        webp: "/assets/models/premium-colors-layout/power-maroon-angle-layout.webp",
-        alt: "Franklin EV Rapid electric scooter, city commute model in silver",
+        src: "/assets/editorial/red-night-apartment.jpg",
+        alt: "Franklin EV Rapid electric scooter in red parked outside an apartment at night.",
+      },
+      {
+        src: "/assets/editorial/red-sunset-profile.jpg",
+        alt: "Franklin EV Rapid electric scooter in red shown in profile at sunset.",
+      },
+      {
+        src: "/assets/editorial/blue-coast-front.jpg",
+        alt: "Franklin EV Rapid electric scooter in sky blue with a scenic front view.",
       },
     ],
     accent: "from-primary/15 to-accent/5",
@@ -184,19 +198,26 @@ function VehiclesPage() {
               >
                 <div className="absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_60%,oklch(0.62_0.18_248/0.15),transparent_70%)]" />
                 {m.key === "rapid" ? <span className="model-badge">Rapid</span> : null}
-                <picture className="relative max-h-[80%] w-auto">
-                  <source srcSet={m.images[0].webp} type="image/webp" />
+                <picture className="vehicle-main-photo">
+                  {m.images[0].webp ? <source srcSet={m.images[0].webp} type="image/webp" /> : null}
                   <motion.img
                     src={m.images[0].src}
                     alt={m.images[0].alt}
                     loading="lazy"
                     width={1200}
                     height={1200}
-                    className="max-h-full w-auto object-contain"
+                    className="vehicle-main-photo-img"
                     animate={{ y: [0, -10, 0] }}
                     transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                   />
                 </picture>
+                <div className="vehicle-gallery-strip" aria-label={`${m.name} lifestyle images`}>
+                  {m.images.slice(1).map((image) => (
+                    <figure key={image.src}>
+                      <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
+                    </figure>
+                  ))}
+                </div>
               </div>
               <div>
                 <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink">

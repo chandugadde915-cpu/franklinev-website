@@ -30,7 +30,7 @@ const blogArticleMeta = [
       "Compare Franklin EV Power ++ and Rapid by range, riding feel, daily use case, smart features and ownership priorities before booking a test ride.",
     keywords:
       "Franklin EV Power ++, Franklin EV Rapid, electric scooter comparison, best Franklin EV scooter, electric scooter buying guide India",
-    image: "/assets/models/premium-colors-layout/power-blue-angle-layout.png",
+    image: "/assets/editorial/silver-hill-sunset.jpg",
     category: "Buying Guide",
     readTime: "5 min read",
   },
@@ -41,7 +41,7 @@ const blogArticleMeta = [
       "Read the 2026 Franklin EV buyer guide for Hyderabad riders covering range, charging, running cost, service support and city-road readiness.",
     keywords:
       "best electric scooter in Hyderabad, electric scooter daily commute Hyderabad, Franklin EV Hyderabad, electric scooter charging cost Hyderabad",
-    image: "/assets/detail-hero1.jpg",
+    image: "/assets/editorial/commute-city-ride.jpg",
     category: "Hyderabad Guide",
     readTime: "7 min read",
   },
@@ -52,7 +52,7 @@ const blogArticleMeta = [
       "Learn electric scooter home charging basics, charging time, safe charging habits and key questions to ask before Franklin EV delivery.",
     keywords:
       "electric scooter home charging, EV scooter charging guide, Franklin EV charging, electric scooter charging time India",
-    image: "/assets/detail-battery.jpg",
+    image: "/assets/editorial/blue-cafe-parking.jpg",
     category: "Charging",
     readTime: "6 min read",
   },
@@ -376,15 +376,11 @@ function BlogPage() {
           </Reveal>
           <Reveal className="blog-article-visual" delay={0.1}>
             <picture>
-              <source
-                srcSet="/assets/models/premium-colors-layout/power-blue-front-layout.webp"
-                type="image/webp"
-              />
               <img
-                src="/assets/models/premium-colors-layout/power-blue-front-layout.png"
-                alt="Franklin EV electric scooter for Hyderabad daily commute."
-                width={1200}
-                height={1200}
+                src="/assets/editorial/commute-city-ride.jpg"
+                alt="Franklin EV electric scooter riding through city traffic for daily commute."
+                width={1536}
+                height={1024}
                 loading="lazy"
                 decoding="async"
               />

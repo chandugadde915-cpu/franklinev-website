@@ -77,15 +77,25 @@ function ContactPage() {
   return (
     <>
       <section className="bg-hero-gradient">
-        <div className="max-w-7xl mx-auto px-5 lg:px-8 pt-20 pb-16 text-center">
-          <Reveal>
+        <div className="contact-hero-grid max-w-7xl mx-auto px-5 lg:px-8 pt-20 pb-16">
+          <Reveal className="contact-hero-copy">
             <h1 className="font-display text-5xl sm:text-6xl font-bold text-ink">
               Let's get you <span className="text-primary-gradient">riding</span>
             </h1>
-            <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="mt-5 text-lg text-muted-foreground max-w-2xl">
               Book a test ride, ask about Franklin EV scooter models, or find a listed dealer
               location near you in Telangana or Andhra Pradesh.
             </p>
+          </Reveal>
+          <Reveal className="contact-hero-image" delay={0.1}>
+            <img
+              src="/assets/editorial/red-lifestyle-couple.jpg"
+              alt="Two riders standing beside a Franklin EV scooter before a test ride."
+              width={1402}
+              height={1122}
+              loading="eager"
+              decoding="async"
+            />
           </Reveal>
         </div>
       </section>
