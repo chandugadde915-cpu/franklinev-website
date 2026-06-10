@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const links = [
@@ -24,12 +24,43 @@ const links = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const scrolledRef = useRef(false);
+  const scrollFrameRef = useRef(0);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    onScroll();
+    const mobileQuery = window.matchMedia("(max-width: 768px)");
+    if (mobileQuery.matches) {
+      return;
+    }
+
+    const syncScrolled = () => {
+      const nextScrolled = window.scrollY > 20;
+      if (scrolledRef.current === nextScrolled) {
+        return;
+      }
+
+      scrolledRef.current = nextScrolled;
+      setScrolled(nextScrolled);
+    };
+
+    const onScroll = () => {
+      if (scrollFrameRef.current) {
+        return;
+      }
+
+      scrollFrameRef.current = requestAnimationFrame(() => {
+        scrollFrameRef.current = 0;
+        syncScrolled();
+      });
+    };
+
+    syncScrolled();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      cancelAnimationFrame(scrollFrameRef.current);
+      scrollFrameRef.current = 0;
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   useEffect(() => {

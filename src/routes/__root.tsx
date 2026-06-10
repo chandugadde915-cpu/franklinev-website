@@ -8,7 +8,7 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -243,7 +243,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-status-bar-style", content: "default" },
       {
-        title: "Franklin EV | Hyderabad's Smart Electric Scooter Brand",
+        title: "Franklin EV | India's Smart Electric Scooter Brand",
       },
       {
         name: "description",
@@ -260,12 +260,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       {
         property: "og:title",
-        content: "Franklin EV - Hyderabad's Smart Electric Scooter Brand for Everyday Freedom",
+        content: "Franklin EV - India's Smart Electric Scooter Brand for Everyday Freedom",
       },
       {
         property: "og:description",
         content:
-          "Experience smarter mobility with Franklin EV electric scooters built for Hyderabad riders, everyday freedom, home charging, lower running costs and intelligent features.",
+          "Experience smarter mobility with Franklin EV electric scooters built for Indian riders, everyday freedom, home charging, lower running costs and intelligent features.",
       },
       { property: "og:url", content: siteUrl },
       { property: "og:image", content: socialImageUrl },
@@ -350,14 +350,25 @@ function RootComponent() {
 }
 
 function ScrollProgressBar() {
-  const [progress, setProgress] = useState(0);
+  const progressRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     let frame = 0;
+    const mobileQuery = window.matchMedia("(max-width: 768px)");
+
+    if (mobileQuery.matches) {
+      return;
+    }
 
     const updateProgress = () => {
+      const progressElement = progressRef.current;
+      if (!progressElement) {
+        return;
+      }
+
       const scrollable = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
-      setProgress(Math.min(window.scrollY / scrollable, 1));
+      const progress = Math.min(window.scrollY / scrollable, 1);
+      progressElement.style.transform = `scaleX(${progress})`;
     };
 
     const requestProgress = () => {
@@ -376,7 +387,7 @@ function ScrollProgressBar() {
     };
   }, []);
 
-  return <div className="scroll-progress" style={{ transform: `scaleX(${progress})` }} />;
+  return <div ref={progressRef} className="scroll-progress" style={{ transform: "scaleX(0)" }} />;
 }
 
 function useSiteMotion(pathname: string) {

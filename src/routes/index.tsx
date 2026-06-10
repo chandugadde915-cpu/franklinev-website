@@ -24,7 +24,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       {
-        title: "Franklin EV | Hyderabad's Smart Electric Scooter Brand for Everyday Freedom",
+        title: "Franklin EV | India's Smart Electric Scooter Brand for Everyday Freedom",
       },
       {
         name: "description",
@@ -41,12 +41,12 @@ export const Route = createFileRoute("/")({
       { name: "geo.placename", content: "Hyderabad, Telangana" },
       {
         property: "og:title",
-        content: "Franklin EV - Hyderabad's Smart Electric Scooter Brand for Everyday Freedom",
+        content: "Franklin EV - India's Smart Electric Scooter Brand for Everyday Freedom",
       },
       {
         property: "og:description",
         content:
-          "Discover smarter city commuting with Franklin EV electric scooters built for Hyderabad riders, everyday freedom, lower running costs, convenient home charging and intelligent technology.",
+          "Discover smarter city commuting with Franklin EV electric scooters built for Indian riders, everyday freedom, lower running costs, convenient home charging and intelligent technology.",
       },
       { property: "og:type", content: "website" },
       {
@@ -125,6 +125,7 @@ const heroSequenceFrames = Array.from(
   (_, index) => `/assets/hero-sequence/frame-${String(index + 1).padStart(3, "0")}.jpg`,
 );
 const heroSequenceSize = { width: 1600, height: 817 } as const;
+const heroSingleScrollDistanceRatio = 0.28;
 
 const features = [
   {
@@ -314,8 +315,8 @@ function HeroSection() {
   const heroScrollFrameRef = useRef(0);
   const [heroFrameIndex, setHeroFrameIndex] = useState(0);
   const [isHeroFrameReady, setIsHeroFrameReady] = useState(false);
-  const [useCompactHero, setUseCompactHero] = useState(false);
-  const [heroLaunchProgress, setHeroLaunchProgress] = useState(0);
+  const [useCompactHero, setUseCompactHero] = useState(true);
+  const [heroLaunchProgress, setHeroLaunchProgress] = useState(1);
 
   const activeHeroFrame = heroFrameIndex;
 
@@ -435,6 +436,8 @@ function HeroSection() {
     }
 
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const compactWidthQuery = window.matchMedia("(max-width: 768px)");
+    const coarsePointerQuery = window.matchMedia("(pointer: coarse)");
     const navigatorWithConnection = navigator as Navigator & {
       connection?: { effectiveType?: string; saveData?: boolean };
     };
@@ -443,20 +446,29 @@ function HeroSection() {
       const connection = navigatorWithConnection.connection;
       const saveData = connection?.saveData === true;
       const slowNetwork = /(^|-)2g$/.test(connection?.effectiveType ?? "");
-      const compact = reducedMotionQuery.matches || saveData || slowNetwork;
+      const compact =
+        reducedMotionQuery.matches ||
+        compactWidthQuery.matches ||
+        coarsePointerQuery.matches ||
+        saveData ||
+        slowNetwork;
 
       setUseCompactHero(compact);
       if (compact) {
-        setHeroProgress(0.24);
+        setHeroProgress(1);
         setHeroLaunchProgress(1);
       }
     };
 
     syncHeroMode();
     reducedMotionQuery.addEventListener("change", syncHeroMode);
+    compactWidthQuery.addEventListener("change", syncHeroMode);
+    coarsePointerQuery.addEventListener("change", syncHeroMode);
 
     return () => {
       reducedMotionQuery.removeEventListener("change", syncHeroMode);
+      compactWidthQuery.removeEventListener("change", syncHeroMode);
+      coarsePointerQuery.removeEventListener("change", syncHeroMode);
     };
   }, [setHeroProgress]);
 
@@ -468,7 +480,7 @@ function HeroSection() {
     }
 
     if (useCompactHero) {
-      setHeroProgress(0.24);
+      setHeroProgress(1);
       return;
     }
 
@@ -485,9 +497,9 @@ function HeroSection() {
         return;
       }
 
-      const visibleTravel = Math.max(hero.offsetHeight - window.innerHeight, 1);
-      const traveled = Math.min(Math.max(-rect.top, 0), visibleTravel);
-      setHeroProgress(traveled / visibleTravel);
+      const singleScrollTravel = Math.max(window.innerHeight * heroSingleScrollDistanceRatio, 1);
+      const traveled = Math.min(Math.max(-rect.top, 0), singleScrollTravel);
+      setHeroProgress(traveled / singleScrollTravel);
     };
 
     const requestHeroProgressSync = () => {
@@ -670,16 +682,16 @@ function HeroSection() {
           <div className="cinema-hero-copy">
             <div className="cinema-eyebrow">
               <Sparkles className="h-4 w-4" />
-              Hyderabad's Smart Electric Scooter Brand
+              India's Smart Electric Scooter Brand
             </div>
             <h1 className="cinema-hero-title">
-              <span>Hyderabad's smart electric</span>
+              <span>India's smart electric </span>
               <span>
                 scooter brand for <em>everyday freedom</em>.
               </span>
             </h1>
             <p className="cinema-hero-sub">
-              Experience smart electric scooters built for Hyderabad riders, with long range
+              Experience smart electric scooters built for Indian riders, with long range
               performance, cruise control, home charging and low running cost for daily commute.
             </p>
             <div className="cinema-hero-actions">
@@ -785,6 +797,27 @@ function Home() {
     );
 
     if (videos.length === 0) {
+      return;
+    }
+
+    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const compactWidthQuery = window.matchMedia("(max-width: 768px)");
+    const coarsePointerQuery = window.matchMedia("(pointer: coarse)");
+    const navigatorWithConnection = navigator as Navigator & {
+      connection?: { saveData?: boolean };
+    };
+    const keepPostersOnly =
+      reducedMotionQuery.matches ||
+      compactWidthQuery.matches ||
+      coarsePointerQuery.matches ||
+      navigatorWithConnection.connection?.saveData === true;
+
+    if (keepPostersOnly) {
+      videos.forEach((video) => {
+        video.pause();
+        video.removeAttribute("autoplay");
+        video.preload = "none";
+      });
       return;
     }
 

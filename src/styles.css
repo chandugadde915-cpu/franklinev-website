@@ -6668,3 +6668,599 @@ button:disabled {
     transform-origin: 50% 74%;
   }
 }
+
+/* Responsive stability pass: prevent overlap and keep scrolling light on every screen. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root,
+main {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+@supports not (overflow: clip) {
+  html,
+  body,
+  #root,
+  main {
+    overflow-x: hidden;
+  }
+}
+
+main,
+section,
+article,
+form,
+nav,
+footer,
+.cinema-home,
+.cinema-home *,
+.site-navbar *,
+.site-footer *,
+.about-hero-grid,
+.about-showroom-card,
+.journey-item,
+.privacy-panel,
+.faq-item {
+  min-width: 0;
+}
+
+:where(h1, h2, h3, h4, p, li, a, button, label, span, strong, small, input, textarea, select) {
+  overflow-wrap: anywhere;
+}
+
+:where(h1, h2, h3, h4, .cinema-hero-title, .cinema-title, .model-info h2, .test-ride-panel h2) {
+  letter-spacing: 0 !important;
+}
+
+:where(a, button, .cinema-btn, .site-nav-cta, .site-mobile-cta, .floating-action) {
+  line-height: 1.2;
+  white-space: normal;
+}
+
+img,
+picture,
+video,
+canvas,
+iframe {
+  max-width: 100%;
+}
+
+picture {
+  display: block;
+}
+
+.site-logo-image,
+.footer-logo .site-logo-image {
+  height: auto;
+}
+
+.site-mobile-menu,
+.site-footer-inner,
+.site-footer-bottom,
+.footer-column,
+.footer-column a,
+.footer-column p,
+.privacy-contact,
+.model-price,
+.savings-bar-row > div:first-child,
+.faq-question {
+  max-width: 100%;
+}
+
+.footer-column a,
+.footer-column p,
+.privacy-contact a,
+.faq-question span:first-child {
+  min-width: 0;
+}
+
+.cinema-hero.is-compact {
+  min-height: 100svh !important;
+  overflow: hidden !important;
+}
+
+.cinema-hero.is-compact .cinema-hero-stage {
+  position: relative;
+  height: 100svh;
+}
+
+.cinema-hero.is-compact .cinema-hero-content,
+.cinema-hero.is-compact .cinema-hero-copy,
+.cinema-hero.is-compact .cinema-eyebrow,
+.cinema-hero.is-compact .cinema-hero-title > span,
+.cinema-hero.is-compact .cinema-hero-sub,
+.cinema-hero.is-compact .cinema-hero-actions,
+.cinema-hero.is-compact .cinema-trust {
+  opacity: 1 !important;
+  filter: none !important;
+  transform: none !important;
+}
+
+.cinema-hero.is-compact .cinema-hero-content {
+  pointer-events: auto;
+}
+
+.cinema-hero.is-compact .cinema-hero-video,
+.cinema-hero.is-compact .cinema-frame-hud,
+.cinema-hero.is-compact .cinema-road,
+.cinema-hero.is-compact .cinema-callouts {
+  display: none !important;
+}
+
+.cinema-hero.is-compact .cinema-hero-poster {
+  display: block !important;
+  opacity: 1 !important;
+}
+
+@media (max-width: 1180px) {
+  .cinema-split,
+  .model-showcase,
+  .about-hero-grid,
+  .about-showroom-card {
+    grid-template-columns: 1fr !important;
+  }
+
+  .premium-gallery-shell {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1360px) {
+  .cinema-hero-content {
+    max-width: min(680px, calc(100vw - 10vw)) !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    justify-content: start;
+    transform:
+      translate3d(0, calc((1 - var(--launch-progress, 0)) * min(24vh, 180px)), 0)
+      scale(calc(0.92 + (var(--launch-progress, 0) * 0.08))) !important;
+    transform-origin: left 60%;
+  }
+
+  .cinema-callouts,
+  .cinema-frame-hud,
+  .cinema-road {
+    display: none !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .site-footer-inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .cinema-feature-grid,
+  .cinema-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  html,
+  body {
+    overscroll-behavior-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .cinema-depth-bg,
+  .cinema-home::before,
+  .cinema-home::after,
+  .cinema-hero-rings,
+  .cinema-frame-hud,
+  .cinema-road,
+  .scroll-hint {
+    display: none !important;
+  }
+
+  .cinema-home {
+    overflow-x: clip !important;
+  }
+
+  .cinema-hero {
+    min-height: 100svh !important;
+    overflow: hidden !important;
+  }
+
+  .cinema-hero-stage {
+    position: relative !important;
+    height: 100svh !important;
+    margin-inline: 0 !important;
+    overflow: hidden;
+  }
+
+  .cinema-hero-video {
+    display: none !important;
+  }
+
+  .cinema-hero-poster {
+    display: block !important;
+    opacity: 1 !important;
+    object-position: 58% center;
+  }
+
+  .cinema-hero-content {
+    position: absolute !important;
+    inset: 0 !important;
+    display: flex !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: 100svh !important;
+    min-height: 100svh !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    margin: 0 !important;
+    padding: 4.9rem 1rem max(1.25rem, calc(env(safe-area-inset-bottom) + 1rem)) !important;
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    pointer-events: auto;
+  }
+
+  .cinema-hero-copy {
+    width: 100% !important;
+    max-width: 34rem !important;
+    padding: 0 !important;
+    transform: none !important;
+  }
+
+  .cinema-hero-copy::before,
+  .cinema-hero-copy::after,
+  .cinema-hero-title > span::before,
+  .cinema-hero-sub::before {
+    display: none !important;
+  }
+
+  .cinema-hero .cinema-eyebrow,
+  .cinema-hero-title > span,
+  .cinema-hero-sub,
+  .cinema-hero-actions,
+  .cinema-trust {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .cinema-hero-title {
+    display: block !important;
+    width: 100% !important;
+    max-width: 13.5ch !important;
+    font-size: clamp(1.58rem, 7.2vw, 2.1rem) !important;
+    line-height: 1.12 !important;
+  }
+
+  .cinema-hero-title > span {
+    display: inline !important;
+    width: auto !important;
+    padding: 0 !important;
+  }
+
+  .cinema-hero-title > span:nth-child(2) {
+    margin-left: 0 !important;
+  }
+
+  .cinema-hero-sub {
+    width: 100% !important;
+    max-width: 32rem !important;
+    margin-top: 0.65rem !important;
+    padding: 0 !important;
+    font-size: 0.84rem !important;
+    line-height: 1.42 !important;
+  }
+
+  .cinema-hero-actions {
+    display: grid !important;
+    width: 100%;
+    grid-template-columns: 1fr;
+    gap: 0.55rem !important;
+    margin-top: 0.8rem !important;
+  }
+
+  .cinema-hero-actions a,
+  .cinema-btn {
+    width: 100%;
+    min-height: 2.55rem;
+    justify-content: center;
+    padding: 0.62rem 0.85rem;
+    font-size: 0.64rem;
+    text-align: center;
+  }
+
+  .cinema-trust {
+    display: none !important;
+    gap: 0.4rem 0.55rem;
+    margin-top: 0.85rem !important;
+    font-size: 0.72rem !important;
+    line-height: 1.25;
+  }
+
+  .cinema-trust b {
+    display: none;
+  }
+
+  .cinema-stat-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    padding-right: 0 !important;
+  }
+
+  .cinema-stat-strip div {
+    padding: 1rem !important;
+    border-bottom: 1px solid rgba(0, 174, 232, 0.12);
+  }
+
+  .cinema-stat-strip strong {
+    font-size: clamp(1.7rem, 8vw, 2.45rem) !important;
+  }
+
+  .cinema-section,
+  .cost-section,
+  .dealer-section,
+  .app-section,
+  .test-ride-section {
+    padding-inline: 1rem !important;
+  }
+
+  .cinema-section > *,
+  .cost-section > *,
+  .dealer-section > *,
+  .app-section > * {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .cinema-title,
+  .test-ride-panel h2,
+  .model-info h2,
+  section[class~="bg-hero-gradient"] h1 {
+    font-size: clamp(1.85rem, 9vw, 2.65rem) !important;
+    line-height: 1.12 !important;
+  }
+
+  .cinema-feature-grid,
+  .cinema-gallery,
+  .premium-gallery-rail,
+  .ride-results,
+  .color-grid,
+  .site-footer-inner {
+    grid-template-columns: 1fr !important;
+  }
+
+  .cinema-feature-card,
+  .dealer-state-card,
+  .ride-lab,
+  .test-ride-panel,
+  .privacy-panel article,
+  .faq-item,
+  form,
+  .site-footer-inner {
+    border-radius: 1rem !important;
+  }
+
+  .test-ride-panel {
+    width: 100% !important;
+    max-width: calc(100vw - 2rem) !important;
+    margin-inline: auto !important;
+  }
+
+  .premium-gallery-focus {
+    min-height: min(110vw, 440px) !important;
+  }
+
+  .premium-gallery-focus figcaption {
+    inset-inline: 0.85rem !important;
+    bottom: 0.85rem !important;
+  }
+
+  .premium-gallery-focus figcaption strong {
+    font-size: clamp(1.6rem, 9vw, 2.4rem) !important;
+    line-height: 1.05;
+  }
+
+  .motor-callout-row span,
+  .dealer-chip-grid span,
+  .app-feature-list span,
+  .app-store-row a,
+  .model-pills span {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .savings-bar-row > div:first-child,
+  .model-price,
+  .site-footer-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .site-mobile-menu {
+    top: calc(64px + env(safe-area-inset-top));
+    right: 0.75rem;
+    left: 0.75rem;
+    width: auto;
+  }
+
+  .site-mobile-link,
+  .site-mobile-cta {
+    width: 100%;
+    text-align: center;
+  }
+
+  .footer-column a,
+  .footer-column p {
+    align-items: flex-start;
+  }
+
+  .floating-actions {
+    right: max(0.6rem, env(safe-area-inset-right)) !important;
+    bottom: max(0.6rem, env(safe-area-inset-bottom)) !important;
+    left: auto !important;
+    width: auto !important;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .site-navbar-inner {
+    gap: 0.55rem;
+  }
+
+  .site-logo-image {
+    width: clamp(7rem, 42vw, 9rem) !important;
+  }
+
+  .cinema-hero-content {
+    padding-inline: 0.85rem !important;
+  }
+
+  .cinema-hero-title {
+    max-width: 100% !important;
+    font-size: clamp(1.45rem, 8vw, 1.9rem) !important;
+  }
+
+  .cinema-stat-strip {
+    grid-template-columns: 1fr !important;
+  }
+
+  .journey-item {
+    grid-template-columns: 1fr !important;
+    padding: 1rem !important;
+  }
+
+  .journey-timeline::before {
+    display: none;
+  }
+
+  .privacy-contact a {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+/* Single-scroll launch pass: finish the hero frame scrub quickly, then hold on text. */
+@media (min-width: 769px) {
+  .cinema-hero {
+    min-height: 132svh !important;
+  }
+}
+
+/* Mobile touch performance pass: remove paint-heavy effects while preserving layout. */
+@media (max-width: 768px), (pointer: coarse) {
+  html,
+  body {
+    scroll-behavior: auto !important;
+    touch-action: pan-y;
+  }
+
+  .scroll-progress {
+    display: none !important;
+  }
+
+  .site-navbar,
+  .site-mobile-menu,
+  .cinema-callout,
+  .cinema-media-frame,
+  .motor-stage,
+  .premium-gallery-focus,
+  .premium-gallery-rail button,
+  .ride-lab,
+  .test-ride-panel,
+  .cinema-feature-card,
+  .dealer-state-card,
+  .phone-screen,
+  .floating-action-ride {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  .site-navbar,
+  .site-mobile-menu {
+    background: rgba(255, 255, 255, 0.98) !important;
+    box-shadow: none !important;
+  }
+
+  .cinema-home,
+  .cinema-section,
+  .cost-section,
+  .dealer-section,
+  .app-section,
+  .test-ride-section,
+  .site-footer {
+    background: #f6fbfe !important;
+  }
+
+  .cinema-feature-card,
+  .dealer-state-card,
+  .ride-lab,
+  .test-ride-panel,
+  .privacy-panel article,
+  .faq-item,
+  form,
+  .site-footer-inner,
+  .about-hero-image,
+  .about-journey-visual,
+  .about-showroom-card figure,
+  .model-image-wrapper,
+  .premium-gallery-focus,
+  .premium-gallery-rail button,
+  .cinema-media-frame,
+  .motor-stage {
+    box-shadow: none !important;
+  }
+
+  .floating-actions {
+    filter: none !important;
+  }
+
+  .floating-action,
+  .floating-action::before,
+  .floating-action::after,
+  .floating-action-whatsapp::before,
+  .cinema-feature-card,
+  .dealer-state-card,
+  .cinema-media-frame::after,
+  .motor-stage::after,
+  .premium-gallery-focus::before,
+  .premium-gallery-focus::after,
+  .premium-gallery-rail button,
+  .model-stage img,
+  .model-glow,
+  .model-platform,
+  .scroll-hint {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .cinema-media-frame::after,
+  .motor-stage::after,
+  .test-ride-panel::before,
+  .cinema-feature-card::before,
+  .premium-gallery-focus::before {
+    display: none !important;
+  }
+
+  .cinema-media-frame video,
+  .motor-stage video,
+  .model-stage img,
+  .color-grid img,
+  .premium-gallery-focus img,
+  .cinema-gallery img {
+    filter: none !important;
+  }
+
+  .cinema-btn:hover,
+  .site-mobile-cta:hover,
+  .floating-action:hover,
+  .cinema-feature-card:hover,
+  .dealer-state-card:hover,
+  .premium-gallery-rail button:hover {
+    transform: none !important;
+  }
+}
