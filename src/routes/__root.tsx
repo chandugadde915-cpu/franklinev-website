@@ -31,10 +31,10 @@ const organizationSchema = {
   priceRange: "INR",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "KNR Arcade, Plot No. 12, Chanikyapuri Colony, Mallapur",
+    streetAddress: "Plot No. 53, Ramakrishna Nagar Colony, Chengicherla",
     addressLocality: "Hyderabad",
     addressRegion: "Telangana",
-    postalCode: "500076",
+    postalCode: "500095",
     addressCountry: "IN",
   },
   contactPoint: {
@@ -62,11 +62,11 @@ const productCatalogSchema = {
       position: 1,
       item: {
         "@type": "Product",
-        name: "Franklin EV Power ++",
+        name: "Franklin EV Low Speed",
         brand: { "@type": "Brand", name: "Franklin EV" },
         image: socialImageUrl,
         description:
-          "Flagship Franklin EV electric scooter designed for longer daily rides, intelligent performance, cruise control, smart features and battery & motor warranty support.",
+          "Budget-friendly Franklin EV low-speed electric scooter with a 250W BLDC hub motor, 25 km/h top speed, up to 55 km certified range and lithium-ion or graphene battery options.",
         offers: {
           "@type": "Offer",
           priceCurrency: "INR",
@@ -80,11 +80,11 @@ const productCatalogSchema = {
       position: 2,
       item: {
         "@type": "Product",
-        name: "Franklin EV Rapid",
+        name: "Franklin EV High Speed",
         brand: { "@type": "Brand", name: "Franklin EV" },
         image: `${siteUrl}/assets/scroll-frames/powerplus-side.jpg`,
         description:
-          "Franklin EV Rapid is a practical electric scooter for daily city commutes with smart ownership, low running cost, cruise control support and convenient charging.",
+          "Franklin EV high-speed electric scooter variant designed for faster city movement, up to 60 km/h performance and lithium-ion or graphene battery options.",
         offers: {
           "@type": "Offer",
           priceCurrency: "INR",
@@ -287,7 +287,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap",
       },
     ],
   }),

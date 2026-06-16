@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Mail, Phone, ShieldCheck } from "lucide-react";
+import { Globe, Mail, MapPin, ShieldCheck } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 
 export const Route = createFileRoute("/privacy")({
@@ -9,7 +9,7 @@ export const Route = createFileRoute("/privacy")({
       {
         name: "description",
         content:
-          "Franklin EV privacy policy for test ride, dealer and model enquiry submissions in India.",
+          "Franklin EV Privacy Policy covering collection, storage, processing, sharing and protection of user information under applicable Indian laws.",
       },
       { property: "og:title", content: "Franklin EV Privacy Policy" },
       {
@@ -25,6 +25,40 @@ export const Route = createFileRoute("/privacy")({
 });
 
 function PrivacyPage() {
+  const privacySections = [
+    {
+      title: "Privacy commitment",
+      body: "Franklin EV India Pvt. Ltd. respects the privacy of customers, dealers, distributors, vendors and visitors who access or use www.franklinev.com or otherwise provide information while using our products, services or business channels.",
+    },
+    {
+      title: "Information covered",
+      body: "Information, including personal information, may be collected through website use, offline interactions, inquiries, dealership applications, purchases, service requests or other business engagement with Franklin EV.",
+    },
+    {
+      title: "How information is handled",
+      body: "This Privacy Policy describes the nature and type of information collected, how it is collected, and how it is used, stored, processed, disclosed and protected by Franklin EV India Pvt. Ltd.",
+    },
+    {
+      title: "Consent",
+      body: "By using the website or otherwise providing your information, you consent to Franklin EV India Pvt. Ltd. collecting, storing, processing, using and managing your information in accordance with this Privacy Policy.",
+    },
+    {
+      title: "General confirmation",
+      body: "By accessing or browsing the website, or otherwise providing information, you confirm that you have the legal capacity to enter into a binding agreement and that you have read, understood and agreed to this Privacy Policy and our Terms & Conditions.",
+    },
+    {
+      title: "Changes to this policy",
+      body: "Franklin EV India Pvt. Ltd. may amend, update, modify or revise this Privacy Policy at any time to comply with applicable laws or improve services and user experience. Updated versions become effective upon publication on www.franklinev.com unless otherwise specified.",
+    },
+  ];
+
+  const laws = [
+    "Section 43A of the Information Technology Act, 2000",
+    "Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Data or Information) Rules, 2011",
+    "Digital Personal Data Protection Act, 2023, where applicable",
+    "Any other applicable rules, regulations, notifications or amendments",
+  ];
+
   return (
     <>
       <section className="bg-hero-gradient">
@@ -38,9 +72,9 @@ function PrivacyPage() {
               Privacy Policy
             </h1>
             <p className="mt-5 max-w-3xl text-lg text-muted-foreground">
-              This notice explains how Franklin EV India Pvt. Ltd. handles enquiry details shared
-              through the website for model information, test rides, dealer support and service
-              follow-up.
+              This policy explains how Franklin EV India Pvt. Ltd. collects, stores, processes,
+              uses, discloses and protects information shared through the website and business
+              interactions.
             </p>
           </Reveal>
         </div>
@@ -49,42 +83,40 @@ function PrivacyPage() {
       <section className="max-w-5xl mx-auto px-5 lg:px-8 py-16">
         <Reveal>
           <div className="privacy-panel">
+            {privacySections.map((section) => (
+              <article key={section.title}>
+                <h2>{section.title}</h2>
+                <p>{section.body}</p>
+              </article>
+            ))}
             <article>
-              <h2>What we collect</h2>
-              <p>
-                When you submit an enquiry, we collect the details you choose to provide, including
-                your name, phone number, email address, city, interested model and message.
-              </p>
+              <h2>Applicable laws</h2>
+              <ul className="policy-list">
+                {laws.map((law) => (
+                  <li key={law}>{law}</li>
+                ))}
+              </ul>
             </article>
             <article>
-              <h2>How we use it</h2>
+              <h2>Contact information</h2>
               <p>
-                We use enquiry details to respond to your request, arrange sales follow-up, support
-                test ride booking, connect you with a relevant dealer and answer model or service
-                questions.
+                For questions, concerns, requests, withdrawal of consent or grievances relating to
+                this Privacy Policy or processing of personal information, contact Franklin EV India
+                Pvt. Ltd.
               </p>
-            </article>
-            <article>
-              <h2>Data sharing</h2>
-              <p>
-                We may share relevant enquiry details with Franklin EV dealers or support teams only
-                when needed to help with your enquiry. We do not sell enquiry details.
-              </p>
-            </article>
-            <article>
-              <h2>Deletion requests</h2>
-              <p>
-                To request access, correction or deletion of your enquiry details, contact Franklin
-                EV using the details below.
+              <p className="legal-contact-line">
+                <MapPin className="h-4 w-4" />
+                Plot No. 53, Ramakrishna Nagar Colony, Chengicherla, Hyderabad, Telangana - 500095,
+                India
               </p>
               <div className="privacy-contact">
-                <a href="mailto:sales@franklinev.co.in">
+                <a href="mailto:info@franklinev.com">
                   <Mail className="h-4 w-4" />
-                  sales@franklinev.co.in
+                  info@franklinev.com
                 </a>
-                <a href="tel:+918977040935">
-                  <Phone className="h-4 w-4" />
-                  +91 89770 40935
+                <a href="https://www.franklinev.com" target="_blank" rel="noopener noreferrer">
+                  <Globe className="h-4 w-4" />
+                  www.franklinev.com
                 </a>
               </div>
             </article>

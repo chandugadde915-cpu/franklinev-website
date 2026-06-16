@@ -2,24 +2,40 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import type { CSSProperties } from "react";
-import { ArrowRight, ChevronDown, Check, Download } from "lucide-react";
+import {
+  ArrowRight,
+  Battery,
+  BatteryCharging,
+  ChevronDown,
+  Check,
+  Download,
+  Gauge,
+  GraduationCap,
+  KeyRound,
+  Leaf,
+  Monitor,
+  PackageOpen,
+  Route as RouteIcon,
+  ShieldCheck,
+  Zap,
+} from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 
 export const Route = createFileRoute("/vehicles")({
   head: () => ({
     meta: [
-      { title: "Electric Scooters in Hyderabad — Power ++ & Rapid | Franklin EV" },
+      { title: "Electric Scooters in Hyderabad — Low Speed & High Speed | Franklin EV" },
       {
         name: "description",
         content:
-          "Compare Franklin EV Power ++ and Rapid electric scooters in Hyderabad. Review range, top speed, BLDC motor performance, cruise control, charging details, smart features and warranty support.",
+          "Compare Franklin EV low-speed and high-speed electric scooter variants in Hyderabad. Review top speed, 250W BLDC motor details, lithium-ion and graphene battery options, range, charging and warranty support.",
       },
       {
         name: "keywords",
         content:
-          "Franklin EV models, Power ++ electric scooter, Rapid electric scooter, best electric scooter for daily commute in Hyderabad, long range electric scooter in Hyderabad, electric scooter with cruise control in India",
+          "Franklin EV models, Franklin EV low speed scooter, Franklin EV high speed scooter, 25 km/h electric scooter, 60 km/h electric scooter, lithium ion electric scooter, graphene battery scooter Hyderabad",
       },
-      { property: "og:title", content: "The Franklin EV Range — Power ++, Rapid" },
+      { property: "og:title", content: "The Franklin EV Range — Low Speed & High Speed" },
       {
         property: "og:description",
         content:
@@ -32,7 +48,7 @@ export const Route = createFileRoute("/vehicles")({
   component: VehiclesPage,
 });
 
-type ModelKey = "power" | "rapid";
+type ModelKey = "low-speed" | "high-speed";
 
 interface ModelData {
   key: ModelKey;
@@ -45,27 +61,28 @@ interface ModelData {
   images: { src: string; webp?: string; alt: string }[];
   accent: string;
   variants?: string[];
+  featureIcons: { label: string; detail: string; Icon: typeof Gauge }[];
 }
 
 const models: ModelData[] = [
   {
-    key: "power",
-    name: "Power ++",
-    tagline: "Maximum presence, maximum confidence",
-    body: "Power ++ is Franklin EV's flagship electric scooter for riders who want stronger road presence, practical long-range confidence and smart everyday ownership in Hyderabad.",
+    key: "low-speed",
+    name: "Franklin EV Low Speed",
+    tagline: "Budget-friendly urban mobility",
+    body: "Designed for the evolving needs of modern urban mobility, our range of budget-friendly electric scooters offers an ideal balance of affordability, convenience, and efficiency. Tailored for college students, homemakers, and everyday city commuters, these low-speed models are powered by a dependable 250W BLDC hub motor, delivering a top speed of 25 km/h and a certified range of up to 55 km on a single charge.",
     price: "Contact dealer for pricing",
     chips: [
-      "Top speed 60 km/h",
-      "Range up to 120 km",
-      "Cruise control",
-      "Anti-theft + key alerts",
-      "BLDC hub motor (up to 2.5 kW peak)",
+      "Top speed 25 km/h",
+      "Range up to 55 km",
+      "250W BLDC hub motor",
+      "Lithium-ion battery option",
+      "Graphene battery option",
     ],
     features: [
-      "Flagship performance and commanding road stance",
-      "Cruise control support for smoother long stretches",
-      "Anti-theft protection with instant key alerts",
-      "Backed by a 3-year / 50,000 km battery & motor warranty",
+      "Ideal for college students, homemakers and everyday city commuters",
+      "Easy daily riding with low operating cost",
+      "Available with lithium-ion or graphene battery package",
+      "Dealer support for model selection, charging and warranty guidance",
     ],
     images: [
       {
@@ -81,27 +98,33 @@ const models: ModelData[] = [
         alt: "Franklin EV Power ++ electric scooter in sky blue parked near an urban cafe.",
       },
     ],
-    accent: "from-maroon/15 to-primary/5",
-    variants: ["Silver", "Sky Blue", "Maroon"],
+    accent: "from-accent/15 to-primary/5",
+    variants: ["Low speed", "25 km/h", "Lithium-ion", "Graphene"],
+    featureIcons: [
+      { label: "Top speed", detail: "25 km/h", Icon: Gauge },
+      { label: "Certified range", detail: "Up to 55 km", Icon: RouteIcon },
+      { label: "Motor", detail: "250W BLDC", Icon: Zap },
+      { label: "Best for", detail: "Students & city riders", Icon: GraduationCap },
+    ],
   },
   {
-    key: "rapid",
-    name: "Rapid",
-    tagline: "Daily city riding, made simple",
-    body: "Rapid is Franklin EV's focused city scooter for riders who want quick daily mobility, smart essentials and low running costs without unnecessary complexity.",
+    key: "high-speed",
+    name: "Franklin EV High Speed",
+    tagline: "Faster city performance for longer rides",
+    body: "The high-speed Franklin EV variant is built for riders who need stronger daily performance, confident acceleration and practical range for Hyderabad commutes. It supports up to 60 km/h riding and is offered with lithium-ion and graphene battery options based on customer preference and dealer availability.",
     price: "Contact dealer for pricing",
     chips: [
-      "Top speed 50 km/h",
-      "Range ~100 km",
-      "City ride mode",
-      "Anti-theft key alerts",
-      "BLDC hub motor tuned for city use",
+      "Top speed up to 60 km/h",
+      "Longer commute ready",
+      "Lithium-ion battery option",
+      "Graphene battery option",
+      "Smart ownership support",
     ],
     features: [
-      "City-focused electric scooter for everyday travel",
-      "Comfortable, practical ride for regular commutes",
-      "Simpler controls for budget-conscious riders",
-      "Anti-theft key alerts for everyday parking confidence",
+      "Higher-speed variant for riders who need quicker daily movement",
+      "Comfortable for office commutes and longer city routes",
+      "Battery package options to match budget and usage",
+      "Warranty and service support through Franklin EV dealer network",
     ],
     images: [
       {
@@ -118,18 +141,24 @@ const models: ModelData[] = [
       },
     ],
     accent: "from-primary/15 to-accent/5",
-    variants: ["Silver", "Blue accent", "Maroon accent"],
+    variants: ["High speed", "Up to 60 km/h", "Lithium-ion", "Graphene"],
+    featureIcons: [
+      { label: "Top speed", detail: "Up to 60 km/h", Icon: Gauge },
+      { label: "Battery", detail: "Lithium-ion / Graphene", Icon: BatteryCharging },
+      { label: "Ownership", detail: "Dealer support", Icon: ShieldCheck },
+      { label: "Cleaner ride", detail: "Zero tailpipe emissions", Icon: Leaf },
+    ],
   },
 ];
 
 const faqs = [
   {
     q: "What motor do Franklin EV scooters use?",
-    a: "A BLDC hub motor delivering up to 2.5 kW of peak power for smooth, silent acceleration.",
+    a: "Franklin EV low-speed models use a dependable 250W BLDC hub motor. High-speed model details vary by variant and dealer availability.",
   },
   {
     q: "What is the warranty?",
-    a: "Three years or 50,000 km on the battery and motor, whichever comes first.",
+    a: "Graphene battery packages include 12 months on battery, motor and controller, with 6 months on charger. Lithium-ion packages include 2+1 year battery warranty and 12 months on motor, charger and controller. Final terms depend on invoice and dealer confirmation.",
   },
   {
     q: "How do I charge it?",
@@ -145,7 +174,7 @@ const faqs = [
   },
   {
     q: "How far can I go on one charge?",
-    a: "Approximately 100 km, depending on riding conditions.",
+    a: "The low-speed variant is certified for up to 55 km on a single charge. High-speed range depends on the selected battery package, rider load and road conditions.",
   },
   {
     q: "Is there fast charging?",
@@ -159,17 +188,29 @@ const faqs = [
 
 const comparisonRows = [
   ["Ex-showroom price", "Contact dealer for pricing", "Contact dealer for pricing"],
-  ["Top speed", "60 km/h", "50 km/h"],
-  ["Range per charge", "Up to 120 km", "~100 km"],
-  ["Motor", "BLDC hub, up to 2.5 kW peak", "BLDC hub tuned for city efficiency"],
-  ["Cruise control", "Yes", "Ask dealer for current Rapid availability"],
-  ["Anti-theft + key alerts", "Yes", "Key alerts on supported variants"],
+  ["Top speed", "25 km/h", "Up to 60 km/h"],
+  ["Range per charge", "Certified up to 55 km", "Depends on battery package"],
+  ["Motor", "250W BLDC hub motor", "High-speed BLDC package"],
+  ["Battery options", "Lithium-ion / Graphene", "Lithium-ion / Graphene"],
+  ["Cruise control", "Ask dealer for current availability", "Ask dealer for current availability"],
+  ["Anti-theft + key alerts", "Supported variants", "Supported variants"],
   ["Charger", "650 W plug-and-play (15 A socket)", "650 W plug-and-play (15 A socket)"],
   ["Charge time", "~4 h 30 m (0-80%)", "~4 h 30 m (0-80%)"],
   ["Full-charge cost", "~Rs. 24.50 (~3.5 units)", "~Rs. 24.50 (~3.5 units)"],
-  ["Warranty", "3 yrs / 50,000 km", "3 yrs / 50,000 km"],
+  ["Warranty", "Battery-package based terms", "Battery-package based terms"],
   ["Colours", "Silver, Sky Blue, Maroon", "Silver with Rapid accent options"],
-  ["Recommended for", "Long commutes and tech-focused riders", "Short city hops and value-focused riders"],
+  ["Recommended for", "Students, homemakers and everyday city riders", "Longer commutes and faster city riding"],
+] as const;
+
+const featureHighlights = [
+  { label: "Removable Batteries", value: "Lithium-ion / Graphene", Icon: Battery },
+  { label: "IDC Range", value: "Up to 55 km on low-speed", Icon: RouteIcon },
+  { label: "Top Speed", value: "25 km/h or up to 60 km/h", Icon: Gauge },
+  { label: "Motor", value: "250W BLDC on low-speed", Icon: Zap },
+  { label: "Digital Display", value: "Variant based availability", Icon: Monitor },
+  { label: "LED Projector Headlamp", value: "Ask dealer for variant", Icon: Leaf },
+  { label: "Boot Space", value: "Practical daily storage", Icon: PackageOpen },
+  { label: "Keyless Entry", value: "Supported variants", Icon: KeyRound },
 ] as const;
 
 const modelColors = [
@@ -226,7 +267,7 @@ function VehiclesPage() {
                 className={`model-image-wrapper relative rounded-[2.5rem] aspect-square bg-gradient-to-br ${m.accent} border border-border shadow-soft overflow-hidden grid place-items-center`}
               >
                 <div className="absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_60%,oklch(0.62_0.18_248/0.15),transparent_70%)]" />
-                {m.key === "rapid" ? <span className="model-badge">Rapid</span> : null}
+                <span className="model-badge">{m.key === "low-speed" ? "Low Speed" : "High Speed"}</span>
                 <picture className="vehicle-main-photo">
                   {m.images[0].webp ? <source srcSet={m.images[0].webp} type="image/webp" /> : null}
                   <motion.img
@@ -280,6 +321,15 @@ function VehiclesPage() {
                     >
                       {c}
                     </span>
+                  ))}
+                </div>
+                <div className="variant-icon-grid mt-6">
+                  {m.featureIcons.map(({ label, detail, Icon }) => (
+                    <div key={label} className="variant-icon-card">
+                      <Icon className="h-5 w-5" />
+                      <span>{label}</span>
+                      <strong>{detail}</strong>
+                    </div>
                   ))}
                 </div>
                 <ul className="mt-6 space-y-2">
@@ -375,6 +425,32 @@ function VehiclesPage() {
         </Reveal>
       </section>
 
+      <section className="max-w-7xl mx-auto px-5 lg:px-8 py-16">
+        <Reveal>
+          <div className="vehicle-section-heading">
+            <span className="cinema-eyebrow">Feature Highlights</span>
+            <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink">
+              Specs shown with clear icons
+            </h2>
+            <p>
+              Compact feature cards make it easier for customers to compare important scooter
+              details without reading long paragraphs.
+            </p>
+          </div>
+        </Reveal>
+        <div className="feature-spec-grid">
+          {featureHighlights.map(({ label, value, Icon }) => (
+            <Reveal key={label}>
+              <article className="feature-spec-card">
+                <Icon className="h-8 w-8" />
+                <h3>{label}</h3>
+                <p>{value}</p>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
       {/* SPEC TABLE */}
       <section className="max-w-7xl mx-auto px-5 lg:px-8 py-16">
         <Reveal>
@@ -388,8 +464,8 @@ function VehiclesPage() {
               <thead>
                 <tr className="bg-background border-b border-border">
                   <th className="text-left p-4 font-semibold text-ink">Specification</th>
-                  <th className="text-left p-4 font-semibold text-primary">Power ++</th>
-                  <th className="text-left p-4 font-semibold text-primary">Rapid</th>
+                  <th className="text-left p-4 font-semibold text-primary">Low Speed</th>
+                  <th className="text-left p-4 font-semibold text-primary">High Speed</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
@@ -412,8 +488,8 @@ function VehiclesPage() {
                 <h3 className="font-display text-lg font-bold text-ink">{spec}</h3>
                 <div className="mt-3 grid gap-2 sm:grid-cols-2">
                   {[
-                    ["Power ++", power],
-                    ["Rapid", rapid],
+                    ["Low Speed", power],
+                    ["High Speed", rapid],
                   ].map(([modelName, value]) => (
                     <div key={modelName} className="rounded-xl bg-background/70 p-3">
                       <span className="text-xs font-bold uppercase tracking-[0.18em] text-primary">

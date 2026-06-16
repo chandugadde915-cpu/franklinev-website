@@ -21,7 +21,7 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Contact Franklin EV India Pvt. Ltd. in Hyderabad to book a test ride, enquire about Power ++ and Rapid, or find listed dealer locations across Telangana and Andhra Pradesh.",
+          "Contact Franklin EV India Pvt. Ltd. in Hyderabad to book a test ride, enquire about low-speed and high-speed electric scooter variants, Hyre EV rentals, or listed dealer locations across Telangana and Andhra Pradesh.",
       },
       {
         name: "keywords",
@@ -112,8 +112,8 @@ function ContactPage() {
               <li className="flex gap-3">
                 <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                 <span className="text-muted-foreground">
-                  Franklin EV India Pvt. Ltd., KNR Arcade, Plot No. 12, Chanikyapuri Colony,
-                  Mallapur, Hyderabad 500076, Telangana, India
+                  Franklin EV India Pvt. Ltd., Plot No. 53, Ramakrishna Nagar Colony, Chengicherla,
+                  Hyderabad, Telangana - 500095
                 </span>
               </li>
               <li className="flex gap-3">
@@ -140,7 +140,7 @@ function ContactPage() {
             <div className="mt-6 aspect-video rounded-2xl overflow-hidden border border-border">
               <iframe
                 title="Franklin EV HQ map"
-                src="https://www.google.com/maps?q=Mallapur,Hyderabad,Telangana&output=embed"
+                src="https://www.google.com/maps?q=Ramakrishna%20Nagar%20Colony%20Chengicherla%20Hyderabad%20Telangana%20500095&output=embed"
                 width="100%"
                 height="100%"
                 loading="lazy"
@@ -288,8 +288,9 @@ function ContactForm() {
                   className="w-full px-4 py-3 rounded-xl bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-ink"
                 >
                   <option>Not sure yet</option>
-                  <option>Power ++</option>
-                  <option>Rapid</option>
+                  <option>Low Speed - 25 km/h</option>
+                  <option>High Speed - up to 60 km/h</option>
+                  <option>Hyre EV rentals</option>
                 </select>
               </div>
               <div className="sm:col-span-2">
@@ -300,7 +301,7 @@ function ContactForm() {
                   id="msg"
                   name="message"
                   rows={4}
-                  placeholder="I'd like a test ride for the Power ++ model at Boduppal..."
+                  placeholder="I'd like a test ride for the low-speed variant at Boduppal..."
                   className="w-full px-4 py-3 rounded-xl bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-ink resize-none"
                 />
               </div>

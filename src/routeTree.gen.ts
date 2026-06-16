@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as VehiclesRouteImport } from './routes/vehicles'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as LegalPolicyRouteImport } from './routes/legal-policy'
+import { Route as HyreEvRouteImport } from './routes/hyre-ev'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AboutRouteImport } from './routes/about'
@@ -30,6 +32,16 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalPolicyRoute = LegalPolicyRouteImport.update({
+  id: '/legal-policy',
+  path: '/legal-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HyreEvRoute = HyreEvRouteImport.update({
+  id: '/hyre-ev',
+  path: '/hyre-ev',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -58,6 +70,8 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
+  '/hyre-ev': typeof HyreEvRoute
+  '/legal-policy': typeof LegalPolicyRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/vehicles': typeof VehiclesRoute
@@ -67,6 +81,8 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
+  '/hyre-ev': typeof HyreEvRoute
+  '/legal-policy': typeof LegalPolicyRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/vehicles': typeof VehiclesRoute
@@ -77,6 +93,8 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
+  '/hyre-ev': typeof HyreEvRoute
+  '/legal-policy': typeof LegalPolicyRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/vehicles': typeof VehiclesRoute
@@ -88,6 +106,8 @@ export interface FileRouteTypes {
     | '/about'
     | '/blog'
     | '/contact'
+    | '/hyre-ev'
+    | '/legal-policy'
     | '/privacy'
     | '/sitemap.xml'
     | '/vehicles'
@@ -97,6 +117,8 @@ export interface FileRouteTypes {
     | '/about'
     | '/blog'
     | '/contact'
+    | '/hyre-ev'
+    | '/legal-policy'
     | '/privacy'
     | '/sitemap.xml'
     | '/vehicles'
@@ -106,6 +128,8 @@ export interface FileRouteTypes {
     | '/about'
     | '/blog'
     | '/contact'
+    | '/hyre-ev'
+    | '/legal-policy'
     | '/privacy'
     | '/sitemap.xml'
     | '/vehicles'
@@ -116,6 +140,8 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   BlogRoute: typeof BlogRoute
   ContactRoute: typeof ContactRoute
+  HyreEvRoute: typeof HyreEvRoute
+  LegalPolicyRoute: typeof LegalPolicyRoute
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   VehiclesRoute: typeof VehiclesRoute
@@ -142,6 +168,20 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal-policy': {
+      id: '/legal-policy'
+      path: '/legal-policy'
+      fullPath: '/legal-policy'
+      preLoaderRoute: typeof LegalPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hyre-ev': {
+      id: '/hyre-ev'
+      path: '/hyre-ev'
+      fullPath: '/hyre-ev'
+      preLoaderRoute: typeof HyreEvRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -180,6 +220,8 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   BlogRoute: BlogRoute,
   ContactRoute: ContactRoute,
+  HyreEvRoute: HyreEvRoute,
+  LegalPolicyRoute: LegalPolicyRoute,
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   VehiclesRoute: VehiclesRoute,

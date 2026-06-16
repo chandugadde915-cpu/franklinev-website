@@ -276,6 +276,31 @@ const riderSwitchBenefits = [
   },
 ] as const;
 
+const warrantyPackages = [
+  {
+    name: "Lithium-ion Battery",
+    image: "/assets/client/fev-lithium-ion-battery.png",
+    alt: "Franklin EV lithium-ion battery pack.",
+    points: [
+      "2+1 year battery warranty",
+      "12 months motor warranty",
+      "12 months charger warranty",
+      "12 months controller warranty",
+    ],
+  },
+  {
+    name: "Graphene Battery",
+    image: "/assets/client/fev-graphene-battery.png",
+    alt: "Franklin EV graphene battery pack.",
+    points: [
+      "12 months battery warranty",
+      "12 months motor warranty",
+      "6 months charger warranty",
+      "12 months controller warranty",
+    ],
+  },
+] as const;
+
 function HeroSection() {
   const heroRef = useRef<HTMLElement | null>(null);
   const heroCanvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -285,7 +310,7 @@ function HeroSection() {
   const heroScrollFrameRef = useRef(0);
   const [heroFrameIndex, setHeroFrameIndex] = useState(0);
   const [isHeroFrameReady, setIsHeroFrameReady] = useState(false);
-  const [useCompactHero, setUseCompactHero] = useState(true);
+  const [useCompactHero, setUseCompactHero] = useState(false);
   const [heroLaunchProgress, setHeroLaunchProgress] = useState(1);
 
   const activeHeroFrame = heroFrameIndex;
@@ -406,8 +431,6 @@ function HeroSection() {
     }
 
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const compactWidthQuery = window.matchMedia("(max-width: 768px)");
-    const coarsePointerQuery = window.matchMedia("(pointer: coarse)");
     const navigatorWithConnection = navigator as Navigator & {
       connection?: { effectiveType?: string; saveData?: boolean };
     };
@@ -416,12 +439,7 @@ function HeroSection() {
       const connection = navigatorWithConnection.connection;
       const saveData = connection?.saveData === true;
       const slowNetwork = /(^|-)2g$/.test(connection?.effectiveType ?? "");
-      const compact =
-        reducedMotionQuery.matches ||
-        compactWidthQuery.matches ||
-        coarsePointerQuery.matches ||
-        saveData ||
-        slowNetwork;
+      const compact = reducedMotionQuery.matches || saveData || slowNetwork;
 
       setUseCompactHero(compact);
       if (compact) {
@@ -432,13 +450,9 @@ function HeroSection() {
 
     syncHeroMode();
     reducedMotionQuery.addEventListener("change", syncHeroMode);
-    compactWidthQuery.addEventListener("change", syncHeroMode);
-    coarsePointerQuery.addEventListener("change", syncHeroMode);
 
     return () => {
       reducedMotionQuery.removeEventListener("change", syncHeroMode);
-      compactWidthQuery.removeEventListener("change", syncHeroMode);
-      coarsePointerQuery.removeEventListener("change", syncHeroMode);
     };
   }, [setHeroProgress]);
 
@@ -845,29 +859,6 @@ function Home() {
       <AmbientDepthBackdrop />
       <HeroSection />
 
-      <section
-        className="cinema-stat-strip"
-        data-animate="fade-up"
-        aria-label="Franklin EV key performance stats"
-      >
-        {[
-          { value: 60, suffix: "km/h", label: "Top speed" },
-          { value: 120, suffix: "km", label: "Up to single-charge range" },
-          { value: 3, suffix: "yrs", label: "Battery and motor warranty" },
-          { value: 20, suffix: "+", label: "Hyderabad, TG & AP touchpoints" },
-        ].map(({ value, suffix, label }) => (
-          <div key={label}>
-            <strong className="stat-value">
-              <span className="stat-number" data-stat-number data-target={value}>
-                {value}
-              </span>
-              <span className="stat-unit">{suffix}</span>
-            </strong>
-            <small>{label}</small>
-          </div>
-        ))}
-      </section>
-
       <section className="cinema-section cinema-split" id="battery" data-animate="fade-up">
         <Reveal className="cinema-copy">
           <div className="cinema-eyebrow">The Future of Commuting</div>
@@ -1222,6 +1213,64 @@ function Home() {
         </Reveal>
       </section>
 
+      {/* ── Warranty & Battery Packages ─────────────────────────────── */}
+      <section className="battery-section" data-animate="fade-up">
+        <div className="battery-section-inner">
+          <Reveal className="battery-section-heading">
+            <span className="cinema-eyebrow">Warranty Terms</span>
+            <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink">
+              Battery-specific warranty clarity
+            </h2>
+            <p>
+              Warranty terms shown directly for graphene and lithium-ion packages —
+              so you know exactly what's covered before you ride.
+            </p>
+          </Reveal>
+
+          <div className="battery-card-grid">
+            {warrantyPackages.map((pkg) => (
+              <Reveal key={pkg.name}>
+                <article className="battery-package-card">
+                  <img src={pkg.image} alt={pkg.alt} loading="lazy" decoding="async" />
+                  <div>
+                    <h3>{pkg.name}</h3>
+                    <ul>
+                      {pkg.points.map((pt) => (
+                        <li key={pt}>
+                          <Check className="h-4 w-4" />
+                          {pt}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal>
+            <div className="warranty-terms-card">
+              <div>
+                <span className="cinema-eyebrow">Warranty Document</span>
+                <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink">
+                  Full warranty terms
+                </h2>
+                <p>
+                  The warranty terms are shown directly for graphene and lithium-ion packages,
+                  matching the client-provided artwork.
+                </p>
+              </div>
+              <img
+                src="/assets/client/warranty-terms.jpeg"
+                alt="Franklin EV graphene and lithium-ion battery warranty terms."
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       <section className="home-range-transfer bg-hero-gradient" data-animate="fade-up">
         <div className="max-w-7xl mx-auto px-5 lg:px-8 py-16 text-center">
           <Reveal>
@@ -1322,17 +1371,19 @@ function Home() {
             test rides in Hyderabad.
           </p>
         </Reveal>
-        <div className="cinema-feature-grid">
+        <StaggerGroup className="cinema-feature-grid">
           {faqItems.map((item) => (
-            <article className="cinema-feature-card" key={item.question}>
-              <span>
-                <Check className="h-5 w-5" />
-              </span>
-              <h3>{item.question}</h3>
-              <p>{item.answer}</p>
-            </article>
+            <StaggerItem key={item.question}>
+              <article className="cinema-feature-card">
+                <span>
+                  <Check className="h-5 w-5" />
+                </span>
+                <h3>{item.question}</h3>
+                <p>{item.answer}</p>
+              </article>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
       </section>
 
       <section className="cinema-section test-ride-panel" id="test-ride" data-animate="fade-up">

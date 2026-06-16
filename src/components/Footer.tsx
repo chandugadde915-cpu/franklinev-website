@@ -59,6 +59,9 @@ export function Footer() {
           <Link to="/vehicles" title="Browse Franklin EV electric scooter models">
             Vehicles
           </Link>
+          <Link to="/hyre-ev" title="Hyre EV Powered by Franklin EV scooter rentals">
+            Hyre EV
+          </Link>
           <Link to="/about" title="About Franklin EV India Pvt. Ltd.">
             About
           </Link>
@@ -69,20 +72,23 @@ export function Footer() {
             Contact
           </Link>
           <Link to="/contact">Book a Test Ride</Link>
+          <Link to="/legal-policy">Legal Policy</Link>
+          <Link to="/privacy">Privacy Policy</Link>
         </div>
 
         <div className="footer-column">
-          <h4>Our Models</h4>
-          <Link to="/vehicles">Power ++</Link>
-          <Link to="/vehicles">Rapid</Link>
+          <h4>Our Variants</h4>
+          <Link to="/vehicles">Low Speed - 25 km/h</Link>
+          <Link to="/vehicles">High Speed - up to 60 km/h</Link>
+          <Link to="/vehicles">Lithium-ion battery</Link>
+          <Link to="/vehicles">Graphene battery</Link>
         </div>
 
         <div className="footer-column footer-contact">
           <h4>Contact Us</h4>
           <p>
             <MapPin />
-            KNR Arcade, Plot No. 12, Chanikyapuri Colony, Mallapur, Hyderabad 500076, Telangana,
-            India
+            Plot No. 53, Ramakrishna Nagar Colony, Chengicherla, Hyderabad, Telangana - 500095
           </p>
           <a href="mailto:sales@franklinev.co.in">
             <Mail />

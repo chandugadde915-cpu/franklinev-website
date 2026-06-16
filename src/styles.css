@@ -13,7 +13,7 @@
   --radius-3xl: calc(var(--radius) + 12px);
 
   --font-sans: "Inter", system-ui, sans-serif;
-  --font-display: "Sora", "Space Grotesk", system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -2018,7 +2018,7 @@
   --input: rgba(255, 255, 255, 0.14);
   --ring: var(--ev-blue);
   --font-sans: "Inter", system-ui, sans-serif;
-  --font-display: "Syne", "Inter", system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
   --shadow-soft: 0 16px 42px -18px rgba(0, 212, 255, 0.34);
   --shadow-lift: 0 30px 80px -28px rgba(0, 212, 255, 0.28);
   --gradient-hero: linear-gradient(135deg, #050a0f 0%, #0a1628 100%);
@@ -3471,6 +3471,34 @@ body::-webkit-scrollbar-track {
   .cinema-lifestyle-band .is-wide {
     grid-column: 1 / -1;
     grid-row: auto;
+  }
+}
+
+@media (max-width: 900px) {
+  .rental-intro,
+  .rental-band-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .rental-hero {
+    min-height: 760px;
+    padding-inline: 1rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .variant-icon-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rental-actions,
+  .rental-checklist .cinema-btn {
+    width: 100%;
+  }
+
+  .rental-actions .cinema-btn,
+  .rental-checklist .cinema-btn {
+    justify-content: center;
   }
 }
 
@@ -6963,6 +6991,404 @@ button:disabled {
   padding-bottom: max(80px, calc(env(safe-area-inset-bottom, 0px) + 80px));
 }
 
+.variant-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.variant-icon-card,
+.feature-icon-panel {
+  border: 1px solid rgba(0, 212, 255, 0.18);
+  border-radius: 1rem;
+  background: color-mix(in oklab, var(--surface) 88%, transparent);
+  box-shadow: var(--shadow-soft);
+}
+
+.variant-icon-card {
+  display: grid;
+  min-height: 112px;
+  align-content: start;
+  gap: 0.35rem;
+  padding: 1rem;
+}
+
+.variant-icon-card svg,
+.feature-icon-panel svg,
+.rental-checklist svg,
+.legal-contact-line svg {
+  color: var(--primary);
+  flex: 0 0 auto;
+}
+
+.variant-icon-card span {
+  color: var(--muted-foreground);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.variant-icon-card strong {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.rental-hero {
+  position: relative;
+  min-height: min(92svh, 780px);
+  display: grid;
+  align-items: end;
+  overflow: hidden;
+  isolation: isolate;
+  padding: clamp(7rem, 12vw, 10rem) 5vw clamp(3rem, 7vw, 5rem);
+}
+
+.rental-hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.rental-hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.72) saturate(1.08);
+}
+
+.rental-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(3, 11, 8, 0.84), rgba(3, 11, 8, 0.4) 48%, rgba(3, 11, 8, 0.16)),
+    linear-gradient(0deg, rgba(3, 11, 8, 0.78), transparent 52%);
+}
+
+.rental-hero-copy {
+  width: min(100%, 840px);
+}
+
+.rental-hero-copy h1 {
+  max-width: 780px;
+  line-height: 0.95;
+}
+
+.rental-hero-copy h1 span {
+  display: block;
+  color: var(--primary);
+  font-size: clamp(1.5rem, 4vw, 3.5rem);
+  line-height: 1.08;
+}
+
+.rental-hero-copy p {
+  max-width: 620px;
+  margin-top: 1.25rem;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  line-height: 1.65;
+}
+
+.rental-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 1.8rem;
+}
+
+.rental-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(280px, 0.8fr);
+  gap: clamp(1.5rem, 5vw, 4rem);
+  align-items: end;
+}
+
+.rental-intro p {
+  color: var(--muted-foreground);
+  font-size: 1.02rem;
+  line-height: 1.8;
+}
+
+.feature-icon-panel {
+  min-height: 230px;
+  padding: 1.4rem;
+}
+
+.feature-icon-panel h3,
+.rental-checklist h2 {
+  margin-top: 1rem;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.feature-icon-panel p {
+  margin-top: 0.7rem;
+  color: var(--muted-foreground);
+  line-height: 1.65;
+}
+
+.rental-band {
+  padding: clamp(3rem, 7vw, 5rem) 5vw;
+  background: color-mix(in oklab, var(--surface) 82%, black 8%);
+}
+
+.rental-band-inner {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.86fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 5vw, 4rem);
+  width: min(100%, 1180px);
+  margin-inline: auto;
+  align-items: center;
+}
+
+.rental-band img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  border-radius: 1.2rem;
+  box-shadow: var(--shadow-lift);
+}
+
+.rental-checklist {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.rental-checklist h2 {
+  margin: 0.25rem 0 0.35rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.rental-checklist p,
+.legal-contact-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+
+.rental-checklist .cinema-btn {
+  width: fit-content;
+  margin-top: 0.65rem;
+}
+
+.legal-policy-panel article {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.legal-contact-line {
+  color: var(--muted-foreground);
+}
+
+.policy-list {
+  display: grid;
+  gap: 0.7rem;
+  margin-top: 0.9rem;
+  color: var(--muted-foreground);
+  line-height: 1.65;
+}
+
+.policy-list li {
+  position: relative;
+  padding-left: 1.15rem;
+}
+
+.policy-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 999px;
+  background: var(--primary);
+}
+
+.policy-section-title {
+  margin-bottom: 1.5rem;
+}
+
+.policy-section-title-spaced {
+  margin-top: clamp(3rem, 6vw, 5rem);
+}
+
+.policy-section-title h2 {
+  margin-top: 0.5rem;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.08;
+}
+
+.vehicle-section-heading,
+.battery-section-heading {
+  max-width: 760px;
+}
+
+.vehicle-section-heading p,
+.battery-section-heading p,
+.warranty-terms-card p {
+  margin-top: 0.85rem;
+  color: var(--muted-foreground);
+  line-height: 1.75;
+}
+
+.feature-spec-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.4rem);
+  margin-top: 2.2rem;
+}
+
+.feature-spec-card {
+  min-height: 180px;
+  border: 1px solid rgba(0, 212, 255, 0.16);
+  border-radius: 1rem;
+  background: color-mix(in oklab, var(--surface) 88%, white 4%);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.feature-spec-card svg {
+  color: var(--primary);
+}
+
+.feature-spec-card h3 {
+  margin-top: 1.2rem;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.feature-spec-card p {
+  margin-top: 0.4rem;
+  color: var(--muted-foreground);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.battery-section {
+  padding: clamp(3rem, 7vw, 5rem) 5vw;
+  background:
+    linear-gradient(135deg, rgba(0, 212, 255, 0.08), transparent 34%),
+    color-mix(in oklab, var(--surface) 84%, black 8%);
+}
+
+.battery-section-inner {
+  width: min(100%, 1180px);
+  margin-inline: auto;
+}
+
+.battery-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 3vw, 1.8rem);
+  margin-top: 2.2rem;
+}
+
+.battery-package-card {
+  display: grid;
+  grid-template-columns: minmax(140px, 0.85fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 1.2rem;
+  min-height: 320px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1.2rem;
+  background: rgba(3, 10, 14, 0.42);
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+  box-shadow: var(--shadow-lift);
+}
+
+.battery-package-card img {
+  width: 100%;
+  max-height: 260px;
+  object-fit: contain;
+}
+
+.battery-package-card h3 {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 800;
+}
+
+.battery-package-card ul {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.battery-package-card li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  color: var(--muted-foreground);
+  line-height: 1.5;
+}
+
+.battery-package-card li svg {
+  color: var(--primary);
+  flex: 0 0 auto;
+  margin-top: 0.15rem;
+}
+
+.warranty-terms-card {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.55fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: center;
+  border: 1px solid rgba(0, 212, 255, 0.18);
+  border-radius: 1.3rem;
+  background: var(--surface);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  box-shadow: var(--shadow-lift);
+}
+
+.warranty-terms-card img {
+  width: 100%;
+  border-radius: 0.9rem;
+  object-fit: cover;
+}
+
+@media (max-width: 980px) {
+  .feature-spec-grid,
+  .battery-card-grid,
+  .warranty-terms-card {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .warranty-terms-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .feature-spec-grid,
+  .battery-card-grid,
+  .battery-package-card {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-spec-card {
+    min-height: auto;
+  }
+
+  .battery-package-card {
+    min-height: auto;
+  }
+}
+
 .floating-actions {
   opacity: 1;
   transition:
@@ -8748,6 +9174,93 @@ picture {
   max-width: 42rem !important;
 }
 
+/* Mobile hero frame restoration: keep the scroll-synced canvas sequence active on phones. */
+@media (max-width: 768px) {
+  .cinema-hero:not(.is-compact) {
+    min-height: 132svh !important;
+    overflow: clip !important;
+    padding: 0 !important;
+  }
+
+  .cinema-hero:not(.is-compact) .cinema-hero-stage {
+    position: sticky !important;
+    top: 0 !important;
+    height: 100svh !important;
+    min-height: 100svh !important;
+    margin-inline: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .cinema-hero:not(.is-compact) .cinema-hero-video {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    opacity: 0;
+    object-fit: cover;
+    object-position: 62% center;
+  }
+
+  .cinema-hero:not(.is-compact).is-sequence-ready .cinema-hero-video {
+    opacity: 1 !important;
+  }
+
+  .cinema-hero:not(.is-compact) .cinema-hero-poster {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-position: 62% center;
+  }
+
+  .cinema-hero:not(.is-compact).is-sequence-ready .cinema-hero-poster {
+    opacity: 0 !important;
+  }
+
+  .cinema-hero:not(.is-compact) .cinema-hero-content {
+    position: absolute !important;
+    inset: 0 !important;
+    display: flex !important;
+    width: 100% !important;
+    height: 100svh !important;
+    min-height: 100svh !important;
+    margin: 0 !important;
+    padding: 4.9rem 1rem max(1.25rem, calc(env(safe-area-inset-bottom) + 1rem)) !important;
+    align-items: stretch !important;
+    justify-content: center !important;
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .cinema-hero:not(.is-compact) .cinema-hero-copy {
+    width: 100% !important;
+    max-width: 34rem !important;
+    padding: 0 !important;
+  }
+
+  .cinema-hero:not(.is-compact) .cinema-hero-title {
+    max-width: 13.5ch !important;
+    font-size: clamp(1.58rem, 7.2vw, 2.1rem) !important;
+    line-height: 1.12 !important;
+  }
+
+  .cinema-hero:not(.is-compact) .cinema-hero-sub {
+    max-width: 30rem !important;
+    font-size: clamp(0.88rem, 3.5vw, 1rem) !important;
+    line-height: 1.5 !important;
+  }
+
+  .cinema-hero:not(.is-compact) .cinema-hero-shade {
+    display: block !important;
+    background:
+      linear-gradient(90deg, rgba(4, 14, 22, 0.78), rgba(4, 14, 22, 0.38) 56%, rgba(4, 14, 22, 0.16)),
+      linear-gradient(180deg, rgba(4, 14, 22, 0.18), transparent 38%, rgba(4, 14, 22, 0.48));
+  }
+
+  .cinema-hero:not(.is-compact) .scroll-hint {
+    display: flex !important;
+  }
+}
+
 .cinema-copy-wide,
 .dealer-section .cinema-copy,
 .motor-copy {
@@ -9000,5 +9513,684 @@ picture {
     width: calc(100% - 2rem) !important;
     margin-inline: auto !important;
     padding-inline: 1rem !important;
+  }
+}
+
+/* ╔═══════════════════════════════════════════════════════════════════════╗
+   ║  FRANKLIN EV — DESIGN REFINEMENT LAYER  v2  (Jun 2026)              ║
+   ║  Fixes cascade conflicts; elevates hierarchy, depth & motion.        ║
+   ║  All colour values drawn from the established --ev-* token system.   ║
+   ╚═══════════════════════════════════════════════════════════════════════╝ */
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   §1  NAVBAR — Clean white frosted glass so dark logo reads naturally
+   Light translucent background lets the dark charcoal logo show as-is.
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.site-navbar {
+  background: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(20px) saturate(1.8) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(1.8) !important;
+  border-bottom: 1px solid rgba(0, 212, 255, 0.18) !important;
+  box-shadow:
+    0 1px 0 rgba(0, 212, 255, 0.10),
+    0 2px 24px rgba(0, 0, 0, 0.08) !important;
+  transition: background 0.32s ease, box-shadow 0.32s ease !important;
+}
+
+.site-navbar.is-scrolled {
+  background: rgba(255, 255, 255, 0.97) !important;
+  box-shadow:
+    0 1px 0 rgba(0, 212, 255, 0.14),
+    0 4px 32px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Nav links: dark charcoal on white background */
+.site-nav-link {
+  color: rgba(13, 27, 42, 0.72) !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.014em !important;
+  transition: color 0.2s ease !important;
+}
+.site-nav-link:hover {
+  color: #00d4ff !important;
+}
+.site-nav-link.is-active {
+  color: #00d4ff !important;
+  font-weight: 600 !important;
+}
+
+/* CTA button: cyan solid — pops on white navbar */
+.site-nav-cta {
+  background: #00d4ff !important;
+  border: 1px solid #00d4ff !important;
+  color: #050a0f !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  transition:
+    background 0.22s ease,
+    box-shadow 0.22s ease,
+    transform 0.18s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.site-nav-cta:hover {
+  background: #00ff99 !important;
+  border-color: #00ff99 !important;
+  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.4) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Hamburger button: dark on light navbar */
+.site-menu-button {
+  background: rgba(13, 27, 42, 0.06) !important;
+  border: 1px solid rgba(13, 27, 42, 0.18) !important;
+  color: rgba(13, 27, 42, 0.82) !important;
+  transition: background 0.2s ease, border-color 0.2s ease !important;
+}
+.site-menu-button:hover {
+  background: rgba(0, 212, 255, 0.12) !important;
+  border-color: rgba(0, 212, 255, 0.4) !important;
+  color: #00d4ff !important;
+}
+
+/* Mobile menu: dark glass panel (keeps immersive feel when expanded) */
+.site-mobile-menu {
+  background: rgba(5, 10, 15, 0.97) !important;
+  border: 1px solid rgba(0, 212, 255, 0.13) !important;
+  box-shadow: 0 28px 72px rgba(0, 0, 0, 0.76) !important;
+  backdrop-filter: blur(28px) !important;
+  -webkit-backdrop-filter: blur(28px) !important;
+}
+.site-mobile-link {
+  color: rgba(240, 244, 248, 0.78) !important;
+  font-weight: 500 !important;
+  transition: color 0.18s ease !important;
+}
+.site-mobile-link:hover {
+  color: #00d4ff !important;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   §2  TYPOGRAPHY — Stronger weights & tighter visual hierarchy
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+/* Section overlines / kickers: bolder uppercase labels */
+.cinema-kicker,
+[class*="kicker"],
+[class*="overline"],
+[class*="eyebrow"] {
+  font-weight: 700 !important;
+  letter-spacing: 0.13em !important;
+  font-size: clamp(0.64rem, 0.95vw, 0.7rem) !important;
+}
+
+/* Primary section headings: tighter spacing, heavier weight */
+.cinema-title,
+[class*="section-title"] {
+  font-weight: 800 !important;
+  letter-spacing: -0.022em !important;
+  line-height: 1.08 !important;
+}
+
+/* Hero title: maximum impact */
+.cinema-hero-title {
+  font-weight: 900 !important;
+  letter-spacing: -0.028em !important;
+}
+
+/* Supporting body copy: slightly more readable */
+.cinema-section-copy,
+.cinema-hero-body,
+.cinema-text {
+  font-weight: 400 !important;
+  line-height: 1.7 !important;
+}
+
+/* Feature card text hierarchy */
+.cinema-feature-card h3 {
+  font-weight: 700 !important;
+  letter-spacing: -0.014em !important;
+}
+.cinema-feature-card p {
+  font-weight: 400 !important;
+  line-height: 1.65 !important;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   §3  FEATURE CARDS — Border definition, hover lift & shadow
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.cinema-feature-card {
+  border: 1px solid rgba(0, 212, 255, 0.13) !important;
+  box-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.14),
+    0 1px 3px rgba(0, 0, 0, 0.08) !important;
+  border-radius: 1.125rem !important;
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s ease !important;
+}
+.cinema-feature-card:hover {
+  transform: translateY(-6px) !important;
+  box-shadow:
+    0 18px 52px rgba(0, 0, 0, 0.24),
+    0 4px 14px rgba(0, 212, 255, 0.11) !important;
+  border-color: rgba(0, 212, 255, 0.28) !important;
+}
+
+/* Icon inside card: scale + glow on card hover */
+.cinema-feature-card:hover .cinema-feature-icon,
+.cinema-feature-card:hover [class*="feature-icon"],
+.cinema-feature-card:hover [class*="icon-wrap"] {
+  box-shadow: 0 0 22px rgba(0, 212, 255, 0.3) !important;
+  transform: scale(1.09) !important;
+  transition: box-shadow 0.28s ease, transform 0.28s ease !important;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   §4  VEHICLE LINEUP CARDS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.vehicle-lineup-card {
+  border: 1px solid rgba(0, 212, 255, 0.11) !important;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.13) !important;
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s ease !important;
+}
+.vehicle-lineup-card:hover {
+  transform: translateY(-7px) !important;
+  box-shadow:
+    0 22px 60px rgba(0, 0, 0, 0.26),
+    0 6px 18px rgba(0, 212, 255, 0.11) !important;
+  border-color: rgba(0, 212, 255, 0.26) !important;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   §5  DEALER STATE CARDS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.dealer-state-card {
+  border: 1px solid rgba(0, 212, 255, 0.09) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 1rem !important;
+  transition:
+    transform 0.26s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.26s ease,
+    border-color 0.26s ease !important;
+}
+.dealer-state-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow:
+    0 14px 42px rgba(0, 0, 0, 0.18),
+    0 3px 10px rgba(0, 212, 255, 0.09) !important;
+  border-color: rgba(0, 212, 255, 0.22) !important;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   §6  FAQ ITEMS — Better weight & hover treatment
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.faq-item {
+  border: 1px solid rgba(0, 212, 255, 0.11) !important;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 1rem !important;
+  transition:
+    transform 0.24s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.24s ease,
+    border-color 0.24s ease !important;
+}
+.faq-item:hover {
+  transform: translateY(-3px) !important;
+  box-shadow:
+    0 12px 36px rgba(0, 0, 0, 0.16),
+    0 2px 8px rgba(0, 212, 255, 0.09) !important;
+  border-color: rgba(0, 212, 255, 0.24) !important;
+}
+
+.faq-item h3,
+.faq-q,
+[class*="faq-question"] {
+  font-weight: 700 !important;
+  letter-spacing: -0.012em !important;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   §7  STAT CARDS & CALLOUT CHIPS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.cinema-stat-card {
+  border: 1px solid rgba(0, 212, 255, 0.13) !important;
+  border-radius: 1rem !important;
+  transition: transform 0.24s ease, box-shadow 0.24s ease !important;
+}
+.cinema-stat-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow:
+    0 14px 40px rgba(0, 0, 0, 0.2),
+    0 2px 10px rgba(0, 212, 255, 0.1) !important;
+}
+
+/* Stat numbers: bold and tight */
+.cinema-stat-number,
+[class*="stat-number"],
+[class*="stat-value"] {
+  font-weight: 800 !important;
+  letter-spacing: -0.03em !important;
+  line-height: 1 !important;
+}
+
+.cinema-callout {
+  border: 1px solid rgba(0, 212, 255, 0.17) !important;
+  box-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.14),
+    0 1px 4px rgba(0, 212, 255, 0.09) !important;
+  font-weight: 600 !important;
+  transition: transform 0.22s ease, box-shadow 0.22s ease !important;
+}
+.cinema-callout:hover {
+  transform: translateY(-2px) !important;
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.2),
+    0 2px 8px rgba(0, 212, 255, 0.13) !important;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   §8  PRIMARY & SECONDARY BUTTONS — Stronger hover lift
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.cinema-primary-btn,
+.btn-primary,
+[class*="btn-primary"] {
+  font-weight: 700 !important;
+  letter-spacing: 0.018em !important;
+  transition:
+    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.2s ease !important;
+}
+.cinema-primary-btn:hover,
+.btn-primary:hover,
+[class*="btn-primary"]:hover {
+  transform: translateY(-3px) !important;
+  box-shadow:
+    0 16px 48px rgba(0, 212, 255, 0.36),
+    0 4px 16px rgba(0, 255, 153, 0.18) !important;
+}
+
+.cinema-secondary-btn,
+.btn-outline,
+[class*="btn-outline"] {
+  font-weight: 600 !important;
+  letter-spacing: 0.012em !important;
+  transition:
+    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.2s ease !important;
+}
+.cinema-secondary-btn:hover,
+.btn-outline:hover,
+[class*="btn-outline"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 28px rgba(0, 212, 255, 0.18) !important;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   §9  CINEMA MEDIA FRAMES — Richer depth shadow
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.cinema-media-frame {
+  box-shadow:
+    0 28px 80px rgba(0, 0, 0, 0.44),
+    0 6px 20px rgba(0, 0, 0, 0.26),
+    0 0 0 1px rgba(0, 212, 255, 0.12) !important;
+  transition: box-shadow 0.36s ease !important;
+}
+.cinema-media-frame:hover {
+  box-shadow:
+    0 36px 96px rgba(0, 0, 0, 0.52),
+    0 8px 28px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(0, 212, 255, 0.2) !important;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   §10  SECTION RHYTHM — Consistent spacing
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.cinema-section {
+  padding-block: clamp(3.6rem, 7.5vh, 6.5rem) !important;
+}
+
+.cinema-section-head {
+  margin-bottom: clamp(2.2rem, 4.5vh, 3.8rem) !important;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   §11  PHONE MOCKUP — Deeper, more realistic shadow
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.phone-screen {
+  box-shadow:
+    0 40px 88px rgba(0, 0, 0, 0.48),
+    0 10px 28px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(0, 212, 255, 0.1) !important;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   §12  RIDE LAB (COST CALCULATOR) — Defined panel boundary
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.ride-lab {
+  border: 1px solid rgba(0, 212, 255, 0.11) !important;
+  box-shadow:
+    0 10px 44px rgba(0, 0, 0, 0.22),
+    0 1px 6px rgba(0, 212, 255, 0.07) !important;
+  border-radius: 1.25rem !important;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   §13  TEST RIDE / CONTACT PANEL
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.test-ride-panel {
+  border: 1px solid rgba(0, 212, 255, 0.11) !important;
+  box-shadow:
+    0 14px 52px rgba(0, 0, 0, 0.22),
+    0 2px 8px rgba(0, 212, 255, 0.07) !important;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   §14  FOOTER — Cleaner top boundary & stronger link hierarchy
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.site-footer {
+  border-top: 1px solid rgba(0, 212, 255, 0.13) !important;
+}
+.site-footer h4 {
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  font-size: 0.68rem !important;
+  text-transform: uppercase !important;
+}
+.site-footer-links a {
+  font-weight: 500 !important;
+  transition: color 0.18s ease, letter-spacing 0.18s ease !important;
+}
+.site-footer-links a:hover {
+  letter-spacing: 0.008em !important;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   §15  SCROLL PROGRESS BAR — More vivid glow
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.site-scroll-progress {
+  height: 2.5px !important;
+  box-shadow:
+    0 0 14px rgba(0, 212, 255, 0.7),
+    0 0 5px rgba(0, 255, 153, 0.4) !important;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   §16  FLOATING ACTION BUTTONS — Lift on hover
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.floating-action {
+  transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.22s ease !important;
+}
+.floating-action:hover {
+  transform: translateY(-3px) scale(1.04) !important;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   §17  ABOUT PAGE CARDS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.about-showroom-card {
+  border: 1px solid rgba(0, 212, 255, 0.1) !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.14) !important;
+  transition: transform 0.28s ease, box-shadow 0.28s ease !important;
+}
+.about-showroom-card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow:
+    0 18px 52px rgba(0, 0, 0, 0.22),
+    0 3px 12px rgba(0, 212, 255, 0.1) !important;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   §18  ANIMATION EASING — Consistent cubic-bezier across reveal
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+[data-animate] {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   §19  VEHICLE MODEL IMAGE — Soft glow platform effect
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.model-stage {
+  filter: drop-shadow(0 24px 48px rgba(0, 212, 255, 0.12)) !important;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   §20  LOGO — Show original dark logo naturally (no filter)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.site-logo-image {
+  filter: none !important;
+  opacity: 1 !important;
+  transition: opacity 0.22s ease !important;
+}
+.site-logo:hover .site-logo-image {
+  opacity: 0.82 !important;
+}
+
+/* End of Design Refinement Layer v2 */
+
+/* Homepage structure and sensitivity pass: final source-of-truth overrides. */
+:root {
+  --franklin-hero-gradient: linear-gradient(135deg, #009fe8 0%, #20d66b 54%, #9cff2e 100%);
+  --franklin-scroll-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  scroll-behavior: smooth !important;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  overscroll-behavior-y: contain;
+}
+
+.site-nav-cta,
+.site-mobile-cta {
+  background: var(--franklin-hero-gradient) !important;
+  border: 1px solid rgba(32, 214, 107, 0.72) !important;
+  color: #04110d !important;
+  box-shadow:
+    0 10px 30px rgba(0, 159, 232, 0.24),
+    0 5px 18px rgba(32, 214, 107, 0.22) !important;
+}
+
+.site-nav-cta:hover,
+.site-mobile-cta:hover {
+  background: var(--franklin-hero-gradient) !important;
+  border-color: rgba(156, 255, 46, 0.86) !important;
+  box-shadow:
+    0 14px 38px rgba(0, 159, 232, 0.34),
+    0 7px 22px rgba(32, 214, 107, 0.28) !important;
+  transform: translateY(-2px) !important;
+}
+
+.cinema-home {
+  --section-max: 1240px;
+  --section-pad-x: clamp(1rem, 5vw, 4.5rem);
+  --section-gap: clamp(1.75rem, 4vw, 4.5rem);
+  scroll-behavior: smooth;
+}
+
+.cinema-home .cinema-section,
+.cinema-home .model-showcase,
+.cinema-home .test-ride-panel {
+  width: min(100%, calc(var(--section-max) + (var(--section-pad-x) * 2))) !important;
+  max-width: none !important;
+  margin-inline: auto !important;
+  padding-inline: var(--section-pad-x) !important;
+  padding-block: clamp(3.75rem, 7.5vh, 6.5rem) !important;
+}
+
+.cinema-home .cinema-split,
+.cinema-home .model-showcase,
+.cinema-home .app-section,
+.cinema-home .cost-section {
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr) !important;
+  gap: var(--section-gap) !important;
+  align-items: center !important;
+}
+
+.cinema-home .cinema-copy,
+.cinema-home .motor-copy,
+.cinema-home .model-info,
+.cinema-home .test-ride-panel > *,
+.cinema-home .dealer-section .cinema-copy,
+.cinema-home .cinema-copy-wide {
+  max-width: 42rem !important;
+}
+
+.cinema-home .cinema-title {
+  max-width: 12ch;
+  line-height: 1.04 !important;
+}
+
+.cinema-home .cinema-copy-wide .cinema-title,
+.cinema-home .dealer-section .cinema-title,
+.cinema-home .test-ride-panel h2 {
+  max-width: 16ch;
+}
+
+.cinema-stat-strip {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 0 !important;
+  width: min(100%, 1120px) !important;
+  margin-inline: auto !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+.cinema-stat-strip div {
+  min-width: 0 !important;
+  padding: clamp(1rem, 2.2vw, 1.45rem) !important;
+  text-align: center !important;
+}
+
+.cinema-stat-strip strong,
+.cinema-callout-value {
+  display: inline-flex !important;
+  align-items: baseline !important;
+  justify-content: center !important;
+  gap: 0.12em !important;
+  white-space: nowrap !important;
+  line-height: 1 !important;
+}
+
+.cinema-stat-strip span,
+.cinema-callout-label {
+  display: block !important;
+  max-width: 13rem !important;
+  margin: 0.45rem auto 0 !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  text-align: center !important;
+  line-height: 1.28 !important;
+}
+
+.cinema-callouts {
+  align-items: stretch !important;
+}
+
+.cinema-callout {
+  min-width: min(100%, 13.5rem) !important;
+}
+
+.cinema-feature-grid,
+.dealer-chip-grid,
+.ride-results,
+.model-pills {
+  align-items: stretch !important;
+}
+
+.cinema-feature-card,
+.dealer-state-card,
+.ride-lab,
+.test-ride-panel,
+.battery-package-card,
+.warranty-terms-card {
+  border-radius: 1rem !important;
+}
+
+:where(.cinema-section, .cinema-feature-card, .dealer-state-card, .cinema-callout, .cinema-btn, .site-nav-cta, .site-mobile-cta, .floating-action) {
+  transition-duration: 220ms !important;
+  transition-timing-function: var(--franklin-scroll-ease) !important;
+}
+
+@media (min-width: 769px) {
+  .cinema-hero {
+    min-height: 132svh !important;
+  }
+}
+
+@media (max-width: 1180px) {
+  .cinema-home .cinema-split,
+  .cinema-home .model-showcase,
+  .cinema-home .app-section,
+  .cinema-home .cost-section {
+    grid-template-columns: 1fr !important;
+  }
+
+  .cinema-home .cinema-copy,
+  .cinema-home .motor-copy,
+  .cinema-home .model-info,
+  .cinema-home .test-ride-panel > *,
+  .cinema-home .dealer-section .cinema-copy,
+  .cinema-home .cinema-copy-wide {
+    max-width: 46rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  .cinema-home {
+    --section-pad-x: 1rem;
+    --section-gap: 1.35rem;
+  }
+
+  .cinema-home .cinema-section,
+  .cinema-home .model-showcase,
+  .cinema-home .test-ride-panel {
+    padding-block: clamp(2.75rem, 8vh, 4.25rem) !important;
+  }
+
+  .cinema-stat-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .cinema-stat-strip div {
+    padding: 1rem !important;
+  }
+
+  .cinema-stat-strip strong {
+    font-size: clamp(1.65rem, 8vw, 2.35rem) !important;
+  }
+
+  .cinema-feature-grid,
+  .cinema-gallery,
+  .dealer-chip-grid,
+  .ride-results,
+  .battery-card-grid,
+  .feature-spec-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .cinema-hero-actions,
+  .cinema-hero-actions a,
+  .test-ride-panel .cinema-btn {
+    width: 100% !important;
+  }
+
+  .cinema-hero-actions a,
+  .test-ride-panel .cinema-btn {
+    justify-content: center !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .cinema-stat-strip {
+    grid-template-columns: 1fr !important;
   }
 }

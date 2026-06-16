@@ -10,6 +10,11 @@ const links = [
     title: "Browse Franklin EV electric scooter models",
   },
   {
+    to: "/hyre-ev",
+    label: "Hyre EV",
+    title: "Hyre EV Powered by Franklin EV scooter rentals",
+  },
+  {
     to: "/about",
     label: "About",
     title: "About Franklin EV India Pvt. Ltd.",
@@ -23,6 +28,11 @@ const links = [
     to: "/contact",
     label: "Contact",
     title: "Book a test ride or find a Franklin EV dealer near you",
+  },
+  {
+    to: "/legal-policy",
+    label: "Legal",
+    title: "Read Franklin EV legal policy",
   },
 ] as const;
 
