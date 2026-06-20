@@ -760,15 +760,11 @@ function Home() {
     }
 
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const compactWidthQuery = window.matchMedia("(max-width: 768px)");
-    const coarsePointerQuery = window.matchMedia("(pointer: coarse)");
     const navigatorWithConnection = navigator as Navigator & {
       connection?: { saveData?: boolean };
     };
     const keepPostersOnly =
       reducedMotionQuery.matches ||
-      compactWidthQuery.matches ||
-      coarsePointerQuery.matches ||
       navigatorWithConnection.connection?.saveData === true;
 
     if (keepPostersOnly) {
