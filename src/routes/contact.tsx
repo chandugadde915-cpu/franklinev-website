@@ -10,7 +10,6 @@ import {
   Facebook,
   Instagram,
   Linkedin,
-  Twitter,
 } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 
@@ -156,9 +155,13 @@ function ContactPage() {
                   href: "https://www.linkedin.com/company/franklin-ev",
                 },
                 {
-                  Icon: Twitter,
-                  label: "Twitter @franklinev",
-                  href: "https://twitter.com/franklinev",
+                  Icon: ({ className }: { className?: string }) => (
+                    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg>
+                  ),
+                  label: "X (formerly Twitter) @franklinev",
+                  href: "https://x.com/franklinev",
                 },
                 {
                   Icon: Instagram,
@@ -287,9 +290,11 @@ function ContactForm() {
                   name="model_interest"
                   className="w-full px-4 py-3 rounded-xl bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-ink"
                 >
-                  <option>Not sure yet</option>
-                  <option>Low Speed - 25 km/h</option>
-                  <option>High Speed - up to 60 km/h</option>
+                  <option>Not sure yet — help me choose</option>
+                  <option>Franklin EV POWER — Low Speed (25 km/h)</option>
+                  <option>Franklin EV POWER — High Speed (60 km/h)</option>
+                  <option>Franklin EV Classic — Low Speed (25 km/h)</option>
+                  <option>Franklin EV Classic — High Speed (60 km/h)</option>
                   <option>Hyre EV rentals</option>
                 </select>
               </div>

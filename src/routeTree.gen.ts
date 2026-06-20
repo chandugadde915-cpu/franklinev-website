@@ -18,6 +18,9 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BlogPowerPlusVsRapidRouteImport } from './routes/blog.power-plus-vs-rapid'
+import { Route as BlogHomeChargingElectricScooterRouteImport } from './routes/blog.home-charging-electric-scooter'
+import { Route as BlogBestElectricScooterHyderabadDailyCommuteRouteImport } from './routes/blog.best-electric-scooter-hyderabad-daily-commute'
 
 const VehiclesRoute = VehiclesRouteImport.update({
   id: '/vehicles',
@@ -64,40 +67,66 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogPowerPlusVsRapidRoute = BlogPowerPlusVsRapidRouteImport.update({
+  id: '/power-plus-vs-rapid',
+  path: '/power-plus-vs-rapid',
+  getParentRoute: () => BlogRoute,
+} as any)
+const BlogHomeChargingElectricScooterRoute =
+  BlogHomeChargingElectricScooterRouteImport.update({
+    id: '/home-charging-electric-scooter',
+    path: '/home-charging-electric-scooter',
+    getParentRoute: () => BlogRoute,
+  } as any)
+const BlogBestElectricScooterHyderabadDailyCommuteRoute =
+  BlogBestElectricScooterHyderabadDailyCommuteRouteImport.update({
+    id: '/best-electric-scooter-hyderabad-daily-commute',
+    path: '/best-electric-scooter-hyderabad-daily-commute',
+    getParentRoute: () => BlogRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/blog': typeof BlogRoute
+  '/blog': typeof BlogRouteWithChildren
   '/contact': typeof ContactRoute
   '/hyre-ev': typeof HyreEvRoute
   '/legal-policy': typeof LegalPolicyRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/vehicles': typeof VehiclesRoute
+  '/blog/best-electric-scooter-hyderabad-daily-commute': typeof BlogBestElectricScooterHyderabadDailyCommuteRoute
+  '/blog/home-charging-electric-scooter': typeof BlogHomeChargingElectricScooterRoute
+  '/blog/power-plus-vs-rapid': typeof BlogPowerPlusVsRapidRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/blog': typeof BlogRoute
+  '/blog': typeof BlogRouteWithChildren
   '/contact': typeof ContactRoute
   '/hyre-ev': typeof HyreEvRoute
   '/legal-policy': typeof LegalPolicyRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/vehicles': typeof VehiclesRoute
+  '/blog/best-electric-scooter-hyderabad-daily-commute': typeof BlogBestElectricScooterHyderabadDailyCommuteRoute
+  '/blog/home-charging-electric-scooter': typeof BlogHomeChargingElectricScooterRoute
+  '/blog/power-plus-vs-rapid': typeof BlogPowerPlusVsRapidRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/blog': typeof BlogRoute
+  '/blog': typeof BlogRouteWithChildren
   '/contact': typeof ContactRoute
   '/hyre-ev': typeof HyreEvRoute
   '/legal-policy': typeof LegalPolicyRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/vehicles': typeof VehiclesRoute
+  '/blog/best-electric-scooter-hyderabad-daily-commute': typeof BlogBestElectricScooterHyderabadDailyCommuteRoute
+  '/blog/home-charging-electric-scooter': typeof BlogHomeChargingElectricScooterRoute
+  '/blog/power-plus-vs-rapid': typeof BlogPowerPlusVsRapidRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -111,6 +140,9 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sitemap.xml'
     | '/vehicles'
+    | '/blog/best-electric-scooter-hyderabad-daily-commute'
+    | '/blog/home-charging-electric-scooter'
+    | '/blog/power-plus-vs-rapid'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -122,6 +154,9 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sitemap.xml'
     | '/vehicles'
+    | '/blog/best-electric-scooter-hyderabad-daily-commute'
+    | '/blog/home-charging-electric-scooter'
+    | '/blog/power-plus-vs-rapid'
   id:
     | '__root__'
     | '/'
@@ -133,12 +168,15 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sitemap.xml'
     | '/vehicles'
+    | '/blog/best-electric-scooter-hyderabad-daily-commute'
+    | '/blog/home-charging-electric-scooter'
+    | '/blog/power-plus-vs-rapid'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  BlogRoute: typeof BlogRoute
+  BlogRoute: typeof BlogRouteWithChildren
   ContactRoute: typeof ContactRoute
   HyreEvRoute: typeof HyreEvRoute
   LegalPolicyRoute: typeof LegalPolicyRoute
@@ -212,13 +250,49 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/power-plus-vs-rapid': {
+      id: '/blog/power-plus-vs-rapid'
+      path: '/power-plus-vs-rapid'
+      fullPath: '/blog/power-plus-vs-rapid'
+      preLoaderRoute: typeof BlogPowerPlusVsRapidRouteImport
+      parentRoute: typeof BlogRoute
+    }
+    '/blog/home-charging-electric-scooter': {
+      id: '/blog/home-charging-electric-scooter'
+      path: '/home-charging-electric-scooter'
+      fullPath: '/blog/home-charging-electric-scooter'
+      preLoaderRoute: typeof BlogHomeChargingElectricScooterRouteImport
+      parentRoute: typeof BlogRoute
+    }
+    '/blog/best-electric-scooter-hyderabad-daily-commute': {
+      id: '/blog/best-electric-scooter-hyderabad-daily-commute'
+      path: '/best-electric-scooter-hyderabad-daily-commute'
+      fullPath: '/blog/best-electric-scooter-hyderabad-daily-commute'
+      preLoaderRoute: typeof BlogBestElectricScooterHyderabadDailyCommuteRouteImport
+      parentRoute: typeof BlogRoute
+    }
   }
 }
+
+interface BlogRouteChildren {
+  BlogBestElectricScooterHyderabadDailyCommuteRoute: typeof BlogBestElectricScooterHyderabadDailyCommuteRoute
+  BlogHomeChargingElectricScooterRoute: typeof BlogHomeChargingElectricScooterRoute
+  BlogPowerPlusVsRapidRoute: typeof BlogPowerPlusVsRapidRoute
+}
+
+const BlogRouteChildren: BlogRouteChildren = {
+  BlogBestElectricScooterHyderabadDailyCommuteRoute:
+    BlogBestElectricScooterHyderabadDailyCommuteRoute,
+  BlogHomeChargingElectricScooterRoute: BlogHomeChargingElectricScooterRoute,
+  BlogPowerPlusVsRapidRoute: BlogPowerPlusVsRapidRoute,
+}
+
+const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  BlogRoute: BlogRoute,
+  BlogRoute: BlogRouteWithChildren,
   ContactRoute: ContactRoute,
   HyreEvRoute: HyreEvRoute,
   LegalPolicyRoute: LegalPolicyRoute,

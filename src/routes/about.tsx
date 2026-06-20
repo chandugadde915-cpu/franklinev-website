@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Leaf, VolumeX, Sparkles, MapPin } from "lucide-react";
+import { ArrowRight, Check, Leaf, VolumeX, Sparkles, MapPin } from "lucide-react";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import { Counter } from "@/components/Counter";
 
@@ -10,7 +10,7 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "Learn about Franklin EV India Pvt. Ltd., an electric scooter company based in Hyderabad with Power ++ and Rapid models, low running cost, BLDC hub motor technology and dealer support in Telangana and Andhra Pradesh.",
+          "Learn about Franklin EV India Pvt. Ltd., an electric scooter company based in Hyderabad with POWER and Classic models, low running cost, BLDC hub motor technology and dealer support in Telangana and Andhra Pradesh.",
       },
       {
         name: "keywords",
@@ -64,9 +64,7 @@ function AboutPage() {
           <div className="p-8 rounded-3xl bg-surface border border-border shadow-soft h-full">
             <h2 className="font-display text-3xl font-bold text-ink">Our mission</h2>
             <p className="mt-4 text-muted-foreground leading-relaxed">
-              We focus on electric scooters that fit everyday Indian city travel: low energy cost,
-              quiet BLDC hub motor performance, standard plug-in charging, smart safety features and
-              support from Franklin EV dealer locations.
+              Franklin EV makes electric scooters for everyday city travel — low energy cost, BLDC hub motor, standard home charging and dealer support across Hyderabad, Telangana and Andhra Pradesh.
             </p>
           </div>
         </Reveal>
@@ -74,8 +72,7 @@ function AboutPage() {
           <div className="p-8 rounded-3xl bg-primary-gradient text-primary-foreground shadow-lift h-full">
             <h2 className="font-display text-3xl font-bold">Our vision</h2>
             <p className="mt-4 leading-relaxed text-primary-foreground/90">
-              A future where more city commutes move on electric two-wheelers — cleaner streets,
-              quieter rides and practical ownership for families, students and working riders.
+              More city commutes on electric two-wheelers — cleaner streets, quieter rides, practical ownership for every rider.
             </p>
           </div>
         </Reveal>
@@ -180,8 +177,8 @@ function AboutPage() {
                 type="image/jpeg"
               />
               <img
-                src="/assets/editorial/blue-cafe-parking.jpg"
-                alt="Franklin EV Power ++ in sky blue parked near a city cafe."
+                src="/assets/products/power-blue-left.png"
+                alt="Franklin EV POWER electric scooter in Ocean Blue — left side view."
                 width={1330}
                 height={1183}
                 loading="lazy"
@@ -204,8 +201,8 @@ function AboutPage() {
             },
             {
               year: "2023",
-              title: "Power ++ launch",
-              body: "Franklin EV Power ++ launched with cruise control, 120 km range and smart connectivity as the flagship model for Hyderabad riders.",
+              title: "Franklin EV POWER launch",
+              body: "Franklin EV POWER launched with cruise control, up to 80 km range (graphene battery) and smart connectivity as the flagship model for Hyderabad riders.",
             },
             {
               year: "2024-25",
@@ -233,8 +230,8 @@ function AboutPage() {
           <div className="about-showroom-card p-10 lg:p-14 rounded-3xl bg-surface border border-border shadow-soft">
             <figure>
               <img
-                src="/assets/editorial/blue-school-family.jpg"
-                alt="Franklin EV sky blue scooter used for a family school commute."
+                src="/assets/products/power-green-left.png"
+                alt="Franklin EV POWER electric scooter in Mint Green — left side view."
                 width={1376}
                 height={1143}
                 loading="lazy"
@@ -246,9 +243,7 @@ function AboutPage() {
               Why ride with Franklin EV
             </h2>
             <p className="mt-4 text-lg text-muted-foreground max-w-3xl">
-              Cost-effective ownership, BLDC hub motor performance, standard charging, smart safety
-              features and listed dealer locations make Franklin EV easier to evaluate before you
-              switch from petrol to electric.
+              BLDC hub motor, standard home charging, smart safety features and a dealer network across Hyderabad and Telangana — Franklin EV is built for Indian city riders.
             </p>
             <div className="mt-6 flex flex-wrap gap-3 text-sm">
               {[
@@ -267,6 +262,72 @@ function AboutPage() {
               ))}
             </div>
             </div>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* WHY RIDERS SWITCH */}
+      <section className="max-w-7xl mx-auto px-5 lg:px-8 py-16">
+        <Reveal>
+          <div className="text-center mb-10">
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">Why Riders Switch</span>
+            <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink mt-2">
+              Why more riders are choosing <em>electric over petrol</em>.
+            </h2>
+            <p className="mt-3 text-muted-foreground max-w-xl mx-auto">
+              Switch from petrol and cut your monthly commute cost significantly. Franklin EV makes the transition easy with home charging, low maintenance and dealer support.
+            </p>
+          </div>
+        </Reveal>
+        <StaggerGroup className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {[
+            {
+              title: "Lower charging costs",
+              body: "Electricity costs roughly Rs. 0.08–0.12 per km vs Rs. 3–4/km for petrol, saving most Hyderabad riders Rs. 1,800–2,500 per month.",
+            },
+            {
+              title: "Reduced maintenance",
+              body: "No engine oil, coolant or spark plugs. Fewer moving parts means fewer workshop visits and fewer unexpected repair bills.",
+            },
+            {
+              title: "No oil changes",
+              body: "Electric motors need no oil changes. Remove Rs. 400–800 oil change costs every 3 months from your ownership equation.",
+            },
+            {
+              title: "Convenient home charging",
+              body: "Charge overnight with a standard 15 A socket. Wake up with a full charge and skip petrol station detours.",
+            },
+            {
+              title: "Zero tailpipe emissions",
+              body: "Zero emissions reduce your personal carbon footprint and support cleaner air across Hyderabad.",
+            },
+            {
+              title: "Long-term savings",
+              body: "Over 3 years, Franklin EV riders typically save over Rs. 82,000 compared with equivalent petrol scooter ownership costs.",
+            },
+          ].map((item) => (
+            <StaggerItem key={item.title}>
+              <article className="h-full p-6 rounded-3xl bg-surface border border-border shadow-soft">
+                <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-primary/10 text-primary mb-4">
+                  <Check className="w-4 h-4" />
+                </span>
+                <h3 className="font-display text-lg font-bold text-ink">{item.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{item.body}</p>
+              </article>
+            </StaggerItem>
+          ))}
+        </StaggerGroup>
+        <Reveal delay={0.1}>
+          <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {[
+              { src: "/assets/products/power-black-left.png", alt: "Franklin EV POWER in Midnight Black" },
+              { src: "/assets/products/power-red-left.png", alt: "Franklin EV POWER in Flame Red" },
+              { src: "/assets/products/classic-gold-left.png", alt: "Franklin EV Classic in Champagne Gold" },
+            ].map((img) => (
+              <figure key={img.src} className="rounded-2xl overflow-hidden border border-border bg-zinc-50">
+                <img src={img.src} alt={img.alt} loading="lazy" decoding="async" className="w-full object-contain p-3 drop-shadow-md" />
+              </figure>
+            ))}
           </div>
         </Reveal>
       </section>

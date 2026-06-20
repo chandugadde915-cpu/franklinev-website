@@ -25,12 +25,12 @@ const blogUrl = `${siteUrl}/blog`;
 const blogArticleMeta = [
   {
     slug: "power-plus-vs-rapid",
-    title: "Power ++ vs Rapid: choosing the right Franklin EV scooter",
+    title: "Franklin EV POWER vs Classic: choosing the right electric scooter",
     description:
-      "Compare Franklin EV Power ++ and Rapid by range, riding feel, daily use case, smart features and ownership priorities before booking a test ride.",
+      "Compare Franklin EV POWER and Classic by speed, battery, design and daily use to find the right variant for your commute.",
     keywords:
-      "Franklin EV Power ++, Franklin EV Rapid, electric scooter comparison, best Franklin EV scooter, electric scooter buying guide India",
-    image: "/assets/editorial/silver-hill-sunset.jpg",
+      "Franklin EV POWER vs Classic, electric scooter comparison Hyderabad, best Franklin EV model, electric scooter buying guide India",
+    image: "/assets/products/power-black-left.png",
     category: "Buying Guide",
     readTime: "5 min read",
   },
@@ -41,7 +41,7 @@ const blogArticleMeta = [
       "Read the 2026 Franklin EV buyer guide for Hyderabad riders covering range, charging, running cost, service support and city-road readiness.",
     keywords:
       "best electric scooter in Hyderabad, electric scooter daily commute Hyderabad, Franklin EV Hyderabad, electric scooter charging cost Hyderabad",
-    image: "/assets/editorial/commute-city-ride.jpg",
+    image: "/assets/products/classic-gold-left.png",
     category: "Hyderabad Guide",
     readTime: "7 min read",
   },
@@ -52,7 +52,7 @@ const blogArticleMeta = [
       "Learn electric scooter home charging basics, charging time, safe charging habits and key questions to ask before Franklin EV delivery.",
     keywords:
       "electric scooter home charging, EV scooter charging guide, Franklin EV charging, electric scooter charging time India",
-    image: "/assets/editorial/blue-cafe-parking.jpg",
+    image: "/assets/products/power-blue-left.png",
     category: "Charging",
     readTime: "6 min read",
   },
@@ -116,12 +116,12 @@ export const Route = createFileRoute("/blog")({
       {
         name: "description",
         content:
-          "Read Franklin EV guides on Power ++, Rapid, electric scooter range, home charging, savings, maintenance and test ride preparation for Indian city riders.",
+          "Franklin EV guides for POWER and Classic buyers — range, battery types, home charging, running cost and test ride preparation for Hyderabad riders.",
       },
       {
         name: "keywords",
         content:
-          "Franklin EV blog, electric scooter guide India, Power ++ scooter, Rapid scooter, electric scooter range, EV charging, scooter maintenance",
+          "Franklin EV blog, electric scooter guide India, POWER scooter, Classic scooter, lithium-ion vs graphene battery, EV charging, scooter running cost Hyderabad",
       },
       { property: "og:title", content: "Franklin EV Blog - Smart Electric Scooter Guides" },
       {
@@ -267,7 +267,7 @@ const latestPosts = [
   "Electric scooter charging cost vs petrol running cost",
   "Cruise control, reverse mode and smart scooter features explained",
   "How students, families and professionals can choose an EV scooter",
-  "Dealer visit checklist before buying Power ++ or Rapid",
+  "Dealer visit checklist before buying Franklin EV POWER or Classic",
 ] as const;
 
 function BlogPage() {
@@ -285,7 +285,7 @@ function BlogPage() {
               Smart electric scooter guides for <em>everyday riders</em>.
             </h1>
             <p>
-              Practical articles for choosing Power ++ or Rapid, understanding range, charging at
+              Practical articles for choosing Franklin EV POWER or Classic, understanding range, battery options, charging at
               home, reducing running cost and preparing for a confident Franklin EV test ride.
             </p>
             <div className="blog-hero-actions">
@@ -305,7 +305,7 @@ function BlogPage() {
               />
               <img
                 src="/assets/models/premium-colors-layout/power-silver-angle-layout.png"
-                alt="Franklin EV Power ++ electric scooter featured on the blog."
+                alt="Franklin EV POWER electric scooter in Midnight Black — featured on the blog."
                 width={1200}
                 height={1200}
                 loading="eager"
@@ -316,10 +316,13 @@ function BlogPage() {
         </div>
       </section>
 
+      {/* Gradient bridge — smooth dark→light transition */}
+      <div className="blog-hero-bridge" aria-hidden="true" />
+
       <section className="blog-section">
         <Reveal className="blog-section-heading">
           <div className="cinema-eyebrow">Featured Reads</div>
-          <h2>Updated blog blocks for Franklin EV buyers.</h2>
+          <h2>Guides for Franklin EV buyers.</h2>
           <p>
             Quick, useful reading for riders comparing scooters, planning charging and calculating
             long-term value.
@@ -338,8 +341,11 @@ function BlogPage() {
                   </span>
                   <h3>{title}</h3>
                   <p>{summary}</p>
-                  <Link to="/contact" aria-label={`Ask Franklin EV about ${title}`}>
-                    Ask an Expert <ArrowRight className="h-4 w-4" />
+                  <Link
+                    to={`/blog/${slug}` as "/blog/power-plus-vs-rapid" | "/blog/best-electric-scooter-hyderabad-daily-commute" | "/blog/home-charging-electric-scooter"}
+                    aria-label={`Read: ${title}`}
+                  >
+                    Read article <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
               </article>
@@ -377,7 +383,7 @@ function BlogPage() {
           <Reveal className="blog-article-visual" delay={0.1}>
             <picture>
               <img
-                src="/assets/editorial/commute-city-ride.jpg"
+                src="/assets/products/classic-gold-left.png"
                 alt="Franklin EV electric scooter riding through city traffic for daily commute."
                 width={1536}
                 height={1024}

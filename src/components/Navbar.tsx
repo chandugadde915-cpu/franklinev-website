@@ -29,11 +29,6 @@ const links = [
     label: "Contact",
     title: "Book a test ride or find a Franklin EV dealer near you",
   },
-  {
-    to: "/legal-policy",
-    label: "Legal",
-    title: "Read Franklin EV legal policy",
-  },
 ] as const;
 
 export function Navbar() {

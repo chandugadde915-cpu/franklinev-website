@@ -29,7 +29,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Experience Franklin EV in Hyderabad with smart electric scooters built for everyday freedom, up to 120 km range, cruise control, home charging, smart features and low running cost.",
+          "Franklin EV electric scooters in Hyderabad — POWER and Classic variants with lithium-ion or graphene battery, up to 80 km range, 25 or 60 km/h, home charging and low running cost.",
       },
       {
         name: "keywords",
@@ -61,7 +61,7 @@ export const Route = createFileRoute("/")({
       { property: "og:image:height", content: "630" },
       {
         property: "og:image:alt",
-        content: "Franklin EV Power ++ premium electric scooter launch hero.",
+        content: "Franklin EV POWER electric scooter — Midnight Black hero shot.",
       },
       { property: "og:url", content: "https://franklinev-website.vercel.app" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -183,7 +183,7 @@ const faqItems = [
   {
     question: "How far can a Franklin EV scooter travel on a single charge?",
     answer:
-      "Range depends on model, riding mode, load and road conditions. Franklin EV highlights up to 120 km range for suitable model configurations.",
+      "Range depends on model, riding mode, load and road conditions. Franklin EV highlights up to 80 km range (graphene battery, low-speed variant).",
   },
   {
     question: "How much does it cost to charge an electric scooter?",
@@ -223,7 +223,7 @@ const faqItems = [
 ] as const;
 
 const heroTrustItems = [
-  "Up to 120 KM Range",
+  "Up to 80 KM Range",
   "Cruise Control",
   "Smart Features",
   "Home Charging",
@@ -231,7 +231,7 @@ const heroTrustItems = [
 ] as const;
 
 const heroCalloutItems = [
-  { value: "120", unit: "km", label: "Up to range", icon: "zap", ariaLabel: "Up to 120 km range" },
+  { value: "80", unit: "km", label: "Max range", icon: "zap", ariaLabel: "Up to 80 km range" },
   {
     value: "4.5",
     unit: "hrs",
@@ -249,32 +249,6 @@ const heroCalloutItems = [
   },
 ] as const;
 
-const riderSwitchBenefits = [
-  {
-    title: "Lower charging costs",
-    body: "Electricity costs roughly Rs. 0.08-0.12 per km vs Rs. 3-4/km for petrol, saving most Hyderabad riders Rs. 1,800-2,500 per month.",
-  },
-  {
-    title: "Reduced maintenance requirements",
-    body: "No engine oil, coolant, or spark plugs. Fewer moving parts means fewer workshop visits and fewer unexpected repair bills.",
-  },
-  {
-    title: "No engine oil changes",
-    body: "Electric motors need no oil changes. Remove Rs. 400-800 oil change costs every 3 months from your ownership equation.",
-  },
-  {
-    title: "Convenient home charging",
-    body: "Charge overnight with a standard compatible socket. Wake up with a full charge and skip petrol station detours.",
-  },
-  {
-    title: "Sustainable transportation",
-    body: "Zero tailpipe emissions reduce your personal carbon footprint and support cleaner air across Hyderabad.",
-  },
-  {
-    title: "Long-term ownership savings",
-    body: "Over 3 years, Franklin EV riders typically save over Rs. 82,000 compared with equivalent petrol scooter ownership costs.",
-  },
-] as const;
 
 const warrantyPackages = [
   {
@@ -769,7 +743,7 @@ function AmbientDepthBackdrop() {
 function Home() {
   const [dailyRide, setDailyRide] = useState(32);
   const [petrolPrice, setPetrolPrice] = useState(110);
-  const [range, setRange] = useState(110);
+  const [range, setRange] = useState(80);
 
   const monthlyEvCost = Math.round(dailyRide * 30 * 0.22);
   const monthlyFuelCost = Math.round(((dailyRide * 30) / 42) * petrolPrice);
@@ -866,17 +840,7 @@ function Home() {
             The future of commuting <em>starts here</em>.
           </h2>
           <p>
-            Cities are evolving. Roads are becoming smarter. Transportation is becoming cleaner. The
-            modern rider expects more than just a vehicle. They expect efficiency, convenience,
-            technology and sustainability. Franklin EV is helping redefine urban transportation by
-            creating smart electric scooters for city commuting that fit seamlessly into everyday
-            life.
-          </p>
-          <p>
-            From professionals travelling to Hitech City and Gachibowli to students, families and
-            business owners across Hyderabad, more people are making the switch to electric mobility
-            because it delivers a better ownership experience. This isn't just about replacing
-            petrol. It's about upgrading the way you move.
+            Franklin EV electric scooters are built for everyday Indian city commuting — practical range, low running cost, home charging and smart features that fit your lifestyle.
           </p>
           <div className="cinema-mini-stats">
             {["Smart city commuting", "Convenient home charging", "Low running cost"].map(
@@ -909,10 +873,7 @@ function Home() {
             Technology that works <em>behind every ride</em>.
           </h2>
           <p>
-            Great performance isn't just about speed. It's about delivering confidence every time
-            you ride. Franklin EV combines advanced battery systems, intelligent energy management,
-            efficient motors and rider-focused engineering to create a seamless ownership
-            experience.
+            Franklin EV combines efficient BLDC hub motors, smart battery management and rider-focused engineering for a seamless daily commute.
           </p>
         </Reveal>
         <div className="motor-stage">
@@ -971,66 +932,6 @@ function Home() {
         </StaggerGroup>
       </section>
 
-      <section className="cinema-section" data-animate="fade-up">
-        <Reveal className="cinema-copy cinema-copy-wide">
-          <div className="cinema-eyebrow">Why Riders Switch</div>
-          <h2 className="cinema-title">
-            Why more riders are choosing <em>electric over petrol</em>.
-          </h2>
-          <p>
-            Every month, commuters spend a significant portion of their income on fuel, servicing,
-            engine maintenance and rising operating costs. Franklin EV offers a smarter alternative:
-            a smoother, quieter and more convenient riding experience for daily commute in
-            Hyderabad.
-          </p>
-        </Reveal>
-        <StaggerGroup className="cinema-feature-grid">
-          {riderSwitchBenefits.map((item) => (
-            <StaggerItem key={item.title}>
-              <article className="cinema-feature-card">
-                <span>
-                  <Check className="h-5 w-5" />
-                </span>
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
-              </article>
-            </StaggerItem>
-          ))}
-        </StaggerGroup>
-        <Reveal className="cinema-lifestyle-band" delay={0.1}>
-          <figure className="is-wide">
-            <img
-              src="/assets/editorial/commute-city-ride.jpg"
-              alt="Franklin EV electric scooter riding through a city business district."
-              width={1536}
-              height={1024}
-              loading="lazy"
-              decoding="async"
-            />
-          </figure>
-          <figure>
-            <img
-              src="/assets/editorial/red-sunset-profile.jpg"
-              alt="Franklin EV red electric scooter at sunset near a city waterfront."
-              width={1536}
-              height={1024}
-              loading="lazy"
-              decoding="async"
-            />
-          </figure>
-          <figure>
-            <img
-              src="/assets/editorial/silver-rider-arrival.jpg"
-              alt="Franklin EV silver scooter ready for a rider outside a residential entrance."
-              width={1536}
-              height={1024}
-              loading="lazy"
-              decoding="async"
-            />
-          </figure>
-        </Reveal>
-      </section>
-
       <section
         className="cinema-section cinema-split cost-section"
         id="intelligence"
@@ -1079,7 +980,7 @@ function Home() {
           </div>
           <div
             className="ride-orbit"
-            style={{ "--range-fill": `${Math.min(100, (range / 120) * 100)}%` } as CSSProperties}
+            style={{ "--range-fill": `${Math.min(100, (range / 80) * 100)}%` } as CSSProperties}
           >
             <div className="ride-orbit-ring" />
             <div className="ride-orbit-core">
@@ -1114,9 +1015,9 @@ function Home() {
             />
             <div className="ride-modes">
               {[
-                ["Eco", 110],
-                ["City", 100],
-                ["Sport", 82],
+                ["Eco", 80],
+                ["City", 70],
+                ["Sport", 55],
               ].map(([label, value]) => (
                 <button
                   key={label}
@@ -1150,9 +1051,7 @@ function Home() {
             Simple to own. <em>Easy to love.</em>
           </h2>
           <p>
-            Owning an electric scooter should feel easier, not more complicated. Franklin EV
-            simplifies ownership with convenient charging, low maintenance requirements, smart
-            diagnostics, warranty support and dependable customer service.
+            Franklin EV ownership is simple — charge at home, low maintenance, warranty support and dealer service across Hyderabad and Telangana.
           </p>
           <div className="app-feature-list">
             {[
@@ -1167,13 +1066,13 @@ function Home() {
             ))}
           </div>
           <div className="app-store-row">
-            <Link to="/contact" aria-label="Ask Franklin EV about iPhone app availability">
-              <Apple className="h-5 w-5" />
-              <span>Ask about iPhone support</span>
+            <Link to="/contact" aria-label="Enquire about the Franklin EV connected app">
+              <Smartphone className="h-5 w-5" />
+              <span>Ask about the app</span>
             </Link>
-            <Link to="/contact" aria-label="Ask Franklin EV about Android app availability">
-              <Play className="h-5 w-5" />
-              <span>Ask about Android support</span>
+            <Link to="/vehicles" aria-label="Explore Franklin EV models">
+              <ArrowRight className="h-5 w-5" />
+              <span>Explore models</span>
             </Link>
           </div>
         </Reveal>
@@ -1191,12 +1090,12 @@ function Home() {
               </div>
               <div className="phone-map-card">
                 <Navigation className="h-6 w-6" />
-                <strong>Franklin EV Power ++</strong>
+                <strong>Franklin EV POWER</strong>
                 <span>Hyderabad · 82% battery</span>
               </div>
               <div className="phone-metric-grid">
                 <span>
-                  <strong>100</strong>
+                  <strong>75</strong>
                   km estimated range
                 </span>
                 <span>
@@ -1219,11 +1118,10 @@ function Home() {
           <Reveal className="battery-section-heading">
             <span className="cinema-eyebrow">Warranty Terms</span>
             <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink">
-              Battery-specific warranty clarity
+              Battery Warranty at a Glance
             </h2>
             <p>
-              Warranty terms shown directly for graphene and lithium-ion packages —
-              so you know exactly what's covered before you ride.
+              Clear warranty terms for both battery types — so you know exactly what's covered before delivery.
             </p>
           </Reveal>
 
@@ -1251,44 +1149,100 @@ function Home() {
           <Reveal>
             <div className="warranty-terms-card">
               <div>
-                <span className="cinema-eyebrow">Warranty Document</span>
+                <span className="cinema-eyebrow">Warranty Summary</span>
                 <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink">
-                  Full warranty terms
+                  Know what's covered
                 </h2>
                 <p>
-                  The warranty terms are shown directly for graphene and lithium-ion packages,
-                  matching the client-provided artwork.
+                  Franklin EV warranty terms are confirmed at delivery. Contact your nearest dealer for the full warranty document before purchase.
                 </p>
+                <Link to="/contact" className="cinema-btn cinema-btn-primary mt-4 inline-flex">
+                  Ask about warranty <ArrowRight className="h-4 w-4" />
+                </Link>
               </div>
-              <img
-                src="/assets/client/warranty-terms.jpeg"
-                alt="Franklin EV graphene and lithium-ion battery warranty terms."
-                loading="lazy"
-                decoding="async"
-              />
+              <div className="warranty-summary-grid">
+                {[
+                  { label: "Lithium-Ion Battery", battery: "2+1 yrs", motor: "12 mo", charger: "12 mo" },
+                  { label: "Graphene Battery", battery: "12 mo", motor: "12 mo", charger: "6 mo" },
+                ].map((w) => (
+                  <div key={w.label} className="warranty-summary-item">
+                    <p className="warranty-summary-name">{w.label}</p>
+                    <div className="warranty-summary-rows">
+                      {[["Battery", w.battery], ["Motor", w.motor], ["Charger", w.charger]].map(([k, v]) => (
+                        <span key={k}><strong>{k}</strong>{v}</span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </Reveal>
         </div>
       </section>
 
       <section className="home-range-transfer bg-hero-gradient" data-animate="fade-up">
-        <div className="max-w-7xl mx-auto px-5 lg:px-8 py-16 text-center">
-          <Reveal>
+        <div className="max-w-7xl mx-auto px-5 lg:px-8 py-16">
+          <Reveal className="text-center">
             <h2 className="font-display text-5xl sm:text-6xl font-bold text-ink">
               The Franklin EV <span className="text-primary-gradient">Range</span>
             </h2>
             <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto">
-              Compare Franklin EV Power ++ and Rapid by range, speed, motor, charging, connected
-              features and warranty support before you book a test ride.
+              Two variants, two batteries, two speed configurations — choose the Franklin EV that fits your commute.
             </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <Link to="/vehicles" className="cinema-btn cinema-btn-primary">
-                View Vehicles <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link to="/contact" className="cinema-btn cinema-btn-ghost">
-                Book a Test Ride
-              </Link>
-            </div>
+          </Reveal>
+          <StaggerGroup className="mt-10 grid sm:grid-cols-2 gap-6">
+            {[
+              {
+                name: "Franklin EV POWER",
+                badge: "Sporty",
+                tagline: "Sport-aggressive design. Built to stand out.",
+                img: "/assets/products/power-black-left.png",
+                specs: ["LED projector headlamps", "4 bold colours", "Up to 80 km range", "25 or 60 km/h"],
+                accentColor: "#e67e22",
+              },
+              {
+                name: "Franklin EV Classic",
+                badge: "Everyday",
+                tagline: "Clean lines. Everyday confidence.",
+                img: "/assets/products/classic-gold-left.png",
+                specs: ["Spacious under-seat storage", "3 versatile finishes", "Up to 80 km range", "25 or 60 km/h"],
+                accentColor: "#f39c12",
+              },
+            ].map((model) => (
+              <StaggerItem key={model.name}>
+                <article className="rounded-3xl border border-border bg-surface shadow-soft overflow-hidden">
+                  <div className="relative bg-black/40 flex items-center justify-center p-6" style={{ minHeight: 220 }}>
+                    <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-xs font-bold border backdrop-blur-sm"
+                      style={{ background: `${model.accentColor}22`, color: model.accentColor, borderColor: `${model.accentColor}44` }}>
+                      {model.badge}
+                    </span>
+                    <img src={model.img} alt={model.name} className="max-h-48 w-full object-contain drop-shadow-xl" loading="lazy" />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="font-display text-xl font-bold text-ink">{model.name}</h3>
+                    <p className="text-sm text-muted-foreground mt-1">{model.tagline}</p>
+                    <ul className="mt-4 grid grid-cols-2 gap-2">
+                      {model.specs.map((s) => (
+                        <li key={s} className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                          <Check className="h-3.5 w-3.5 text-primary shrink-0" /> {s}
+                        </li>
+                      ))}
+                    </ul>
+                    <Link to="/vehicles" className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
+                      View details <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  </div>
+                </article>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+          <Reveal className="mt-8 flex flex-wrap justify-center gap-3">
+            <Link to="/vehicles" className="cinema-btn cinema-btn-primary">
+              Compare Both Models <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link to="/contact" className="cinema-btn cinema-btn-ghost">
+              Book a Test Ride
+            </Link>
           </Reveal>
         </div>
       </section>
@@ -1300,10 +1254,7 @@ function Home() {
             Experience Franklin EV <em>in person</em>.
           </h2>
           <p>
-            Visit a Franklin EV Experience Centre or dealer location to explore models, compare
-            features, take a test ride and speak with EV experts. Whether you're looking for an
-            affordable electric scooter in Hyderabad or exploring the latest advancements in
-            electric mobility, our team is ready to help.
+            Visit a Franklin EV dealer to explore POWER and Classic models, compare battery options, take a test ride and get pricing. Locations across Hyderabad, Telangana and Andhra Pradesh.
           </p>
         </Reveal>
         <div
@@ -1337,12 +1288,7 @@ function Home() {
             Proudly powering <em>Hyderabad's electric future</em>.
           </h2>
           <p>
-            As a Hyderabad electric vehicle company, Franklin EV understands the needs of local
-            riders better than anyone. From Hitech City and Financial District to Miyapur,
-            Kukatpally, Uppal, Kompally, Gachibowli and LB Nagar, Franklin EV is helping commuters
-            embrace smarter transportation. If you're searching for an electric scooter showroom in
-            Hyderabad, a trusted local EV brand or a dependable electric scooter for everyday
-            travel, Franklin EV is built for your city and your lifestyle.
+            From Hitech City to Uppal, Gachibowli to LB Nagar — Franklin EV dealers are across Hyderabad, Telangana and Andhra Pradesh. Visit a showroom, compare POWER and Classic models and book a test ride.
           </p>
         </Reveal>
         <StaggerGroup className="cinema-feature-grid">
@@ -1393,9 +1339,7 @@ function Home() {
             Ready to experience <em>smarter mobility?</em>
           </h2>
           <p>
-            Join the growing community of riders choosing cleaner, smarter and more affordable
-            transportation. Discover why Franklin EV is becoming one of the most trusted names for
-            riders searching for the best electric scooter in Hyderabad.
+            Experience the Franklin EV POWER or Classic in person. Choose your speed, your battery and your colour at a dealer near you.
           </p>
           <Link to="/contact" className="cinema-btn cinema-btn-primary">
             Book My Test Ride <ArrowRight className="h-4 w-4" />

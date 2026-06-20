@@ -9,6 +9,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, useRef, type ReactNode } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -114,7 +115,7 @@ const faqSchema = {
       name: "How far can a Franklin EV scooter travel on a single charge?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Range depends on model, riding mode, load and road conditions. Franklin EV highlights up to 120 km range for suitable model configurations.",
+        text: "Range depends on model, riding mode, load and road conditions. Franklin EV highlights up to 80 km range for the graphene battery, low-speed variant.",
       },
     },
     {
@@ -341,7 +342,17 @@ function RootComponent() {
       <ScrollProgressBar />
       <Navbar />
       <main id="main-content" className="pt-16 pb-0">
-        <Outlet />
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={location.pathname}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Outlet />
+          </motion.div>
+        </AnimatePresence>
       </main>
       <Footer />
       <FloatingDock />
