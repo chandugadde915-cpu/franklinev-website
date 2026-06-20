@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, useRouterState } from "@tanstack/react-router";
 import {
   ArrowRight,
   BatteryCharging,
@@ -144,8 +144,16 @@ export const Route = createFileRoute("/blog")({
     ],
     links: [{ rel: "canonical", href: blogUrl }],
   }),
-  component: BlogPage,
+  component: BlogLayout,
 });
+
+function BlogLayout() {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  if (pathname !== "/blog") {
+    return <Outlet />;
+  }
+  return <BlogPage />;
+}
 
 const featuredPosts = [
   {

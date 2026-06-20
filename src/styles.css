@@ -6369,7 +6369,9 @@ body {
   }
 
   .cinema-callouts {
-    display: none;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    justify-self: stretch;
+    width: 100%;
   }
 
   .cinema-frame-hud {
