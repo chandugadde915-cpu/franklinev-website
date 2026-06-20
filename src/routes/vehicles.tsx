@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   ArrowRight,
   Battery,
@@ -437,6 +437,14 @@ function VehiclesPage() {
   const [activeColorId, setActiveColorId] = useState<string>("black");
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
+  // Preload all product images so colour/angle switching never shows blank
+  useEffect(() => {
+    vehicles.forEach((v) => v.colors.forEach((c) => c.images.forEach((img) => {
+      const i = new Image();
+      i.src = img.src;
+    })));
+  }, []);
+
   const vehicle = vehicles.find((v) => v.key === activeVariant)!;
   const color = vehicle.colors.find((c) => c.id === activeColorId) ?? vehicle.colors[0];
   const battery = batteryOptions.find((b) => b.key === activeBattery)!;
@@ -551,7 +559,7 @@ function VehiclesPage() {
                     initial={{ opacity: 0, scale: 0.94, x: 8 }}
                     animate={{ opacity: 1, scale: 1, x: 0 }}
                     exit={{ opacity: 0, scale: 1.02, x: -8 }}
-                    transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
                     className="product-main-img relative z-10 max-h-[380px] w-full object-contain"
                     style={{ filter: `drop-shadow(0 24px 48px ${color.swatch}44)` }}
                     loading="eager"

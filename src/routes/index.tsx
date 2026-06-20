@@ -446,7 +446,7 @@ function HeroSection() {
       const rect = hero.getBoundingClientRect();
 
       if (rect.top >= 0) {
-        setHeroProgress(0);
+        setHeroProgress(1);
         return;
       }
 
