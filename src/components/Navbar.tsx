@@ -9,6 +9,12 @@ const links = [
     label: "Vehicles",
     title: "Browse Franklin EV electric scooter models",
   },
+  // NEW: Why Us link added here
+  {
+    to: "/why-us",
+    label: "Why Us",
+    title: "Discover why Franklin EV is the smart choice for city commuting",
+  },
   {
     to: "/hyre-ev",
     label: "Hyre EV",

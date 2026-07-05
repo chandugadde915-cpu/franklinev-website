@@ -1,10 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import {
   ArrowRight,
   Battery,
-  BatteryCharging,
   Check,
   ChevronDown,
   ChevronLeft,
@@ -16,6 +15,21 @@ import {
   Route as RouteIcon,
   ShieldCheck,
   Zap,
+  Users,
+  Home,
+  Briefcase,
+  Award,
+  Clock,
+  Sparkles,
+  DollarSign,
+  Smartphone,
+  BatteryCharging,
+  LockKeyhole,
+  TrendingUp,
+  Timer,
+  Plug,
+  Coins,
+  Beaker,
 } from "lucide-react";
 import { Reveal, WordReveal } from "@/components/Reveal";
 
@@ -24,17 +38,17 @@ export const Route = createFileRoute("/vehicles")({
     meta: [
       {
         title:
-          "Franklin EV Scooters — POWER & Classic Variants | Lithium-ion & Graphene Battery | Hyderabad",
+          "Franklin EV Scooters — POWER & RAPID Variants | Lithium-ion & Graphene Battery | Hyderabad",
       },
       {
         name: "description",
         content:
-          "Explore Franklin EV POWER and Classic electric scooter variants in Hyderabad. Compare top speed (25 km/h or 60 km/h), range (55–80 km), lithium-ion vs graphene battery options, 4 colours including Black, Blue, Mint Green and Red.",
+          "Explore Franklin EV POWER and RAPID electric scooter variants in Hyderabad. Compare top speed (25 km/h or 60 km/h), range (55–80 km), lithium-ion vs graphene battery options.",
       },
       {
         name: "keywords",
         content:
-          "Franklin EV POWER scooter, Franklin EV Classic scooter, electric scooter Hyderabad, lithium ion electric scooter, graphene battery electric scooter, low speed electric scooter 25 kmh, high speed electric scooter 60 kmh, electric scooter black blue green red, Franklin EV variants, electric scooter range 80 km Hyderabad",
+          "Franklin EV POWER scooter, Franklin EV RAPID scooter, electric scooter Hyderabad, lithium ion electric scooter, graphene battery electric scooter, electric scooter black blue green red, Franklin EV variants",
       },
       {
         name: "robots",
@@ -42,12 +56,12 @@ export const Route = createFileRoute("/vehicles")({
       },
       {
         property: "og:title",
-        content: "Franklin EV POWER & Classic — All Variants, Colours & Battery Options",
+        content: "Franklin EV POWER & RAPID — All Variants, Colours & Battery Options",
       },
       {
         property: "og:description",
         content:
-          "Compare Franklin EV POWER and Classic electric scooters. Choose your speed (25 or 60 km/h), battery (lithium-ion or graphene) and colour. Book a test ride in Hyderabad.",
+          "Compare Franklin EV POWER and RAPID electric scooters. Choose your battery (lithium-ion or graphene) and colour. Book a test ride in Hyderabad.",
       },
       {
         property: "og:url",
@@ -55,8 +69,7 @@ export const Route = createFileRoute("/vehicles")({
       },
       {
         property: "og:image",
-        content:
-          "https://franklinev-website.vercel.app/assets/products/power-black-left.png",
+        content: "https://franklinev-website.vercel.app/assets/products/power-black-left.png",
       },
       {
         name: "twitter:card",
@@ -64,7 +77,7 @@ export const Route = createFileRoute("/vehicles")({
       },
       {
         name: "twitter:title",
-        content: "Franklin EV POWER & Classic — Choose Your Variant",
+        content: "Franklin EV POWER & RAPID — Choose Your Variant",
       },
     ],
     links: [
@@ -92,7 +105,7 @@ export const Route = createFileRoute("/vehicles")({
                   name: "Franklin EV POWER",
                   brand: { "@type": "Brand", name: "Franklin EV" },
                   description:
-                    "Sporty high-performance electric scooter with aggressive design, LED projector headlamps and available in 4 colours. Choose 25 km/h or 60 km/h speed variants with lithium-ion or graphene battery.",
+                    "Sporty high-performance electric scooter with aggressive design, LED projector headlamps and available in 4 colours. Choose lithium-ion or graphene battery.",
                   image: [
                     "https://franklinev-website.vercel.app/assets/products/power-black-left.png",
                     "https://franklinev-website.vercel.app/assets/products/power-blue-left.png",
@@ -114,16 +127,17 @@ export const Route = createFileRoute("/vehicles")({
                 item: {
                   "@context": "https://schema.org",
                   "@type": "Product",
-                  name: "Franklin EV Classic",
+                  name: "Franklin EV RAPID",
                   brand: { "@type": "Brand", name: "Franklin EV" },
                   description:
-                    "Everyday urban electric scooter with clean lines, practical storage and reliable BLDC motor. Available in Black, Champagne Gold and Slate Gray with lithium-ion or graphene battery.",
+                    "Everyday urban electric scooter with clean lines, practical storage and reliable BLDC motor. Available in Flame Red, Ocean Blue, Slate Gray and Mint Green with lithium-ion or graphene battery.",
                   image: [
-                    "https://franklinev-website.vercel.app/assets/products/classic-black-left.png",
-                    "https://franklinev-website.vercel.app/assets/products/classic-gold-left.png",
-                    "https://franklinev-website.vercel.app/assets/products/classic-gray-left.png",
+                    "https://franklinev-website.vercel.app/assets/products/flame-red-left.png",
+                    "https://franklinev-website.vercel.app/assets/products/ocean-blue-left.png",
+                    "https://franklinev-website.vercel.app/assets/products/slate-gray-left.png",
+                    "https://franklinev-website.vercel.app/assets/products/mint-left.png",
                   ],
-                  color: "Midnight Black, Champagne Gold, Slate Gray",
+                  color: "Flame Red, Ocean Blue, Slate Gray, Mint Green",
                   offers: {
                     "@type": "Offer",
                     priceCurrency: "INR",
@@ -143,9 +157,8 @@ export const Route = createFileRoute("/vehicles")({
 
 /* ─── DATA ────────────────────────────────────────────────────── */
 
-type VariantKey = "power" | "classic";
+type VariantKey = "power" | "rapid";
 type BatteryKey = "lithium" | "graphene";
-type SpeedKey = "low" | "high";
 
 interface ColorOption {
   id: string;
@@ -159,21 +172,20 @@ interface BatterySpec {
   name: string;
   tagline: string;
   icon: typeof Battery;
-  specs: { label: string; value: string }[];
+  speed: string;
+  lowSpeedRange: string;
+  highSpeedRange: string;
+  chargeTime: string;
+  charger: string;
+  chargeCost: string;
+  chemistry: string;
   warrantyBattery: string;
   warrantyMotor: string;
   warrantyCharger: string;
-  badge: string;
   color: string;
-}
-
-interface SpeedVariant {
-  key: SpeedKey;
-  label: string;
-  speed: string;
-  range: string;
-  motor: string;
-  best: string;
+  image: string;
+  imageAlt: string;
+  imageBg: string;
 }
 
 interface VehicleModel {
@@ -185,76 +197,59 @@ interface VehicleModel {
   colors: ColorOption[];
   accentColor: string;
   features: string[];
-  highlights: { label: string; value: string; Icon: typeof Gauge }[];
 }
 
+// ─── UPDATED BATTERY SPECS ────────────────────────────────
 const batteryOptions: BatterySpec[] = [
   {
     key: "lithium",
     name: "Lithium-Ion Battery",
     tagline: "Trusted long-life chemistry",
     icon: Battery,
-    badge: "Best Warranty",
+    speed: "60 km/h",         // now shows 60 km/h
+    lowSpeedRange: "",        // not used – removed from UI
+    highSpeedRange: "60 km/h",
+    chargeTime: "~3 h 30 m (0–80%)", // changed to 3.5 h
+    charger: "650 W plug-and-play (15 A)",
+    chargeCost: "~₹24.50 (~3.5 units)",
+    chemistry: "Lithium-Ion cells",
     color: "text-blue-600",
-    specs: [
-      { label: "Low-speed range", value: "Up to 55 km" },
-      { label: "High-speed range", value: "Up to 60 km" },
-      { label: "Charge time", value: "~4 h 30 m (0–80%)" },
-      { label: "Charger", value: "650 W plug-and-play (15 A)" },
-      { label: "Full charge cost", value: "~₹24.50 (~3.5 units)" },
-      { label: "Chemistry", value: "Lithium-Ion cells" },
-    ],
     warrantyBattery: "2 + 1 Years",
     warrantyMotor: "12 Months",
     warrantyCharger: "12 Months",
+    image: "/assets/products/power-black-left.png",
+    imageAlt: "Franklin EV with Lithium-Ion Battery",
+    imageBg: "bg-[#e6f0fa]",
   },
   {
     key: "graphene",
     name: "Graphene Battery",
     tagline: "Higher performance, faster charge",
     icon: Zap,
-    badge: "High Performance",
+    speed: "25 km/h",         
+    lowSpeedRange: "",        
+    highSpeedRange: "25 km/h",
+    chargeTime: "~4 h 30 m (0–80%)", 
+    charger: "650 W plug-and-play (15 A)",
+    chargeCost: "~₹24.50 (~3.5 units)",
+    chemistry: "Graphene-enhanced cells",
     color: "text-orange-500",
-    specs: [
-      { label: "Low-speed range", value: "Up to 80 km" },
-      { label: "High-speed range", value: "Up to 75 km" },
-      { label: "Charge time", value: "~3 h 30 m (0–80%)" },
-      { label: "Charger", value: "650 W plug-and-play (15 A)" },
-      { label: "Full charge cost", value: "~₹24.50 (~3.5 units)" },
-      { label: "Chemistry", value: "Graphene-enhanced cells" },
-    ],
     warrantyBattery: "12 Months",
     warrantyMotor: "12 Months",
     warrantyCharger: "6 Months",
-  },
-];
-
-const speedVariants: SpeedVariant[] = [
-  {
-    key: "low",
-    label: "Low Speed — 25 km/h",
-    speed: "25 km/h",
-    range: "55 km (Li-Ion) / 80 km (Graphene)",
-    motor: "250W BLDC Hub Motor",
-    best: "Students, homemakers & city errands",
-  },
-  {
-    key: "high",
-    label: "High Speed — Up to 60 km/h",
-    speed: "Up to 60 km/h",
-    range: "60 km (Li-Ion) / 75 km (Graphene)",
-    motor: "High-speed BLDC Package",
-    best: "Office commutes & longer city routes",
+    image: "/assets/products/power-black-right.png",
+    imageAlt: "Franklin EV with Graphene Battery",
+    imageBg: "bg-[#fdf0e0]",
   },
 ];
 
 const vehicles: VehicleModel[] = [
   {
     key: "power",
-    name: "Franklin EV POWER",
+    name: "Franklin EV POWER PLUS",
     tagline: "Sport-aggressive design. Built to stand out.",
     description:
-      "The Franklin EV POWER is designed for riders who want aggressive road presence without compromising daily practicality. Its sculpted front fairing with LED projector headlamps, sharp body lines and bold POWER badging make an unmistakable statement. Available in four striking finishes — choose your speed variant and battery to match your ride style.",
+      "The Franklin EV POWER is designed for riders who want aggressive road presence without compromising daily practicality. Its sculpted front fairing with LED projector headlamps, sharp body lines and bold POWER badging make an unmistakable statement. Available in four striking finishes — choose your battery to match your ride style.",
     badge: "Sporty",
     accentColor: "#e67e22",
     features: [
@@ -265,24 +260,27 @@ const vehicles: VehicleModel[] = [
       "Anti-theft with key alerts",
       "Tubeless tyres with alloy wheels",
     ],
-    highlights: [
-      { label: "Top Speed", value: "25 or 60 km/h", Icon: Gauge },
-      { label: "Range", value: "Up to 80 km", Icon: RouteIcon },
-      { label: "Motor", value: "250W BLDC", Icon: Zap },
-      { label: "Best For", value: "Sport commuters", Icon: ShieldCheck },
-    ],
     colors: [
       {
         id: "black",
         name: "Midnight Black",
         swatch: "#1a1a1a",
         images: [
-          { src: "/assets/products/power-black-left.png", alt: "Franklin EV POWER Midnight Black – left side view", label: "Left" },
-          { src: "/assets/products/power-black-right.png", alt: "Franklin EV POWER Midnight Black – right side view", label: "Right" },
-          { src: "/assets/products/power-black-front.png", alt: "Franklin EV POWER Midnight Black – front view", label: "Front" },
-          { src: "/assets/products/power-black-rear.png", alt: "Franklin EV POWER Midnight Black – rear view", label: "Rear" },
-          { src: "/assets/products/power-black-headlight.png", alt: "Franklin EV POWER Midnight Black – LED headlamp detail", label: "Headlight" },
-          { src: "/assets/products/power-black-frontclose.png", alt: "Franklin EV POWER Midnight Black – front close-up", label: "Detail" },
+          {
+            src: "/assets/products/power-black-left.png",
+            alt: "Franklin EV POWER Midnight Black – left side view",
+            label: "Left",
+          },
+          {
+            src: "/assets/products/power-black-right.png",
+            alt: "Franklin EV POWER Midnight Black – right side view",
+            label: "Right",
+          },
+          {
+            src: "/assets/products/power-black-front.png",
+            alt: "Franklin EV POWER Midnight Black – front view",
+            label: "Front",
+          },
         ],
       },
       {
@@ -290,22 +288,48 @@ const vehicles: VehicleModel[] = [
         name: "Ocean Blue",
         swatch: "#1a5fa8",
         images: [
-          { src: "/assets/products/power-blue-left.png", alt: "Franklin EV POWER Ocean Blue – left side view", label: "Left" },
-          { src: "/assets/products/power-blue-right.png", alt: "Franklin EV POWER Ocean Blue – right side view", label: "Right" },
-          { src: "/assets/products/power-blue-left2.png", alt: "Franklin EV POWER Ocean Blue – angled left view", label: "Angle" },
-          { src: "/assets/products/power-blue-tail.png", alt: "Franklin EV POWER Ocean Blue – tail light detail", label: "Tail" },
-        ],
+          {
+            src: "/assets/products/power-blue-left.png",
+            alt: "Franklin EV POWER Ocean Blue – left side view",
+            label: "Left",
+          },
+          {
+            src: "/assets/products/power-blue-right.png",
+            alt: "Franklin EV POWER Ocean Blue – right side view",
+            label: "Right",
+          },
+          {
+            src: "/assets/products/power-blue-left2.png",
+            alt: "Franklin EV POWER Ocean Blue – angled left view",
+            label: "Angle",
+          },
+          {
+            src: "/assets/products/power-blue-tail.png",
+            alt: "Franklin EV POWER Ocean Blue – tail light detail",
+            label: "Tail",
+          },
+        ].filter(img => ["Left", "Right", "Front"].includes(img.label)),
       },
       {
         id: "green",
         name: "Mint Green",
         swatch: "#5ecfb0",
         images: [
-          { src: "/assets/products/power-green-left.png", alt: "Franklin EV POWER Mint Green – left side view", label: "Left" },
-          { src: "/assets/products/power-green-right.png", alt: "Franklin EV POWER Mint Green – right side view", label: "Right" },
-          { src: "/assets/products/power-green-front.png", alt: "Franklin EV POWER Mint Green – front view", label: "Front" },
-          { src: "/assets/products/power-green-headlight.png", alt: "Franklin EV POWER Mint Green – LED headlamp detail", label: "Headlight" },
-          { src: "/assets/products/power-green-tail.png", alt: "Franklin EV POWER Mint Green – tail light detail", label: "Tail" },
+          {
+            src: "/assets/products/power-green-left.png",
+            alt: "Franklin EV POWER Mint Green – left side view",
+            label: "Left",
+          },
+          {
+            src: "/assets/products/power-green-right.png",
+            alt: "Franklin EV POWER Mint Green – right side view",
+            label: "Right",
+          },
+          {
+            src: "/assets/products/power-green-front.png",
+            alt: "Franklin EV POWER Mint Green – front view",
+            label: "Front",
+          },
         ],
       },
       {
@@ -313,19 +337,31 @@ const vehicles: VehicleModel[] = [
         name: "Flame Red",
         swatch: "#c0392b",
         images: [
-          { src: "/assets/products/power-red-left.png", alt: "Franklin EV POWER Flame Red – left side view", label: "Left" },
-          { src: "/assets/products/power-red-right.png", alt: "Franklin EV POWER Flame Red – right side view", label: "Right" },
-          { src: "/assets/products/power-red-front.png", alt: "Franklin EV POWER Flame Red – front view", label: "Front" },
+          {
+            src: "/assets/products/power-red-left.png",
+            alt: "Franklin EV POWER Flame Red – left side view",
+            label: "Left",
+          },
+          {
+            src: "/assets/products/power-red-right.png",
+            alt: "Franklin EV POWER Flame Red – right side view",
+            label: "Right",
+          },
+          {
+            src: "/assets/products/power-red-front.png",
+            alt: "Franklin EV POWER Flame Red – front view",
+            label: "Front",
+          },
         ],
       },
     ],
   },
   {
-    key: "classic",
-    name: "Franklin EV Classic",
+    key: "rapid",
+    name: "Franklin EV RAPID",
     tagline: "Clean lines. Everyday confidence.",
     description:
-      "The Franklin EV Classic is engineered for the everyday Indian rider who values reliability, comfort and low running cost. Its clean, uncluttered design fits seamlessly into city life — whether it's the morning school run, office commute or evening errands. Available in three versatile finishes with full lithium-ion and graphene battery options.",
+      "The Franklin EV RAPID is engineered for the everyday Indian rider who values reliability, comfort and low running cost. Its clean, uncluttered design fits seamlessly into city life — whether it's the morning school run, office commute or evening errands. Available in four versatile finishes with full lithium-ion and graphene battery options.",
     badge: "Everyday",
     accentColor: "#f39c12",
     features: [
@@ -336,42 +372,83 @@ const vehicles: VehicleModel[] = [
       "Tubeless tyres for puncture safety",
       "Simple instrument cluster for daily use",
     ],
-    highlights: [
-      { label: "Top Speed", value: "25 or 60 km/h", Icon: Gauge },
-      { label: "Range", value: "Up to 80 km", Icon: RouteIcon },
-      { label: "Motor", value: "250W BLDC", Icon: Zap },
-      { label: "Best For", value: "City & family use", Icon: GraduationCap },
-    ],
     colors: [
       {
-        id: "black",
-        name: "Midnight Black",
-        swatch: "#1a1a1a",
+        id: "flame-red",
+        name: "Flame Red",
+        swatch: "#c0392b",
         images: [
-          { src: "/assets/products/classic-black-left.png", alt: "Franklin EV Classic Midnight Black – left side view", label: "Left" },
-          { src: "/assets/products/classic-black-right.png", alt: "Franklin EV Classic Midnight Black – right side view", label: "Right" },
-          { src: "/assets/products/classic-black-left2.png", alt: "Franklin EV Classic Midnight Black – angled view", label: "Angle" },
-          { src: "/assets/products/classic-black-cockpit.png", alt: "Franklin EV Classic Midnight Black – cockpit view", label: "Cockpit" },
-          { src: "/assets/products/classic-black-throttle.png", alt: "Franklin EV Classic Midnight Black – throttle controls", label: "Controls" },
+          {
+            src: "/assets/products/upred.png",
+            alt: "Franklin EV RAPID Flame Red – front view",
+            label: "Front",
+          },
+          {
+            src: "/assets/products/red.png",
+            alt: "Franklin EV RAPID Flame Red – left side view",
+            label: "Right",
+          },
+          {
+            src: "/assets/products/redright.png",
+            alt: "Franklin EV RAPID Flame Red – right side view",
+            label: "Left",
+          },
         ],
       },
       {
-        id: "gold",
-        name: "Champagne Gold",
-        swatch: "#c8a951",
+        id: "ocean-blue",
+        name: "Ocean Blue",
+        swatch: "#1a5fa8",
         images: [
-          { src: "/assets/products/classic-gold-left.png", alt: "Franklin EV Classic Champagne Gold – left side view", label: "Left" },
-          { src: "/assets/products/classic-gold-right.png", alt: "Franklin EV Classic Champagne Gold – right side view", label: "Right" },
-          { src: "/assets/products/classic-gold-tail.png", alt: "Franklin EV Classic Champagne Gold – tail light detail", label: "Tail" },
-          { src: "/assets/products/classic-gold-rearwheel.png", alt: "Franklin EV Classic Champagne Gold – hub motor & rear wheel", label: "Motor" },
+          {
+            src: "/assets/products/bluefront.png",
+            alt: "Franklin EV RAPID Ocean Blue – front view",
+            label: "Front",
+          },
+          {
+            src: "/assets/products/bluelef.png",
+            alt: "Franklin EV RAPID Ocean Blue – left side view",
+            label: "Right",
+          },
+          {
+            src: "/assets/products/bluerig.png",
+            alt: "Franklin EV RAPID Ocean Blue – right side view",
+            label: "Left",
+          },
         ],
       },
       {
-        id: "gray",
+        id: "slate-gray",
         name: "Slate Gray",
         swatch: "#6b7280",
         images: [
-          { src: "/assets/products/classic-gray-left.png", alt: "Franklin EV Classic Slate Gray – left side view", label: "Left" },
+          {
+            src: "/assets/products/frntslate.png",
+            alt: "Franklin EV RAPID Slate Gray – front view",
+            label: "Front",
+          },
+          {
+            src: "/assets/products/rigslate.png",
+            alt: "Franklin EV RAPID Slate Gray – right side view",
+            label: "Right",
+          },
+          {
+            src: "/assets/products/slateleft.png",
+            alt: "Franklin EV RAPID Slate Gray – left side view",
+            label: "Left",
+          },
+        ],
+      },
+      {
+        id: "mint-green",
+        name: "Mint Green",
+        swatch: "#5ecfb0",
+        images: [
+          {
+            src: "/assets/products/mintfront.png",
+            alt: "Franklin EV RAPID Mint Green – front view",
+            label: "Front",
+          },
         ],
       },
     ],
@@ -379,44 +456,53 @@ const vehicles: VehicleModel[] = [
 ];
 
 const comparisonRows = [
-  ["Speed variant", "Low Speed (25 km/h)", "High Speed (Up to 60 km/h)"],
-  ["Motor", "250W BLDC Hub Motor", "High-Speed BLDC Package"],
-  ["Li-Ion range", "Up to 55 km", "Up to 60 km"],
-  ["Graphene range", "Up to 80 km", "Up to 75 km"],
-  ["Charge time", "~4 h 30 m (Li-Ion)", "~3 h 30 m (Graphene)"],
+  ["Motor", "High-Speed BLDC Package", "250W BLDC Hub Motor"],
+  ["Top Speed", "60 km/h", "25 km/h"],
+  ["Range", "Up to 80 km", "Up to 55 km"],
+  ["Charge time", "~3 h 30 m (0–80%)", "~4 h 30 m (0–80%)"],
   ["Charger", "650 W plug-and-play (15 A socket)", "650 W plug-and-play (15 A socket)"],
   ["Full-charge cost", "~₹24.50 (~3.5 units)", "~₹24.50 (~3.5 units)"],
-  ["Li-Ion warranty", "Battery 2+1 yr / Motor 12 mo / Charger 12 mo", "Battery 2+1 yr / Motor 12 mo / Charger 12 mo"],
-  ["Graphene warranty", "Battery 12 mo / Motor 12 mo / Charger 6 mo", "Battery 12 mo / Motor 12 mo / Charger 6 mo"],
-  ["POWER colours", "Midnight Black, Ocean Blue, Mint Green, Flame Red", "Midnight Black, Ocean Blue, Mint Green, Flame Red"],
-  ["Classic colours", "Midnight Black, Champagne Gold, Slate Gray", "Midnight Black, Champagne Gold, Slate Gray"],
-  ["Recommended for", "Students, homemakers & city errands", "Office commutes & longer city routes"],
+  [
+    "Warranty (Battery / Motor / Charger)",
+    "2+1 yr / 12 mo / 12 mo",
+    "12 mo / 12 mo / 6 mo",
+  ],
+  [
+    "POWER colours",
+    "Midnight Black, Ocean Blue, Mint Green, Flame Red",
+    "Midnight Black, Ocean Blue, Mint Green, Flame Red",
+  ],
+  [
+    "RAPID colours",
+    "Flame Red, Ocean Blue, Slate Gray, Mint Green",
+    "Flame Red, Ocean Blue, Slate Gray, Mint Green",
+  ],
 ] as const;
 
 const faqs = [
   {
     q: "What are the two Franklin EV models?",
-    a: "Franklin EV offers two variants: the POWER — a sport-styled scooter with aggressive front fairing and LED projector headlamps — and the Classic — a clean, practical everyday scooter designed for comfortable urban commuting.",
+    a: "Franklin EV offers two variants: the POWER — a sport-styled scooter with aggressive front fairing and LED projector headlamps — and the RAPID — a clean, practical everyday scooter designed for comfortable urban commuting.",
   },
   {
     q: "What is the difference between lithium-ion and graphene battery?",
-    a: "The lithium-ion battery offers a 2+1 year warranty and a range of up to 55 km on low speed. The graphene battery charges faster (~3 h 30 m vs 4 h 30 m) and provides up to 80 km range on low speed, but carries a 12-month warranty. Both use a standard 650 W plug-and-play charger on any 15 A home socket.",
+    a: "The lithium-ion battery offers a 2+1 year warranty and a top speed of 25 km/h. The graphene battery charges faster (~3 h 30 m vs 4 h 30 m) and provides a top speed of 60 km/h with up to 80 km range. Both use a standard 650 W plug-and-play charger on any 15 A home socket.",
   },
   {
     q: "What is the top speed of Franklin EV scooters?",
-    a: "Franklin EV scooters are available in two speed configurations: Low Speed (25 km/h) — ideal for students and home use without a licence requirement in many states — and High Speed (up to 60 km/h) — suitable for office commutes and longer city routes.",
+    a: "With the lithium-ion battery, the top speed is 25 km/h — ideal for students and home use. With the graphene battery, the top speed is up to 60 km/h — suitable for office commutes and longer city routes.",
   },
   {
     q: "How far can I go on one charge?",
-    a: "With the lithium-ion battery: up to 55 km (low speed) or 60 km (high speed). With the graphene battery: up to 80 km (low speed) or 75 km (high speed). Actual range depends on rider weight, road conditions and terrain.",
+    a: "With the lithium-ion battery: up to 55 km. With the graphene battery: up to 80 km. Actual range depends on rider weight, road conditions and terrain.",
   },
   {
     q: "What colours is the POWER variant available in?",
     a: "The Franklin EV POWER comes in four colours: Midnight Black (with orange accents), Ocean Blue, Mint Green and Flame Red — all with dual-tone orange contrast detailing.",
   },
   {
-    q: "What colours is the Classic variant available in?",
-    a: "The Franklin EV Classic is available in Midnight Black, Champagne Gold and Slate Gray.",
+    q: "What colours is the RAPID variant available in?",
+    a: "The Franklin EV RAPID is available in Flame Red, Ocean Blue, Slate Gray and Mint Green.",
   },
   {
     q: "How much does a full charge cost?",
@@ -433,46 +519,91 @@ const faqs = [
 function VehiclesPage() {
   const [activeVariant, setActiveVariant] = useState<VariantKey>("power");
   const [activeBattery, setActiveBattery] = useState<BatteryKey>("lithium");
-  const [activeSpeed, setActiveSpeed] = useState<SpeedKey>("low");
   const [activeColorId, setActiveColorId] = useState<string>("black");
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
-  // Preload all product images so colour/angle switching never shows blank
-  useEffect(() => {
-    vehicles.forEach((v) => v.colors.forEach((c) => c.images.forEach((img) => {
-      const i = new Image();
-      i.src = img.src;
-    })));
-  }, []);
-
   const vehicle = vehicles.find((v) => v.key === activeVariant)!;
   const color = vehicle.colors.find((c) => c.id === activeColorId) ?? vehicle.colors[0];
+  const images = color.images;
   const battery = batteryOptions.find((b) => b.key === activeBattery)!;
-  const speed = speedVariants.find((s) => s.key === activeSpeed)!;
-  const currentImage = color.images[activeImageIndex] ?? color.images[0];
+  const currentImage = images[activeImageIndex] ?? images[0];
 
+  // ── Auto‑play slideshow ──
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const slideInterval = 2000; // 2 seconds
+
+  const startTimer = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    if (images.length <= 1) {
+      timerRef.current = null;
+      return;
+    }
+    timerRef.current = setInterval(() => {
+      setActiveImageIndex((prev) => (prev + 1) % images.length);
+    }, slideInterval);
+  }, [images.length]);
+
+  const resetTimer = useCallback(() => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
+    }
+    startTimer();
+  }, [startTimer]);
+
+  const pauseTimer = useCallback(() => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
+    }
+  }, []);
+
+  // Start timer on mount and when images change
+  useEffect(() => {
+    startTimer();
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [startTimer]);
+
+  // ── Handlers ──
   const handleVariantChange = (key: VariantKey) => {
     setActiveVariant(key);
-    setActiveColorId("black");
+    const newVehicle = vehicles.find((v) => v.key === key)!;
+    const firstColor = newVehicle.colors[0];
+    setActiveColorId(firstColor.id);
     setActiveImageIndex(0);
+    resetTimer();
   };
 
   const handleColorChange = (id: string) => {
     const newColor = vehicle.colors.find((c) => c.id === id);
     if (!newColor) return;
-    // Preserve same angle label across color switches (Apple-style: same view, new color)
-    const currentLabel = color.images[activeImageIndex]?.label;
+    const currentLabel = images[activeImageIndex]?.label;
+    const newImages = newColor.images;
     const sameAngleIdx = currentLabel
-      ? newColor.images.findIndex((img) => img.label === currentLabel)
+      ? newImages.findIndex((img) => img.label === currentLabel)
       : -1;
     setActiveColorId(id);
     setActiveImageIndex(sameAngleIdx >= 0 ? sameAngleIdx : 0);
+    resetTimer();
   };
 
-  const prevImage = () =>
-    setActiveImageIndex((i) => (i - 1 + color.images.length) % color.images.length);
-  const nextImage = () =>
-    setActiveImageIndex((i) => (i + 1) % color.images.length);
+  const prevImage = () => {
+    setActiveImageIndex((i) => (i - 1 + images.length) % images.length);
+    resetTimer();
+  };
+
+  const nextImage = () => {
+    setActiveImageIndex((i) => (i + 1) % images.length);
+    resetTimer();
+  };
+
+  // Split FAQ into two columns (4 left, 4 right)
+  const leftFaqs = faqs.slice(0, 4);
+  const rightFaqs = faqs.slice(4, 8);
+
+  const premiumGradient = "linear-gradient(90deg, #18BFEA 0%, #24CFA0 50%, #52E636 100%)";
 
   return (
     <>
@@ -491,14 +622,14 @@ function VehiclesPage() {
         <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-ink leading-tight">
           <WordReveal text="Two Variants. Two Batteries." delay={0.15} />
           <br />
-          <span className="text-primary">
+          <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
             <WordReveal text="One Smart Choice." delay={0.45} />
           </span>
         </h1>
         <Reveal delay={0.5}>
           <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto">
-            Choose the Franklin EV POWER for sporty performance or the Classic for everyday confidence.
-            Both available with lithium-ion or graphene battery at 25 km/h or 60 km/h.
+            Choose the Franklin EV POWER for sporty performance or the RAPID for everyday
+            confidence. Both available with lithium-ion or graphene battery.
           </p>
         </Reveal>
 
@@ -511,9 +642,17 @@ function VehiclesPage() {
               onClick={() => handleVariantChange(v.key)}
               className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all ${
                 activeVariant === v.key
-                  ? "bg-primary text-primary-foreground shadow-soft"
+                  ? "text-white shadow-md"
                   : "text-muted-foreground hover:text-ink"
               }`}
+              style={
+                activeVariant === v.key
+                  ? {
+                      background: premiumGradient,
+                      boxShadow: "0 4px 12px rgba(36, 207, 160, 0.35)",
+                    }
+                  : {}
+              }
             >
               {v.name}
             </button>
@@ -521,8 +660,8 @@ function VehiclesPage() {
         </div>
       </section>
 
-      {/* ── VEHICLE SHOWCASE ── */}
-      <section className="max-w-7xl mx-auto px-5 lg:px-8 py-8">
+      {/* ── VEHICLE SHOWCASE – with larger image ── */}
+      <section className="max-w-6xl mx-auto px-5 lg:px-8 py-6">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeVariant}
@@ -530,415 +669,316 @@ function VehiclesPage() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.35 }}
-            className="grid lg:grid-cols-2 gap-12 items-start"
+            className="flex flex-col items-center"
           >
-            {/* Gallery */}
-            <div className="space-y-4">
-              {/* Main image — Apple ambient glow + Harley platform line */}
-              <div className="product-showcase-wrap relative rounded-3xl border border-border overflow-hidden aspect-[4/3] flex items-center justify-center"
-                style={{ background: "var(--ev-void, #050a0f)" }}
-              >
-                {/* Ambient glow blob — color changes with swatch */}
-                <div
-                  className="product-glow-blob"
-                  style={{ background: color.swatch }}
+            {/* Main image container – increased max width */}
+            <div
+              className="relative w-full max-w-4xl rounded-3xl border border-border overflow-hidden aspect-[4/3] flex items-center justify-center"
+              style={{
+                background: activeVariant === 'rapid' 
+                  ? 'transparent' 
+                  : `radial-gradient(circle at 30% 40%, ${color.swatch}44, #0a0a0a 90%)`,
+              }}
+              onMouseEnter={pauseTimer}
+              onMouseLeave={resetTimer}
+            >
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={`${activeVariant}-${activeColorId}-${activeImageIndex}`}
+                  src={currentImage.src}
+                  alt={currentImage.alt}
+                  initial={{ opacity: 0, scale: 0.94 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 1.02 }}
+                  transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative z-10 max-h-[600px] w-full object-contain p-10 drop-shadow-2xl"
+                  loading="eager"
+                  decoding="async"
                 />
-                {/* Platform / floor line — Harley-Davidson style */}
-                <div
-                  className="product-platform-line"
-                  style={{
-                    background: `linear-gradient(90deg, transparent, ${color.swatch}99, transparent)`,
-                    boxShadow: `0 0 24px ${color.swatch}66`,
-                  }}
-                />
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={`${activeVariant}-${activeColorId}-${activeImageIndex}`}
-                    src={currentImage.src}
-                    alt={currentImage.alt}
-                    initial={{ opacity: 0, scale: 0.94, x: 8 }}
-                    animate={{ opacity: 1, scale: 1, x: 0 }}
-                    exit={{ opacity: 0, scale: 1.02, x: -8 }}
-                    transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-                    className="product-main-img relative z-10 max-h-[380px] w-full object-contain"
-                    style={{ filter: `drop-shadow(0 24px 48px ${color.swatch}44)` }}
-                    loading="eager"
-                    decoding="async"
-                  />
-                </AnimatePresence>
-                {color.images.length > 1 && (
-                  <>
-                    <button
-                      type="button"
-                      onClick={prevImage}
-                      aria-label="Previous image"
-                      className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/60 border border-white/10 flex items-center justify-center backdrop-blur-sm hover:bg-black/80 transition"
-                    >
-                      <ChevronLeft className="w-4 h-4 text-white" />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={nextImage}
-                      aria-label="Next image"
-                      className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/60 border border-white/10 flex items-center justify-center backdrop-blur-sm hover:bg-black/80 transition"
-                    >
-                      <ChevronRight className="w-4 h-4 text-white" />
-                    </button>
-                  </>
-                )}
-                <div className="absolute bottom-3 left-3 z-20 px-2.5 py-1 rounded-full bg-black/60 text-white text-xs font-semibold backdrop-blur-sm border border-white/10">
-                  {currentImage.label}
-                </div>
-                <div className="absolute top-3 right-3 z-20 px-2.5 py-1 rounded-full text-xs font-bold border backdrop-blur-sm"
-                  style={{ background: `${vehicle.accentColor}22`, color: vehicle.accentColor, borderColor: `${vehicle.accentColor}44` }}
-                >
-                  {vehicle.badge}
-                </div>
-              </div>
-
-              {/* Thumbnail strip — Samsung angle selector style */}
-              {color.images.length > 1 && (
-                <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
-                  {color.images.map((img, idx) => (
-                    <motion.button
-                      key={idx}
-                      type="button"
-                      onClick={() => setActiveImageIndex(idx)}
-                      aria-label={`View ${img.label}`}
-                      whileHover={{ scale: 1.06 }}
-                      whileTap={{ scale: 0.95 }}
-                      className={`thumb-btn flex-shrink-0 w-20 h-16 rounded-xl overflow-hidden border-2 transition-colors duration-200 ${
-                        idx === activeImageIndex
-                          ? "border-primary"
-                          : "border-border/40 opacity-55 hover:opacity-90"
-                      }`}
-                      style={{ background: "var(--ev-void, #050a0f)" }}
-                    >
-                      <img
-                        src={img.src}
-                        alt={img.alt}
-                        className="w-full h-full object-contain p-1"
-                        loading="lazy"
-                      />
-                    </motion.button>
-                  ))}
-                </div>
+              </AnimatePresence>
+              {images.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    onClick={prevImage}
+                    aria-label="Previous image"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm border border-border/60 flex items-center justify-center hover:bg-white transition"
+                  >
+                    <ChevronLeft className="w-4 h-4 text-ink" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={nextImage}
+                    aria-label="Next image"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm border border-border/60 flex items-center justify-center hover:bg-white transition"
+                  >
+                    <ChevronRight className="w-4 h-4 text-ink" />
+                  </button>
+                </>
               )}
-
-              {/* Colour selector — Apple-style */}
-              <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <p className="text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground">
-                    Colour
-                  </p>
-                  <AnimatePresence mode="wait">
-                    <motion.span
-                      key={color.name}
-                      className="text-xs font-bold text-ink"
-                      initial={{ opacity: 0, x: -6 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: 6 }}
-                      transition={{ duration: 0.22 }}
-                    >
-                      — {color.name}
-                    </motion.span>
-                  </AnimatePresence>
-                </div>
-                <div className="flex flex-wrap gap-4">
-                  {vehicle.colors.map((c) => (
-                    <button
-                      key={c.id}
-                      type="button"
-                      onClick={() => handleColorChange(c.id)}
-                      aria-label={`Select ${c.name}`}
-                      title={c.name}
-                      data-color-name={c.name}
-                      className="apple-swatch-btn group"
-                    >
-                      <span
-                        className="apple-swatch-inner"
-                        style={{
-                          backgroundColor: c.swatch,
-                          boxShadow: c.id === activeColorId
-                            ? `0 0 0 3px var(--ev-void, #050a0f), 0 0 0 5px ${c.swatch}, 0 0 20px ${c.swatch}66`
-                            : `0 0 0 1.5px rgba(255,255,255,0.15)`,
-                          transform: c.id === activeColorId ? "scale(1.18)" : "scale(1)",
-                        }}
-                      />
-                    </button>
-                  ))}
-                </div>
+              <div className="absolute bottom-3 left-3 z-20 px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm border border-border/60 text-xs font-semibold text-ink shadow-sm">
+                {currentImage.label}
+              </div>
+              <div
+                className="absolute top-3 right-3 z-20 px-2.5 py-1 rounded-full text-xs font-bold border backdrop-blur-sm"
+                style={{
+                  background: `${vehicle.accentColor}22`,
+                  color: vehicle.accentColor,
+                  borderColor: `${vehicle.accentColor}44`,
+                }}
+              >
+                {vehicle.badge}
               </div>
             </div>
 
-            {/* Specs panel */}
-            <div className="space-y-6">
-              <div>
-                <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
-                  {vehicle.badge} Variant
-                </span>
-                <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink mt-1">
-                  {vehicle.name}
-                </h2>
-                <p className="text-xl text-muted-foreground mt-1">{vehicle.tagline}</p>
-                <p className="mt-4 text-muted-foreground leading-relaxed">{vehicle.description}</p>
-                <div className="vehicles-price-callout mt-4">
-                  Starting from ₹{activeSpeed === "low" ? "59,999" : "74,999"} (ex-showroom)
-                </div>
-              </div>
-
-              {/* Speed selector */}
-              <div>
-                <p className="text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground mb-3">
-                  Speed Variant
-                </p>
-                <div className="grid grid-cols-2 gap-3">
-                  {speedVariants.map((sv) => (
-                    <button
-                      key={sv.key}
-                      type="button"
-                      onClick={() => setActiveSpeed(sv.key)}
-                      className={`rounded-2xl border-2 p-4 text-left transition-all ${
-                        activeSpeed === sv.key
-                          ? "border-primary bg-primary/5"
-                          : "border-border bg-surface hover:border-primary/40"
-                      }`}
-                    >
-                      <div className="flex items-center gap-2 mb-1">
-                        <Gauge className="w-4 h-4 text-primary" />
-                        <span className="text-xs font-bold uppercase tracking-wide text-primary">
-                          {sv.key === "low" ? "Low Speed" : "High Speed"}
-                        </span>
-                      </div>
-                      <p className="font-display text-2xl font-bold text-ink">{sv.speed}</p>
-                      <p className="text-xs text-muted-foreground mt-1">{sv.best}</p>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Battery selector */}
-              <div>
-                <p className="text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground mb-3">
-                  Battery Type
-                </p>
-                <div className="grid grid-cols-2 gap-3">
-                  {batteryOptions.map((b) => {
-                    const Icon = b.icon;
-                    return (
-                      <button
-                        key={b.key}
-                        type="button"
-                        onClick={() => setActiveBattery(b.key)}
-                        className={`rounded-2xl border-2 p-4 text-left transition-all ${
-                          activeBattery === b.key
-                            ? "border-primary bg-primary/5"
-                            : "border-border bg-surface hover:border-primary/40"
-                        }`}
-                      >
-                        <div className="flex items-center gap-2 mb-1">
-                          <Icon className={`w-4 h-4 ${b.color}`} />
-                          <span className={`text-xs font-bold uppercase tracking-wide ${b.color}`}>
-                            {b.badge}
-                          </span>
-                        </div>
-                        <p className="font-semibold text-ink text-sm">{b.name}</p>
-                        <p className="text-xs text-muted-foreground mt-1">{b.tagline}</p>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Live stats */}
-              <div className="rounded-2xl border border-border bg-surface p-5 space-y-3 shadow-soft">
-                <p className="text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground">
-                  {speed.label} · {battery.name}
-                </p>
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="rounded-xl bg-background p-3">
-                    <p className="text-xs text-muted-foreground">Top Speed</p>
-                    <p className="font-display text-2xl font-bold text-ink">{speed.speed}</p>
-                  </div>
-                  <div className="rounded-xl bg-background p-3">
-                    <p className="text-xs text-muted-foreground">Range</p>
-                    <p className="font-display text-xl font-bold text-ink">
-                      {activeBattery === "lithium"
-                        ? activeSpeed === "low" ? "55 km" : "60 km"
-                        : activeSpeed === "low" ? "80 km" : "75 km"}
-                    </p>
-                  </div>
-                  <div className="rounded-xl bg-background p-3">
-                    <p className="text-xs text-muted-foreground">Motor</p>
-                    <p className="font-semibold text-ink text-sm">{speed.motor}</p>
-                  </div>
-                  <div className="rounded-xl bg-background p-3">
-                    <p className="text-xs text-muted-foreground">Charge Time</p>
-                    <p className="font-semibold text-ink text-sm">{battery.specs[2].value}</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Features */}
-              <ul className="grid sm:grid-cols-2 gap-2">
-                {vehicle.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-sm text-ink">
-                    <Check className="w-4 h-4 mt-0.5 text-primary shrink-0" />
-                    <span>{f}</span>
-                  </li>
+            {/* Thumbnails */}
+            {images.length > 1 && (
+              <div className="mt-4 flex flex-wrap justify-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+                {images.map((img, idx) => (
+                  <motion.button
+                    key={idx}
+                    type="button"
+                    onClick={() => {
+                      setActiveImageIndex(idx);
+                      resetTimer();
+                    }}
+                    aria-label={`View ${img.label}`}
+                    whileHover={{ scale: 1.06 }}
+                    whileTap={{ scale: 0.95 }}
+                    className={`flex-shrink-0 w-20 h-16 rounded-xl overflow-hidden border-2 transition-colors duration-200 ${
+                      idx === activeImageIndex
+                        ? "border-primary"
+                        : "border-border/40 opacity-55 hover:opacity-90"
+                    }`}
+                    style={{ background: "#f8fafc" }}
+                  >
+                    <img
+                      src={img.src}
+                      alt={img.alt}
+                      className="w-full h-full object-contain p-1"
+                      loading="lazy"
+                    />
+                  </motion.button>
                 ))}
-              </ul>
+              </div>
+            )}
 
-              {/* CTAs */}
-              <div className="flex flex-wrap gap-3">
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-primary-gradient text-primary-foreground font-semibold shadow-soft hover:shadow-lift transition-all"
-                >
-                  Book a Test Ride <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link
-                  to="/contact"
-                  className="cinema-btn cinema-btn-quote inline-flex items-center gap-2 px-5 py-3 rounded-full"
-                >
-                  Get On-Road Price
-                </Link>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-border bg-surface text-ink font-semibold hover:border-primary hover:text-primary transition-colors"
-                >
-                  <Download className="w-4 h-4" /> Request Brochure
-                </Link>
+            {/* Color selector */}
+            <div className="mt-6 flex flex-col items-center">
+              <div className="flex items-center gap-2 mb-3">
+                <p className="text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground">
+                  Colour
+                </p>
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={color.name}
+                    className="text-xs font-bold text-ink"
+                    initial={{ opacity: 0, x: -6 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 6 }}
+                    transition={{ duration: 0.22 }}
+                  >
+                    — {color.name}
+                  </motion.span>
+                </AnimatePresence>
+              </div>
+              <div className="flex flex-wrap gap-4 justify-center">
+                {vehicle.colors.map((c) => (
+                  <button
+                    key={c.id}
+                    type="button"
+                    onClick={() => handleColorChange(c.id)}
+                    aria-label={`Select ${c.name}`}
+                    title={c.name}
+                    className="group relative"
+                  >
+                    <span
+                      className={`block w-12 h-12 rounded-full transition-all duration-300 ${
+                        c.id === activeColorId
+                          ? "ring-2 ring-primary ring-offset-2 scale-110 shadow-lg"
+                          : "ring-1 ring-border/30 hover:scale-105"
+                      }`}
+                      style={{ backgroundColor: c.swatch }}
+                    />
+                  </button>
+                ))}
               </div>
             </div>
           </motion.div>
         </AnimatePresence>
       </section>
 
-      {/* ── BATTERY DEEP-DIVE ── */}
-      <section className="max-w-7xl mx-auto px-5 lg:px-8 py-16">
-        <Reveal>
-          <div className="text-center mb-10">
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">Battery Options</span>
-            <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink mt-2">
-              Lithium-Ion vs Graphene
+      {/* ── CRAFTED FOR EVERY RIDE ── */}
+      <section className="w-full py-24 px-5 lg:px-8 relative overflow-hidden">
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(135deg, #020617 0%, #0B2545 100%)',
+          }}
+        />
+        <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-cyan-500/10 blur-3xl rounded-full pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-emerald-500/10 blur-3xl rounded-full pointer-events-none" />
+
+        <div className="relative z-10 max-w-7xl mx-auto">
+          <Reveal className="text-center mb-14">
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-cyan-400">
+              Crafted for Every Ride
+            </span>
+            <h2 className="font-display heading-section font-bold text-white mt-3 leading-tight">
+              Crafted for <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Every Ride</span>
             </h2>
-            <p className="mt-3 text-muted-foreground max-w-xl mx-auto">
-              Both variants support two battery chemistries. Choose based on your priority — longer warranty or faster charge and higher range.
+            <p className="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">
+              Every detail is designed to enhance comfort, control, and confidence on the road.
             </p>
+          </Reveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 lg:gap-12 items-stretch">
+            <div className="md:col-span-2 flex items-center justify-center relative min-h-[400px]">
+              <motion.div
+                className="relative w-full max-w-2xl"
+                animate={{ y: [0, -12, 0] }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <div className="absolute inset-0 bg-teal-500/20 blur-3xl rounded-full scale-110 -z-10" />
+                <div className="absolute inset-0 bg-emerald-500/10 blur-3xl rounded-full scale-125 -z-20" />
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-8 bg-black/30 blur-xl rounded-full -z-5" />
+                <img
+                  src="/assets/editorial/franklin5.webp"
+                  alt="Franklin EV – Hero"
+                  className="w-full h-auto object-contain drop-shadow-2xl relative z-10"
+                  style={{ filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.6))' }}
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect width="400" height="300" fill="%231e293b"/%3E%3Ctext x="200" y="150" font-family="sans-serif" font-size="18" fill="%2394a3b8" text-anchor="middle" dominant-baseline="middle"%3EImage%20not%20found%3C/text%3E%3C/svg%3E';
+                  }}
+                />
+              </motion.div>
+            </div>
+            <div className="md:col-span-3 flex items-center justify-center relative min-h-[400px]">
+              <motion.div
+                className="relative w-full h-full flex items-center justify-center overflow-hidden"
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.4 }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/5 to-emerald-500/5 blur-2xl" />
+                <img
+                  src="/assets/editorial/model.png"
+                  alt="Franklin EV Model"
+                  className="w-full h-full object-cover scale-105 hover:scale-110 transition-transform duration-500 drop-shadow-2xl"
+                  style={{ filter: 'drop-shadow(0 10px 30px rgba(0,0,0,0.3))' }}
+                  loading="lazy"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect width="400" height="300" fill="%231e293b"/%3E%3Ctext x="200" y="150" font-family="sans-serif" font-size="18" fill="%2394a3b8" text-anchor="middle" dominant-baseline="middle"%3EModel%20not%20found%3C/text%3E%3C/svg%3E';
+                  }}
+                />
+              </motion.div>
+            </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── BATTERY COMPARISON ── */}
+      <section className="max-w-7xl mx-auto px-5 lg:px-8 py-20">
+        <Reveal className="text-center mb-14">
+          <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+            Battery Technology
+          </span>
+          <h2 className="font-display heading-section font-bold text-ink mt-3">
+            Choose Your <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Power</span>
+          </h2>
+          <p className="mt-3 text-muted-foreground max-w-xl mx-auto">
+            Two battery chemistries, one intelligent choice. Pick the variant that matches your riding style.
+          </p>
         </Reveal>
-        <div className="grid md:grid-cols-2 gap-6">
-          {batteryOptions.map((b) => {
+
+        <div className="grid md:grid-cols-2 gap-8">
+          {batteryOptions.map((b, index) => {
             const Icon = b.icon;
+            const isActive = activeBattery === b.key;
+
+            // ─── Only high-speed range, removed low-speed ───
+            const specItems = [
+              { label: "High-speed range", value: b.highSpeedRange, icon: TrendingUp },
+              { label: "Charge time", value: b.chargeTime, icon: Timer },
+              { label: "Charger", value: b.charger, icon: Plug },
+              { label: "Full charge cost", value: b.chargeCost, icon: Coins },
+              { label: "Chemistry", value: b.chemistry, icon: Beaker },
+            ];
+
+            const warrantyItems = [
+              { label: "Battery", value: b.warrantyBattery },
+              { label: "Motor", value: b.warrantyMotor },
+              { label: "Charger", value: b.warrantyCharger },
+            ];
+
             return (
-              <Reveal key={b.key}>
-                <article className={`rounded-3xl border-2 p-7 space-y-5 shadow-soft bg-surface ${activeBattery === b.key ? "border-primary" : "border-border"}`}>
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <span className={`text-xs font-bold uppercase tracking-wide ${b.color}`}>{b.badge}</span>
-                      <h3 className="font-display text-2xl font-bold text-ink mt-1">{b.name}</h3>
-                      <p className="text-muted-foreground text-sm mt-1">{b.tagline}</p>
-                    </div>
-                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${b.key === "lithium" ? "bg-blue-50" : "bg-orange-50"}`}>
-                      <Icon className={`w-6 h-6 ${b.color}`} />
-                    </div>
+              <Reveal key={b.key} delay={index * 0.1}>
+                <motion.div
+                  className={`relative bg-white/70 backdrop-blur-xl border ${
+                    isActive ? "border-primary/40" : "border-white/80"
+                  } rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-400 hover:-translate-y-2 cursor-pointer p-8 lg:p-10 overflow-hidden`}
+                  onClick={() => setActiveBattery(b.key)}
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className="flex items-center justify-between mb-5">
+                    <h3 className="font-display text-2xl lg:text-3xl font-bold text-ink">
+                      {b.name}
+                    </h3>
+                    <Icon className={`w-6 h-6 ${b.color}`} />
                   </div>
-                  <div className="space-y-2">
-                    {b.specs.map((s) => (
-                      <div key={s.label} className="flex items-center justify-between py-2 border-b border-border last:border-0">
-                        <span className="text-sm text-muted-foreground">{s.label}</span>
-                        <span className="text-sm font-semibold text-ink">{s.value}</span>
+
+                  <div className="space-y-0.5">
+                    {specItems.map((item) => (
+                      <div
+                        key={item.label}
+                        className="flex items-center justify-between py-2.5 border-b border-border/30 last:border-0"
+                      >
+                        <div className="flex items-center gap-2.5">
+                          <item.icon className="w-4 h-4 text-muted-foreground" />
+                          <span className="text-[15px] text-muted-foreground">{item.label}</span>
+                        </div>
+                        <span className="text-[15px] font-semibold text-ink">{item.value}</span>
                       </div>
                     ))}
                   </div>
-                  <div className="rounded-2xl bg-background p-4 space-y-1.5">
-                    <p className="text-xs font-bold uppercase tracking-wide text-muted-foreground">Warranty</p>
-                    <div className="grid grid-cols-3 gap-2 mt-2">
-                      {[
-                        { label: "Battery", val: b.warrantyBattery },
-                        { label: "Motor", val: b.warrantyMotor },
-                        { label: "Charger", val: b.warrantyCharger },
-                      ].map((w) => (
-                        <div key={w.label} className="text-center rounded-xl bg-surface border border-border p-2">
-                          <p className="text-[10px] text-muted-foreground">{w.label}</p>
-                          <p className="text-xs font-bold text-ink mt-0.5">{w.val}</p>
+
+                  <div className="mt-6 pt-4 border-t border-border/40">
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground mb-2.5">
+                      WARRANTY
+                    </p>
+                    <div className="grid grid-cols-3 gap-2.5">
+                      {warrantyItems.map((item) => (
+                        <div
+                          key={item.label}
+                          className="bg-white/60 backdrop-blur-sm border border-border/30 rounded-xl p-2.5 text-center shadow-sm"
+                        >
+                          <p className="text-[10px] text-muted-foreground uppercase tracking-wide">
+                            {item.label}
+                          </p>
+                          <p className="text-xs font-bold text-ink mt-0.5">{item.value}</p>
                         </div>
                       ))}
                     </div>
                   </div>
-                </article>
+                </motion.div>
               </Reveal>
             );
           })}
         </div>
       </section>
 
-      {/* ── SPEED VARIANTS ── */}
-      <section className="max-w-7xl mx-auto px-5 lg:px-8 py-8">
-        <Reveal>
-          <div className="text-center mb-10">
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">Speed Variants</span>
-            <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink mt-2">
-              25 km/h or 60 km/h
-            </h2>
-            <p className="mt-3 text-muted-foreground max-w-xl mx-auto">
-              Both models — POWER and Classic — are available in low-speed and high-speed configurations to match your licence, usage and city regulations.
-            </p>
-          </div>
-        </Reveal>
-        <div className="grid md:grid-cols-2 gap-6">
-          {speedVariants.map((sv) => (
-            <Reveal key={sv.key}>
-              <article className="rounded-3xl border border-border bg-surface p-7 shadow-soft space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center">
-                    <Gauge className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <span className="text-xs font-bold uppercase tracking-wide text-primary">
-                      {sv.key === "low" ? "Low Speed" : "High Speed"}
-                    </span>
-                    <h3 className="font-display text-2xl font-bold text-ink">{sv.speed}</h3>
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="rounded-xl bg-background p-3">
-                    <p className="text-xs text-muted-foreground">Li-Ion Range</p>
-                    <p className="font-bold text-ink text-lg">
-                      {sv.key === "low" ? "55 km" : "60 km"}
-                    </p>
-                  </div>
-                  <div className="rounded-xl bg-background p-3">
-                    <p className="text-xs text-muted-foreground">Graphene Range</p>
-                    <p className="font-bold text-ink text-lg">
-                      {sv.key === "low" ? "80 km" : "75 km"}
-                    </p>
-                  </div>
-                  <div className="rounded-xl bg-background p-3 col-span-2">
-                    <p className="text-xs text-muted-foreground">Motor</p>
-                    <p className="font-semibold text-ink">{sv.motor}</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Leaf className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                  <p className="text-sm text-muted-foreground">
-                    <strong className="text-ink">Best for:</strong> {sv.best}
-                  </p>
-                </div>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-
       {/* ── SPEC COMPARISON TABLE ── */}
       <section className="max-w-7xl mx-auto px-5 lg:px-8 py-8">
         <Reveal>
           <div className="text-center mb-8">
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">Specs</span>
-            <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink mt-2">Compare Variants</h2>
+            <h2 className="font-display heading-section font-bold text-ink mt-2">
+              Compare Variants
+            </h2>
           </div>
           <div className="hidden overflow-x-auto rounded-3xl border border-border bg-surface shadow-soft lg:block">
             <table className="w-full min-w-[700px] text-sm">
@@ -946,10 +986,14 @@ function VehiclesPage() {
                 <tr className="bg-background border-b border-border">
                   <th className="text-left p-4 font-semibold text-ink w-48">Specification</th>
                   <th className="text-left p-4 font-semibold text-primary">
-                    <span className="flex items-center gap-2"><Gauge className="w-4 h-4" /> Low Speed · 25 km/h</span>
+                    <span className="flex items-center gap-2">
+                      <Battery className="w-4 h-4" /> Lithium-Ion
+                    </span>
                   </th>
                   <th className="text-left p-4 font-semibold text-primary">
-                    <span className="flex items-center gap-2"><Zap className="w-4 h-4" /> High Speed · 60 km/h</span>
+                    <span className="flex items-center gap-2">
+                      <Zap className="w-4 h-4" /> Graphene
+                    </span>
                   </th>
                 </tr>
               </thead>
@@ -964,15 +1008,24 @@ function VehiclesPage() {
               </tbody>
             </table>
           </div>
-          {/* Mobile cards */}
           <div className="space-y-4 lg:hidden">
             {comparisonRows.map(([spec, low, high]) => (
-              <article key={spec} className="rounded-2xl border border-border bg-surface p-4 shadow-soft">
+              <article
+                key={spec}
+                className="rounded-2xl border border-border bg-surface p-4 shadow-soft"
+              >
                 <h3 className="font-semibold text-ink mb-3">{spec}</h3>
                 <div className="grid grid-cols-2 gap-2">
-                  {([["Low Speed", low], ["High Speed", high]] as const).map(([label, val]) => (
+                  {(
+                    [
+                      ["Lithium-Ion", low],
+                      ["Graphene", high],
+                    ] as const
+                  ).map(([label, val]) => (
                     <div key={label} className="rounded-xl bg-background p-3">
-                      <span className="text-xs font-bold uppercase tracking-wide text-primary">{label}</span>
+                      <span className="text-xs font-bold uppercase tracking-wide text-primary">
+                        {label}
+                      </span>
                       <p className="mt-1 text-sm text-muted-foreground">{val}</p>
                     </div>
                   ))}
@@ -984,28 +1037,41 @@ function VehiclesPage() {
       </section>
 
       {/* ── FAQ ── */}
-      <section className="max-w-3xl mx-auto px-5 lg:px-8 py-16">
+      <section className="max-w-6xl mx-auto px-5 lg:px-8 py-16">
         <Reveal>
-          <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink text-center mb-10">
+          <h2 className="font-display heading-section font-bold text-ink text-center mb-10">
             Frequently Asked Questions
           </h2>
         </Reveal>
-        <div className="space-y-3">
-          {faqs.map((f, i) => (
-            <FaqItem key={i} q={f.q} a={f.a} />
-          ))}
+        <div className="grid md:grid-cols-2 gap-4 md:gap-6">
+          <div className="space-y-3">
+            {leftFaqs.map((f, i) => (
+              <FaqItem key={i} q={f.q} a={f.a} />
+            ))}
+          </div>
+          <div className="space-y-3">
+            {rightFaqs.map((f, i) => (
+              <FaqItem key={i + 4} q={f.q} a={f.a} />
+            ))}
+          </div>
         </div>
+
         <Reveal>
           <div className="mt-12 text-center rounded-3xl bg-gradient-to-br from-primary/10 to-accent/5 border border-border p-8">
             <h3 className="font-display text-2xl font-bold text-ink">
               Ready to experience Franklin EV?
             </h3>
             <p className="mt-2 text-muted-foreground">
-              Visit a dealer in Hyderabad for a test ride. Compare both models and battery types in person.
+              Visit a dealer in Hyderabad for a test ride. Compare both models and battery types in
+              person.
             </p>
             <Link
               to="/contact"
-              className="mt-5 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary-gradient text-primary-foreground font-semibold shadow-soft hover:shadow-lift transition-all"
+              className="mt-5 inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-semibold shadow-lg transition-all hover:shadow-xl hover:scale-[1.02]"
+              style={{
+                background: premiumGradient,
+                boxShadow: '0 10px 30px rgba(36, 207, 160, 0.35)',
+              }}
             >
               Book a Test Ride Now <ArrowRight className="w-4 h-4" />
             </Link>
@@ -1018,16 +1084,18 @@ function VehiclesPage() {
 
 function FaqItem({ q, a }: { q: string; a: string }) {
   return (
-    <details className="faq-item rounded-2xl bg-surface border border-border shadow-soft overflow-hidden">
-      <summary className="faq-question w-full flex items-center justify-between gap-4 p-5 text-left cursor-pointer">
-        <span className="font-semibold text-ink">{q}</span>
-        <span className="faq-chevron text-primary shrink-0">
+    <details className="rounded-2xl bg-surface border border-border shadow-soft overflow-hidden">
+      <summary className="w-full flex items-center justify-between gap-4 p-4 text-left cursor-pointer hover:bg-background/50 transition-colors">
+        <span className="font-semibold text-ink text-sm">{q}</span>
+        <span className="text-primary shrink-0 transition-transform duration-300 group-open:rotate-180">
           <ChevronDown className="w-5 h-5" />
         </span>
       </summary>
-      <div className="faq-answer">
-        <p className="px-5 pb-5 text-muted-foreground">{a}</p>
+      <div className="px-4 pb-4">
+        <p className="text-sm text-muted-foreground">{a}</p>
       </div>
     </details>
   );
 }
+
+

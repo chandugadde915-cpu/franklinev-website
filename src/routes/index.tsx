@@ -8,6 +8,7 @@ import {
   Bell,
   Check,
   Gauge,
+  Home as HomeIcon,
   LockKeyhole,
   MapPin,
   Navigation,
@@ -15,10 +16,164 @@ import {
   ShieldCheck,
   Sparkles,
   Smartphone,
+  Settings,
   Wallet,
   Zap,
 } from "lucide-react";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
+import { motion } from "framer-motion";
+
+// ---------- MAP COORDINATES ----------
+const cityCoordinates: Record<string, [number, number]> = {
+  "AS Rao Nagar": [17.4589, 78.5738],
+  Kanajiguda: [17.4567, 78.5521],
+  Boduppal: [17.4285, 78.5739],
+  Chintal: [17.4817, 78.4104],
+  Champapet: [17.3659, 78.5405],
+  Malkajgiri: [17.4519, 78.5432],
+  "Hayath Nagar": [17.3278, 78.6044],
+  Manikonda: [17.4079, 78.3747],
+  Nalgonda: [17.0517, 79.2676],
+  Karimnagar: [18.4392, 79.129],
+  Mancherial: [18.8709, 79.4386],
+  Vikarabad: [17.3388, 77.904],
+  Kothagudem: [17.5533, 80.6186],
+  Bhupalpally: [18.4345, 79.8584],
+  Khammam: [17.2473, 80.1514],
+  Kollapur: [16.1202, 78.2826],
+  Vemulawada: [18.5534, 78.7931],
+  Jammikunta: [18.3456, 79.0566],
+  Srikakulam: [18.2985, 83.8978],
+  Visakhapatnam: [17.6868, 83.2185],
+};
+
+const allCities = Object.keys(cityCoordinates);
+
+// ---------- Client‑only Premium Map Component ----------
+function DealerMap() {
+  const [isClient, setIsClient] = useState(false);
+  const [MapComponent, setMapComponent] = useState<(() => JSX.Element) | null>(null);
+  const [mapError, setMapError] = useState(false);
+
+  useEffect(() => {
+    let isMounted = true;
+    setIsClient(true);
+
+    const loadMap = async () => {
+      try {
+        const leafletModule = await import("react-leaflet");
+        const LModule = await import("leaflet");
+
+        if (!isMounted) return;
+
+        const { MapContainer, TileLayer, Marker, Popup } = leafletModule;
+        const L = LModule.default;
+
+        // Fix default icon
+        delete (L.Icon.Default.prototype as any)._getIconUrl;
+        L.Icon.Default.mergeOptions({
+          iconRetinaUrl:
+            "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png",
+          iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png",
+          shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png",
+        });
+
+      // Premium custom marker
+     const createCustomMarker = (color: string = "#e67e22") => {
+  return L.divIcon({
+    className: "custom-marker custom-marker-shadow", // ✅ merged classes
+    html: `<svg width="28" height="40" viewBox="0 0 28 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M14 0C6.268 0 0 6.268 0 14c0 9 14 26 14 26s14-17 14-26c0-7.732-6.268-14-14-14z" fill="${color}" stroke="white" stroke-width="2.5"/>
+      <circle cx="14" cy="14" r="5" fill="white"/>
+      <circle cx="14" cy="14" r="2.5" fill="${color}" opacity="0.6"/>
+    </svg>`,
+    iconSize: [28, 40],
+    iconAnchor: [14, 40],
+    popupAnchor: [0, -40],
+  });
+};
+
+      const Map = () => (
+        <MapContainer
+          center={[17.385, 78.4867]}
+          zoom={9}
+          scrollWheelZoom
+          zoomControl={true}
+          className="w-full h-full min-h-[400px] rounded-3xl"
+          style={{ background: "#e8ecf1" }}
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            maxZoom={19}
+          />
+
+          <>
+            {allCities.map((city) => {
+              const coords = cityCoordinates[city];
+              if (!coords) return null;
+              return (
+                <Marker key={city} position={coords} icon={createCustomMarker("#e67e22")}>
+                  <Popup closeButton={false} className="dealer-popup">
+                    <div className="flex flex-col items-start gap-0.5 px-1 py-0.5">
+                      <strong className="text-ink text-base font-bold">{city}</strong>
+                      <span className="text-xs text-muted-foreground">📍 Franklin EV Dealer</span>
+                      <button className="mt-1 text-xs font-semibold text-primary hover:underline">
+                        Get Directions →
+                      </button>
+                    </div>
+                  </Popup>
+                </Marker>
+              );
+            })}
+          </>
+        </MapContainer>
+      );
+
+        setMapComponent(() => Map);
+      } catch (error) {
+        console.error("Failed to load dealer map", error);
+        if (isMounted) setMapError(true);
+      }
+    };
+
+    loadMap();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  if (mapError) {
+    return (
+      <div className="min-h-[400px] flex flex-col items-center justify-center gap-4 bg-muted/20 rounded-3xl p-6 text-center">
+        <MapPin className="h-10 w-10 text-primary" />
+        <div>
+          <h3 className="font-display text-xl font-bold text-ink">Dealer map is unavailable</h3>
+          <p className="mt-2 text-sm text-muted-foreground max-w-sm">
+            Franklin EV dealers are listed across Hyderabad, Telangana and Andhra Pradesh.
+          </p>
+        </div>
+        <Link to="/contact" className="cinema-btn cinema-btn-primary">
+          View dealer locations
+        </Link>
+      </div>
+    );
+  }
+
+  if (!isClient || !MapComponent) {
+    return (
+      <div className="min-h-[400px] flex items-center justify-center bg-muted/20 rounded-3xl">
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+          <span className="text-sm text-muted-foreground">Loading map…</span>
+        </div>
+      </div>
+    );
+  }
+
+  return <MapComponent />;
+}
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -127,6 +282,8 @@ const heroSequenceFrames = Array.from(
 const heroSequenceSize = { width: 1600, height: 817 } as const;
 const heroSingleScrollDistanceRatio = 0.28;
 
+// features and riderStories are kept here because they may be referenced elsewhere,
+// but they are no longer rendered on the home page.
 const features = [
   {
     Icon: Gauge,
@@ -239,7 +396,13 @@ const heroCalloutItems = [
     icon: "battery",
     ariaLabel: "4.5 hours 0 to 80 percent charge time",
   },
-  { value: "60", unit: "km/h", label: "Top speed", icon: "gauge", ariaLabel: "60 kilometres per hour top speed" },
+  {
+    value: "60",
+    unit: "km/h",
+    label: "Top speed",
+    icon: "gauge",
+    ariaLabel: "60 kilometres per hour top speed",
+  },
   {
     value: "3",
     unit: "yrs",
@@ -249,29 +412,22 @@ const heroCalloutItems = [
   },
 ] as const;
 
-
 const warrantyPackages = [
   {
     name: "Lithium-ion Battery",
     image: "/assets/client/fev-lithium-ion-battery.png",
     alt: "Franklin EV lithium-ion battery pack.",
-    points: [
-      "2+1 year battery warranty",
-      "12 months motor warranty",
-      "12 months charger warranty",
-      "12 months controller warranty",
-    ],
+    speed: "60 km/h",
+    chargeTime: "~3 h 30 m (0–80%)",
+    charger: "650 W plug-and-play (15 A)",
   },
   {
     name: "Graphene Battery",
     image: "/assets/client/fev-graphene-battery.png",
     alt: "Franklin EV graphene battery pack.",
-    points: [
-      "12 months battery warranty",
-      "12 months motor warranty",
-      "6 months charger warranty",
-      "12 months controller warranty",
-    ],
+    speed: "25 km/h",
+    chargeTime: "~4 h 30 m (0–80%)",
+    charger: "650 W plug-and-play (15 A)",
   },
 ] as const;
 
@@ -296,16 +452,19 @@ function HeroSection() {
     );
   }, []);
 
-  const setHeroProgress = useCallback((nextProgress: number) => {
-    const clampedProgress = Math.min(Math.max(nextProgress, 0), 1);
-    heroFrameProgressRef.current = clampedProgress;
-    syncHeroLaunchProgress(clampedProgress);
-    const nextFrameIndex = Math.min(
-      heroSequenceFrameCount - 1,
-      Math.round(clampedProgress * (heroSequenceFrameCount - 1)),
-    );
-    setHeroFrameIndex((current) => (current !== nextFrameIndex ? nextFrameIndex : current));
-  }, [syncHeroLaunchProgress]);
+  const setHeroProgress = useCallback(
+    (nextProgress: number) => {
+      const clampedProgress = Math.min(Math.max(nextProgress, 0), 1);
+      heroFrameProgressRef.current = clampedProgress;
+      syncHeroLaunchProgress(clampedProgress);
+      const nextFrameIndex = Math.min(
+        heroSequenceFrameCount - 1,
+        Math.round(clampedProgress * (heroSequenceFrameCount - 1)),
+      );
+      setHeroFrameIndex((current) => (current !== nextFrameIndex ? nextFrameIndex : current));
+    },
+    [syncHeroLaunchProgress],
+  );
 
   const loadHeroFrameImage = useCallback((index: number, priority: "high" | "low" = "low") => {
     const src = heroSequenceFrames[index];
@@ -446,7 +605,7 @@ function HeroSection() {
       const rect = hero.getBoundingClientRect();
 
       if (rect.top >= 0) {
-        setHeroProgress(1);
+        setHeroProgress(0);
         return;
       }
 
@@ -764,8 +923,7 @@ function Home() {
       connection?: { saveData?: boolean };
     };
     const keepPostersOnly =
-      reducedMotionQuery.matches ||
-      navigatorWithConnection.connection?.saveData === true;
+      reducedMotionQuery.matches || navigatorWithConnection.connection?.saveData === true;
 
     if (keepPostersOnly) {
       videos.forEach((video) => {
@@ -836,7 +994,8 @@ function Home() {
             The future of commuting <em>starts here</em>.
           </h2>
           <p>
-            Franklin EV electric scooters are built for everyday Indian city commuting — practical range, low running cost, home charging and smart features that fit your lifestyle.
+            Franklin EV electric scooters are built for everyday Indian city commuting — practical
+            range, low running cost, home charging and smart features that fit your lifestyle.
           </p>
           <div className="cinema-mini-stats">
             {["Smart city commuting", "Convenient home charging", "Low running cost"].map(
@@ -869,7 +1028,8 @@ function Home() {
             Technology that works <em>behind every ride</em>.
           </h2>
           <p>
-            Franklin EV combines efficient BLDC hub motors, smart battery management and rider-focused engineering for a seamless daily commute.
+            Franklin EV combines efficient BLDC hub motors, smart battery management and
+            rider-focused engineering for a seamless daily commute.
           </p>
         </Reveal>
         <div className="motor-stage">
@@ -902,446 +1062,607 @@ function Home() {
         </div>
       </section>
 
-      <section className="cinema-section" data-animate="fade-up">
-        <Reveal className="cinema-copy cinema-copy-wide">
-          <div className="cinema-eyebrow">Thoughtfully Designed</div>
-          <h2 className="cinema-title">
-            Engineered around <em>real riders</em>.
-          </h2>
-          <p>
-            Every Franklin EV scooter is designed around practical features that improve everyday
-            riding for professionals, students, families and business owners across Hyderabad.
-          </p>
-        </Reveal>
-        <StaggerGroup className="cinema-feature-grid">
-          {features.map(({ Icon, title, body }) => (
-            <StaggerItem key={title}>
-              <article className="cinema-feature-card">
-                <span>
-                  <Icon className="h-5 w-5" />
-                </span>
-                <h3>{title}</h3>
-                <p>{body}</p>
-              </article>
-            </StaggerItem>
-          ))}
-        </StaggerGroup>
-      </section>
-
-      <section
-        className="cinema-section cinema-split cost-section"
-        id="intelligence"
-        data-animate="fade-up"
-      >
-        <Reveal className="cinema-copy">
-          <div className="cinema-eyebrow">Cost Comparison</div>
-          <h2 className="cinema-title">
-            Save more with <em>every ride.</em>
-          </h2>
-          <p>
-            Compared to conventional petrol scooters, Franklin EV helps reduce daily operating costs
-            while delivering reliable performance. Adjust your daily ride distance and petrol price
-            to estimate monthly savings.
-          </p>
-          <p className="savings-callout">
-            Estimated 3-year savings <strong>Rs. {threeYearSavings.toLocaleString("en-IN")}</strong>
-          </p>
-        </Reveal>
-        <Reveal className="ride-lab" delay={0.1}>
-          <div className="savings-bars">
-            <div className="savings-bar-row">
-              <div>
-                <span>Petrol</span>
-                <strong>Rs. {monthlyFuelCost.toLocaleString("en-IN")}/mo</strong>
-              </div>
-              <div className="savings-track">
-                <div
-                  className="savings-bar-fill savings-bar-petrol"
-                  style={{ "--bar-value": "92%" } as CSSProperties}
-                />
-              </div>
-            </div>
-            <div className="savings-bar-row">
-              <div>
-                <span>Franklin EV</span>
-                <strong>Rs. {monthlyEvCost.toLocaleString("en-IN")}/mo</strong>
-              </div>
-              <div className="savings-track">
-                <div
-                  className="savings-bar-fill savings-bar-ev"
-                  style={{ "--bar-value": "28%" } as CSSProperties}
-                />
-              </div>
-            </div>
-          </div>
-          <div
-            className="ride-orbit"
-            style={{ "--range-fill": `${Math.min(100, (range / 80) * 100)}%` } as CSSProperties}
-          >
-            <div className="ride-orbit-ring" />
-            <div className="ride-orbit-core">
-              <strong>{range}</strong>
-              <span>km range</span>
-            </div>
-          </div>
-          <div className="ride-controls">
-            <RideControl
-              id="daily-km"
-              name="daily_km"
-              label="Daily ride distance"
-              value={`${dailyRide} km`}
-              ariaLabel="Daily ride distance in kilometres"
-              ariaValueText={`${dailyRide} km per day`}
-              min={8}
-              max={90}
-              current={dailyRide}
-              onChange={setDailyRide}
-            />
-            <RideControl
-              id="petrol-price"
-              name="petrol_price"
-              label="Petrol price"
-              value={`Rs. ${petrolPrice}/L`}
-              ariaLabel="Petrol price per litre in rupees"
-              ariaValueText={`Rs. ${petrolPrice} per litre`}
-              min={85}
-              max={140}
-              current={petrolPrice}
-              onChange={setPetrolPrice}
-            />
-            <div className="ride-modes">
-              {[
-                ["Eco", 80],
-                ["City", 70],
-                ["Sport", 55],
-              ].map(([label, value]) => (
-                <button
-                  key={label}
-                  type="button"
-                  className={range === value ? "active" : undefined}
-                  onClick={() => setRange(Number(value))}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
-          </div>
-          <div className="ride-results">
-            <span>
-              Charge every <strong>{Math.max(0.8, range / dailyRide).toFixed(1)} days</strong>
+      {/* ── 3D BATTERY SHOWCASE ── */}
+      <section className="relative py-20 overflow-hidden" data-animate="fade-up">
+        <div className="max-w-7xl mx-auto px-5 lg:px-8">
+          <Reveal className="text-center mb-14">
+            <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-emerald-400 bg-emerald-400/10 px-4 py-1.5 rounded-full backdrop-blur-sm border border-emerald-400/20">
+              Battery Technology
             </span>
-            <span>
-              Monthly EV cost <strong>Rs. {monthlyEvCost.toLocaleString("en-IN")}</strong>
-            </span>
-            <span>
-              Monthly savings <strong>Rs. {monthlySavings.toLocaleString("en-IN")}</strong>
-            </span>
-          </div>
-        </Reveal>
-      </section>
-
-      <section className="cinema-section cinema-split app-section" id="app" data-animate="fade-up">
-        <Reveal className="cinema-copy">
-          <div className="cinema-eyebrow">Ownership Experience</div>
-          <h2 className="cinema-title">
-            Simple to own. <em>Easy to love.</em>
-          </h2>
-          <p>
-            Franklin EV ownership is simple — charge at home, low maintenance, warranty support and dealer service across Hyderabad and Telangana.
-          </p>
-          <div className="app-feature-list">
-            {[
-              { Icon: Zap, label: "Charge at home" },
-              { Icon: Bell, label: "Smart diagnostics" },
-              { Icon: ShieldCheck, label: "Warranty coverage" },
-              { Icon: LockKeyhole, label: "Service support" },
-            ].map(({ Icon, label }) => (
-              <span key={label}>
-                <Icon className="h-4 w-4" /> {label}
-              </span>
-            ))}
-          </div>
-          <div className="app-store-row">
-            <Link to="/contact" aria-label="Enquire about the Franklin EV connected app">
-              <Smartphone className="h-5 w-5" />
-              <span>Ask about the app</span>
-            </Link>
-            <Link to="/vehicles" aria-label="Explore Franklin EV models">
-              <ArrowRight className="h-5 w-5" />
-              <span>Explore models</span>
-            </Link>
-          </div>
-        </Reveal>
-        <Reveal className="phone-stage" delay={0.1}>
-          <div
-            className="phone-mockup"
-            role="img"
-            aria-label="Franklin EV mobile app showing live GPS tracking and battery status"
-          >
-            <div className="phone-speaker" />
-            <div className="phone-screen">
-              <div className="phone-screen-top">
-                <Smartphone className="h-5 w-5" />
-                <span>Franklin EV</span>
-              </div>
-              <div className="phone-map-card">
-                <Navigation className="h-6 w-6" />
-                <strong>Franklin EV POWER</strong>
-                <span>Hyderabad · 82% battery</span>
-              </div>
-              <div className="phone-metric-grid">
-                <span>
-                  <strong>75</strong>
-                  km estimated range
-                </span>
-                <span>
-                  <strong>4.5</strong>
-                  hrs to practical charge
-                </span>
-              </div>
-              <div className="phone-alert">
-                <Bell className="h-4 w-4" />
-                Smart diagnostics active
-              </div>
-            </div>
-          </div>
-        </Reveal>
-      </section>
-
-      {/* ── Warranty & Battery Packages ─────────────────────────────── */}
-      <section className="battery-section" data-animate="fade-up">
-        <div className="battery-section-inner">
-          <Reveal className="battery-section-heading">
-            <span className="cinema-eyebrow">Warranty Terms</span>
-            <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink">
-              Battery Warranty at a Glance
+            <h2 className="font-display heading-section font-bold text-ink mt-4">
+              Choose Your <span className="text-primary-gradient">Power</span>
             </h2>
-            <p>
-              Clear warranty terms for both battery types — so you know exactly what's covered before delivery.
+            <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+              Two battery options tailored to your riding needs – performance and efficiency.
             </p>
           </Reveal>
 
-          <div className="battery-card-grid">
-            {warrantyPackages.map((pkg) => (
-              <Reveal key={pkg.name}>
-                <article className="battery-package-card">
-                  <img src={pkg.image} alt={pkg.alt} loading="lazy" decoding="async" />
-                  <div>
-                    <h3>{pkg.name}</h3>
-                    <ul>
-                      {pkg.points.map((pt) => (
-                        <li key={pt}>
-                          <Check className="h-4 w-4" />
-                          {pt}
-                        </li>
-                      ))}
-                    </ul>
+          <div className="grid md:grid-cols-2 gap-8">
+            {warrantyPackages.map((pkg, index) => (
+              <Reveal key={pkg.name} delay={index * 0.1}>
+                <article
+                  className="group relative rounded-3xl overflow-hidden transition-all duration-500 hover:shadow-emerald-500/10 hover:-translate-y-1"
+                  style={{
+                    background: `
+                radial-gradient(circle at 20% 20%, rgba(34,197,94,0.15), transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(0,180,255,0.10), transparent 40%),
+                #0b1220
+              `,
+                  }}
+                >
+                  <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-emerald-400 via-cyan-400 to-emerald-400" />
+
+                  <div className="p-6 lg:p-8 flex flex-col items-center text-center">
+                    <div className="relative w-64 h-64 lg:w-72 lg:h-72 mb-6 flex items-center justify-center">
+                      <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/20 via-cyan-400/20 to-emerald-400/20 rounded-full blur-2xl animate-pulse" />
+                      <div
+                        className="relative w-full h-full flex items-center justify-center animate-[float_4s_ease-in-out_infinite] transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6"
+                        style={{ perspective: "800px" }}
+                      >
+                        <img
+                          src={pkg.image}
+                          alt={pkg.alt}
+                          className="max-h-full w-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)] transition-all duration-700"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </div>
+                    </div>
+
+                    <h3 className="font-display text-2xl font-bold text-white">{pkg.name}</h3>
+
+                    <div className="mt-6 w-full space-y-2 text-sm text-gray-300">
+                      <div className="flex justify-between items-center border-b border-white/5 pb-2">
+                        <span className="text-gray-400">Top Speed</span>
+                        <span className="font-semibold text-white">{pkg.speed}</span>
+                      </div>
+                      <div className="flex justify-between items-center border-b border-white/5 pb-2">
+                        <span className="text-gray-400">Charge Time (0–80%)</span>
+                        <span className="font-semibold text-white">{pkg.chargeTime}</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-gray-400">Charger</span>
+                        <span className="font-semibold text-white">{pkg.charger}</span>
+                      </div>
+                    </div>
                   </div>
                 </article>
               </Reveal>
             ))}
           </div>
-
-          <Reveal>
-            <div className="warranty-terms-card">
-              <div>
-                <span className="cinema-eyebrow">Warranty Summary</span>
-                <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink">
-                  Know what's covered
-                </h2>
-                <p>
-                  Franklin EV warranty terms are confirmed at delivery. Contact your nearest dealer for the full warranty document before purchase.
-                </p>
-                <Link to="/contact" className="cinema-btn cinema-btn-primary mt-4 inline-flex">
-                  Ask about warranty <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-              <div className="warranty-summary-grid">
-                {[
-                  { label: "Lithium-Ion Battery", battery: "2+1 yrs", motor: "12 mo", charger: "12 mo" },
-                  { label: "Graphene Battery", battery: "12 mo", motor: "12 mo", charger: "6 mo" },
-                ].map((w) => (
-                  <div key={w.label} className="warranty-summary-item">
-                    <p className="warranty-summary-name">{w.label}</p>
-                    <div className="warranty-summary-rows">
-                      {[["Battery", w.battery], ["Motor", w.motor], ["Charger", w.charger]].map(([k, v]) => (
-                        <span key={k}><strong>{k}</strong>{v}</span>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </Reveal>
         </div>
       </section>
 
+      {/* ── RANGE SECTION ── */}
       <section className="home-range-transfer bg-hero-gradient" data-animate="fade-up">
         <div className="max-w-7xl mx-auto px-5 lg:px-8 py-16">
           <Reveal className="text-center">
-            <h2 className="font-display text-5xl sm:text-6xl font-bold text-ink">
+            <h2 className="font-display heading-section font-bold text-ink">
               The Franklin EV <span className="text-primary-gradient">Range</span>
             </h2>
             <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto">
-              Two variants, two batteries, two speed configurations — choose the Franklin EV that fits your commute.
+              Two variants, two batteries, two speed configurations — choose the Franklin EV that
+              fits your commute.
             </p>
           </Reveal>
+
           <StaggerGroup className="mt-10 grid sm:grid-cols-2 gap-6">
             {[
               {
-                name: "Franklin EV POWER",
+                name: "Franklin EV POWER PLUS",
                 badge: "Sporty",
                 tagline: "Sport-aggressive design. Built to stand out.",
                 img: "/assets/products/power-black-left.png",
-                specs: ["LED projector headlamps", "4 bold colours", "Up to 80 km range", "25 or 60 km/h"],
                 accentColor: "#e67e22",
+                heroStat: "0–60 in 4.2s",
               },
               {
-                name: "Franklin EV Classic",
+                name: "Franklin EV RAPID",
                 badge: "Everyday",
                 tagline: "Clean lines. Everyday confidence.",
                 img: "/assets/products/classic-gold-left.png",
-                specs: ["Spacious under-seat storage", "3 versatile finishes", "Up to 80 km range", "25 or 60 km/h"],
                 accentColor: "#f39c12",
+                heroStat: "Up to 80km range",
               },
             ].map((model) => (
               <StaggerItem key={model.name}>
-                <article className="rounded-3xl border border-border bg-surface shadow-soft overflow-hidden">
-                  <div className="relative bg-black/40 flex items-center justify-center p-6" style={{ minHeight: 220 }}>
-                    <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-xs font-bold border backdrop-blur-sm"
-                      style={{ background: `${model.accentColor}22`, color: model.accentColor, borderColor: `${model.accentColor}44` }}>
+                <article className="group rounded-3xl border border-border bg-surface shadow-soft overflow-hidden transition-all duration-300 hover:shadow-xl flex flex-col">
+                  <div className="relative flex items-center justify-center p-6 h-80 bg-transparent overflow-hidden">
+                    <div
+                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[85%] h-40 blur-3xl transition-all duration-500 group-hover:scale-110 group-hover:opacity-80"
+                      style={{
+                        background: `radial-gradient(circle, ${model.accentColor}40, transparent 70%)`,
+                        opacity: 0.6,
+                      }}
+                    />
+                    <span
+                      className="absolute top-4 left-4 z-10 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-md border transition-all duration-300 group-hover:scale-105"
+                      style={{
+                        background: `${model.accentColor}20`,
+                        color: model.accentColor,
+                        borderColor: `${model.accentColor}30`,
+                        boxShadow: `0 4px 12px ${model.accentColor}20`,
+                      }}
+                    >
                       {model.badge}
                     </span>
-                    <img src={model.img} alt={model.name} className="max-h-48 w-full object-contain drop-shadow-xl" loading="lazy" />
+                    <img
+                      src={model.img}
+                      alt={model.name}
+                      className="max-h-full w-auto object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
                   </div>
-                  <div className="p-6">
-                    <h3 className="font-display text-xl font-bold text-ink">{model.name}</h3>
-                    <p className="text-sm text-muted-foreground mt-1">{model.tagline}</p>
-                    <ul className="mt-4 grid grid-cols-2 gap-2">
-                      {model.specs.map((s) => (
-                        <li key={s} className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                          <Check className="h-3.5 w-3.5 text-primary shrink-0" /> {s}
-                        </li>
-                      ))}
-                    </ul>
-                    <Link to="/vehicles" className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
-                      View details <ArrowRight className="h-3.5 w-3.5" />
-                    </Link>
+                  <div className="p-6 pt-4 border-t border-border/50">
+                    <div
+                      className="h-[2.5px] w-12 rounded-full transition-all duration-500 group-hover:w-full mb-3"
+                      style={{ background: model.accentColor }}
+                    />
+                    <h3 className="font-display text-xl font-bold text-ink transition-colors group-hover:text-primary">
+                      {model.name}
+                    </h3>
+                    <div className="flex items-center justify-between mt-1">
+                      <p className="text-sm text-muted-foreground">{model.tagline}</p>
+                      <Link
+                        to="/vehicles"
+                        className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline transition-all group-hover:gap-2.5 shrink-0 ml-4"
+                      >
+                        View Model
+                        <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                      </Link>
+                    </div>
+                    <div className="mt-1 h-0 opacity-0 overflow-hidden transition-all duration-300 group-hover:opacity-100 group-hover:h-5">
+                      <span
+                        className="text-xs font-bold uppercase tracking-wider"
+                        style={{ color: model.accentColor }}
+                      >
+                        ⚡ {model.heroStat}
+                      </span>
+                    </div>
                   </div>
                 </article>
               </StaggerItem>
             ))}
           </StaggerGroup>
-          <Reveal className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link to="/vehicles" className="cinema-btn cinema-btn-primary">
-              Compare Both Models <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link to="/contact" className="cinema-btn cinema-btn-ghost">
-              Book a Test Ride
-            </Link>
+        </div>
+      </section>
+
+      {/* ── PREMIUM AUTOMOTIVE GALLERY (Tesla/Ather inspired) ── */}
+      <section className="relative py-20 overflow-hidden" data-animate="fade-up">
+        {/* Deep navy background with gradient glow */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `
+              radial-gradient(circle at 20% 20%, rgba(34,197,94,0.12), transparent 40%),
+              radial-gradient(circle at 80% 80%, rgba(0,180,255,0.08), transparent 40%),
+              #0f172a
+            `,
+          }}
+        />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-5 lg:px-8">
+          {/* Section header */}
+          <Reveal className="text-center mb-12">
+            <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-emerald-400 bg-emerald-400/10 px-4 py-1.5 rounded-full backdrop-blur-sm border border-emerald-400/20">
+              Lifestyle
+            </span>
+            <h2 className="font-display heading-section font-bold text-white mt-4">
+              Ride the <span className="text-emerald-400">Future</span>
+            </h2>
+            <p className="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">
+              See how Franklin EV fits into your daily life – from city commutes to weekend escapes.
+            </p>
+          </Reveal>
+
+          {/* Premium gallery grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 auto-rows-[200px] md:auto-rows-[280px]">
+            
+            {/* ── HERO IMAGE (col-span-2, row-span-2) ── */}
+            <motion.div
+              className="relative col-span-1 md:col-span-2 row-span-2 rounded-[32px] overflow-hidden group"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ scale: 1.01 }}
+            >
+              <div className="relative w-full h-full bg-[#1a2332] flex items-center justify-center overflow-hidden">
+                {/* Floating gradient glow behind hero */}
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/20 via-cyan-400/10 to-emerald-400/5 blur-3xl scale-150 animate-pulse" />
+                
+                {/* Parallax wrapper */}
+                <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
+                  <motion.img
+                    src="/assets/editorial/silver-rider-arrival.jpg"
+                    alt="Franklin EV Power"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                    whileHover={{ scale: 1.08 }}
+                    transition={{ duration: 0.6 }}
+                  />
+                </div>
+                
+                {/* Glassmorphism overlay */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+                  <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl px-5 py-3 inline-block">
+                    <p className="text-white font-semibold text-lg tracking-wide">Franklin EV Power</p>
+                    <p className="text-gray-300 text-sm">Built for the open road</p>
+                  </div>
+                </div>
+                
+                {/* Badge */}
+                {/* <span className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-emerald-400/20 backdrop-blur-sm border border-emerald-400/30 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+                  ★ Hero
+                </span> */}
+              </div>
+            </motion.div>
+
+            {/* ── IMAGE 2 (top right) ── */}
+            <motion.div
+              className="relative rounded-[32px] overflow-hidden group"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className="relative w-full h-full bg-[#1a2332] flex items-center justify-center overflow-hidden">
+                <motion.img
+                  src="/assets/editorial/blue-cafe-parking.jpg"
+                  alt="Smart Mobility"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                  whileHover={{ scale: 1.08 }}
+                  transition={{ duration: 0.6 }}
+                />
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 via-black/30 to-transparent">
+                  <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-xl px-4 py-2 inline-block">
+                    <p className="text-white font-semibold text-sm tracking-wide">Smart Mobility</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* ── IMAGE 3 (bottom right) ── */}
+            <motion.div
+              className="relative rounded-[32px] overflow-hidden group"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className="relative w-full h-full bg-[#1a2332] flex items-center justify-center overflow-hidden">
+                <motion.img
+                  src="/assets/editorial/red-apartment-front.jpg"
+                  alt="City Ready"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                  whileHover={{ scale: 1.08 }}
+                  transition={{ duration: 0.6 }}
+                />
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 via-black/30 to-transparent">
+                  <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-xl px-4 py-2 inline-block">
+                    <p className="text-white font-semibold text-sm tracking-wide">City Ready</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* ── IMAGE 4 (full width below) ── */}
+            {/* Made taller and used object-cover to fill width completely */}
+            <motion.div
+              className="relative col-span-1 md:col-span-3 rounded-[32px] overflow-hidden group"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ scale: 1.01 }}
+            >
+              <div className="relative w-full h-[280px] md:h-[320px] bg-[#1a2332] flex items-center justify-center overflow-hidden">
+                <motion.img
+                  src="/assets/editorial/silver-apartment-front.jpg"
+                  alt="Built for Everyday Freedom"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                  whileHover={{ scale: 1.08 }}
+                  transition={{ duration: 0.6 }}
+                />
+                <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/80 via-black/30 to-transparent">
+                  <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-xl px-5 py-2.5 inline-block">
+                    {/* <p className="text-white font-semibold text-base tracking-wide">Built for Everyday Freedom</p> */}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+          </div>
+
+          {/* CTA */}
+          <Reveal delay={0.4}>
+            <div className="mt-12 text-center">
+              <Link
+                to="/vehicles"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-emerald-400 to-cyan-400 text-white font-semibold shadow-lg hover:shadow-emerald-500/25 hover:scale-[1.02] transition-all duration-300"
+              >
+                Explore the Range <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
           </Reveal>
         </div>
       </section>
 
-      <section className="cinema-section dealer-section" data-animate="fade-up">
-        <Reveal className="cinema-copy cinema-copy-wide">
-          <div className="cinema-eyebrow">Find Us Near You</div>
-          <h2 className="cinema-title">
-            Experience Franklin EV <em>in person</em>.
+      {/* ── OWNERSHIP EXPERIENCE ── */}
+      <section className="cinema-section cinema-split app-section" id="app" data-animate="fade-up">
+        <Reveal className="cinema-copy">
+          <div className="cinema-eyebrow text-primary font-semibold tracking-wider">
+            Ownership Experience
+          </div>
+          <h2 className="font-display heading-section font-bold text-ink leading-tight">
+            Simple to own. <br />
+            <span className="text-primary-gradient">Easy to love.</span>
           </h2>
-          <p>
-            Visit a Franklin EV dealer to explore POWER and Classic models, compare battery options, take a test ride and get pricing. Locations across Hyderabad, Telangana and Andhra Pradesh.
-          </p>
-        </Reveal>
-        <div
-          className="dealer-grid-wrap"
-          aria-label="Franklin EV dealer locations in Telangana and Andhra Pradesh"
-        >
-          {dealerGroups.map((group) => (
-            <article className="dealer-state-card" key={group.state}>
-              <h3>{group.state}</h3>
-              <div className="dealer-chip-grid">
-                {group.cities.map((city) => (
-                  <span key={city}>
-                    <MapPin className="h-4 w-4" /> {city}
-                  </span>
+{/* 
+          <div className="mt-10">
+            <div className="relative">
+              <div className="absolute top-8 left-8 right-8 h-[2px] bg-gradient-to-r from-primary via-cyan-400 to-primary" />
+
+              <div className="grid grid-cols-2 md:grid-cols-6 gap-8 relative z-10">
+                {[
+                  { icon: HomeIcon, title: "Charge at home" },
+                  { icon: Gauge, title: "Smart diagnostics" },
+                  { icon: ShieldCheck, title: "Warranty coverage" },
+                  { icon: Settings, title: "Service support" },
+                  { icon: Apple, title: "App Store" },
+                  { icon: Play, title: "Google Play" },
+                ].map(({ icon: Icon, title }) => (
+                  <div key={title} className="flex flex-col items-center text-center group">
+                    <div className="w-16 h-16 rounded-full border-4 border-primary bg-white shadow-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl">
+                      <Icon className="w-7 h-7 text-primary" />
+                    </div>
+                    <h4 className="mt-4 text-sm font-semibold text-ink max-w-[140px]">
+                      {title}
+                    </h4>
+                  </div>
                 ))}
               </div>
-            </article>
-          ))}
-          <div className="dealer-map-cta">
-            <Link to="/contact" className="cinema-btn cinema-btn-primary">
-              Find a Dealer Near You <ArrowRight className="h-4 w-4" />
+            </div>
+          </div> */}
+          <div className="mt-10">
+  <div className="relative">
+
+    {/* Hide line on mobile, show on tablet/laptop */}
+    <div className="hidden md:block absolute top-8 left-8 right-8 h-[2px] bg-gradient-to-r from-primary via-cyan-400 to-primary" />
+
+    <div className="grid grid-cols-2 md:grid-cols-6 gap-8 relative z-10">
+      {[
+        { icon: HomeIcon, title: "Charge at home" },
+        { icon: Gauge, title: "Smart diagnostics" },
+        { icon: ShieldCheck, title: "Warranty coverage" },
+        { icon: Settings, title: "Service support" },
+        { icon: Apple, title: "App Store" },
+        { icon: Play, title: "Google Play" },
+      ].map(({ icon: Icon, title }) => (
+        <div
+          key={title}
+          className="flex flex-col items-center text-center group"
+        >
+          <div className="w-16 h-16 rounded-full border-4 border-primary bg-white shadow-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl">
+            <Icon className="w-7 h-7 text-primary" />
+          </div>
+
+          <h4 className="mt-4 text-sm font-semibold text-ink max-w-[140px]">
+            {title}
+          </h4>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</div>
+
+          <div className="mt-8 flex flex-wrap gap-4">
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary-gradient text-primary-foreground font-semibold text-sm shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300"
+            >
+              <Smartphone className="h-4 w-4" />
+              Ask about the app
             </Link>
+            <Link
+              to="/vehicles"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-primary/20 bg-surface text-ink font-semibold text-sm shadow-sm hover:bg-primary/5 hover:border-primary/40 hover:shadow-md transition-all duration-300 group"
+            >
+              Explore models
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </div>
+        </Reveal>
+
+        <Reveal className="phone-stage" delay={0.1}>
+          <div className="relative flex items-center justify-center">
+            <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-full scale-150" />
+
+            <div className="relative w-full max-w-[320px] aspect-[9/16] rounded-[2.8rem] bg-white shadow-[0_30px_80px_rgba(0,0,0,0.18)] border border-white/50 overflow-hidden">
+              <div className="absolute top-3 left-1/2 -translate-x-1/2 w-20 h-6 bg-black rounded-full z-20" />
+
+              <div className="p-5 pt-12 h-full bg-gradient-to-b from-slate-50 to-white">
+                <div className="bg-white rounded-2xl p-3 shadow-sm border mb-4 flex items-center gap-3">
+                  <Smartphone className="h-5 w-5 text-primary" />
+                  <span className="font-semibold text-ink">Franklin EV</span>
+                </div>
+
+                <div className="bg-white rounded-3xl p-5 shadow-md border mb-4">
+                  <p className="text-xs text-muted-foreground">Hyderabad • 82% Battery</p>
+                  <h3 className="text-3xl font-bold mt-2">
+                    <span className="text-sky-600">Franklin</span>{" "}
+                    <span className="text-primary">EV</span>
+                  </h3>
+                  <p className="text-primary font-semibold mt-1">POWER MODE</p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3 mb-4">
+                  <div className="bg-white rounded-2xl p-4 shadow-sm border">
+                    <div className="text-3xl font-bold text-sky-600">75</div>
+                    <p className="text-xs mt-2 text-muted-foreground">KM ESTIMATED RANGE</p>
+                  </div>
+                  <div className="bg-white rounded-2xl p-4 shadow-sm border">
+                    <div className="text-3xl font-bold text-sky-600">4.5</div>
+                    <p className="text-xs mt-2 text-muted-foreground">HRS TO FULL CHARGE</p>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <div className="bg-white rounded-xl px-4 py-3 border shadow-sm flex items-center gap-3">
+                    <Gauge className="h-4 w-4 text-primary" />
+                    <span className="text-sm font-medium">Smart diagnostics active</span>
+                  </div>
+                  <div className="bg-white rounded-xl px-4 py-3 border shadow-sm flex items-center gap-3">
+                    <ShieldCheck className="h-4 w-4 text-primary" />
+                    <span className="text-sm font-medium">Warranty protected</span>
+                  </div>
+                  <div className="bg-white rounded-xl px-4 py-3 border shadow-sm flex items-center gap-3">
+                    <BatteryCharging className="h-4 w-4 text-primary" />
+                    <span className="text-sm font-medium">Charging at home</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ── DEALER SECTION ── */}
+      <section className="cinema-section dealer-section bg-hero-gradient" data-animate="fade-up">
+        <div className="max-w-7xl mx-auto px-5 lg:px-8 py-16">
+          <Reveal className="text-center mb-12">
+            <div className="cinema-eyebrow text-primary font-semibold">Find Us Near You</div>
+            <h2 className="font-display heading-section font-bold text-ink mt-2">
+              Experience Franklin EV <span className="text-primary-gradient">in person</span>.
+            </h2>
+            <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+              Visit a Franklin EV dealer to explore POWER and Classic models, compare battery
+              options, take a test ride and get pricing. Locations across Hyderabad, Telangana and
+              Andhra Pradesh.
+            </p>
+          </Reveal>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-stretch">
+            <div className="relative rounded-3xl border border-border bg-surface shadow-soft overflow-hidden group h-full min-h-[400px]">
+              <DealerMap />
+            </div>
+
+            <div className="relative rounded-3xl border border-border bg-surface shadow-soft overflow-hidden group h-full min-h-[400px]">
+              <div className="relative w-full h-full">
+                <img
+                  src="/assets/editorial/dual-riders-underpass.jpg"
+                  alt="Find a Franklin EV dealer near you"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    target.style.display = "none";
+                    const fallback = target.parentElement?.querySelector(".image-fallback");
+                    if (fallback) fallback.classList.remove("hidden");
+                  }}
+                />
+                <div className="image-fallback hidden absolute inset-0 flex flex-col items-center justify-center bg-muted/30">
+                  <MapPin className="h-12 w-12 text-primary/40" />
+                  <span className="mt-2 text-sm font-medium text-muted-foreground">
+                    Find a dealer near you
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="cinema-section" data-animate="fade-up">
-        <Reveal className="cinema-copy cinema-copy-wide">
-          <div className="cinema-eyebrow">Hyderabad's Electric Future</div>
-          <h2 className="cinema-title">
-            Proudly powering <em>Hyderabad's electric future</em>.
-          </h2>
-          <p>
-            From Hitech City to Uppal, Gachibowli to LB Nagar — Franklin EV dealers are across Hyderabad, Telangana and Andhra Pradesh. Visit a showroom, compare POWER and Classic models and book a test ride.
-          </p>
-        </Reveal>
-        <StaggerGroup className="cinema-feature-grid">
-          {riderStories.map((story) => (
-            <StaggerItem key={story.title}>
-              <article className="cinema-feature-card">
-                <span>
-                  <Sparkles className="h-5 w-5" />
-                </span>
-                <h3>{story.title}</h3>
-                <p>{story.body}</p>
-              </article>
-            </StaggerItem>
-          ))}
-        </StaggerGroup>
+      {/* ── FAQ SECTION ── */}
+      <section className="relative py-20 overflow-hidden" data-animate="fade-up">
+        <div className="absolute inset-0 bg-gradient-to-br from-surface via-muted/10 to-surface" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,_rgba(0,180,255,0.03)_0%,_transparent_60%)]" />
+
+        <div className="relative z-10 max-w-6xl mx-auto px-5 lg:px-8">
+          <Reveal className="text-center mb-12">
+            <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-primary bg-primary/10 px-4 py-1.5 rounded-full backdrop-blur-sm border border-primary/20">
+              FAQ
+            </span>
+            <h2 className="font-display heading-section font-bold text-ink mt-4">
+              Frequently asked <span className="text-primary-gradient">questions</span>
+            </h2>
+          </Reveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            {faqItems.map((item, index) => {
+              const [isOpen, setIsOpen] = useState(false);
+              return (
+                <Reveal key={item.question} delay={index * 0.03}>
+                  <div
+                    className={`group rounded-2xl border transition-all duration-300 ${
+                      isOpen
+                        ? "border-primary/30 bg-white shadow-xl shadow-primary/5"
+                        : "border-border bg-surface/80 hover:border-primary/20 hover:shadow-md"
+                    }`}
+                  >
+                    <button
+                      onClick={() => setIsOpen(!isOpen)}
+                      className="w-full px-6 py-4 flex items-center justify-between gap-4 text-left"
+                      aria-expanded={isOpen}
+                    >
+                      <div className="flex items-start gap-3">
+                        <span className="mt-0.5 flex-shrink-0 w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold">
+                          {index + 1}
+                        </span>
+                        <h3 className="font-display text-sm font-semibold text-ink group-hover:text-primary transition-colors">
+                          {item.question}
+                        </h3>
+                      </div>
+                      <span className="flex-shrink-0 w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                        <svg
+                          className={`w-4 h-4 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </span>
+                    </button>
+
+                    <div
+                      className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                        isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                      }`}
+                    >
+                      <div className="px-6 pb-5 pt-1">
+                        <div className="h-px w-full bg-gradient-to-r from-primary/20 via-primary/5 to-transparent mb-3" />
+                        <p className="text-sm text-muted-foreground leading-relaxed pr-4">
+                          {item.answer}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </div>
+        </div>
       </section>
 
-      <section className="cinema-section" data-animate="fade-up">
-        <Reveal className="cinema-copy cinema-copy-wide">
-          <div className="cinema-eyebrow">FAQ</div>
-          <h2 className="cinema-title">
-            Frequently asked <em>questions</em>.
-          </h2>
-          <p>
-            Quick answers for riders comparing electric scooter ownership, charging, maintenance and
-            test rides in Hyderabad.
-          </p>
-        </Reveal>
-        <StaggerGroup className="cinema-feature-grid">
-          {faqItems.map((item) => (
-            <StaggerItem key={item.question}>
-              <article className="cinema-feature-card">
-                <span>
-                  <Check className="h-5 w-5" />
-                </span>
-                <h3>{item.question}</h3>
-                <p>{item.answer}</p>
-              </article>
-            </StaggerItem>
-          ))}
-        </StaggerGroup>
-      </section>
-
+      {/* ── TEST RIDE PANEL (commented out) ── */}
+      {/* 
       <section className="cinema-section test-ride-panel" id="test-ride" data-animate="fade-up">
         <Reveal>
           <div className="cinema-eyebrow">Experience It Yourself</div>
-          <h2>
-            Ready to experience <em>smarter mobility?</em>
-          </h2>
-          <p>
-            Experience the Franklin EV POWER or Classic in person. Choose your speed, your battery and your colour at a dealer near you.
-          </p>
-          <Link to="/contact" className="cinema-btn cinema-btn-primary">
-            Book My Test Ride <ArrowRight className="h-4 w-4" />
-          </Link>
+          <h2>Ready to experience <em>smarter mobility?</em></h2>
+          <p>Experience the Franklin EV POWER or Classic in person. Choose your speed, your battery and your colour at a dealer near you.</p>
+          <Link to="/contact" className="cinema-btn cinema-btn-primary">Book My Test Ride <ArrowRight className="h-4 w-4" /></Link>
         </Reveal>
       </section>
+      */}
     </div>
   );
 }

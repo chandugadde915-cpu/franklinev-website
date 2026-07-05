@@ -1,16 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Mail,
-  MapPin,
-  Phone,
-  Search,
-  Send,
-  Facebook,
-  Instagram,
-  Linkedin,
-} from "lucide-react";
+import { Mail, MapPin, Phone, Search, Send, Facebook, Instagram, Linkedin } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 
 export const Route = createFileRoute("/contact")({
@@ -156,7 +147,12 @@ function ContactPage() {
                 },
                 {
                   Icon: ({ className }: { className?: string }) => (
-                    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <svg
+                      className={className}
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
                       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                     </svg>
                   ),
@@ -189,7 +185,7 @@ function ContactPage() {
       {/* DEALER LOCATOR */}
       <section className="max-w-7xl mx-auto px-5 lg:px-8 py-16">
         <Reveal>
-          <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink">
+          <h2 className="font-display heading-section font-bold text-ink">
             Find a dealer near you
           </h2>
           <p className="mt-3 text-muted-foreground max-w-2xl">

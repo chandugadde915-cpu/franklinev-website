@@ -1,7 +1,7 @@
-import { createFileRoute, Link, Outlet, useRouterState } from "@tanstack/react-router";
+
+import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
-  BatteryCharging,
   BookOpenText,
   CheckCircle2,
   Gauge,
@@ -16,6 +16,11 @@ import {
   Volume2,
   Wrench,
   Zap,
+  Sparkles,
+  TrendingUp,
+  Bike,
+  Car,
+  LayoutDashboard,
 } from "lucide-react";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 
@@ -144,16 +149,8 @@ export const Route = createFileRoute("/blog")({
     ],
     links: [{ rel: "canonical", href: blogUrl }],
   }),
-  component: BlogLayout,
+  component: BlogPage,
 });
-
-function BlogLayout() {
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
-  if (pathname !== "/blog") {
-    return <Outlet />;
-  }
-  return <BlogPage />;
-}
 
 const featuredPosts = [
   {
@@ -281,7 +278,10 @@ const latestPosts = [
 function BlogPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
+      />
       <section className="blog-hero">
         <div className="blog-hero-inner">
           <Reveal className="blog-hero-copy">
@@ -289,12 +289,14 @@ function BlogPage() {
               <BookOpenText className="h-4 w-4" />
               Franklin EV Blog
             </div>
-            <h1>
-              Smart electric scooter guides for <em>everyday riders</em>.
+            <h1 className="blog-hero-title">
+              <div>Smart electric scooter</div>
+              <div>guides for everyday riders.</div>
             </h1>
             <p>
-              Practical articles for choosing Franklin EV POWER or Classic, understanding range, battery options, charging at
-              home, reducing running cost and preparing for a confident Franklin EV test ride.
+              Practical articles for choosing Franklin EV POWER or Classic, understanding range,
+              battery options, charging at home, reducing running cost and preparing for a confident
+              Franklin EV test ride.
             </p>
             <div className="blog-hero-actions">
               <Link to="/vehicles" className="cinema-btn cinema-btn-primary">
@@ -330,7 +332,7 @@ function BlogPage() {
       <section className="blog-section">
         <Reveal className="blog-section-heading">
           <div className="cinema-eyebrow">Featured Reads</div>
-          <h2>Guides for Franklin EV buyers.</h2>
+          <h2 className="blog-heading-one-line">Guides for Franklin EV buyers.</h2>
           <p>
             Quick, useful reading for riders comparing scooters, planning charging and calculating
             long-term value.
@@ -350,7 +352,12 @@ function BlogPage() {
                   <h3>{title}</h3>
                   <p>{summary}</p>
                   <Link
-                    to={`/blog/${slug}` as "/blog/power-plus-vs-rapid" | "/blog/best-electric-scooter-hyderabad-daily-commute" | "/blog/home-charging-electric-scooter"}
+                    to={
+                      `/blog/${slug}` as
+                        | "/blog/power-plus-vs-rapid"
+                        | "/blog/best-electric-scooter-hyderabad-daily-commute"
+                        | "/blog/home-charging-electric-scooter"
+                    }
                     aria-label={`Read: ${title}`}
                   >
                     Read article <ArrowRight className="h-4 w-4" />
@@ -363,98 +370,102 @@ function BlogPage() {
       </section>
 
       <section className="blog-article-section">
-        <div className="blog-article-hero">
-          <Reveal className="blog-article-copy">
-            <div className="cinema-eyebrow">2026 Buyer Guide - Hyderabad</div>
-            <h2>
-              Best electric scooter in Hyderabad for <em>daily commute</em>.
-            </h2>
-            <p>
-              A clear buying guide for Hyderabad riders comparing range, charging, ownership cost,
-              maintenance, smart features and service support before switching to electric.
-            </p>
-            <div className="blog-article-stats" aria-label="Daily commute benefits">
-              <span>
-                <strong>80%</strong>
-                lower running cost
+        <div className="blog-commute-switch-section">
+          <Reveal>
+            <div className="blog-commute-switch-header text-center">
+              <span className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.2em] text-primary bg-primary/5 px-5 py-2.5 rounded-full border border-primary/20">
+                <MapPin className="w-4 h-4" /> Hyderabad Commuters
               </span>
-              <span>
-                <strong>Rs. 0</strong>
-                fuel station visits
-              </span>
-              <span>
-                <strong>2026</strong>
-                smart EV guide
-              </span>
+              <h2 className="heading-section font-bold text-ink mt-6 leading-[1.1]">
+                Why Hyderabad commuters are <br />
+                <span className="text-primary">switching to electric</span>
+              </h2>
+              <p className="text-lg sm:text-xl font-semibold text-muted-foreground max-w-3xl mx-auto mt-4 leading-relaxed">
+                More riders across Hyderabad are making the switch to electric scooters. Here's why
+                Franklin EV is becoming the preferred choice for urban commuting.
+              </p>
+              <div className="w-24 h-1 bg-primary/30 mx-auto mt-6 rounded-full" />
             </div>
           </Reveal>
-          <Reveal className="blog-article-visual" delay={0.1}>
-            <picture>
-              <img
-                src="/assets/products/classic-gold-left.png"
-                alt="Franklin EV electric scooter riding through city traffic for daily commute."
-                width={1536}
-                height={1024}
-                loading="lazy"
-                decoding="async"
-              />
-            </picture>
-          </Reveal>
-        </div>
 
-        <Reveal className="blog-section-heading">
-          <div className="cinema-eyebrow">Why EV?</div>
-          <h2>Why Hyderabad commuters are switching to electric.</h2>
-          <p>
-            Rising fuel costs, longer commutes and everyday traffic make electric scooters a natural
-            fit for city travel.
-          </p>
-        </Reveal>
-        <StaggerGroup className="blog-commute-grid">
-          {commuteReasons.map(({ title, body, Icon }) => (
-            <StaggerItem key={title}>
-              <article className="blog-commute-card">
-                <span>
-                  <Icon className="h-5 w-5" />
+          <StaggerGroup className="blog-commute-grid mt-12">
+            {commuteReasons.map(({ title, body, Icon }) => (
+              <StaggerItem key={title}>
+                <article className="blog-commute-card blog-commute-switch-card">
+                  <span className="blog-commute-switch-icon">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <h3>{title}</h3>
+                  <p>{body}</p>
+                </article>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+
+          {/* <Reveal>
+            <div className="blog-commute-switch-cta text-center mt-10">
+              <div className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-primary/5 border border-primary/20">
+                <TrendingUp className="w-5 h-5 text-primary" />
+                <span className="text-base font-semibold text-muted-foreground">
+                  Join <strong className="text-ink text-lg">thousands of Hyderabad commuters</strong> who have already switched to Franklin EV
                 </span>
-                <h3>{title}</h3>
-                <p>{body}</p>
-              </article>
-            </StaggerItem>
-          ))}
-        </StaggerGroup>
+              </div>
+            </div>
+          </Reveal> */}
+        </div>
 
         <div className="blog-factor-layout">
           <Reveal className="blog-factor-copy">
-            <div className="cinema-eyebrow">Buying Guide</div>
-            <h2>What makes a good scooter for daily commute?</h2>
+            <h2 className="blog-heading-one-line">What makes a good scooter for daily commute?</h2>
             <p>
               Focus on the details that affect everyday ownership instead of only comparing headline
               specifications.
             </p>
           </Reveal>
-          <div className="blog-factor-list">
-            {commuteFactors.map((factor, index) => (
-              <article key={factor.title} className="blog-factor-item">
-                <strong>{String(index + 1).padStart(2, "0")}</strong>
-                <div>
-                  <h3>{factor.title}</h3>
-                  <p>{factor.body}</p>
-                  <div>
-                    {factor.tags.map((tag) => (
-                      <span key={tag}>{tag}</span>
-                    ))}
-                  </div>
-                </div>
-              </article>
-            ))}
+
+          <div className="blog-factor-marquee-wrapper">
+            <div className="blog-factor-list-marquee">
+              <div className="marquee-factor-track">
+                {commuteFactors.map((factor, index) => (
+                  <article key={factor.title} className="blog-factor-item marquee-factor-item">
+                    <strong>{String(index + 1).padStart(2, "0")}</strong>
+                    <div>
+                      <h3>{factor.title}</h3>
+                      <p>{factor.body}</p>
+                      <div className="blog-factor-tags">
+                        {factor.tags.map((tag) => (
+                          <span key={tag}>{tag}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </article>
+                ))}
+
+                {commuteFactors.map((factor, index) => (
+                  <article
+                    key={factor.title + "-dup"}
+                    className="blog-factor-item marquee-factor-item"
+                  >
+                    <strong>{String(index + 1).padStart(2, "0")}</strong>
+                    <div>
+                      <h3>{factor.title}</h3>
+                      <p>{factor.body}</p>
+                      <div className="blog-factor-tags">
+                        {factor.tags.map((tag) => (
+                          <span key={tag}>{tag}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
         <div className="blog-cost-panel">
           <Reveal className="blog-section-heading">
-            <div className="cinema-eyebrow">Cost Savings</div>
-            <h2>Electric scooter vs petrol scooter.</h2>
+            <h2 className="blog-heading-one-line">Electric scooter vs petrol scooter.</h2>
             <p>
               Electric ownership keeps daily travel cost predictable and removes many engine-service
               expenses.
@@ -509,36 +520,128 @@ function BlogPage() {
           </div>
         </div>
 
-        <div className="blog-city-panel">
-          <Reveal className="blog-factor-copy">
-            <div className="cinema-eyebrow">Hyderabad Coverage</div>
-            <h2>Built for Hyderabad roads.</h2>
-            <p>
-              From IT corridors to residential zones, compact electric scooters suit stop-start
-              traffic, short errands and longer city commute routes.
-            </p>
-          </Reveal>
-          <div className="blog-city-grid">
-            {hyderabadAreas.map((area) => (
-              <span key={area}>
-                <MapPin className="h-4 w-4" />
-                {area}
-              </span>
-            ))}
+        <section className="blog-city-section-full">
+          <div className="blog-city-panel">
+            <Reveal className="blog-factor-copy">
+              <div className="cinema-eyebrow">Hyderabad Coverage</div>
+              <h2 className="blog-heading-one-line">Built for Hyderabad roads.</h2>
+            </Reveal>
+            <div className="blog-city-grid-wrapper">
+              <div className="blog-city-grid">
+                {hyderabadAreas.map((area) => (
+                  <span key={area}>
+                    <MapPin className="h-4 w-4" />
+                    {area}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
-
+        </section>
         <div className="blog-feature-check">
           <Reveal className="blog-section-heading">
             <div className="cinema-eyebrow">What to Check</div>
-            <h2>Features to look for before buying.</h2>
+            <h2 className="blog-heading-one-line">
+              Features to look for before buying.
+            </h2>
           </Reveal>
-          <div className="blog-feature-list">
-            {commuteFeatures.map((feature) => (
-              <span key={feature}>
-                <CheckCircle2 className="h-4 w-4" />
-                {feature}
-              </span>
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-start",
+              position: "relative",
+              gap: "20px",
+              marginTop: "60px",
+              flexWrap: "wrap",
+              maxWidth: "1300px",
+              marginInline: "auto",
+            }}
+          >
+            <div
+  className="hidden md:block"
+  style={{
+    position: "absolute",
+    top: "35px",
+    left: "5%",
+    right: "5%",
+    height: "4px",
+    background:
+      "linear-gradient(90deg, #00b4ff 0%, #00d084 100%)",
+    borderRadius: "999px",
+    zIndex: 0,
+  }}
+/>
+
+
+            {[
+              {
+                icon: "⚡",
+                title: "Certified Real-World Range",
+              },
+              {
+                icon: "🔋",
+                title: "Reliable Battery Technology",
+              },
+              {
+                icon: "🛵",
+                title: "Multiple Ride Modes",
+              },
+              {
+                icon: "🛡️",
+                title: "Smart Anti-Theft Protection",
+              },
+              {
+                icon: <Bike className="h-6 w-6" />,
+                title: "Comfortable Seating & Suspension",
+              },
+              {
+                icon: "📱",
+                title: "Digital or App-Connected Ownership",
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                style={{
+                  flex: 1,
+                  minWidth: "180px",
+                  textAlign: "center",
+                  position: "relative",
+                  zIndex: 1,
+                }}
+              >
+                <div
+                  style={{
+                    width: "70px",
+                    height: "70px",
+                    margin: "0 auto 18px",
+                    borderRadius: "50%",
+                    background: "#ffffff",
+                    border: "4px solid #22c55e",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "30px",
+                    boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
+                    color: "#0f172a",
+                  }}
+                >
+                  {typeof item.icon === "string" ? item.icon : item.icon}
+                </div>
+
+                <h3
+                  style={{
+                    fontSize: "15px",
+                    fontWeight: 700,
+                    color: "#0f172a",
+                    margin: 0,
+                    lineHeight: "1.4",
+                  }}
+                >
+                  {item.title}
+                </h3>
+              </div>
             ))}
           </div>
         </div>
@@ -547,7 +650,7 @@ function BlogPage() {
       <section className="blog-section blog-guide-section">
         <Reveal className="blog-section-heading">
           <div className="cinema-eyebrow">Ownership Guides</div>
-          <h2>Everything important before and after buying.</h2>
+          <h2 className="blog-heading-one-line">Everything important before and after buying.</h2>
         </Reveal>
         <StaggerGroup className="blog-guide-grid">
           {guideBlocks.map(({ title, body, Icon }) => (
@@ -567,7 +670,7 @@ function BlogPage() {
       <section className="blog-section blog-latest-section">
         <Reveal className="blog-latest-copy">
           <div className="cinema-eyebrow">Latest Topics</div>
-          <h2>More Franklin EV articles coming next.</h2>
+          <h2 className="blog-heading-one-line">More Franklin EV articles coming next.</h2>
           <p>
             These updated article blocks keep the blog useful while full posts are prepared. Each
             topic points riders toward a test ride, model comparison or ownership question.

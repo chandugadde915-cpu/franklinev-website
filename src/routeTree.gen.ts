@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WhyUsRouteImport } from './routes/why-us'
 import { Route as VehiclesRouteImport } from './routes/vehicles'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -22,6 +23,11 @@ import { Route as BlogPowerPlusVsRapidRouteImport } from './routes/blog.power-pl
 import { Route as BlogHomeChargingElectricScooterRouteImport } from './routes/blog.home-charging-electric-scooter'
 import { Route as BlogBestElectricScooterHyderabadDailyCommuteRouteImport } from './routes/blog.best-electric-scooter-hyderabad-daily-commute'
 
+const WhyUsRoute = WhyUsRouteImport.update({
+  id: '/why-us',
+  path: '/why-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const VehiclesRoute = VehiclesRouteImport.update({
   id: '/vehicles',
   path: '/vehicles',
@@ -95,6 +101,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/vehicles': typeof VehiclesRoute
+  '/why-us': typeof WhyUsRoute
   '/blog/best-electric-scooter-hyderabad-daily-commute': typeof BlogBestElectricScooterHyderabadDailyCommuteRoute
   '/blog/home-charging-electric-scooter': typeof BlogHomeChargingElectricScooterRoute
   '/blog/power-plus-vs-rapid': typeof BlogPowerPlusVsRapidRoute
@@ -109,6 +116,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/vehicles': typeof VehiclesRoute
+  '/why-us': typeof WhyUsRoute
   '/blog/best-electric-scooter-hyderabad-daily-commute': typeof BlogBestElectricScooterHyderabadDailyCommuteRoute
   '/blog/home-charging-electric-scooter': typeof BlogHomeChargingElectricScooterRoute
   '/blog/power-plus-vs-rapid': typeof BlogPowerPlusVsRapidRoute
@@ -124,6 +132,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/vehicles': typeof VehiclesRoute
+  '/why-us': typeof WhyUsRoute
   '/blog/best-electric-scooter-hyderabad-daily-commute': typeof BlogBestElectricScooterHyderabadDailyCommuteRoute
   '/blog/home-charging-electric-scooter': typeof BlogHomeChargingElectricScooterRoute
   '/blog/power-plus-vs-rapid': typeof BlogPowerPlusVsRapidRoute
@@ -140,6 +149,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sitemap.xml'
     | '/vehicles'
+    | '/why-us'
     | '/blog/best-electric-scooter-hyderabad-daily-commute'
     | '/blog/home-charging-electric-scooter'
     | '/blog/power-plus-vs-rapid'
@@ -154,6 +164,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sitemap.xml'
     | '/vehicles'
+    | '/why-us'
     | '/blog/best-electric-scooter-hyderabad-daily-commute'
     | '/blog/home-charging-electric-scooter'
     | '/blog/power-plus-vs-rapid'
@@ -168,6 +179,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sitemap.xml'
     | '/vehicles'
+    | '/why-us'
     | '/blog/best-electric-scooter-hyderabad-daily-commute'
     | '/blog/home-charging-electric-scooter'
     | '/blog/power-plus-vs-rapid'
@@ -183,10 +195,18 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   VehiclesRoute: typeof VehiclesRoute
+  WhyUsRoute: typeof WhyUsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/why-us': {
+      id: '/why-us'
+      path: '/why-us'
+      fullPath: '/why-us'
+      preLoaderRoute: typeof WhyUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/vehicles': {
       id: '/vehicles'
       path: '/vehicles'
@@ -299,6 +319,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   VehiclesRoute: VehiclesRoute,
+  WhyUsRoute: WhyUsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

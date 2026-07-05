@@ -2,108 +2,336 @@ import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
 
 export function Footer() {
+  const socialLinks = [
+    {
+      Icon: Linkedin,
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/company/franklin-ev",
+    },
+    {
+      Icon: Instagram,
+      label: "Instagram",
+      href: "https://www.instagram.com/franklinev",
+    },
+    {
+      Icon: Facebook,
+      label: "Facebook",
+      href: "https://www.facebook.com/franklinev",
+    },
+    {
+      Icon: Twitter,
+      label: "Twitter",
+      href: "https://twitter.com/franklinev",
+    },
+  ];
+
+  const quickLinks = [
+    { to: "/", label: "Home" },
+    { to: "/vehicles", label: "Vehicles" },
+    { to: "/hyre-ev", label: "Hyre EV" },
+    { to: "/about", label: "About Us" },
+    { to: "/blog", label: "Blog" },
+    { to: "/contact", label: "Contact" },
+    { to: "/privacy", label: "Privacy Policy" },
+    { to: "/legal-policy", label: "Legal Policy" },
+  ];
+
+  const variants = [
+    "Low Speed - 25 km/h",
+    "High Speed - up to 60 km/h",
+    "Lithium-ion Battery",
+    "Graphene Battery",
+  ];
+
   return (
-    <footer className="site-footer">
-      <div className="site-footer-inner">
-        <div className="site-footer-brand">
-          <div className="footer-logo">
-            <img
-              src="/assets/franklin-ev-logo.png"
-              alt="Franklin EV"
-              className="site-logo-image"
-              width={2674}
-              height={598}
-            />
-          </div>
-          <p>Franklin EV - Smart Electric Scooters In Hyderabad</p>
-          <p>
-            Franklin EV is a leading electric scooter company in Hyderabad offering innovative,
-            reliable and affordable electric mobility solutions for modern riders.
+    <footer
+      style={{
+        background: "linear-gradient(135deg, #0f172a 0%, #111827 50%, #0b1220 100%)",
+        color: "#ffffff",
+        marginTop: "80px",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: "1300px",
+          margin: "0 auto",
+          padding: "70px 24px 50px",
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+          gap: "50px",
+        }}
+      >
+        {/* Company Info */}
+        <div>
+          <img
+            src="/assets/franklin-ev-logo.png"
+            alt="Franklin EV"
+            style={{
+              maxWidth: "220px",
+              height: "auto",
+              marginBottom: "20px",
+              filter: "brightness(0) invert(1)",
+            }}
+          />
+
+          <h3
+            style={{
+              fontSize: "22px",
+              fontWeight: "700",
+              marginBottom: "16px",
+              color: "#ffffff",
+            }}
+          >
+            Franklin EV
+          </h3>
+
+          <p
+            style={{
+              color: "#94a3b8",
+              lineHeight: "1.8",
+              fontSize: "15px",
+              marginBottom: "18px",
+            }}
+          >
+            Franklin EV is redefining urban mobility with reliable, affordable, and smart electric
+            scooters designed for modern commuters across India.
           </p>
-          <p>
-            Whether you're searching for a long range electric scooter in Hyderabad, a smart
-            electric scooter with cruise control or an electric scooter for daily commute, Franklin
-            EV delivers the performance, technology and value you need.
+
+          <p
+            style={{
+              color: "#94a3b8",
+              lineHeight: "1.8",
+              fontSize: "15px",
+            }}
+          >
+            Experience innovation, performance, and sustainability with electric vehicles built for
+            everyday travel.
           </p>
-          <div className="footer-socials">
-            {[
-              {
-                Icon: Linkedin,
-                label: "LinkedIn",
-                href: "https://www.linkedin.com/company/franklin-ev",
-              },
-              { Icon: Twitter, label: "Twitter", href: "https://twitter.com/franklinev" },
-              {
-                Icon: Instagram,
-                label: "Instagram",
-                href: "https://www.instagram.com/franklinev",
-              },
-              { Icon: Facebook, label: "Facebook", href: "https://www.facebook.com/franklinev" },
-            ].map(({ Icon, label, href }) => (
+
+          <div
+            style={{
+              display: "flex",
+              gap: "12px",
+              marginTop: "24px",
+            }}
+          >
+            {socialLinks.map(({ Icon, label, href }) => (
               <a
                 key={label}
                 href={href}
-                aria-label={label}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={label}
+                style={{
+                  width: "42px",
+                  height: "42px",
+                  borderRadius: "50%",
+                  backgroundColor: "#1e293b",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "#ffffff",
+                  textDecoration: "none",
+                  transition: "all 0.3s ease",
+                }}
               >
-                <Icon />
+                <Icon size={18} />
               </a>
             ))}
           </div>
         </div>
 
-        <div className="footer-column">
-          <h4>Explore</h4>
-          <Link to="/">Home</Link>
-          <Link to="/vehicles" title="Browse Franklin EV electric scooter models">
-            Vehicles
-          </Link>
-          <Link to="/hyre-ev" title="Hyre EV Powered by Franklin EV scooter rentals">
-            Hyre EV
-          </Link>
-          <Link to="/about" title="About Franklin EV India Pvt. Ltd.">
-            About
-          </Link>
-          <Link to="/blog" title="Read Franklin EV electric scooter guides and ownership tips">
-            Blog
-          </Link>
-          <Link to="/contact" title="Book a test ride or find a Franklin EV dealer near you">
-            Contact
-          </Link>
-          <Link to="/contact">Book a Test Ride</Link>
-          <Link to="/legal-policy">Legal Policy</Link>
-          <Link to="/privacy">Privacy Policy</Link>
+        {/* Quick Links */}
+        <div>
+          <h4
+            style={{
+              fontSize: "18px",
+              fontWeight: "700",
+              marginBottom: "22px",
+              color: "#22c55e",
+            }}
+          >
+            Quick Links
+          </h4>
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "12px",
+            }}
+          >
+            {quickLinks.map(({ to, label }) => (
+              <Link
+                key={label}
+                to={to}
+                style={{
+                  color: "#cbd5e1",
+                  textDecoration: "none",
+                  fontSize: "15px",
+                }}
+              >
+                {label}
+              </Link>
+            ))}
+          </div>
         </div>
 
-        <div className="footer-column">
-          <h4>Our Variants</h4>
-          <Link to="/vehicles">Low Speed - 25 km/h</Link>
-          <Link to="/vehicles">High Speed - up to 60 km/h</Link>
-          <Link to="/vehicles">Lithium-ion battery</Link>
-          <Link to="/vehicles">Graphene battery</Link>
+        {/* Variants */}
+        <div>
+          <h4
+            style={{
+              fontSize: "18px",
+              fontWeight: "700",
+              marginBottom: "22px",
+              color: "#22c55e",
+            }}
+          >
+            Our Variants
+          </h4>
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "12px",
+            }}
+          >
+            {variants.map((variant) => (
+              <Link
+                key={variant}
+                to="/vehicles"
+                style={{
+                  color: "#cbd5e1",
+                  textDecoration: "none",
+                  fontSize: "15px",
+                }}
+              >
+                {variant}
+              </Link>
+            ))}
+          </div>
         </div>
 
-        <div className="footer-column footer-contact">
-          <h4>Contact Us</h4>
-          <p>
-            <MapPin />
-            Plot No. 53, Ramakrishna Nagar Colony, Chengicherla, Hyderabad, Telangana - 500095
-          </p>
-          <a href="mailto:sales@franklinev.co.in">
-            <Mail />
-            sales@franklinev.co.in
-          </a>
-          <p>
-            <Phone />
-            +91 89770 40935 · +91 89770 40936 · +91 89770 07062
-          </p>
+        {/* Contact */}
+        <div>
+          <h4
+            style={{
+              fontSize: "18px",
+              fontWeight: "700",
+              marginBottom: "22px",
+              color: "#22c55e",
+            }}
+          >
+            Contact Us
+          </h4>
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "18px",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                gap: "12px",
+                alignItems: "flex-start",
+              }}
+            >
+              <MapPin
+                size={20}
+                style={{
+                  color: "#22c55e",
+                  flexShrink: 0,
+                  marginTop: "2px",
+                }}
+              />
+              <span
+                style={{
+                  color: "#cbd5e1",
+                  lineHeight: "1.7",
+                }}
+              >
+                Plot No. 53, Ramakrishna Nagar Colony, Chengicherla, Hyderabad, Telangana - 500095
+              </span>
+            </div>
+
+            <a
+              href="mailto:sales@franklinev.co.in"
+              style={{
+                display: "flex",
+                gap: "12px",
+                alignItems: "center",
+                color: "#cbd5e1",
+                textDecoration: "none",
+              }}
+            >
+              <Mail size={18} style={{ color: "#22c55e" }} />
+              sales@franklinev.co.in
+            </a>
+
+            <div
+              style={{
+                display: "flex",
+                gap: "12px",
+                alignItems: "flex-start",
+              }}
+            >
+              <Phone
+                size={18}
+                style={{
+                  color: "#22c55e",
+                  flexShrink: 0,
+                  marginTop: "2px",
+                }}
+              />
+              <span
+                style={{
+                  color: "#cbd5e1",
+                  lineHeight: "1.7",
+                }}
+              >
+                +91 89770 40935
+                <br />
+                +91 89770 40936
+                <br />
+                +91 89770 07062
+              </span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="site-footer-bottom">
-        <p>© 2026 Franklin EV India Pvt. Ltd. All rights reserved.</p>
-        <p>Electric scooter enquiries, test rides and dealer support.</p>
+      {/* Bottom Bar */}
+      <div
+        style={{
+          borderTop: "1px solid rgba(255,255,255,0.08)",
+          padding: "24px",
+          textAlign: "center",
+          backgroundColor: "rgba(255,255,255,0.03)",
+        }}
+      >
+        <p
+          style={{
+            margin: 0,
+            color: "#cbd5e1",
+            fontSize: "14px",
+          }}
+        >
+          © 2026 Franklin EV India Pvt. Ltd. All rights reserved.
+        </p>
+
+        <p
+          style={{
+            marginTop: "8px",
+            color: "#94a3b8",
+            fontSize: "13px",
+          }}
+        >
+          Smart • Sustainable • Electric Mobility
+        </p>
       </div>
     </footer>
   );

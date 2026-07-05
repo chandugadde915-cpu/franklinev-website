@@ -184,7 +184,10 @@ function LegalPolicyPage() {
               </div>
             </article>
           </div>
-          <Link to="/contact" className="mt-8 inline-flex items-center gap-2 cinema-btn cinema-btn-primary">
+          <Link
+            to="/contact"
+            className="mt-8 inline-flex items-center gap-2 cinema-btn cinema-btn-primary"
+          >
             Ask Franklin EV for current terms <ArrowRight className="h-4 w-4" />
           </Link>
         </Reveal>

@@ -11,11 +11,27 @@ export const Route = createFileRoute("/blog/best-electric-scooter-hyderabad-dail
         content:
           "2026 buyer guide for Hyderabad riders switching to electric. Compare range, charging cost, running cost, service support and smart features before buying an electric scooter in Hyderabad.",
       },
-      { name: "keywords", content: "best electric scooter in Hyderabad 2026, electric scooter daily commute Hyderabad, Franklin EV Hyderabad, electric scooter vs petrol Hyderabad, electric scooter charging cost Hyderabad" },
-      { property: "og:title", content: "Best Electric Scooter in Hyderabad for Daily Commute — 2026 Guide" },
-      { property: "og:url", content: "https://franklinev-website.vercel.app/blog/best-electric-scooter-hyderabad-daily-commute" },
+      {
+        name: "keywords",
+        content:
+          "best electric scooter in Hyderabad 2026, electric scooter daily commute Hyderabad, Franklin EV Hyderabad, electric scooter vs petrol Hyderabad, electric scooter charging cost Hyderabad",
+      },
+      {
+        property: "og:title",
+        content: "Best Electric Scooter in Hyderabad for Daily Commute — 2026 Guide",
+      },
+      {
+        property: "og:url",
+        content:
+          "https://franklinev-website.vercel.app/blog/best-electric-scooter-hyderabad-daily-commute",
+      },
     ],
-    links: [{ rel: "canonical", href: "https://franklinev-website.vercel.app/blog/best-electric-scooter-hyderabad-daily-commute" }],
+    links: [
+      {
+        rel: "canonical",
+        href: "https://franklinev-website.vercel.app/blog/best-electric-scooter-hyderabad-daily-commute",
+      },
+    ],
   }),
   component: ArticleHyderabadGuide,
 });
@@ -51,15 +67,23 @@ function ArticleHyderabadGuide() {
   return (
     <article className="max-w-3xl mx-auto px-5 lg:px-8 py-16">
       <Reveal>
-        <Link to="/blog" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary mb-8">
+        <Link
+          to="/blog"
+          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary mb-8"
+        >
           <ChevronLeft className="h-4 w-4" /> Back to Blog
         </Link>
-        <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-4">Hyderabad Guide · 7 min read</span>
+        <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-4">
+          Hyderabad Guide · 7 min read
+        </span>
         <h1 className="font-display text-4xl sm:text-5xl font-bold text-ink leading-tight">
           Best electric scooter in Hyderabad for daily commute — 2026 buyer guide
         </h1>
         <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
-          Hyderabad is one of India's fastest-growing cities for electric two-wheelers. Rising petrol prices, expanding dealer networks and improving battery technology have made 2026 the most practical year yet to switch. This guide covers what Hyderabad riders specifically need to know before buying.
+          Hyderabad is one of India's fastest-growing cities for electric two-wheelers. Rising
+          petrol prices, expanding dealer networks and improving battery technology have made 2026
+          the most practical year yet to switch. This guide covers what Hyderabad riders
+          specifically need to know before buying.
         </p>
       </Reveal>
 
@@ -76,23 +100,36 @@ function ArticleHyderabadGuide() {
       </Reveal>
 
       <Reveal>
-        <h2 className="font-display text-2xl font-bold text-ink mt-4 mb-4">Why Hyderabad riders are switching to electric in 2026</h2>
+        <h2 className="font-display text-2xl font-bold text-ink mt-4 mb-4">
+          Why Hyderabad riders are switching to electric in 2026
+        </h2>
         <p className="text-muted-foreground leading-relaxed">
-          Three things have changed in the last two years. First, electricity costs in Telangana have stayed stable while petrol prices have risen to Rs. 110+ per litre. Second, dealer networks for local EV brands have expanded well beyond the traditional Hyderabad city limits. Third, battery warranty terms have improved — Franklin EV offers a 2+1 year warranty on lithium-ion battery variants, which removes the biggest ownership concern for first-time buyers.
+          Three things have changed in the last two years. First, electricity costs in Telangana
+          have stayed stable while petrol prices have risen to Rs. 110+ per litre. Second, dealer
+          networks for local EV brands have expanded well beyond the traditional Hyderabad city
+          limits. Third, battery warranty terms have improved — Franklin EV offers a 2+1 year
+          warranty on lithium-ion battery variants, which removes the biggest ownership concern for
+          first-time buyers.
         </p>
         <p className="mt-4 text-muted-foreground leading-relaxed">
-          The result: a Franklin EV scooter typically saves a Hyderabad rider Rs. 25,000–35,000 in the first year of ownership compared with a comparable petrol scooter, accounting for fuel, oil changes and reduced maintenance.
+          The result: a Franklin EV scooter typically saves a Hyderabad rider Rs. 25,000–35,000 in
+          the first year of ownership compared with a comparable petrol scooter, accounting for
+          fuel, oil changes and reduced maintenance.
         </p>
       </Reveal>
 
       <Reveal>
-        <h2 className="font-display text-2xl font-bold text-ink mt-12 mb-6">6 things to check before buying an electric scooter in Hyderabad</h2>
+        <h2 className="font-display text-2xl font-bold text-ink mt-12 mb-6">
+          6 things to check before buying an electric scooter in Hyderabad
+        </h2>
         <StaggerGroup className="space-y-5">
           {factors.map((f, i) => (
             <StaggerItem key={f.title}>
               <div className="p-6 rounded-2xl bg-surface border border-border">
                 <div className="flex items-start gap-4">
-                  <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary-gradient text-primary-foreground font-bold text-sm shrink-0">{i + 1}</span>
+                  <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary-gradient text-primary-foreground font-bold text-sm shrink-0">
+                    {i + 1}
+                  </span>
                   <div>
                     <h3 className="font-display font-bold text-ink">{f.title}</h3>
                     <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{f.body}</p>
@@ -105,7 +142,9 @@ function ArticleHyderabadGuide() {
       </Reveal>
 
       <Reveal>
-        <h2 className="font-display text-2xl font-bold text-ink mt-12 mb-4">Franklin EV vs a petrol scooter: the real numbers</h2>
+        <h2 className="font-display text-2xl font-bold text-ink mt-12 mb-4">
+          Franklin EV vs a petrol scooter: the real numbers
+        </h2>
         <div className="overflow-x-auto rounded-2xl border border-border mt-4">
           <table className="w-full text-sm">
             <thead>
@@ -133,18 +172,32 @@ function ArticleHyderabadGuide() {
             </tbody>
           </table>
         </div>
-        <p className="mt-3 text-xs text-muted-foreground">Estimates based on Rs. 110/litre petrol, 42 km/litre mileage, 32 km daily ride, Rs. 7/unit electricity tariff. Actual figures vary by riding pattern.</p>
+        <p className="mt-3 text-xs text-muted-foreground">
+          Estimates based on Rs. 110/litre petrol, 42 km/litre mileage, 32 km daily ride, Rs. 7/unit
+          electricity tariff. Actual figures vary by riding pattern.
+        </p>
       </Reveal>
 
       <Reveal>
-        <h2 className="font-display text-2xl font-bold text-ink mt-12 mb-4">Which Franklin EV model suits Hyderabad riders?</h2>
+        <h2 className="font-display text-2xl font-bold text-ink mt-12 mb-4">
+          Which Franklin EV model suits Hyderabad riders?
+        </h2>
         <div className="grid sm:grid-cols-2 gap-5 mt-4">
           <div className="p-6 rounded-2xl bg-surface border border-primary/30">
-            <img src="/assets/products/power-black-left.png" alt="Franklin EV POWER" className="h-28 w-full object-contain mb-4" />
+            <img
+              src="/assets/products/power-black-left.png"
+              alt="Franklin EV POWER"
+              className="h-28 w-full object-contain mb-4"
+            />
             <h3 className="font-display font-bold text-ink">Franklin EV POWER</h3>
             <p className="mt-1 text-xs text-primary font-bold">Starting from ₹59,999 ex-showroom</p>
             <ul className="mt-3 space-y-1.5">
-              {["Sport design, 4 bold colours", "LED projector headlamps", "Cruise control standard", "25 or 60 km/h variant"].map((pt) => (
+              {[
+                "Sport design, 4 bold colours",
+                "LED projector headlamps",
+                "Cruise control standard",
+                "25 or 60 km/h variant",
+              ].map((pt) => (
                 <li key={pt} className="flex items-center gap-2 text-xs text-muted-foreground">
                   <Check className="h-3 w-3 text-primary shrink-0" /> {pt}
                 </li>
@@ -152,11 +205,20 @@ function ArticleHyderabadGuide() {
             </ul>
           </div>
           <div className="p-6 rounded-2xl bg-surface border border-border">
-            <img src="/assets/products/classic-gold-left.png" alt="Franklin EV Classic" className="h-28 w-full object-contain mb-4" />
+            <img
+              src="/assets/products/classic-gold-left.png"
+              alt="Franklin EV Classic"
+              className="h-28 w-full object-contain mb-4"
+            />
             <h3 className="font-display font-bold text-ink">Franklin EV Classic</h3>
             <p className="mt-1 text-xs text-primary font-bold">Starting from ₹54,999 ex-showroom</p>
             <ul className="mt-3 space-y-1.5">
-              {["Practical design, spacious storage", "3 versatile colour finishes", "Same BLDC motor", "25 or 60 km/h variant"].map((pt) => (
+              {[
+                "Practical design, spacious storage",
+                "3 versatile colour finishes",
+                "Same BLDC motor",
+                "25 or 60 km/h variant",
+              ].map((pt) => (
                 <li key={pt} className="flex items-center gap-2 text-xs text-muted-foreground">
                   <Check className="h-3 w-3 text-primary shrink-0" /> {pt}
                 </li>
@@ -167,12 +229,18 @@ function ArticleHyderabadGuide() {
       </Reveal>
 
       <Reveal>
-        <h2 className="font-display text-2xl font-bold text-ink mt-12 mb-4">Franklin EV dealer locations in Hyderabad</h2>
+        <h2 className="font-display text-2xl font-bold text-ink mt-12 mb-4">
+          Franklin EV dealer locations in Hyderabad
+        </h2>
         <p className="text-muted-foreground leading-relaxed">
-          Franklin EV has dealer touchpoints across Hyderabad and Secunderabad — including AS Rao Nagar (MVR Motors), Kanajiguda (E-Drive), Boduppal, Chintal, Champapet, Malkajgiri, Hayath Nagar and Manikonda. You can visit any listed dealer to test ride the POWER or Classic before committing.
+          Franklin EV has dealer touchpoints across Hyderabad and Secunderabad — including AS Rao
+          Nagar (MVR Motors), Kanajiguda (E-Drive), Boduppal, Chintal, Champapet, Malkajgiri, Hayath
+          Nagar and Manikonda. You can visit any listed dealer to test ride the POWER or Classic
+          before committing.
         </p>
         <p className="mt-4 text-muted-foreground leading-relaxed">
-          Call Franklin EV at +91 89770 40935 or use the contact form to confirm availability at your nearest location before visiting.
+          Call Franklin EV at +91 89770 40935 or use the contact form to confirm availability at
+          your nearest location before visiting.
         </p>
       </Reveal>
 
@@ -180,9 +248,13 @@ function ArticleHyderabadGuide() {
         <div className="mt-14 p-8 rounded-3xl bg-primary-gradient text-primary-foreground text-center">
           <h2 className="font-display text-2xl font-bold">Ready to test ride in Hyderabad?</h2>
           <p className="mt-3 text-primary-foreground/90 max-w-md mx-auto">
-            Find your nearest Franklin EV dealer and book a test ride for the POWER or Classic in your preferred speed and battery configuration.
+            Find your nearest Franklin EV dealer and book a test ride for the POWER or Classic in
+            your preferred speed and battery configuration.
           </p>
-          <Link to="/contact" className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-surface text-ink font-semibold hover:scale-[1.03] transition-transform">
+          <Link
+            to="/contact"
+            className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-surface text-ink font-semibold hover:scale-[1.03] transition-transform"
+          >
             Book a Test Ride <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

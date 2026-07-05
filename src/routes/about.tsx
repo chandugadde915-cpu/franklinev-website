@@ -1,5 +1,7 @@
+
+
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Check, Leaf, VolumeX, Sparkles, MapPin } from "lucide-react";
+import { ArrowRight, Check, Leaf, VolumeX, Sparkles, MapPin, CheckCircle2, Bike } from "lucide-react";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import { Counter } from "@/components/Counter";
 
@@ -64,7 +66,9 @@ function AboutPage() {
           <div className="p-8 rounded-3xl bg-surface border border-border shadow-soft h-full">
             <h2 className="font-display text-3xl font-bold text-ink">Our mission</h2>
             <p className="mt-4 text-muted-foreground leading-relaxed">
-              Franklin EV makes electric scooters for everyday city travel — low energy cost, BLDC hub motor, standard home charging and dealer support across Hyderabad, Telangana and Andhra Pradesh.
+              Franklin EV makes electric scooters for everyday city travel — low energy cost, BLDC
+              hub motor, standard home charging and dealer support across Hyderabad, Telangana and
+              Andhra Pradesh.
             </p>
           </div>
         </Reveal>
@@ -72,7 +76,8 @@ function AboutPage() {
           <div className="p-8 rounded-3xl bg-primary-gradient text-primary-foreground shadow-lift h-full">
             <h2 className="font-display text-3xl font-bold">Our vision</h2>
             <p className="mt-4 leading-relaxed text-primary-foreground/90">
-              More city commutes on electric two-wheelers — cleaner streets, quieter rides, practical ownership for every rider.
+              More city commutes on electric two-wheelers — cleaner streets, quieter rides,
+              practical ownership for every rider.
             </p>
           </div>
         </Reveal>
@@ -80,7 +85,7 @@ function AboutPage() {
 
       <section className="max-w-7xl mx-auto px-5 lg:px-8 py-16">
         <Reveal>
-          <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink text-center">
+          <h2 className="font-display heading-section font-bold text-ink text-center">
             Cleaner. Quieter. <span className="text-primary-gradient">Smarter.</span>
           </h2>
         </Reveal>
@@ -114,7 +119,7 @@ function AboutPage() {
           ))}
         </StaggerGroup>
       </section>
-
+{/* 
       <section className="max-w-7xl mx-auto px-5 lg:px-8 py-16">
         <div className="rounded-[2.5rem] bg-hero-gradient p-10 lg:p-14 border border-border">
           <StaggerGroup className="grid grid-cols-2 lg:grid-cols-4 gap-6">
@@ -160,22 +165,19 @@ function AboutPage() {
             running costs.
           </p>
         </div>
-      </section>
+      </section> */}
 
       {/* TIMELINE */}
       <section className="max-w-4xl mx-auto px-5 lg:px-8 py-20">
         <Reveal>
-          <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink text-center">
+          <h2 className="font-display heading-section font-bold text-ink text-center">
             The Franklin EV journey
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
           <figure className="about-journey-visual">
             <picture>
-              <source
-                srcSet="/assets/editorial/blue-cafe-parking.jpg"
-                type="image/jpeg"
-              />
+              <source srcSet="/assets/editorial/blue-cafe-parking.jpg" type="image/jpeg" />
               <img
                 src="/assets/products/power-blue-left.png"
                 alt="Franklin EV POWER electric scooter in Ocean Blue — left side view."
@@ -187,7 +189,9 @@ function AboutPage() {
             </picture>
           </figure>
         </Reveal>
-        <ol className="journey-timeline">
+        <div className="journey-timeline">
+          <div className="road-glow"></div>
+
           {[
             {
               year: "2021",
@@ -196,71 +200,92 @@ function AboutPage() {
             },
             {
               year: "2022",
-              title: "First dealer network",
+              title: "First Dealer Network",
               body: "Established initial dealer presence across Hyderabad and Secunderabad, covering key areas including AS Rao Nagar and Boduppal.",
             },
             {
               year: "2023",
-              title: "Franklin EV POWER launch",
+              title: "Franklin EV POWER Launch",
               body: "Franklin EV POWER launched with cruise control, up to 80 km range (graphene battery) and smart connectivity as the flagship model for Hyderabad riders.",
             },
             {
-              year: "2024-25",
-              title: "Expanding across Telangana & AP",
-              body: "Dealer network expanded to 20+ touchpoints covering Nalgonda, Karimnagar, Visakhapatnam, Srikakulam and districts across both states.",
+              year: "2024-2025",
+              title: "Expansion Across Telangana & AP",
+              body: "Dealer network expanded to 20+ touchpoints covering Nalgonda, Karimnagar, Visakhapatnam and Srikakulam districts across both states.",
             },
-          ].map((step, i) => (
-            <li
-              key={step.year}
+          ].map((item, index) => (
+            <div
+              key={item.year}
               className="journey-item"
-              style={{ transitionDelay: `${i * 0.05}s` }}
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <span className="journey-year">{step.year}</span>
+              <span className="journey-year">{item.year}</span>
               <div>
-                <h3>{step.title}</h3>
-                <p>{step.body}</p>
+                <h3>
+                  <span className="inline-flex items-center gap-2">
+                    <Bike className="w-5 h-5" style={{ color: "#00B4FF", flexShrink: 0 }} />
+                    {item.title}
+                  </span>
+                </h3>
+                <p>{item.body}</p>
               </div>
-            </li>
+            </div>
           ))}
-        </ol>
+        </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-5 lg:px-8 py-16">
+      <section className="max-w-[90rem] mx-auto px-5 lg:px-8 py-12">
         <Reveal>
-          <div className="about-showroom-card p-10 lg:p-14 rounded-3xl bg-surface border border-border shadow-soft">
-            <figure>
-              <img
-                src="/assets/products/power-green-left.png"
-                alt="Franklin EV POWER electric scooter in Mint Green — left side view."
-                width={1376}
-                height={1143}
-                loading="lazy"
-                decoding="async"
-              />
-            </figure>
-            <div>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-ink">
-              Why ride with Franklin EV
-            </h2>
-            <p className="mt-4 text-lg text-muted-foreground max-w-3xl">
-              BLDC hub motor, standard home charging, smart safety features and a dealer network across Hyderabad and Telangana — Franklin EV is built for Indian city riders.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3 text-sm">
-              {[
-                "Low running cost",
-                "BLDC hub motor",
-                "Standard charging",
-                "Smart safety",
-                "Dealer support",
-              ].map((c) => (
-                <span
-                  key={c}
-                  className="px-3 py-1.5 rounded-full bg-primary/10 text-primary font-medium inline-flex items-center gap-1"
+          <div className="about-showroom-card p-6 lg:p-10 rounded-3xl bg-surface border border-border shadow-soft">
+            <div className="grid lg:grid-cols-2 gap-8 items-center">
+              <figure className="flex justify-center">
+                <img
+                  src="/assets/products/power-green-left.png"
+                  alt="Franklin EV POWER electric scooter in Mint Green — left side view."
+                  width={1376}
+                  height={1143}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full max-w-[400px] h-auto object-contain"
+                />
+              </figure>
+              <div>
+                <h2
+                  className="font-display heading-section font-bold"
+                  style={{ color: "var(--ink, #1a1a1a)" }}
                 >
-                  <MapPin className="w-3 h-3" /> {c}
-                </span>
-              ))}
-            </div>
+                  Why ride with Franklin EV
+                </h2>
+                <p className="mt-3 text-base" style={{ color: "var(--muted-foreground, #6b7280)" }}>
+                  BLDC hub motor, standard home charging, smart safety features and a dealer network
+                  across Hyderabad and Telangana — Franklin EV is built for Indian city riders.
+                </p>
+                <div className="mt-4 grid grid-cols-2 gap-3">
+                  {[
+                    "Low running cost",
+                    "BLDC hub motor",
+                    "Standard charging",
+                    "Smart safety",
+                    "Dealer support",
+                  ].map((feature) => (
+                    <span
+                      key={feature}
+                      className="flex items-center gap-2 text-sm font-medium"
+                      style={{ color: "var(--ink, #1a1a1a)" }}
+                    >
+                      <CheckCircle2
+                        className="w-4 h-4"
+                        style={{ color: "var(--primary, #00d4ff)" }}
+                      />
+                      {feature}
+                    </span>
+                  ))}
+                </div>
+                <div
+                  className="mt-4 p-3 rounded-xl"
+                  style={{ background: "var(--primary-light, #f0f9ff)" }}
+                />
+              </div>
             </div>
           </div>
         </Reveal>
@@ -270,12 +295,15 @@ function AboutPage() {
       <section className="max-w-7xl mx-auto px-5 lg:px-8 py-16">
         <Reveal>
           <div className="text-center mb-10">
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">Why Riders Switch</span>
-            <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink mt-2">
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+              Why Riders Switch
+            </span>
+            <h2 className="font-display heading-section font-bold text-ink mt-2">
               Why more riders are choosing <em>electric over petrol</em>.
             </h2>
             <p className="mt-3 text-muted-foreground max-w-xl mx-auto">
-              Switch from petrol and cut your monthly commute cost significantly. Franklin EV makes the transition easy with home charging, low maintenance and dealer support.
+              Switch from petrol and cut your monthly commute cost significantly. Franklin EV makes
+              the transition easy with home charging, low maintenance and dealer support.
             </p>
           </div>
         </Reveal>
@@ -320,37 +348,56 @@ function AboutPage() {
         <Reveal delay={0.1}>
           <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-3">
             {[
-              { src: "/assets/products/power-black-left.png", alt: "Franklin EV POWER in Midnight Black" },
+              {
+                src: "/assets/products/power-black-left.png",
+                alt: "Franklin EV POWER in Midnight Black",
+              },
               { src: "/assets/products/power-red-left.png", alt: "Franklin EV POWER in Flame Red" },
-              { src: "/assets/products/classic-gold-left.png", alt: "Franklin EV Classic in Champagne Gold" },
+              {
+                src: "/assets/products/classic-gold-left.png",
+                alt: "Franklin EV Classic in Champagne Gold",
+              },
             ].map((img) => (
-              <figure key={img.src} className="rounded-2xl overflow-hidden border border-border bg-zinc-50">
-                <img src={img.src} alt={img.alt} loading="lazy" decoding="async" className="w-full object-contain p-3 drop-shadow-md" />
+              <figure
+                key={img.src}
+                className="rounded-2xl overflow-hidden border border-border bg-zinc-50"
+              >
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full object-contain p-3 drop-shadow-md"
+                />
               </figure>
             ))}
           </div>
         </Reveal>
       </section>
 
-      <section className="max-w-7xl mx-auto px-5 lg:px-8 py-20">
-        <Reveal>
-          <div className="rounded-[2.5rem] bg-primary-gradient p-12 lg:p-20 text-center">
-            <h2 className="font-display text-4xl sm:text-5xl font-bold text-primary-foreground">
-              Join the electric shift
-            </h2>
-            <p className="mt-4 text-lg text-primary-foreground/90 max-w-2xl mx-auto">
-              Compare the Franklin EV ride experience, charging support and model features in
-              person.
-            </p>
-            <Link
-              to="/contact"
-              className="mt-8 inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-surface text-ink font-semibold shadow-lift hover:scale-[1.03] transition-transform"
-            >
-              Book a Test Ride <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </Reveal>
-      </section>
+     <section className="max-w-7xl mx-auto px-5 lg:px-8 py-20">
+  <Reveal>
+    <div className="rounded-[2.5rem] p-12 lg:p-20 text-center">
+      <h2 className="font-display heading-section font-bold text-ink">
+        Join the electric shift
+      </h2>
+      <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+        Compare the Franklin EV ride experience, charging support and model features in
+        person.
+      </p>
+      <Link
+        to="/contact"
+        className="mt-8 inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-white font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-[1.03]"
+        style={{
+          background: 'linear-gradient(90deg, #18BFEA 0%, #24CFA0 50%, #52E636 100%)',
+          boxShadow: '0 8px 24px rgba(36, 207, 160, 0.35)',
+        }}
+      >
+        Book a Test Ride <ArrowRight className="w-4 h-4" />
+      </Link>
+    </div>
+  </Reveal>
+</section>
     </>
   );
 }
