@@ -1,45 +1,43 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CalendarCheck, MessageCircle, Phone, X } from "lucide-react";
 
 export function FloatingDock() {
-  const [collapsed, setCollapsed] = useState(false);
-  const [footerVisible, setFooterVisible] = useState(false);
+  // Collapsed to a single button by default on every screen size so the dock
+  // never sits as a wide bar over page content (it previously covered the
+  // Google Play badge, hero copy, FAQ text and the Contact form's City field).
+  const [collapsed, setCollapsed] = useState(true);
+  const [shouldHide, setShouldHide] = useState(false);
+  const intersectingTargetsRef = useRef<Set<Element>>(new Set());
 
   useEffect(() => {
-    const mobileQuery = window.matchMedia("(max-width: 768px)");
-    setCollapsed(mobileQuery.matches);
-
-    const handleMobileChange = (event: MediaQueryListEvent) => {
-      setCollapsed(event.matches);
-    };
-
-    mobileQuery.addEventListener("change", handleMobileChange);
-
-    return () => mobileQuery.removeEventListener("change", handleMobileChange);
-  }, []);
-
-  useEffect(() => {
-    const footer = document.querySelector("footer");
-    if (!footer || !("IntersectionObserver" in window)) {
+    const targets = document.querySelectorAll("footer, [data-hide-floating-dock]");
+    if (targets.length === 0 || !("IntersectionObserver" in window)) {
       return;
     }
 
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setFooterVisible(entry.isIntersecting);
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            intersectingTargetsRef.current.add(entry.target);
+          } else {
+            intersectingTargetsRef.current.delete(entry.target);
+          }
+        }
+        setShouldHide(intersectingTargetsRef.current.size > 0);
       },
       { threshold: 0.2 },
     );
 
-    observer.observe(footer);
+    targets.forEach((target) => observer.observe(target));
     return () => observer.disconnect();
   }, []);
 
   return (
     <div
       className={`floating-actions${collapsed ? " is-collapsed" : ""}${
-        footerVisible ? " is-footer-visible" : ""
+        shouldHide ? " is-footer-visible" : ""
       }`}
       aria-label="Quick contact actions"
     >

@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import { motion } from "framer-motion";
+import "leaflet/dist/leaflet.css";
 
 // ---------- MAP COORDINATES ----------
 const cityCoordinates: Record<string, [number, number]> = {
@@ -66,7 +67,7 @@ function DealerMap() {
 
         if (!isMounted) return;
 
-        const { MapContainer, TileLayer, Marker, Popup } = leafletModule;
+        const { MapContainer, TileLayer, Marker, Popup, useMap } = leafletModule;
         const L = LModule.default;
 
         // Fix default icon
@@ -93,11 +94,49 @@ function DealerMap() {
   });
 };
 
+      const ScrollZoomControl = () => {
+        const map = useMap();
+        const [active, setActive] = useState(false);
+
+        useEffect(() => {
+          map.scrollWheelZoom.disable();
+
+          const container = map.getContainer();
+          const enable = () => {
+            map.scrollWheelZoom.enable();
+            setActive(true);
+          };
+          const disable = () => {
+            map.scrollWheelZoom.disable();
+            setActive(false);
+          };
+
+          container.addEventListener("click", enable);
+          container.addEventListener("mouseleave", disable);
+
+          return () => {
+            container.removeEventListener("click", enable);
+            container.removeEventListener("mouseleave", disable);
+          };
+        }, [map]);
+
+        if (active) {
+          return null;
+        }
+
+        return (
+          <div className="map-scroll-hint" aria-hidden="true">
+            Click map to zoom &amp; pan
+          </div>
+        );
+      };
+
       const Map = () => (
         <MapContainer
           center={[17.385, 78.4867]}
           zoom={9}
-          scrollWheelZoom
+          scrollWheelZoom={false}
+          wheelPxPerZoomLevel={140}
           zoomControl={true}
           className="w-full h-full min-h-[400px] rounded-3xl"
           style={{ background: "#e8ecf1" }}
@@ -107,6 +146,7 @@ function DealerMap() {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             maxZoom={19}
           />
+          <ScrollZoomControl />
 
           <>
             {allCities.map((city) => {
@@ -280,7 +320,6 @@ const heroSequenceFrames = Array.from(
   (_, index) => `/assets/hero-sequence/frame-${String(index + 1).padStart(3, "0")}.jpg`,
 );
 const heroSequenceSize = { width: 1600, height: 817 } as const;
-const heroSingleScrollDistanceRatio = 0.28;
 
 // features and riderStories are kept here because they may be referenced elsewhere,
 // but they are no longer rendered on the home page.
@@ -614,7 +653,12 @@ function HeroSection() {
         return;
       }
 
-      const singleScrollTravel = Math.max(window.innerHeight * heroSingleScrollDistanceRatio, 1);
+      // Use the section's actual pinned scroll room (its height beyond one
+      // viewport) rather than a hardcoded ratio, so this always matches
+      // whatever height styles.css gives .cinema-hero at the current
+      // breakpoint — a mismatch here is what causes the frame sequence to
+      // jump-cut to the last frame before it's actually scrubbed through.
+      const singleScrollTravel = Math.max(hero.offsetHeight - window.innerHeight, 1);
       const traveled = Math.min(Math.max(-rect.top, 0), singleScrollTravel);
       setHeroProgress(traveled / singleScrollTravel);
     };
@@ -688,7 +732,13 @@ function HeroSection() {
     let cancelled = false;
     let idleCallbackId = 0;
     let warmupTimer = 0;
-    let nextIndex = Math.min(10, heroSequenceFrames.length);
+    let nextIndex = Math.min(6, heroSequenceFrames.length);
+    // Background-warm only a bounded head of the sequence on load. The rest
+    // is fetched on demand by the scroll-driven windowed preloader above, so
+    // a visitor who never scrolls the hero never pays for the remaining
+    // frames — this was previously fetching all 92 frames shortly after
+    // every page load regardless of scroll intent.
+    const backgroundWarmupCap = Math.min(30, heroSequenceFrames.length);
 
     for (let index = 0; index < nextIndex; index += 1) {
       decodeHeroFrameImage(loadHeroFrameImage(index, index < 4 ? "high" : "low"));
@@ -702,8 +752,8 @@ function HeroSection() {
       let framesProcessed = 0;
 
       while (
-        nextIndex < heroSequenceFrames.length &&
-        framesProcessed < 10 &&
+        nextIndex < backgroundWarmupCap &&
+        framesProcessed < 4 &&
         (deadline ? deadline.timeRemaining() > 6 : true)
       ) {
         decodeHeroFrameImage(loadHeroFrameImage(nextIndex, "low"));
@@ -711,21 +761,21 @@ function HeroSection() {
         framesProcessed += 1;
       }
 
-      if (nextIndex >= heroSequenceFrames.length || cancelled) {
+      if (nextIndex >= backgroundWarmupCap || cancelled) {
         return;
       }
 
       if ("requestIdleCallback" in window) {
-        idleCallbackId = window.requestIdleCallback(warmRemainingFrames, { timeout: 1200 });
+        idleCallbackId = window.requestIdleCallback(warmRemainingFrames, { timeout: 2000 });
       } else {
-        warmupTimer = window.setTimeout(() => warmRemainingFrames(), 180);
+        warmupTimer = window.setTimeout(() => warmRemainingFrames(), 320);
       }
     };
 
     if ("requestIdleCallback" in window) {
-      idleCallbackId = window.requestIdleCallback(warmRemainingFrames, { timeout: 900 });
+      idleCallbackId = window.requestIdleCallback(warmRemainingFrames, { timeout: 1500 });
     } else {
-      warmupTimer = window.setTimeout(() => warmRemainingFrames(), 240);
+      warmupTimer = window.setTimeout(() => warmRemainingFrames(), 400);
     }
 
     return () => {
@@ -1069,7 +1119,7 @@ function Home() {
             <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-emerald-400 bg-emerald-400/10 px-4 py-1.5 rounded-full backdrop-blur-sm border border-emerald-400/20">
               Battery Technology
             </span>
-            <h2 className="font-display heading-section font-bold text-ink mt-4">
+            <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink mt-4">
               Choose Your <span className="text-primary-gradient">Power</span>
             </h2>
             <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -1137,7 +1187,7 @@ function Home() {
       <section className="home-range-transfer bg-hero-gradient" data-animate="fade-up">
         <div className="max-w-7xl mx-auto px-5 lg:px-8 py-16">
           <Reveal className="text-center">
-            <h2 className="font-display heading-section font-bold text-ink">
+            <h2 className="font-display text-5xl sm:text-6xl font-bold text-ink">
               The Franklin EV <span className="text-primary-gradient">Range</span>
             </h2>
             <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -1152,7 +1202,8 @@ function Home() {
                 name: "Franklin EV POWER PLUS",
                 badge: "Sporty",
                 tagline: "Sport-aggressive design. Built to stand out.",
-                img: "/assets/products/power-black-left.png",
+                video: "/assets/products/power-black-left.mp4",   // 👈 video file
+                poster: "/assets/products/power-black-left.png", // fallback image
                 accentColor: "#e67e22",
                 heroStat: "0–60 in 4.2s",
               },
@@ -1160,7 +1211,8 @@ function Home() {
                 name: "Franklin EV RAPID",
                 badge: "Everyday",
                 tagline: "Clean lines. Everyday confidence.",
-                img: "/assets/products/classic-gold-left.png",
+                video: "/assets/products/classic-gold-left.mp4",
+                poster: "/assets/products/classic-gold-left.png",
                 accentColor: "#f39c12",
                 heroStat: "Up to 80km range",
               },
@@ -1186,10 +1238,15 @@ function Home() {
                     >
                       {model.badge}
                     </span>
-                    <img
-                      src={model.img}
-                      alt={model.name}
+                    {/* 🎥 VIDEO instead of IMAGE */}
+                    <video
                       className="max-h-full w-auto object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-105"
+                      src={model.video}
+                      poster={model.poster}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
                       loading="lazy"
                     />
                   </div>
@@ -1247,7 +1304,7 @@ function Home() {
             <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-emerald-400 bg-emerald-400/10 px-4 py-1.5 rounded-full backdrop-blur-sm border border-emerald-400/20">
               Lifestyle
             </span>
-            <h2 className="font-display heading-section font-bold text-white mt-4">
+            <h2 className="font-display text-4xl sm:text-5xl font-bold text-white mt-4">
               Ride the <span className="text-emerald-400">Future</span>
             </h2>
             <p className="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">
@@ -1399,7 +1456,7 @@ function Home() {
           <div className="cinema-eyebrow text-primary font-semibold tracking-wider">
             Ownership Experience
           </div>
-          <h2 className="font-display heading-section font-bold text-ink leading-tight">
+          <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink leading-tight">
             Simple to own. <br />
             <span className="text-primary-gradient">Easy to love.</span>
           </h2>
@@ -1538,7 +1595,7 @@ function Home() {
         <div className="max-w-7xl mx-auto px-5 lg:px-8 py-16">
           <Reveal className="text-center mb-12">
             <div className="cinema-eyebrow text-primary font-semibold">Find Us Near You</div>
-            <h2 className="font-display heading-section font-bold text-ink mt-2">
+            <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink mt-2">
               Experience Franklin EV <span className="text-primary-gradient">in person</span>.
             </h2>
             <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -1589,7 +1646,7 @@ function Home() {
             <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-primary bg-primary/10 px-4 py-1.5 rounded-full backdrop-blur-sm border border-primary/20">
               FAQ
             </span>
-            <h2 className="font-display heading-section font-bold text-ink mt-4">
+            <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink mt-4">
               Frequently asked <span className="text-primary-gradient">questions</span>
             </h2>
           </Reveal>

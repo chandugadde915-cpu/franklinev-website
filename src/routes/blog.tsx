@@ -376,7 +376,7 @@ function BlogPage() {
               <span className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.2em] text-primary bg-primary/5 px-5 py-2.5 rounded-full border border-primary/20">
                 <MapPin className="w-4 h-4" /> Hyderabad Commuters
               </span>
-              <h2 className="heading-section font-bold text-ink mt-6 leading-[1.1]">
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-ink mt-6 leading-[1.1]">
                 Why Hyderabad commuters are <br />
                 <span className="text-primary">switching to electric</span>
               </h2>

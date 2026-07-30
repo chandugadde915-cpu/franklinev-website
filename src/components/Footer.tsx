@@ -36,12 +36,7 @@ export function Footer() {
     { to: "/legal-policy", label: "Legal Policy" },
   ];
 
-  const variants = [
-    "Low Speed - 25 km/h",
-    "High Speed - up to 60 km/h",
-    "Lithium-ion Battery",
-    "Graphene Battery",
-  ];
+  const variants = ["Lithium-ion Battery", "Graphene Battery"];
 
   return (
     <footer

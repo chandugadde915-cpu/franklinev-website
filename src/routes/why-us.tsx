@@ -163,7 +163,7 @@ function WhyUs() {
       {/* ── SECTION 1: ENGINEERED AROUND REAL RIDERS ── */}
       <section className="py-16 px-5 lg:px-8 max-w-7xl mx-auto">
         <Reveal className="text-center max-w-3xl mx-auto mb-8">
-          <h2 className="heading-section font-bold text-gray-900 mt-4 leading-tight">
+          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mt-4 leading-tight">
             Engineered around{" "}
             <span style={brandGradientStyle}>real riders</span>.
           </h2>
@@ -210,7 +210,7 @@ function WhyUs() {
             <span className="inline-block text-xs font-bold uppercase tracking-widest text-teal-600 bg-teal-50 px-4 py-1.5 rounded-full mb-4">
               Cost Comparison
             </span>
-            <h2 className="heading-section font-bold text-gray-900 leading-tight">
+            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 leading-tight">
               Save more with{" "}
               <span style={brandGradientStyle}>every ride</span>.
             </h2>
@@ -382,7 +382,7 @@ function WhyUs() {
           <span className="inline-block text-xs font-bold uppercase tracking-widest text-teal-600 bg-teal-50 px-4 py-1.5 rounded-full">
             India Electric Future
           </span>
-          <h2 className="heading-section font-bold text-gray-900 mt-4 leading-tight">
+          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mt-4 leading-tight">
             Proudly powering{" "}
             <span style={brandGradientStyle}>India's electric future</span>.
           </h2>

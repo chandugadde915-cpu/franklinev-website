@@ -85,7 +85,7 @@ function AboutPage() {
 
       <section className="max-w-7xl mx-auto px-5 lg:px-8 py-16">
         <Reveal>
-          <h2 className="font-display heading-section font-bold text-ink text-center">
+          <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink text-center">
             Cleaner. Quieter. <span className="text-primary-gradient">Smarter.</span>
           </h2>
         </Reveal>
@@ -170,7 +170,7 @@ function AboutPage() {
       {/* TIMELINE */}
       <section className="max-w-4xl mx-auto px-5 lg:px-8 py-20">
         <Reveal>
-          <h2 className="font-display heading-section font-bold text-ink text-center">
+          <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink text-center">
             The Franklin EV journey
           </h2>
         </Reveal>
@@ -251,7 +251,7 @@ function AboutPage() {
               </figure>
               <div>
                 <h2
-                  className="font-display heading-section font-bold"
+                  className="font-display text-3xl sm:text-4xl font-bold"
                   style={{ color: "var(--ink, #1a1a1a)" }}
                 >
                   Why ride with Franklin EV
@@ -298,7 +298,7 @@ function AboutPage() {
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
               Why Riders Switch
             </span>
-            <h2 className="font-display heading-section font-bold text-ink mt-2">
+            <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink mt-2">
               Why more riders are choosing <em>electric over petrol</em>.
             </h2>
             <p className="mt-3 text-muted-foreground max-w-xl mx-auto">
@@ -378,7 +378,7 @@ function AboutPage() {
      <section className="max-w-7xl mx-auto px-5 lg:px-8 py-20">
   <Reveal>
     <div className="rounded-[2.5rem] p-12 lg:p-20 text-center">
-      <h2 className="font-display heading-section font-bold text-ink">
+      <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink">
         Join the electric shift
       </h2>
       <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">

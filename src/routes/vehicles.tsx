@@ -25,11 +25,11 @@ import {
   Smartphone,
   BatteryCharging,
   LockKeyhole,
-  TrendingUp,
   Timer,
   Plug,
   Coins,
   Beaker,
+  MessageCircle,
 } from "lucide-react";
 import { Reveal, WordReveal } from "@/components/Reveal";
 
@@ -112,7 +112,7 @@ export const Route = createFileRoute("/vehicles")({
                     "https://franklinev-website.vercel.app/assets/products/power-green-left.png",
                     "https://franklinev-website.vercel.app/assets/products/power-red-left.png",
                   ],
-                  color: "Midnight Black, Ocean Blue, Mint Green, Flame Red",
+                  color: "Midnight Black, Ocean Blue, Mint Green, Flame Red, Royal Gold",
                   offers: {
                     "@type": "Offer",
                     priceCurrency: "INR",
@@ -199,17 +199,17 @@ interface VehicleModel {
   features: string[];
 }
 
-// ─── UPDATED BATTERY SPECS ────────────────────────────────
+// ─── BATTERY SPECS ────────────────────────────────────────────
 const batteryOptions: BatterySpec[] = [
   {
     key: "lithium",
     name: "Lithium-Ion Battery",
     tagline: "Trusted long-life chemistry",
     icon: Battery,
-    speed: "60 km/h",         // now shows 60 km/h
-    lowSpeedRange: "",        // not used – removed from UI
+    speed: "60 km/h",
+    lowSpeedRange: "",
     highSpeedRange: "60 km/h",
-    chargeTime: "~3 h 30 m (0–80%)", // changed to 3.5 h
+    chargeTime: "~3 h 30 m (0–80%)",
     charger: "650 W plug-and-play (15 A)",
     chargeCost: "~₹24.50 (~3.5 units)",
     chemistry: "Lithium-Ion cells",
@@ -226,10 +226,10 @@ const batteryOptions: BatterySpec[] = [
     name: "Graphene Battery",
     tagline: "Higher performance, faster charge",
     icon: Zap,
-    speed: "25 km/h",         
-    lowSpeedRange: "",        
+    speed: "25 km/h",
+    lowSpeedRange: "",
     highSpeedRange: "25 km/h",
-    chargeTime: "~4 h 30 m (0–80%)", 
+    chargeTime: "~4 h 30 m (0–80%)",
     charger: "650 W plug-and-play (15 A)",
     chargeCost: "~₹24.50 (~3.5 units)",
     chemistry: "Graphene-enhanced cells",
@@ -243,6 +243,7 @@ const batteryOptions: BatterySpec[] = [
   },
 ];
 
+// ─── VEHICLE DATA (reordered colours) ──────────────────────────
 const vehicles: VehicleModel[] = [
   {
     key: "power",
@@ -261,25 +262,31 @@ const vehicles: VehicleModel[] = [
       "Tubeless tyres with alloy wheels",
     ],
     colors: [
+      // Common colours first (same order as RAPID)
       {
         id: "black",
         name: "Midnight Black",
         swatch: "#1a1a1a",
         images: [
           {
-            src: "/assets/products/power-black-left.png",
+            src: "/assets/products/power-black-front2.png",
+            alt: "Franklin EV POWER Midnight Black – front view",
+            label: "Front",
+          },
+          {
+            src: "/assets/products/power-black-left1.png",
             alt: "Franklin EV POWER Midnight Black – left side view",
             label: "Left",
           },
           {
-            src: "/assets/products/power-black-right.png",
+            src: "/assets/products/power-black-right1.png",
             alt: "Franklin EV POWER Midnight Black – right side view",
             label: "Right",
           },
           {
-            src: "/assets/products/power-black-front.png",
-            alt: "Franklin EV POWER Midnight Black – front view",
-            label: "Front",
+            src: "/assets/products/back-common.png",
+            alt: "Franklin EV POWER Midnight Black – back view",
+            label: "Back",
           },
         ],
       },
@@ -289,26 +296,26 @@ const vehicles: VehicleModel[] = [
         swatch: "#1a5fa8",
         images: [
           {
-            src: "/assets/products/power-blue-left.png",
+            src: "/assets/products/bluefr1.png",
+            alt: "Franklin EV POWER Ocean Blue – front view",
+            label: "Front",
+          },
+          {
+            src: "/assets/products/power-blue-left1.png",
             alt: "Franklin EV POWER Ocean Blue – left side view",
             label: "Left",
           },
           {
-            src: "/assets/products/power-blue-right.png",
+            src: "/assets/products/power-blue-right1.png",
             alt: "Franklin EV POWER Ocean Blue – right side view",
             label: "Right",
           },
           {
-            src: "/assets/products/power-blue-left2.png",
-            alt: "Franklin EV POWER Ocean Blue – angled left view",
-            label: "Angle",
+            src: "/assets/products/back-common.png",
+            alt: "Franklin EV POWER Ocean Blue – back view",
+            label: "Back",
           },
-          {
-            src: "/assets/products/power-blue-tail.png",
-            alt: "Franklin EV POWER Ocean Blue – tail light detail",
-            label: "Tail",
-          },
-        ].filter(img => ["Left", "Right", "Front"].includes(img.label)),
+        ],
       },
       {
         id: "green",
@@ -316,19 +323,24 @@ const vehicles: VehicleModel[] = [
         swatch: "#5ecfb0",
         images: [
           {
-            src: "/assets/products/power-green-left.png",
+            src: "/assets/products/power-green-front1.png",
+            alt: "Franklin EV POWER Mint Green – front view",
+            label: "Front",
+          },
+          {
+            src: "/assets/products/power-green-left1.png",
             alt: "Franklin EV POWER Mint Green – left side view",
             label: "Left",
           },
           {
-            src: "/assets/products/power-green-right.png",
+            src: "/assets/products/power-green-right1.png",
             alt: "Franklin EV POWER Mint Green – right side view",
             label: "Right",
           },
           {
-            src: "/assets/products/power-green-front.png",
-            alt: "Franklin EV POWER Mint Green – front view",
-            label: "Front",
+            src: "/assets/products/back-common.png",
+            alt: "Franklin EV POWER Mint Green – back view",
+            label: "Back",
           },
         ],
       },
@@ -338,19 +350,52 @@ const vehicles: VehicleModel[] = [
         swatch: "#c0392b",
         images: [
           {
-            src: "/assets/products/power-red-left.png",
+            src: "/assets/products/power-red-front1.png",
+            alt: "Franklin EV POWER Flame Red – front view",
+            label: "Front",
+          },
+          {
+            src: "/assets/products/power-red-left2.png",
             alt: "Franklin EV POWER Flame Red – left side view",
             label: "Left",
           },
           {
-            src: "/assets/products/power-red-right.png",
+            src: "/assets/products/power-red-right2.png",
             alt: "Franklin EV POWER Flame Red – right side view",
             label: "Right",
           },
           {
-            src: "/assets/products/power-red-front.png",
-            alt: "Franklin EV POWER Flame Red – front view",
+            src: "/assets/products/back-common.png",
+            alt: "Franklin EV POWER Flame Red – back view",
+            label: "Back",
+          },
+        ],
+      },
+      // Unique colour (Royal Gold) placed at the end
+      {
+        id: "gold",
+        name: "Royal Gold",
+        swatch: "#D4AF37",
+        images: [
+          {
+            src: "/assets/products/power-gold-front.png",
+            alt: "Franklin EV POWER Royal Gold – front view",
             label: "Front",
+          },
+          {
+            src: "/assets/products/power-gold-left1.png",
+            alt: "Franklin EV POWER Royal Gold – left side view",
+            label: "Left",
+          },
+          {
+            src: "/assets/products/power-gold-right1.png",
+            alt: "Franklin EV POWER Royal Gold – right side view",
+            label: "Right",
+          },
+          {
+            src: "/assets/products/back-common.png",
+            alt: "Franklin EV POWER Royal Gold – back view",
+            label: "Back",
           },
         ],
       },
@@ -373,25 +418,31 @@ const vehicles: VehicleModel[] = [
       "Simple instrument cluster for daily use",
     ],
     colors: [
+      // Common colours first (same order as POWER)
       {
-        id: "flame-red",
-        name: "Flame Red",
-        swatch: "#c0392b",
+        id: "black",
+        name: "Black",
+        swatch: "#1a1a1a",
         images: [
           {
-            src: "/assets/products/upred.png",
-            alt: "Franklin EV RAPID Flame Red – front view",
+            src: "/assets/products/rapidblackfr.png",
+            alt: "Franklin EV RAPID Black – front view",
             label: "Front",
           },
           {
-            src: "/assets/products/red.png",
-            alt: "Franklin EV RAPID Flame Red – left side view",
+            src: "/assets/products/rapid-black-left.png",
+            alt: "Franklin EV RAPID Black – left side view",
+            label: "Left",
+          },
+          {
+            src: "/assets/products/rapid-black-right.png",
+            alt: "Franklin EV RAPID Black – right side view",
             label: "Right",
           },
           {
-            src: "/assets/products/redright.png",
-            alt: "Franklin EV RAPID Flame Red – right side view",
-            label: "Left",
+            src: "/assets/products/back-common.png",
+            alt: "Franklin EV RAPID Black – back view",
+            label: "Back",
           },
         ],
       },
@@ -405,37 +456,30 @@ const vehicles: VehicleModel[] = [
             alt: "Franklin EV RAPID Ocean Blue – front view",
             label: "Front",
           },
-          {
-            src: "/assets/products/bluelef.png",
-            alt: "Franklin EV RAPID Ocean Blue – left side view",
-            label: "Right",
-          },
-          {
+           {
             src: "/assets/products/bluerig.png",
             alt: "Franklin EV RAPID Ocean Blue – right side view",
-            label: "Left",
-          },
-        ],
-      },
-      {
-        id: "slate-gray",
-        name: "Slate Gray",
-        swatch: "#6b7280",
-        images: [
-          {
-            src: "/assets/products/frntslate.png",
-            alt: "Franklin EV RAPID Slate Gray – front view",
-            label: "Front",
-          },
-          {
-            src: "/assets/products/rigslate.png",
-            alt: "Franklin EV RAPID Slate Gray – right side view",
             label: "Right",
           },
-          {
-            src: "/assets/products/slateleft.png",
-            alt: "Franklin EV RAPID Slate Gray – left side view",
+           {
+            src: "/assets/products/bluelef.png",
+            alt: "Franklin EV RAPID Ocean Blue – left side view",
             label: "Left",
+          },
+          //  {
+          //   src: "/assets/products/bluerig.png",
+          //   alt: "Franklin EV RAPID Ocean Blue – right side view",
+          //   label: "Right",
+          // },
+          // {
+          //   src: "/assets/products/bluelef.png",
+          //   alt: "Franklin EV RAPID Ocean Blue – left side view",
+          //   label: "Left",
+          // },
+          {
+            src: "/assets/products/back-common.png",
+            alt: "Franklin EV RAPID Ocean Blue – back view",
+            label: "Back",
           },
         ],
       },
@@ -445,39 +489,95 @@ const vehicles: VehicleModel[] = [
         swatch: "#5ecfb0",
         images: [
           {
-            src: "/assets/products/mintfront.png",
+            src: "/assets/products/mintfront1.png",
             alt: "Franklin EV RAPID Mint Green – front view",
             label: "Front",
+          },
+           {
+            src: "/assets/products/mint-left1.png",
+            alt: "Franklin EV RAPID Mint Green – left side view",
+            label: "Left",
+          },
+            {
+            src: "/assets/products/mint-right.png",
+            alt: "Franklin EV RAPID Mint Green – right side view",
+            label: "Right",
+          },
+          // {
+          //   src: "/assets/products/mint-left1.png",
+          //   alt: "Franklin EV RAPID Mint Green – left side view",
+          //   label: "Left",
+          // },
+          {
+            src: "/assets/products/back-common.png",
+            alt: "Franklin EV RAPID Mint Green – back view",
+            label: "Back",
+          },
+        ],
+      },
+      {
+        id: "flame-red",
+        name: "Flame Red",
+        swatch: "#c0392b",
+        images: [
+          {
+            src: "/assets/products/upred.png",
+            alt: "Franklin EV RAPID Flame Red – front view",
+            label: "Front",
+          },
+          {
+            src: "/assets/products/redright.png",
+            alt: "Franklin EV RAPID Flame Red – right side view",
+            label: "Right",
+          },
+          {
+            src: "/assets/products/red.png",
+            alt: "Franklin EV RAPID Flame Red – left side view",
+            label: "Left",
+          },
+          // {
+          //   src: "/assets/products/redright.png",
+          //   alt: "Franklin EV RAPID Flame Red – right side view",
+          //   label: "Right",
+          // },
+          {
+            src: "/assets/products/back-common.png",
+            alt: "Franklin EV RAPID Flame Red – back view",
+            label: "Back",
+          },
+        ],
+      },
+      // Unique colour (Slate Gray) placed at the end
+      {
+        id: "slate-gray",
+        name: "Slate Gray",
+        swatch: "#6b7280",
+        images: [
+          {
+            src: "/assets/products/frntslate1.png",
+            alt: "Franklin EV RAPID Slate Gray – front view",
+            label: "Front",
+          },
+          {
+            src: "/assets/products/slateleft.png",
+            alt: "Franklin EV RAPID Slate Gray – left side view",
+            label: "Left",
+          },
+          {
+            src: "/assets/products/rigslate1.png",
+            alt: "Franklin EV RAPID Slate Gray – right side view",
+            label: "Right",
+          },
+          {
+            src: "/assets/products/back-common.png",
+            alt: "Franklin EV RAPID Slate Gray – back view",
+            label: "Back",
           },
         ],
       },
     ],
   },
 ];
-
-const comparisonRows = [
-  ["Motor", "High-Speed BLDC Package", "250W BLDC Hub Motor"],
-  ["Top Speed", "60 km/h", "25 km/h"],
-  ["Range", "Up to 80 km", "Up to 55 km"],
-  ["Charge time", "~3 h 30 m (0–80%)", "~4 h 30 m (0–80%)"],
-  ["Charger", "650 W plug-and-play (15 A socket)", "650 W plug-and-play (15 A socket)"],
-  ["Full-charge cost", "~₹24.50 (~3.5 units)", "~₹24.50 (~3.5 units)"],
-  [
-    "Warranty (Battery / Motor / Charger)",
-    "2+1 yr / 12 mo / 12 mo",
-    "12 mo / 12 mo / 6 mo",
-  ],
-  [
-    "POWER colours",
-    "Midnight Black, Ocean Blue, Mint Green, Flame Red",
-    "Midnight Black, Ocean Blue, Mint Green, Flame Red",
-  ],
-  [
-    "RAPID colours",
-    "Flame Red, Ocean Blue, Slate Gray, Mint Green",
-    "Flame Red, Ocean Blue, Slate Gray, Mint Green",
-  ],
-] as const;
 
 const faqs = [
   {
@@ -527,6 +627,27 @@ function VehiclesPage() {
   const images = color.images;
   const battery = batteryOptions.find((b) => b.key === activeBattery)!;
   const currentImage = images[activeImageIndex] ?? images[0];
+
+  const whatsappHref = `https://wa.me/918977040935?text=${encodeURIComponent(
+    `Hi Franklin EV, I'm interested in the ${vehicle.name} in ${color.name}. Can I book a test ride?`,
+  )}`;
+
+  // ── Sticky test-ride bar: show once the showcase section scrolls out of view ──
+  const showcaseSectionRef = useRef<HTMLElement | null>(null);
+  const [showStickyBar, setShowStickyBar] = useState(false);
+
+  useEffect(() => {
+    const el = showcaseSectionRef.current;
+    if (!el || !("IntersectionObserver" in window)) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setShowStickyBar(!entry.isIntersecting && entry.boundingClientRect.top < 0);
+      },
+      { threshold: 0 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   // ── Auto‑play slideshow ──
   const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -660,8 +781,47 @@ function VehiclesPage() {
         </div>
       </section>
 
+      {/* ── STICKY TEST-RIDE BAR – appears once the showcase scrolls out of view ── */}
+      <AnimatePresence>
+        {showStickyBar && (
+          <motion.div
+            initial={{ y: -60, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -60, opacity: 0 }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed top-16 md:top-[76px] left-0 right-0 z-50 border-b border-border/60 bg-white/90 backdrop-blur-md shadow-md"
+          >
+            <div className="max-w-6xl mx-auto px-5 lg:px-8 py-2.5 flex items-center justify-between gap-4">
+              <div className="flex items-center gap-3 min-w-0">
+                <span
+                  className="hidden sm:block w-6 h-6 rounded-full ring-1 ring-border/40 flex-shrink-0"
+                  style={{ backgroundColor: color.swatch }}
+                />
+                <p className="text-sm font-semibold text-ink truncate">
+                  {vehicle.name}
+                  <span className="hidden sm:inline text-muted-foreground font-normal">
+                    {" "}
+                    — {color.name}
+                  </span>
+                </p>
+              </div>
+              <a
+                href={whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-white text-sm font-semibold shadow-md transition-transform hover:scale-[1.03]"
+                style={{ background: premiumGradient }}
+              >
+                <MessageCircle className="w-4 h-4" />
+                <span className="hidden sm:inline">Book</span> Test Ride
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* ── VEHICLE SHOWCASE – with larger image ── */}
-      <section className="max-w-6xl mx-auto px-5 lg:px-8 py-6">
+      <section ref={showcaseSectionRef} className="max-w-6xl mx-auto px-5 lg:px-8 py-6">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeVariant}
@@ -671,14 +831,10 @@ function VehiclesPage() {
             transition={{ duration: 0.35 }}
             className="flex flex-col items-center"
           >
-            {/* Main image container – increased max width */}
+            {/* Main image container – transparent background for BOTH variants */}
             <div
               className="relative w-full max-w-4xl rounded-3xl border border-border overflow-hidden aspect-[4/3] flex items-center justify-center"
-              style={{
-                background: activeVariant === 'rapid' 
-                  ? 'transparent' 
-                  : `radial-gradient(circle at 30% 40%, ${color.swatch}44, #0a0a0a 90%)`,
-              }}
+              style={{ background: "transparent" }}
               onMouseEnter={pauseTimer}
               onMouseLeave={resetTimer}
             >
@@ -804,6 +960,18 @@ function VehiclesPage() {
                 ))}
               </div>
             </div>
+
+            {/* Book a Test Ride – pre-filled with selected model + colour */}
+            <a
+              href={whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-semibold shadow-lg transition-all hover:shadow-xl hover:scale-[1.02]"
+              style={{ background: premiumGradient, boxShadow: "0 10px 30px rgba(36, 207, 160, 0.35)" }}
+            >
+              <MessageCircle className="w-4 h-4" />
+              Book a Test Ride — {vehicle.name} in {color.name}
+            </a>
           </motion.div>
         </AnimatePresence>
       </section>
@@ -824,7 +992,7 @@ function VehiclesPage() {
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-cyan-400">
               Crafted for Every Ride
             </span>
-            <h2 className="font-display heading-section font-bold text-white mt-3 leading-tight">
+            <h2 className="font-display text-4xl sm:text-5xl font-bold text-white mt-3 leading-tight">
               Crafted for <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Every Ride</span>
             </h2>
             <p className="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">
@@ -860,14 +1028,13 @@ function VehiclesPage() {
             <div className="md:col-span-3 flex items-center justify-center relative min-h-[400px]">
               <motion.div
                 className="relative w-full h-full flex items-center justify-center overflow-hidden"
-                whileHover={{ scale: 1.03 }}
                 transition={{ duration: 0.4 }}
               >
                 <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/5 to-emerald-500/5 blur-2xl" />
                 <img
                   src="/assets/editorial/model.png"
                   alt="Franklin EV Model"
-                  className="w-full h-full object-cover scale-105 hover:scale-110 transition-transform duration-500 drop-shadow-2xl"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500 drop-shadow-2xl"
                   style={{ filter: 'drop-shadow(0 10px 30px rgba(0,0,0,0.3))' }}
                   loading="lazy"
                   onError={(e) => {
@@ -886,7 +1053,7 @@ function VehiclesPage() {
           <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
             Battery Technology
           </span>
-          <h2 className="font-display heading-section font-bold text-ink mt-3">
+          <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink mt-3">
             Choose Your <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Power</span>
           </h2>
           <p className="mt-3 text-muted-foreground max-w-xl mx-auto">
@@ -899,9 +1066,7 @@ function VehiclesPage() {
             const Icon = b.icon;
             const isActive = activeBattery === b.key;
 
-            // ─── Only high-speed range, removed low-speed ───
             const specItems = [
-              { label: "High-speed range", value: b.highSpeedRange, icon: TrendingUp },
               { label: "Charge time", value: b.chargeTime, icon: Timer },
               { label: "Charger", value: b.charger, icon: Plug },
               { label: "Full charge cost", value: b.chargeCost, icon: Coins },
@@ -971,75 +1136,10 @@ function VehiclesPage() {
         </div>
       </section>
 
-      {/* ── SPEC COMPARISON TABLE ── */}
-      <section className="max-w-7xl mx-auto px-5 lg:px-8 py-8">
-        <Reveal>
-          <div className="text-center mb-8">
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">Specs</span>
-            <h2 className="font-display heading-section font-bold text-ink mt-2">
-              Compare Variants
-            </h2>
-          </div>
-          <div className="hidden overflow-x-auto rounded-3xl border border-border bg-surface shadow-soft lg:block">
-            <table className="w-full min-w-[700px] text-sm">
-              <thead>
-                <tr className="bg-background border-b border-border">
-                  <th className="text-left p-4 font-semibold text-ink w-48">Specification</th>
-                  <th className="text-left p-4 font-semibold text-primary">
-                    <span className="flex items-center gap-2">
-                      <Battery className="w-4 h-4" /> Lithium-Ion
-                    </span>
-                  </th>
-                  <th className="text-left p-4 font-semibold text-primary">
-                    <span className="flex items-center gap-2">
-                      <Zap className="w-4 h-4" /> Graphene
-                    </span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-border">
-                {comparisonRows.map((row) => (
-                  <tr key={row[0]} className="hover:bg-background/60">
-                    <td className="p-4 font-medium text-ink">{row[0]}</td>
-                    <td className="p-4 text-muted-foreground">{row[1]}</td>
-                    <td className="p-4 text-muted-foreground">{row[2]}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <div className="space-y-4 lg:hidden">
-            {comparisonRows.map(([spec, low, high]) => (
-              <article
-                key={spec}
-                className="rounded-2xl border border-border bg-surface p-4 shadow-soft"
-              >
-                <h3 className="font-semibold text-ink mb-3">{spec}</h3>
-                <div className="grid grid-cols-2 gap-2">
-                  {(
-                    [
-                      ["Lithium-Ion", low],
-                      ["Graphene", high],
-                    ] as const
-                  ).map(([label, val]) => (
-                    <div key={label} className="rounded-xl bg-background p-3">
-                      <span className="text-xs font-bold uppercase tracking-wide text-primary">
-                        {label}
-                      </span>
-                      <p className="mt-1 text-sm text-muted-foreground">{val}</p>
-                    </div>
-                  ))}
-                </div>
-              </article>
-            ))}
-          </div>
-        </Reveal>
-      </section>
-
       {/* ── FAQ ── */}
       <section className="max-w-6xl mx-auto px-5 lg:px-8 py-16">
         <Reveal>
-          <h2 className="font-display heading-section font-bold text-ink text-center mb-10">
+          <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink text-center mb-10">
             Frequently Asked Questions
           </h2>
         </Reveal>
@@ -1097,5 +1197,3 @@ function FaqItem({ q, a }: { q: string; a: string }) {
     </details>
   );
 }
-
-

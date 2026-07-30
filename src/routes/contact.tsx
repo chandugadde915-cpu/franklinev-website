@@ -185,7 +185,7 @@ function ContactPage() {
       {/* DEALER LOCATOR */}
       <section className="max-w-7xl mx-auto px-5 lg:px-8 py-16">
         <Reveal>
-          <h2 className="font-display heading-section font-bold text-ink">
+          <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink">
             Find a dealer near you
           </h2>
           <p className="mt-3 text-muted-foreground max-w-2xl">
@@ -234,6 +234,7 @@ function ContactForm() {
       action="/api/contact"
       onSubmit={onSubmit}
       aria-busy={isSending}
+      data-hide-floating-dock
       className="p-7 lg:p-9 rounded-3xl bg-surface border border-border shadow-soft"
     >
       <AnimatePresence mode="wait">

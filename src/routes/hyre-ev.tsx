@@ -1,3 +1,4 @@
+
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import {
@@ -116,7 +117,7 @@ function HyreEvPage() {
               <span className="inline-block text-sm font-semibold tracking-wider uppercase text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
                 Built for city use
               </span>
-              <h2 className="font-display heading-section font-bold text-gray-900 mt-1">
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mt-1">
                 Rental mobility for modern urban needs
               </h2>
             </div>
@@ -146,7 +147,7 @@ function HyreEvPage() {
           <span className="inline-block text-sm font-semibold tracking-wider uppercase text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
             Rental Plans
           </span>
-          <h2 className="font-display heading-section font-bold text-gray-900">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">
             Indicative pricing
           </h2>
           <p className="mt-3 max-w-xl mx-auto text-sm md:text-base text-gray-600">
@@ -205,7 +206,7 @@ function HyreEvPage() {
           <span className="inline-block text-sm font-semibold tracking-wider uppercase text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
             Rental Process
           </span>
-          <h2 className="font-display heading-section font-bold text-gray-900">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">
             How Hyre EV works
           </h2>
         </Reveal>
@@ -264,7 +265,7 @@ function HyreEvPage() {
               <span className="inline-block text-sm font-semibold tracking-wider uppercase text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
                 Rental eligibility
               </span>
-              <h2 className="font-display heading-section font-bold text-gray-900 mt-2">
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mt-2">
                 Who can rent a Hyre EV scooter
               </h2>
               <ul className="mt-4 space-y-3">
@@ -294,7 +295,7 @@ function HyreEvPage() {
               <span className="inline-block text-sm font-semibold tracking-wider uppercase text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
                 Fleet & B2B
               </span>
-              <h2 className="font-display heading-section font-bold text-gray-900 mt-2">
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mt-2">
                 Need scooters for your team or business?
               </h2>
               <p className="mt-4 text-gray-600 text-base md:text-lg">
@@ -341,7 +342,7 @@ function HyreEvPage() {
           <span className="inline-block text-sm font-semibold tracking-wider uppercase text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
             Rental Enquiry
           </span>
-          <h2 className="font-display heading-section font-bold text-gray-900">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">
             Book your Hyre EV scooter
           </h2>
           <p className="mt-3 max-w-xl mx-auto text-gray-600 text-sm md:text-base">
