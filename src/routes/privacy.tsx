@@ -17,9 +17,9 @@ export const Route = createFileRoute("/privacy")({
         content:
           "How Franklin EV collects and uses enquiry details for sales follow-up, test rides and support.",
       },
-      { property: "og:url", content: "https://franklinev-website.vercel.app/privacy" },
+      { property: "og:url", content: "https://www.franklinev.co.in/privacy" },
     ],
-    links: [{ rel: "canonical", href: "https://franklinev-website.vercel.app/privacy" }],
+    links: [{ rel: "canonical", href: "https://www.franklinev.co.in/privacy" }],
   }),
   component: PrivacyPage,
 });

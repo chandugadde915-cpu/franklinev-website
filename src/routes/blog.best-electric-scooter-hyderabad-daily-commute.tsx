@@ -23,13 +23,13 @@ export const Route = createFileRoute("/blog/best-electric-scooter-hyderabad-dail
       {
         property: "og:url",
         content:
-          "https://franklinev-website.vercel.app/blog/best-electric-scooter-hyderabad-daily-commute",
+          "https://www.franklinev.co.in/blog/best-electric-scooter-hyderabad-daily-commute",
       },
     ],
     links: [
       {
         rel: "canonical",
-        href: "https://franklinev-website.vercel.app/blog/best-electric-scooter-hyderabad-daily-commute",
+        href: "https://www.franklinev.co.in/blog/best-electric-scooter-hyderabad-daily-commute",
       },
     ],
   }),

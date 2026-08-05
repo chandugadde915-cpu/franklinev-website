@@ -18,7 +18,9 @@ import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { FloatingDock } from "../components/FloatingDock";
 
-const siteUrl = "https://franklinev-website.vercel.app";
+// Set VITE_SITE_URL to the final https:// domain before building for a new domain.
+// The production domain remains the safe default for GoDaddy deployments.
+const siteUrl = (import.meta.env.VITE_SITE_URL || "https://www.franklinev.co.in").replace(/\/$/, "");
 const socialImageUrl = `${siteUrl}/assets/hero-powerplus.jpg`;
 
 const organizationSchema = {
@@ -285,6 +287,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "manifest", href: "/manifest.json" },
+      { rel: "icon", href: "/favicon.ico", sizes: "any" },
+      { rel: "icon", type: "image/png", sizes: "32x32", href: "/assets/favicon-32.png" },
+      { rel: "icon", type: "image/png", sizes: "16x16", href: "/assets/favicon-16.png" },
+      { rel: "apple-touch-icon", sizes: "180x180", href: "/assets/favicon-180.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {

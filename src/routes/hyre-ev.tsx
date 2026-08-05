@@ -30,9 +30,9 @@ export const Route = createFileRoute("/hyre-ev")({
         content:
           "A Franklin EV rental mobility page for electric scooter rentals, fleet enquiries and city commute support.",
       },
-      { property: "og:url", content: "https://franklinev-website.vercel.app/hyre-ev" },
+      { property: "og:url", content: "https://www.franklinev.co.in/hyre-ev" },
     ],
-    links: [{ rel: "canonical", href: "https://franklinev-website.vercel.app/hyre-ev" }],
+    links: [{ rel: "canonical", href: "https://www.franklinev.co.in/hyre-ev" }],
   }),
   component: HyreEvPage,
 });

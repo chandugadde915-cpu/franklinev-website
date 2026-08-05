@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 
-const BASE_URL = "https://franklinev-website.vercel.app";
+const BASE_URL = (import.meta.env.VITE_SITE_URL || "https://www.franklinev.co.in").replace(/\/$/, "");
 
 export const Route = createFileRoute("/sitemap.xml")({
   server: {
@@ -10,8 +10,12 @@ export const Route = createFileRoute("/sitemap.xml")({
         const paths = [
           { path: "/", priority: "1.0" },
           { path: "/vehicles", priority: "0.9" },
+          { path: "/why-us", priority: "0.85" },
           { path: "/hyre-ev", priority: "0.85" },
           { path: "/blog", priority: "0.8" },
+          { path: "/blog/power-plus-vs-rapid", priority: "0.7" },
+          { path: "/blog/best-electric-scooter-hyderabad-daily-commute", priority: "0.7" },
+          { path: "/blog/home-charging-electric-scooter", priority: "0.7" },
           { path: "/contact", priority: "0.8" },
           { path: "/about", priority: "0.7" },
           { path: "/legal-policy", priority: "0.4" },

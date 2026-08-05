@@ -24,7 +24,7 @@ import {
 } from "lucide-react";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 
-const siteUrl = "https://franklinev-website.vercel.app";
+const siteUrl = "https://www.franklinev.co.in";
 const blogUrl = `${siteUrl}/blog`;
 
 const blogArticleMeta = [

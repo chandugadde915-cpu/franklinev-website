@@ -24,11 +24,11 @@ export const Route = createFileRoute("/blog/power-plus-vs-rapid")({
       },
       {
         property: "og:url",
-        content: "https://franklinev-website.vercel.app/blog/power-plus-vs-rapid",
+        content: "https://www.franklinev.co.in/blog/power-plus-vs-rapid",
       },
     ],
     links: [
-      { rel: "canonical", href: "https://franklinev-website.vercel.app/blog/power-plus-vs-rapid" },
+      { rel: "canonical", href: "https://www.franklinev.co.in/blog/power-plus-vs-rapid" },
     ],
   }),
   component: ArticlePowerVsClassic,

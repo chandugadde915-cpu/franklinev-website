@@ -17,9 +17,9 @@ export const Route = createFileRoute("/legal-policy")({
         content:
           "Terms and Conditions and Privacy Policy for Franklin EV India Pvt. Ltd. website visitors and customers.",
       },
-      { property: "og:url", content: "https://franklinev-website.vercel.app/legal-policy" },
+      { property: "og:url", content: "https://www.franklinev.co.in/legal-policy" },
     ],
-    links: [{ rel: "canonical", href: "https://franklinev-website.vercel.app/legal-policy" }],
+    links: [{ rel: "canonical", href: "https://www.franklinev.co.in/legal-policy" }],
   }),
   component: LegalPolicyPage,
 });

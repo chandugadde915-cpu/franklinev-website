@@ -25,13 +25,13 @@ export const Route = createFileRoute("/blog/home-charging-electric-scooter")({
       },
       {
         property: "og:url",
-        content: "https://franklinev-website.vercel.app/blog/home-charging-electric-scooter",
+        content: "https://www.franklinev.co.in/blog/home-charging-electric-scooter",
       },
     ],
     links: [
       {
         rel: "canonical",
-        href: "https://franklinev-website.vercel.app/blog/home-charging-electric-scooter",
+        href: "https://www.franklinev.co.in/blog/home-charging-electric-scooter",
       },
     ],
   }),

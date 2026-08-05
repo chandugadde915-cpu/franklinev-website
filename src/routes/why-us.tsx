@@ -132,7 +132,15 @@ export const Route = createFileRoute("/why-us")({
         content:
           "Discover why Franklin EV is the smart choice for city commuting – advanced features, low running costs, and rider-focused engineering.",
       },
+      { property: "og:title", content: "Why Franklin EV – Smart Electric Scooters" },
+      {
+        property: "og:description",
+        content:
+          "Discover why Franklin EV is the smart choice for city commuting – advanced features, low running costs, and rider-focused engineering.",
+      },
+      { property: "og:url", content: "https://www.franklinev.co.in/why-us" },
     ],
+    links: [{ rel: "canonical", href: "https://www.franklinev.co.in/why-us" }],
   }),
   component: WhyUs,
 });

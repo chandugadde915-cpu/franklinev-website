@@ -246,11 +246,11 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       {
         property: "og:image",
-        content: "https://franklinev-website.vercel.app/assets/hero-powerplus.jpg",
+        content: "https://www.franklinev.co.in/assets/hero-powerplus.jpg",
       },
       {
         property: "og:image:secure_url",
-        content: "https://franklinev-website.vercel.app/assets/hero-powerplus.jpg",
+        content: "https://www.franklinev.co.in/assets/hero-powerplus.jpg",
       },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
@@ -258,7 +258,7 @@ export const Route = createFileRoute("/")({
         property: "og:image:alt",
         content: "Franklin EV POWER electric scooter — Midnight Black hero shot.",
       },
-      { property: "og:url", content: "https://franklinev-website.vercel.app" },
+      { property: "og:url", content: "https://www.franklinev.co.in" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Franklin EV Smart Electric Scooters in Hyderabad" },
       {
@@ -268,11 +268,11 @@ export const Route = createFileRoute("/")({
       },
       {
         name: "twitter:image",
-        content: "https://franklinev-website.vercel.app/assets/hero-powerplus.jpg",
+        content: "https://www.franklinev.co.in/assets/hero-powerplus.jpg",
       },
     ],
     links: [
-      { rel: "canonical", href: "https://franklinev-website.vercel.app/" },
+      { rel: "canonical", href: "https://www.franklinev.co.in/" },
       { rel: "preload", as: "image", href: "/assets/hero-powerplus.jpg" },
       { rel: "preload", as: "image", href: "/assets/hero-sequence/frame-001.jpg" },
     ],

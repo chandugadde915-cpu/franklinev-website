@@ -6,11 +6,16 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
+    "build:godaddy": "vite build",
     "build:vercel": "vite build && node scripts/ensure-vercel-output.mjs",
     "build:dev": "vite build --mode development",
+    "start": "node dist/server/index.mjs",
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write ."
+  },
+  "engines": {
+    "node": ">=20.19.0"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

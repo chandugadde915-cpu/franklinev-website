@@ -65,11 +65,11 @@ export const Route = createFileRoute("/vehicles")({
       },
       {
         property: "og:url",
-        content: "https://franklinev-website.vercel.app/vehicles",
+        content: "https://www.franklinev.co.in/vehicles",
       },
       {
         property: "og:image",
-        content: "https://franklinev-website.vercel.app/assets/products/power-black-left.png",
+        content: "https://www.franklinev.co.in/assets/products/power-black-left.png",
       },
       {
         name: "twitter:card",
@@ -83,7 +83,7 @@ export const Route = createFileRoute("/vehicles")({
     links: [
       {
         rel: "canonical",
-        href: "https://franklinev-website.vercel.app/vehicles",
+        href: "https://www.franklinev.co.in/vehicles",
       },
     ],
     scripts: [
@@ -94,7 +94,7 @@ export const Route = createFileRoute("/vehicles")({
             "@context": "https://schema.org",
             "@type": "ItemList",
             name: "Franklin EV Electric Scooter Models",
-            url: "https://franklinev-website.vercel.app/vehicles",
+            url: "https://www.franklinev.co.in/vehicles",
             itemListElement: [
               {
                 "@type": "ListItem",
@@ -107,10 +107,10 @@ export const Route = createFileRoute("/vehicles")({
                   description:
                     "Sporty high-performance electric scooter with aggressive design, LED projector headlamps and available in 4 colours. Choose lithium-ion or graphene battery.",
                   image: [
-                    "https://franklinev-website.vercel.app/assets/products/power-black-left.png",
-                    "https://franklinev-website.vercel.app/assets/products/power-blue-left.png",
-                    "https://franklinev-website.vercel.app/assets/products/power-green-left.png",
-                    "https://franklinev-website.vercel.app/assets/products/power-red-left.png",
+                    "https://www.franklinev.co.in/assets/products/power-black-left.png",
+                    "https://www.franklinev.co.in/assets/products/power-blue-left.png",
+                    "https://www.franklinev.co.in/assets/products/power-green-left.png",
+                    "https://www.franklinev.co.in/assets/products/power-red-left.png",
                   ],
                   color: "Midnight Black, Ocean Blue, Mint Green, Flame Red, Royal Gold",
                   offers: {
@@ -132,10 +132,10 @@ export const Route = createFileRoute("/vehicles")({
                   description:
                     "Everyday urban electric scooter with clean lines, practical storage and reliable BLDC motor. Available in Flame Red, Ocean Blue, Slate Gray and Mint Green with lithium-ion or graphene battery.",
                   image: [
-                    "https://franklinev-website.vercel.app/assets/products/flame-red-left.png",
-                    "https://franklinev-website.vercel.app/assets/products/ocean-blue-left.png",
-                    "https://franklinev-website.vercel.app/assets/products/slate-gray-left.png",
-                    "https://franklinev-website.vercel.app/assets/products/mint-left.png",
+                    "https://www.franklinev.co.in/assets/products/flame-red-left.png",
+                    "https://www.franklinev.co.in/assets/products/ocean-blue-left.png",
+                    "https://www.franklinev.co.in/assets/products/slate-gray-left.png",
+                    "https://www.franklinev.co.in/assets/products/mint-left.png",
                   ],
                   color: "Flame Red, Ocean Blue, Slate Gray, Mint Green",
                   offers: {
