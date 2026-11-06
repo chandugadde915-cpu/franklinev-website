@@ -1,0 +1,200 @@
+{
+  "baselineCommit": "f626dfe8fa2fbf138b84901a327d5c3b308aa51d",
+  "measurement": "Local production build, Chromium mobile Lighthouse, simulated mobile throttling; external font/map network restricted",
+  "baseline": {
+    "scores": {
+      "performance": 67,
+      "accessibility": 86,
+      "best-practices": 96,
+      "seo": 100
+    },
+    "lcpMs": 9354.0787,
+    "cls": 0,
+    "tbtMs": 48,
+    "initialJavaScriptBytes": 721343,
+    "initialJavaScriptTransferBytes": 725674,
+    "totalTransferBytes": 4623776
+  },
+  "optimized": {
+    "scores": {
+      "performance": 82,
+      "accessibility": 96,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcpMs": 4944.1253000000015,
+    "cls": 0,
+    "tbtMs": 53.5,
+    "initialJavaScriptBytes": 590275,
+    "initialJavaScriptTransferBytes": 161601,
+    "totalTransferBytes": 1009998
+  },
+  "images": {
+    "sources": 232,
+    "uniqueVariants": 665,
+    "originalBytes": 147517137,
+    "largestVariantBytes": 21941070,
+    "mobileVariantBytes": 4286726
+  },
+  "videos": {
+    "/assets/products/classic-gold-left.mp4": {
+      "original": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1280,
+            "height": 720,
+            "nb_frames": "240"
+          },
+          {
+            "codec_name": "aac",
+            "nb_frames": "470"
+          }
+        ],
+        "format": {
+          "duration": "10.083008"
+        }
+      },
+      "optimized": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1280,
+            "height": 720,
+            "nb_frames": "240"
+          },
+          {
+            "codec_name": "aac",
+            "nb_frames": "470"
+          }
+        ],
+        "format": {
+          "duration": "10.083008"
+        }
+      },
+      "originalBytes": 2967995,
+      "optimizedBytes": 2344736,
+      "decodeErrors": "",
+      "ssim": 0.996053
+    },
+    "/assets/products/power-black-left.mp4": {
+      "original": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1280,
+            "height": 720,
+            "nb_frames": "240"
+          },
+          {
+            "codec_name": "aac",
+            "nb_frames": "470"
+          }
+        ],
+        "format": {
+          "duration": "10.083008"
+        }
+      },
+      "optimized": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1280,
+            "height": 720,
+            "nb_frames": "240"
+          },
+          {
+            "codec_name": "aac",
+            "nb_frames": "470"
+          }
+        ],
+        "format": {
+          "duration": "10.083008"
+        }
+      },
+      "originalBytes": 3275365,
+      "optimizedBytes": 2628230,
+      "decodeErrors": "",
+      "ssim": 0.995589
+    },
+    "/frames/battery-charge-optimized.mp4": {
+      "original": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1280,
+            "height": 654,
+            "nb_frames": "192"
+          }
+        ],
+        "format": {
+          "duration": "8.000000"
+        }
+      },
+      "optimized": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1280,
+            "height": 654,
+            "nb_frames": "192"
+          }
+        ],
+        "format": {
+          "duration": "8.000000"
+        }
+      },
+      "originalBytes": 240951,
+      "optimizedBytes": 240951,
+      "decodeErrors": ""
+    },
+    "/frames/motor-explode-scrub.mp4": {
+      "original": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1920,
+            "height": 980,
+            "nb_frames": "192"
+          }
+        ],
+        "format": {
+          "duration": "8.000000"
+        }
+      },
+      "optimized": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1920,
+            "height": 980,
+            "nb_frames": "192"
+          }
+        ],
+        "format": {
+          "duration": "8.000000"
+        }
+      },
+      "originalBytes": 15391888,
+      "optimizedBytes": 6590604,
+      "decodeErrors": "",
+      "ssim": 0.991382
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "/assets/products/classic-gold-left.mp4": {
+    "src": "/optimized/classic-gold-left-fa1f4826dfc8.mp4",
+    "poster": "/optimized/classic-gold-left-fa1f4826dfc8-poster.webp",
+    "originalBytes": 2967995,
+    "bytes": 2344736
+  },
+  "/assets/products/power-black-left.mp4": {
+    "src": "/optimized/power-black-left-af3538bda3c8.mp4",
+    "poster": "/optimized/power-black-left-af3538bda3c8-poster.webp",
+    "originalBytes": 3275365,
+    "bytes": 2628230
+  },
+  "/frames/battery-charge-optimized.mp4": {
+    "src": "/frames/battery-charge-optimized.mp4",
+    "poster": "/optimized/battery-charge-optimized-cc1e4518baea-poster.webp",
+    "originalBytes": 240951,
+    "bytes": 240951
+  },
+  "/frames/motor-explode-scrub.mp4": {
+    "src": "/optimized/motor-explode-scrub-694563369f58.mp4",
+    "poster": "/optimized/motor-explode-scrub-694563369f58-poster.webp",
+    "originalBytes": 15391888,
+    "bytes": 6590604
+  }
+}

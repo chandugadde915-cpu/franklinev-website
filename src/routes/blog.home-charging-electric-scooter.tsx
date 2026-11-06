@@ -1,3 +1,4 @@
+import { ResponsiveImage } from "@/components/ResponsiveImage";
 
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check, ChevronLeft, AlertCircle } from "lucide-react";
@@ -126,7 +127,7 @@ function ArticleHomeCharging() {
 
       <Reveal delay={0.1}>
         <figure className="my-10 rounded-2xl overflow-hidden border border-border bg-zinc-50 p-6">
-          <img
+          <ResponsiveImage
             src="/assets/client/fev-lithium-ion-battery.png"
             alt="Franklin EV lithium-ion battery pack"
             className="w-full object-contain max-h-52"

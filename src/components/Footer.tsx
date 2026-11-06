@@ -1,3 +1,4 @@
+import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
 
@@ -58,7 +59,7 @@ export function Footer() {
       >
         {/* Company Info */}
         <div>
-          <img
+          <ResponsiveImage
             src="/assets/franklin-ev-logo.png"
             alt="Franklin EV"
             style={{

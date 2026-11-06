@@ -1,3 +1,4 @@
+import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { Link } from "@tanstack/react-router";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import type { MouseEvent } from "react";
@@ -27,6 +28,7 @@ export function ModelCard({ name, tagline, image, alt, chips, accent = "blue" }:
   const tRy = useTransform(sry, (v) => `${v}deg`);
 
   const onMove = (e: MouseEvent<HTMLDivElement>) => {
+    if (matchMedia("(prefers-reduced-motion: reduce), (pointer: coarse)").matches) return;
     const r = e.currentTarget.getBoundingClientRect();
     const px = (e.clientX - r.left) / r.width - 0.5;
     const py = (e.clientY - r.top) / r.height - 0.5;
@@ -49,7 +51,7 @@ export function ModelCard({ name, tagline, image, alt, chips, accent = "blue" }:
         className={`relative aspect-[4/3] bg-gradient-to-br ${accentMap[accent]} grid place-items-center overflow-hidden`}
       >
         <div className="absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_60%,oklch(0.62_0.18_248/0.15),transparent_70%)]" />
-        <img
+        <ResponsiveImage
           src={image}
           alt={alt}
           loading="lazy"

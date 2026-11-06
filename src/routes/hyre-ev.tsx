@@ -1,6 +1,7 @@
+import { ResponsiveImage } from "@/components/ResponsiveImage";
 
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   ArrowRight,
   BatteryCharging,
@@ -66,7 +67,7 @@ function HyreEvPage() {
       {/* HERO - Dark background like your original */}
       <section className="flex flex-col md:flex-row items-center gap-8 px-5 py-10 md:py-16 bg-slate-900 text-white">
         <div className="w-full md:w-1/2">
-          <img
+          <ResponsiveImage
             src="/assets/editorial/commute-city-ride.jpg"
             alt="Franklin EV scooter used for city commute rentals."
             width={1402}
@@ -133,7 +134,9 @@ function HyreEvPage() {
             <Reveal key={title}>
               <div className="p-6 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition">
                 <Icon className="h-6 w-6 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500" />
-                <h3 className="font-display text-lg md:text-xl font-bold text-gray-900 mt-4">{title}</h3>
+                <h3 className="font-display text-lg md:text-xl font-bold text-gray-900 mt-4">
+                  {title}
+                </h3>
                 <p className="mt-2 text-gray-600 text-sm md:text-base">{body}</p>
               </div>
             </Reveal>
@@ -250,7 +253,7 @@ function HyreEvPage() {
       <section className="max-w-7xl mx-auto px-5 py-16">
         <div className="flex flex-col md:flex-row items-center gap-10">
           <Reveal className="w-full md:w-1/2">
-            <img
+            <ResponsiveImage
               src="/assets/editorial/blue-school-family.jpg"
               alt="Franklin EV scooter near a school and family mobility setting."
               width={1402}
@@ -276,7 +279,10 @@ function HyreEvPage() {
                   "Delivery partners and fleet operators",
                   "Professionals and short-stay visitors in Hyderabad",
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-gray-700 text-sm md:text-base">
+                  <li
+                    key={item}
+                    className="flex items-start gap-3 text-gray-700 text-sm md:text-base"
+                  >
                     <CheckCircle2 className="h-5 w-5 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </li>
@@ -361,8 +367,11 @@ function HyreEvPage() {
 function HyreEnquiryForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
+  const submitting = useRef(false);
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (submitting.current) return;
+    submitting.current = true;
     const form = e.currentTarget;
     setStatus("sending");
     try {
@@ -377,6 +386,8 @@ function HyreEnquiryForm() {
       setStatus("success");
     } catch {
       setStatus("error");
+    } finally {
+      submitting.current = false;
     }
   };
 
@@ -486,7 +497,10 @@ function HyreEnquiryForm() {
       )}
       <p className="mt-4 text-xs text-gray-500">
         By submitting, you agree to be contacted by Franklin EV. See our{" "}
-        <a href="/privacy" className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 hover:underline">
+        <a
+          href="/privacy"
+          className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 hover:underline"
+        >
           Privacy Policy
         </a>
         .

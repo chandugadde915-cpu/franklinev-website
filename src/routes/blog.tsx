@@ -1,3 +1,5 @@
+import { responsiveImage } from "@/lib/media";
+import { ResponsiveImage } from "@/components/ResponsiveImage";
 
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
@@ -310,10 +312,15 @@ function BlogPage() {
           <Reveal className="blog-hero-media" delay={0.1}>
             <picture>
               <source
-                srcSet="/assets/models/premium-colors-layout/power-silver-angle-layout.webp"
+                srcSet={
+                  responsiveImage(
+                    "/assets/models/premium-colors-layout/power-silver-angle-layout.webp",
+                  ).srcSet
+                }
+                sizes="(max-width: 767px) 100vw, 50vw"
                 type="image/webp"
               />
-              <img
+              <ResponsiveImage
                 src="/assets/models/premium-colors-layout/power-silver-angle-layout.png"
                 alt="Franklin EV POWER electric scooter in Midnight Black — featured on the blog."
                 width={1200}
@@ -343,7 +350,7 @@ function BlogPage() {
             <StaggerItem key={title}>
               <article className="blog-card" id={slug}>
                 <figure>
-                  <img src={image} alt="" loading="lazy" decoding="async" />
+                  <ResponsiveImage src={image} alt="" loading="lazy" decoding="async" />
                 </figure>
                 <div className="blog-card-body">
                   <span className="blog-card-kicker">
@@ -541,9 +548,7 @@ function BlogPage() {
         <div className="blog-feature-check">
           <Reveal className="blog-section-heading">
             <div className="cinema-eyebrow">What to Check</div>
-            <h2 className="blog-heading-one-line">
-              Features to look for before buying.
-            </h2>
+            <h2 className="blog-heading-one-line">Features to look for before buying.</h2>
           </Reveal>
 
           <div
@@ -560,20 +565,18 @@ function BlogPage() {
             }}
           >
             <div
-  className="hidden md:block"
-  style={{
-    position: "absolute",
-    top: "35px",
-    left: "5%",
-    right: "5%",
-    height: "4px",
-    background:
-      "linear-gradient(90deg, #00b4ff 0%, #00d084 100%)",
-    borderRadius: "999px",
-    zIndex: 0,
-  }}
-/>
-
+              className="hidden md:block"
+              style={{
+                position: "absolute",
+                top: "35px",
+                left: "5%",
+                right: "5%",
+                height: "4px",
+                background: "linear-gradient(90deg, #00b4ff 0%, #00d084 100%)",
+                borderRadius: "999px",
+                zIndex: 0,
+              }}
+            />
 
             {[
               {

@@ -1,5 +1,6 @@
+import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail, MapPin, Phone, Search, Send, Facebook, Instagram, Linkedin } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
@@ -78,7 +79,7 @@ function ContactPage() {
             </p>
           </Reveal>
           <Reveal className="contact-hero-image" delay={0.1}>
-            <img
+            <ResponsiveImage
               src="/assets/editorial/red-lifestyle-couple.jpg"
               alt="Two riders standing beside a Franklin EV scooter before a test ride."
               width={1402}
@@ -202,8 +203,11 @@ function ContactPage() {
 
 function ContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const submitting = useRef(false);
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (submitting.current) return;
+    submitting.current = true;
     const form = e.currentTarget;
     setStatus("sending");
 
@@ -223,6 +227,8 @@ function ContactForm() {
       setStatus("success");
     } catch {
       setStatus("error");
+    } finally {
+      submitting.current = false;
     }
   };
 

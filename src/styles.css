@@ -12141,3 +12141,13 @@ body {
   object-fit: contain !important;
   max-height: min(58vw, 640px) !important;
 }
+
+/* Same font families, now same-origin and non-blocking. */
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("/fonts/inter-latin-variable.woff2") format("woff2"); }
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-weight: 300 700; font-display: swap; src: url("/fonts/space-grotesk-latin-variable.woff2") format("woff2"); }
+/* Pause decorative CSS animation offscreen without removing its visual effect. */
+.motion-background *, .motion-background *::before, .motion-background *::after, .motion-offscreen, .motion-offscreen *, .motion-offscreen *::before, .motion-offscreen *::after { animation-play-state: paused !important; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}

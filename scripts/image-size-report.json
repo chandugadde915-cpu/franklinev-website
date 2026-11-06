@@ -1,0 +1,4961 @@
+{
+  "/assets/client/feature-icons-reference.jpeg": {
+    "width": 1157,
+    "height": 447,
+    "variants": [
+      {
+        "src": "/optimized/feature-icons-reference-abb0a289a9f7-480.webp",
+        "width": 480,
+        "bytes": 18620
+      },
+      {
+        "src": "/optimized/feature-icons-reference-abb0a289a9f7-960.webp",
+        "width": 960,
+        "bytes": 43688
+      },
+      {
+        "src": "/optimized/feature-icons-reference-abb0a289a9f7-1157.webp",
+        "width": 1157,
+        "bytes": 54608
+      }
+    ],
+    "originalBytes": 104210
+  },
+  "/assets/client/fev-graphene-battery.png": {
+    "width": 1800,
+    "height": 1800,
+    "variants": [
+      {
+        "src": "/optimized/fev-graphene-battery-be020bdff914-480.webp",
+        "width": 480,
+        "bytes": 21914
+      },
+      {
+        "src": "/optimized/fev-graphene-battery-be020bdff914-960.webp",
+        "width": 960,
+        "bytes": 76550
+      },
+      {
+        "src": "/optimized/fev-graphene-battery-be020bdff914-1600.webp",
+        "width": 1600,
+        "bytes": 158512
+      }
+    ],
+    "originalBytes": 2590967
+  },
+  "/assets/client/fev-lithium-ion-battery.png": {
+    "width": 1122,
+    "height": 1402,
+    "variants": [
+      {
+        "src": "/optimized/fev-lithium-ion-battery-4163d24fb155-480.webp",
+        "width": 480,
+        "bytes": 25248
+      },
+      {
+        "src": "/optimized/fev-lithium-ion-battery-4163d24fb155-960.webp",
+        "width": 960,
+        "bytes": 72074
+      },
+      {
+        "src": "/optimized/fev-lithium-ion-battery-4163d24fb155-1122.webp",
+        "width": 1122,
+        "bytes": 76248
+      }
+    ],
+    "originalBytes": 1175908
+  },
+  "/assets/client/franklin5.webp": {
+    "width": 500,
+    "height": 500,
+    "variants": [
+      {
+        "src": "/optimized/franklin5-5bcb147582bf-480.webp",
+        "width": 480,
+        "bytes": 18058
+      },
+      {
+        "src": "/optimized/franklin5-5bcb147582bf-500.webp",
+        "width": 500,
+        "bytes": 18382
+      }
+    ],
+    "originalBytes": 18192
+  },
+  "/assets/client/warranty-terms.jpeg": {
+    "width": 1525,
+    "height": 411,
+    "variants": [
+      {
+        "src": "/optimized/warranty-terms-a00338668a18-480.webp",
+        "width": 480,
+        "bytes": 5442
+      },
+      {
+        "src": "/optimized/warranty-terms-a00338668a18-960.webp",
+        "width": 960,
+        "bytes": 16284
+      },
+      {
+        "src": "/optimized/warranty-terms-a00338668a18-1525.webp",
+        "width": 1525,
+        "bytes": 31706
+      }
+    ],
+    "originalBytes": 59586
+  },
+  "/assets/client/your-image-name.jpg": {
+    "width": 1024,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/your-image-name-789d511c4428-480.webp",
+        "width": 480,
+        "bytes": 18584
+      },
+      {
+        "src": "/optimized/your-image-name-789d511c4428-960.webp",
+        "width": 960,
+        "bytes": 52710
+      },
+      {
+        "src": "/optimized/your-image-name-789d511c4428-1024.webp",
+        "width": 1024,
+        "bytes": 60482
+      }
+    ],
+    "originalBytes": 122279
+  },
+  "/assets/detail-battery.jpg": {
+    "width": 679,
+    "height": 1000,
+    "variants": [
+      {
+        "src": "/optimized/detail-battery-1aeefd3aec45-480.webp",
+        "width": 480,
+        "bytes": 5362
+      },
+      {
+        "src": "/optimized/detail-battery-1aeefd3aec45-679.webp",
+        "width": 679,
+        "bytes": 8184
+      }
+    ],
+    "originalBytes": 40328
+  },
+  "/assets/detail-brakes.jpg": {
+    "width": 694,
+    "height": 1000,
+    "variants": [
+      {
+        "src": "/optimized/detail-brakes-b5db92cb3587-480.webp",
+        "width": 480,
+        "bytes": 20372
+      },
+      {
+        "src": "/optimized/detail-brakes-b5db92cb3587-694.webp",
+        "width": 694,
+        "bytes": 34928
+      }
+    ],
+    "originalBytes": 106434
+  },
+  "/assets/detail-headlights.jpg": {
+    "width": 694,
+    "height": 1000,
+    "variants": [
+      {
+        "src": "/optimized/detail-headlights-33d6d66a0c32-480.webp",
+        "width": 480,
+        "bytes": 24928
+      },
+      {
+        "src": "/optimized/detail-headlights-33d6d66a0c32-694.webp",
+        "width": 694,
+        "bytes": 41558
+      }
+    ],
+    "originalBytes": 113261
+  },
+  "/assets/detail-hero1.jpg": {
+    "width": 1400,
+    "height": 735,
+    "variants": [
+      {
+        "src": "/optimized/detail-hero1-de3419209664-480.webp",
+        "width": 480,
+        "bytes": 9796
+      },
+      {
+        "src": "/optimized/detail-hero1-de3419209664-960.webp",
+        "width": 960,
+        "bytes": 26922
+      },
+      {
+        "src": "/optimized/detail-hero1-de3419209664-1400.webp",
+        "width": 1400,
+        "bytes": 43524
+      }
+    ],
+    "originalBytes": 109464
+  },
+  "/assets/detail-hero2.jpg": {
+    "width": 1400,
+    "height": 762,
+    "variants": [
+      {
+        "src": "/optimized/detail-hero2-6cb64039ef7f-480.webp",
+        "width": 480,
+        "bytes": 8606
+      },
+      {
+        "src": "/optimized/detail-hero2-6cb64039ef7f-960.webp",
+        "width": 960,
+        "bytes": 22452
+      },
+      {
+        "src": "/optimized/detail-hero2-6cb64039ef7f-1400.webp",
+        "width": 1400,
+        "bytes": 34972
+      }
+    ],
+    "originalBytes": 93763
+  },
+  "/assets/detail-seat.jpg": {
+    "width": 1000,
+    "height": 713,
+    "variants": [
+      {
+        "src": "/optimized/detail-seat-4f86d3e2b726-480.webp",
+        "width": 480,
+        "bytes": 15940
+      },
+      {
+        "src": "/optimized/detail-seat-4f86d3e2b726-960.webp",
+        "width": 960,
+        "bytes": 36570
+      },
+      {
+        "src": "/optimized/detail-seat-4f86d3e2b726-1000.webp",
+        "width": 1000,
+        "bytes": 40188
+      }
+    ],
+    "originalBytes": 120356
+  },
+  "/assets/detail-storage.jpg": {
+    "width": 1000,
+    "height": 713,
+    "variants": [
+      {
+        "src": "/optimized/detail-storage-1db5d87d5c27-480.webp",
+        "width": 480,
+        "bytes": 9398
+      },
+      {
+        "src": "/optimized/detail-storage-1db5d87d5c27-960.webp",
+        "width": 960,
+        "bytes": 21748
+      },
+      {
+        "src": "/optimized/detail-storage-1db5d87d5c27-1000.webp",
+        "width": 1000,
+        "bytes": 24176
+      }
+    ],
+    "originalBytes": 84183
+  },
+  "/assets/editorial/blue-cafe-parking.jpg": {
+    "width": 1330,
+    "height": 1183,
+    "variants": [
+      {
+        "src": "/optimized/blue-cafe-parking-3c6ccd6604ea-480.webp",
+        "width": 480,
+        "bytes": 54244
+      },
+      {
+        "src": "/optimized/blue-cafe-parking-3c6ccd6604ea-960.webp",
+        "width": 960,
+        "bytes": 145100
+      },
+      {
+        "src": "/optimized/blue-cafe-parking-3c6ccd6604ea-1330.webp",
+        "width": 1330,
+        "bytes": 223832
+      }
+    ],
+    "originalBytes": 392677
+  },
+  "/assets/editorial/blue-coast-front.jpg": {
+    "width": 1122,
+    "height": 1402,
+    "variants": [
+      {
+        "src": "/optimized/blue-coast-front-635824ed6d17-480.webp",
+        "width": 480,
+        "bytes": 75494
+      },
+      {
+        "src": "/optimized/blue-coast-front-635824ed6d17-960.webp",
+        "width": 960,
+        "bytes": 206106
+      },
+      {
+        "src": "/optimized/blue-coast-front-635824ed6d17-1122.webp",
+        "width": 1122,
+        "bytes": 258264
+      }
+    ],
+    "originalBytes": 429977
+  },
+  "/assets/editorial/blue-school-family.jpg": {
+    "width": 1376,
+    "height": 1143,
+    "variants": [
+      {
+        "src": "/optimized/blue-school-family-30ebe7de828c-480.webp",
+        "width": 480,
+        "bytes": 62568
+      },
+      {
+        "src": "/optimized/blue-school-family-30ebe7de828c-960.webp",
+        "width": 960,
+        "bytes": 176154
+      },
+      {
+        "src": "/optimized/blue-school-family-30ebe7de828c-1376.webp",
+        "width": 1376,
+        "bytes": 287448
+      }
+    ],
+    "originalBytes": 480834
+  },
+  "/assets/editorial/blue-urban-side.jpg": {
+    "width": 1308,
+    "height": 1203,
+    "variants": [
+      {
+        "src": "/optimized/blue-urban-side-c76743080e09-480.webp",
+        "width": 480,
+        "bytes": 52946
+      },
+      {
+        "src": "/optimized/blue-urban-side-c76743080e09-960.webp",
+        "width": 960,
+        "bytes": 142998
+      },
+      {
+        "src": "/optimized/blue-urban-side-c76743080e09-1308.webp",
+        "width": 1308,
+        "bytes": 222904
+      }
+    ],
+    "originalBytes": 395208
+  },
+  "/assets/editorial/commute-city-ride.jpg": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/commute-city-ride-b5ba50bd1089-480.webp",
+        "width": 480,
+        "bytes": 30280
+      },
+      {
+        "src": "/optimized/commute-city-ride-b5ba50bd1089-960.webp",
+        "width": 960,
+        "bytes": 82468
+      },
+      {
+        "src": "/optimized/commute-city-ride-b5ba50bd1089-1536.webp",
+        "width": 1536,
+        "bytes": 161280
+      }
+    ],
+    "originalBytes": 321836
+  },
+  "/assets/editorial/disc-brake.jpeg": {
+    "width": 800,
+    "height": 426,
+    "variants": [
+      {
+        "src": "/optimized/disc-brake-a65539151363-480.webp",
+        "width": 480,
+        "bytes": 11598
+      },
+      {
+        "src": "/optimized/disc-brake-a65539151363-800.webp",
+        "width": 800,
+        "bytes": 21790
+      }
+    ],
+    "originalBytes": 46435
+  },
+  "/assets/editorial/dual-riders-underpass.jpg": {
+    "width": 1672,
+    "height": 941,
+    "variants": [
+      {
+        "src": "/optimized/dual-riders-underpass-116b45735bc6-480.webp",
+        "width": 480,
+        "bytes": 32732
+      },
+      {
+        "src": "/optimized/dual-riders-underpass-116b45735bc6-960.webp",
+        "width": 960,
+        "bytes": 94982
+      },
+      {
+        "src": "/optimized/dual-riders-underpass-116b45735bc6-1600.webp",
+        "width": 1600,
+        "bytes": 201486
+      }
+    ],
+    "originalBytes": 376345
+  },
+  "/assets/editorial/dynamic-headlight.jpeg": {
+    "width": 778,
+    "height": 430,
+    "variants": [
+      {
+        "src": "/optimized/dynamic-headlight-a4e5c6104b79-480.webp",
+        "width": 480,
+        "bytes": 16658
+      },
+      {
+        "src": "/optimized/dynamic-headlight-a4e5c6104b79-778.webp",
+        "width": 778,
+        "bytes": 27310
+      }
+    ],
+    "originalBytes": 53008
+  },
+  "/assets/editorial/ergonomic seating.jpeg": {
+    "width": 798,
+    "height": 431,
+    "variants": [
+      {
+        "src": "/optimized/ergonomic-seating-f35750aa41a5-480.webp",
+        "width": 480,
+        "bytes": 10554
+      },
+      {
+        "src": "/optimized/ergonomic-seating-f35750aa41a5-798.webp",
+        "width": 798,
+        "bytes": 19522
+      }
+    ],
+    "originalBytes": 45212
+  },
+  "/assets/editorial/franklin4.png": {
+    "width": 1096,
+    "height": 924,
+    "variants": [
+      {
+        "src": "/optimized/franklin4-6bf3867275db-480.webp",
+        "width": 480,
+        "bytes": 16234
+      },
+      {
+        "src": "/optimized/franklin4-6bf3867275db-960.webp",
+        "width": 960,
+        "bytes": 43446
+      },
+      {
+        "src": "/optimized/franklin4-6bf3867275db-1096.webp",
+        "width": 1096,
+        "bytes": 54652
+      }
+    ],
+    "originalBytes": 617427
+  },
+  "/assets/editorial/franklin5.webp": {
+    "width": 500,
+    "height": 500,
+    "variants": [
+      {
+        "src": "/optimized/franklin5-5bcb147582bf-480.webp",
+        "width": 480,
+        "bytes": 18058
+      },
+      {
+        "src": "/optimized/franklin5-5bcb147582bf-500.webp",
+        "width": 500,
+        "bytes": 18382
+      }
+    ],
+    "originalBytes": 18192
+  },
+  "/assets/editorial/franklin8.jpg": {
+    "width": 1000,
+    "height": 1000,
+    "variants": [
+      {
+        "src": "/optimized/franklin8-65f9e51a7d6b-480.webp",
+        "width": 480,
+        "bytes": 24402
+      },
+      {
+        "src": "/optimized/franklin8-65f9e51a7d6b-960.webp",
+        "width": 960,
+        "bytes": 65978
+      },
+      {
+        "src": "/optimized/franklin8-65f9e51a7d6b-1000.webp",
+        "width": 1000,
+        "bytes": 71060
+      }
+    ],
+    "originalBytes": 92239
+  },
+  "/assets/editorial/gear.jpeg": {
+    "width": 1600,
+    "height": 1286,
+    "variants": [
+      {
+        "src": "/optimized/gear-2d9c361095cb-480.webp",
+        "width": 480,
+        "bytes": 27404
+      },
+      {
+        "src": "/optimized/gear-2d9c361095cb-960.webp",
+        "width": 960,
+        "bytes": 64886
+      },
+      {
+        "src": "/optimized/gear-2d9c361095cb-1600.webp",
+        "width": 1600,
+        "bytes": 115074
+      }
+    ],
+    "originalBytes": 256573
+  },
+  "/assets/editorial/long-leg.jpeg": {
+    "width": 794,
+    "height": 427,
+    "variants": [
+      {
+        "src": "/optimized/long-leg-67c08ad271bb-480.webp",
+        "width": 480,
+        "bytes": 8484
+      },
+      {
+        "src": "/optimized/long-leg-67c08ad271bb-794.webp",
+        "width": 794,
+        "bytes": 15444
+      }
+    ],
+    "originalBytes": 37854
+  },
+  "/assets/editorial/model.png": {
+    "width": 803,
+    "height": 581,
+    "variants": [
+      {
+        "src": "/optimized/model-ad6ad0d6b52a-480.webp",
+        "width": 480,
+        "bytes": 28730
+      },
+      {
+        "src": "/optimized/model-ad6ad0d6b52a-803.webp",
+        "width": 803,
+        "bytes": 56760
+      }
+    ],
+    "originalBytes": 663391
+  },
+  "/assets/editorial/red-apartment-front.jpg": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/red-apartment-front-54f3efa30930-480.webp",
+        "width": 480,
+        "bytes": 43512
+      },
+      {
+        "src": "/optimized/red-apartment-front-54f3efa30930-960.webp",
+        "width": 960,
+        "bytes": 132276
+      },
+      {
+        "src": "/optimized/red-apartment-front-54f3efa30930-1536.webp",
+        "width": 1536,
+        "bytes": 285212
+      }
+    ],
+    "originalBytes": 463445
+  },
+  "/assets/editorial/red-lifestyle-couple.jpg": {
+    "width": 1402,
+    "height": 1122,
+    "variants": [
+      {
+        "src": "/optimized/red-lifestyle-couple-4cbfe15e2cc1-480.webp",
+        "width": 480,
+        "bytes": 36202
+      },
+      {
+        "src": "/optimized/red-lifestyle-couple-4cbfe15e2cc1-960.webp",
+        "width": 960,
+        "bytes": 98274
+      },
+      {
+        "src": "/optimized/red-lifestyle-couple-4cbfe15e2cc1-1402.webp",
+        "width": 1402,
+        "bytes": 167904
+      }
+    ],
+    "originalBytes": 318326
+  },
+  "/assets/editorial/red-night-apartment.jpg": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/red-night-apartment-a7f1dee475be-480.webp",
+        "width": 480,
+        "bytes": 43620
+      },
+      {
+        "src": "/optimized/red-night-apartment-a7f1dee475be-960.webp",
+        "width": 960,
+        "bytes": 131822
+      },
+      {
+        "src": "/optimized/red-night-apartment-a7f1dee475be-1536.webp",
+        "width": 1536,
+        "bytes": 283314
+      }
+    ],
+    "originalBytes": 463005
+  },
+  "/assets/editorial/red-sunset-profile.jpg": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/red-sunset-profile-aa2876a3a3d5-480.webp",
+        "width": 480,
+        "bytes": 27562
+      },
+      {
+        "src": "/optimized/red-sunset-profile-aa2876a3a3d5-960.webp",
+        "width": 960,
+        "bytes": 81434
+      },
+      {
+        "src": "/optimized/red-sunset-profile-aa2876a3a3d5-1536.webp",
+        "width": 1536,
+        "bytes": 169340
+      }
+    ],
+    "originalBytes": 320437
+  },
+  "/assets/editorial/silver-apartment-front.jpg": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/silver-apartment-front-db227563e63c-480.webp",
+        "width": 480,
+        "bytes": 42100
+      },
+      {
+        "src": "/optimized/silver-apartment-front-db227563e63c-960.webp",
+        "width": 960,
+        "bytes": 119038
+      },
+      {
+        "src": "/optimized/silver-apartment-front-db227563e63c-1536.webp",
+        "width": 1536,
+        "bytes": 250290
+      }
+    ],
+    "originalBytes": 422567
+  },
+  "/assets/editorial/silver-hill-sunset.jpg": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/silver-hill-sunset-73d4960d82f4-480.webp",
+        "width": 480,
+        "bytes": 37484
+      },
+      {
+        "src": "/optimized/silver-hill-sunset-73d4960d82f4-960.webp",
+        "width": 960,
+        "bytes": 119192
+      },
+      {
+        "src": "/optimized/silver-hill-sunset-73d4960d82f4-1536.webp",
+        "width": 1536,
+        "bytes": 250624
+      }
+    ],
+    "originalBytes": 405875
+  },
+  "/assets/editorial/silver-rider-arrival.jpg": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/silver-rider-arrival-d635f2505531-480.webp",
+        "width": 480,
+        "bytes": 42634
+      },
+      {
+        "src": "/optimized/silver-rider-arrival-d635f2505531-960.webp",
+        "width": 960,
+        "bytes": 123806
+      },
+      {
+        "src": "/optimized/silver-rider-arrival-d635f2505531-1536.webp",
+        "width": 1536,
+        "bytes": 242850
+      }
+    ],
+    "originalBytes": 414440
+  },
+  "/assets/favicon-16.png": {
+    "width": 16,
+    "height": 16,
+    "variants": [
+      {
+        "src": "/optimized/favicon-16-72a77d77bf6f-16.webp",
+        "width": 16,
+        "bytes": 374
+      }
+    ],
+    "originalBytes": 648
+  },
+  "/assets/favicon-180.png": {
+    "width": 180,
+    "height": 180,
+    "variants": [
+      {
+        "src": "/optimized/favicon-180-954a5bc75a67-180.webp",
+        "width": 180,
+        "bytes": 6902
+      }
+    ],
+    "originalBytes": 12646
+  },
+  "/assets/favicon-192.png": {
+    "width": 192,
+    "height": 192,
+    "variants": [
+      {
+        "src": "/optimized/favicon-192-86be446c9eb3-192.webp",
+        "width": 192,
+        "bytes": 6882
+      }
+    ],
+    "originalBytes": 12108
+  },
+  "/assets/favicon-32.png": {
+    "width": 32,
+    "height": 32,
+    "variants": [
+      {
+        "src": "/optimized/favicon-32-dcff563ddc02-32.webp",
+        "width": 32,
+        "bytes": 838
+      }
+    ],
+    "originalBytes": 1764
+  },
+  "/assets/favicon-512.png": {
+    "width": 512,
+    "height": 512,
+    "variants": [
+      {
+        "src": "/optimized/favicon-512-052fa02b6bb2-480.webp",
+        "width": 480,
+        "bytes": 24488
+      },
+      {
+        "src": "/optimized/favicon-512-052fa02b6bb2-512.webp",
+        "width": 512,
+        "bytes": 23638
+      }
+    ],
+    "originalBytes": 47050
+  },
+  "/assets/franklin-ev-logo.png": {
+    "width": 1800,
+    "height": 403,
+    "variants": [
+      {
+        "src": "/optimized/franklin-ev-logo-12898060dc71-480.webp",
+        "width": 480,
+        "bytes": 10214
+      },
+      {
+        "src": "/optimized/franklin-ev-logo-12898060dc71-960.webp",
+        "width": 960,
+        "bytes": 19924
+      },
+      {
+        "src": "/optimized/franklin-ev-logo-12898060dc71-1600.webp",
+        "width": 1600,
+        "bytes": 34282
+      }
+    ],
+    "originalBytes": 70071
+  },
+  "/assets/hero-powerplus.jpg": {
+    "width": 1800,
+    "height": 1201,
+    "variants": [
+      {
+        "src": "/optimized/hero-powerplus-309e4bb3f152-480.webp",
+        "width": 480,
+        "bytes": 17414
+      },
+      {
+        "src": "/optimized/hero-powerplus-309e4bb3f152-960.webp",
+        "width": 960,
+        "bytes": 43668
+      },
+      {
+        "src": "/optimized/hero-powerplus-309e4bb3f152-1600.webp",
+        "width": 1600,
+        "bytes": 87828
+      }
+    ],
+    "originalBytes": 161014
+  },
+  "/assets/hero-sequence/frame-001.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-001-b202af63f168-480.webp",
+        "width": 480,
+        "bytes": 7082
+      },
+      {
+        "src": "/optimized/frame-001-b202af63f168-960.webp",
+        "width": 960,
+        "bytes": 25308
+      },
+      {
+        "src": "/optimized/frame-001-b202af63f168-1600.webp",
+        "width": 1600,
+        "bytes": 64370
+      }
+    ],
+    "originalBytes": 61851
+  },
+  "/assets/hero-sequence/frame-002.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-002-0e2437291e74-480.webp",
+        "width": 480,
+        "bytes": 7152
+      },
+      {
+        "src": "/optimized/frame-002-0e2437291e74-960.webp",
+        "width": 960,
+        "bytes": 25594
+      },
+      {
+        "src": "/optimized/frame-002-0e2437291e74-1600.webp",
+        "width": 1600,
+        "bytes": 64904
+      }
+    ],
+    "originalBytes": 62362
+  },
+  "/assets/hero-sequence/frame-003.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-003-e7ae89800c31-480.webp",
+        "width": 480,
+        "bytes": 7596
+      },
+      {
+        "src": "/optimized/frame-003-e7ae89800c31-960.webp",
+        "width": 960,
+        "bytes": 27000
+      },
+      {
+        "src": "/optimized/frame-003-e7ae89800c31-1600.webp",
+        "width": 1600,
+        "bytes": 68828
+      }
+    ],
+    "originalBytes": 66608
+  },
+  "/assets/hero-sequence/frame-004.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-004-1e5490b9af7d-480.webp",
+        "width": 480,
+        "bytes": 7688
+      },
+      {
+        "src": "/optimized/frame-004-1e5490b9af7d-960.webp",
+        "width": 960,
+        "bytes": 27216
+      },
+      {
+        "src": "/optimized/frame-004-1e5490b9af7d-1600.webp",
+        "width": 1600,
+        "bytes": 69332
+      }
+    ],
+    "originalBytes": 67050
+  },
+  "/assets/hero-sequence/frame-005.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-005-a01b86e40160-480.webp",
+        "width": 480,
+        "bytes": 7722
+      },
+      {
+        "src": "/optimized/frame-005-a01b86e40160-960.webp",
+        "width": 960,
+        "bytes": 27308
+      },
+      {
+        "src": "/optimized/frame-005-a01b86e40160-1600.webp",
+        "width": 1600,
+        "bytes": 69776
+      }
+    ],
+    "originalBytes": 67498
+  },
+  "/assets/hero-sequence/frame-006.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-006-561712314cbb-480.webp",
+        "width": 480,
+        "bytes": 7726
+      },
+      {
+        "src": "/optimized/frame-006-561712314cbb-960.webp",
+        "width": 960,
+        "bytes": 27378
+      },
+      {
+        "src": "/optimized/frame-006-561712314cbb-1600.webp",
+        "width": 1600,
+        "bytes": 69968
+      }
+    ],
+    "originalBytes": 67765
+  },
+  "/assets/hero-sequence/frame-007.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-007-a6509017fd4d-480.webp",
+        "width": 480,
+        "bytes": 7732
+      },
+      {
+        "src": "/optimized/frame-007-a6509017fd4d-960.webp",
+        "width": 960,
+        "bytes": 27514
+      },
+      {
+        "src": "/optimized/frame-007-a6509017fd4d-1600.webp",
+        "width": 1600,
+        "bytes": 69886
+      }
+    ],
+    "originalBytes": 67761
+  },
+  "/assets/hero-sequence/frame-008.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-008-8bf5ceae5953-480.webp",
+        "width": 480,
+        "bytes": 7638
+      },
+      {
+        "src": "/optimized/frame-008-8bf5ceae5953-960.webp",
+        "width": 960,
+        "bytes": 27338
+      },
+      {
+        "src": "/optimized/frame-008-8bf5ceae5953-1600.webp",
+        "width": 1600,
+        "bytes": 70068
+      }
+    ],
+    "originalBytes": 67763
+  },
+  "/assets/hero-sequence/frame-009.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-009-12d45585e48e-480.webp",
+        "width": 480,
+        "bytes": 7700
+      },
+      {
+        "src": "/optimized/frame-009-12d45585e48e-960.webp",
+        "width": 960,
+        "bytes": 27340
+      },
+      {
+        "src": "/optimized/frame-009-12d45585e48e-1600.webp",
+        "width": 1600,
+        "bytes": 70148
+      }
+    ],
+    "originalBytes": 67830
+  },
+  "/assets/hero-sequence/frame-010.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-010-a20ac316d9bd-480.webp",
+        "width": 480,
+        "bytes": 7718
+      },
+      {
+        "src": "/optimized/frame-010-a20ac316d9bd-960.webp",
+        "width": 960,
+        "bytes": 27446
+      },
+      {
+        "src": "/optimized/frame-010-a20ac316d9bd-1600.webp",
+        "width": 1600,
+        "bytes": 70174
+      }
+    ],
+    "originalBytes": 67874
+  },
+  "/assets/hero-sequence/frame-011.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-011-a6f791407c9a-480.webp",
+        "width": 480,
+        "bytes": 7666
+      },
+      {
+        "src": "/optimized/frame-011-a6f791407c9a-960.webp",
+        "width": 960,
+        "bytes": 27410
+      },
+      {
+        "src": "/optimized/frame-011-a6f791407c9a-1600.webp",
+        "width": 1600,
+        "bytes": 70114
+      }
+    ],
+    "originalBytes": 67822
+  },
+  "/assets/hero-sequence/frame-012.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-012-34b4025aaf09-480.webp",
+        "width": 480,
+        "bytes": 7654
+      },
+      {
+        "src": "/optimized/frame-012-34b4025aaf09-960.webp",
+        "width": 960,
+        "bytes": 27422
+      },
+      {
+        "src": "/optimized/frame-012-34b4025aaf09-1600.webp",
+        "width": 1600,
+        "bytes": 70228
+      }
+    ],
+    "originalBytes": 67824
+  },
+  "/assets/hero-sequence/frame-013.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-013-8e2f680ea6f8-480.webp",
+        "width": 480,
+        "bytes": 7688
+      },
+      {
+        "src": "/optimized/frame-013-8e2f680ea6f8-960.webp",
+        "width": 960,
+        "bytes": 27568
+      },
+      {
+        "src": "/optimized/frame-013-8e2f680ea6f8-1600.webp",
+        "width": 1600,
+        "bytes": 70294
+      }
+    ],
+    "originalBytes": 67903
+  },
+  "/assets/hero-sequence/frame-014.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-014-524a14c8a9c7-480.webp",
+        "width": 480,
+        "bytes": 7730
+      },
+      {
+        "src": "/optimized/frame-014-524a14c8a9c7-960.webp",
+        "width": 960,
+        "bytes": 27590
+      },
+      {
+        "src": "/optimized/frame-014-524a14c8a9c7-1600.webp",
+        "width": 1600,
+        "bytes": 70572
+      }
+    ],
+    "originalBytes": 67900
+  },
+  "/assets/hero-sequence/frame-015.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-015-7320a8b39935-480.webp",
+        "width": 480,
+        "bytes": 7668
+      },
+      {
+        "src": "/optimized/frame-015-7320a8b39935-960.webp",
+        "width": 960,
+        "bytes": 27310
+      },
+      {
+        "src": "/optimized/frame-015-7320a8b39935-1600.webp",
+        "width": 1600,
+        "bytes": 69974
+      }
+    ],
+    "originalBytes": 67281
+  },
+  "/assets/hero-sequence/frame-016.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-016-90f1fbba4199-480.webp",
+        "width": 480,
+        "bytes": 7668
+      },
+      {
+        "src": "/optimized/frame-016-90f1fbba4199-960.webp",
+        "width": 960,
+        "bytes": 27180
+      },
+      {
+        "src": "/optimized/frame-016-90f1fbba4199-1600.webp",
+        "width": 1600,
+        "bytes": 69522
+      }
+    ],
+    "originalBytes": 67121
+  },
+  "/assets/hero-sequence/frame-017.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-017-8fe5ae0ce082-480.webp",
+        "width": 480,
+        "bytes": 7640
+      },
+      {
+        "src": "/optimized/frame-017-8fe5ae0ce082-960.webp",
+        "width": 960,
+        "bytes": 27470
+      },
+      {
+        "src": "/optimized/frame-017-8fe5ae0ce082-1600.webp",
+        "width": 1600,
+        "bytes": 69902
+      }
+    ],
+    "originalBytes": 67484
+  },
+  "/assets/hero-sequence/frame-018.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-018-70daa35eaaa5-480.webp",
+        "width": 480,
+        "bytes": 7366
+      },
+      {
+        "src": "/optimized/frame-018-70daa35eaaa5-960.webp",
+        "width": 960,
+        "bytes": 26000
+      },
+      {
+        "src": "/optimized/frame-018-70daa35eaaa5-1600.webp",
+        "width": 1600,
+        "bytes": 66388
+      }
+    ],
+    "originalBytes": 64626
+  },
+  "/assets/hero-sequence/frame-019.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-019-3f5f7f942cf0-480.webp",
+        "width": 480,
+        "bytes": 7274
+      },
+      {
+        "src": "/optimized/frame-019-3f5f7f942cf0-960.webp",
+        "width": 960,
+        "bytes": 25918
+      },
+      {
+        "src": "/optimized/frame-019-3f5f7f942cf0-1600.webp",
+        "width": 1600,
+        "bytes": 66440
+      }
+    ],
+    "originalBytes": 64204
+  },
+  "/assets/hero-sequence/frame-020.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-020-54b6cf238bee-480.webp",
+        "width": 480,
+        "bytes": 7236
+      },
+      {
+        "src": "/optimized/frame-020-54b6cf238bee-960.webp",
+        "width": 960,
+        "bytes": 25758
+      },
+      {
+        "src": "/optimized/frame-020-54b6cf238bee-1600.webp",
+        "width": 1600,
+        "bytes": 65840
+      }
+    ],
+    "originalBytes": 63593
+  },
+  "/assets/hero-sequence/frame-021.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-021-7724a7d3b4e9-480.webp",
+        "width": 480,
+        "bytes": 7072
+      },
+      {
+        "src": "/optimized/frame-021-7724a7d3b4e9-960.webp",
+        "width": 960,
+        "bytes": 24972
+      },
+      {
+        "src": "/optimized/frame-021-7724a7d3b4e9-1600.webp",
+        "width": 1600,
+        "bytes": 63894
+      }
+    ],
+    "originalBytes": 61761
+  },
+  "/assets/hero-sequence/frame-022.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-022-be5c8a6705e6-480.webp",
+        "width": 480,
+        "bytes": 6988
+      },
+      {
+        "src": "/optimized/frame-022-be5c8a6705e6-960.webp",
+        "width": 960,
+        "bytes": 24734
+      },
+      {
+        "src": "/optimized/frame-022-be5c8a6705e6-1600.webp",
+        "width": 1600,
+        "bytes": 63166
+      }
+    ],
+    "originalBytes": 61099
+  },
+  "/assets/hero-sequence/frame-023.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-023-5728a79a7d12-480.webp",
+        "width": 480,
+        "bytes": 6968
+      },
+      {
+        "src": "/optimized/frame-023-5728a79a7d12-960.webp",
+        "width": 960,
+        "bytes": 24386
+      },
+      {
+        "src": "/optimized/frame-023-5728a79a7d12-1600.webp",
+        "width": 1600,
+        "bytes": 62300
+      }
+    ],
+    "originalBytes": 60130
+  },
+  "/assets/hero-sequence/frame-024.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-024-9188983355e8-480.webp",
+        "width": 480,
+        "bytes": 6884
+      },
+      {
+        "src": "/optimized/frame-024-9188983355e8-960.webp",
+        "width": 960,
+        "bytes": 24432
+      },
+      {
+        "src": "/optimized/frame-024-9188983355e8-1600.webp",
+        "width": 1600,
+        "bytes": 62578
+      }
+    ],
+    "originalBytes": 60053
+  },
+  "/assets/hero-sequence/frame-025.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-025-6c5a1af89ac5-480.webp",
+        "width": 480,
+        "bytes": 6874
+      },
+      {
+        "src": "/optimized/frame-025-6c5a1af89ac5-960.webp",
+        "width": 960,
+        "bytes": 23690
+      },
+      {
+        "src": "/optimized/frame-025-6c5a1af89ac5-1600.webp",
+        "width": 1600,
+        "bytes": 60064
+      }
+    ],
+    "originalBytes": 58161
+  },
+  "/assets/hero-sequence/frame-026.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-026-cbac1448d204-480.webp",
+        "width": 480,
+        "bytes": 6738
+      },
+      {
+        "src": "/optimized/frame-026-cbac1448d204-960.webp",
+        "width": 960,
+        "bytes": 23572
+      },
+      {
+        "src": "/optimized/frame-026-cbac1448d204-1600.webp",
+        "width": 1600,
+        "bytes": 59720
+      }
+    ],
+    "originalBytes": 57841
+  },
+  "/assets/hero-sequence/frame-027.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-027-dc865cd53dbe-480.webp",
+        "width": 480,
+        "bytes": 6670
+      },
+      {
+        "src": "/optimized/frame-027-dc865cd53dbe-960.webp",
+        "width": 960,
+        "bytes": 22838
+      },
+      {
+        "src": "/optimized/frame-027-dc865cd53dbe-1600.webp",
+        "width": 1600,
+        "bytes": 57630
+      }
+    ],
+    "originalBytes": 55493
+  },
+  "/assets/hero-sequence/frame-028.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-028-b284696e9c7d-480.webp",
+        "width": 480,
+        "bytes": 6584
+      },
+      {
+        "src": "/optimized/frame-028-b284696e9c7d-960.webp",
+        "width": 960,
+        "bytes": 22212
+      },
+      {
+        "src": "/optimized/frame-028-b284696e9c7d-1600.webp",
+        "width": 1600,
+        "bytes": 55758
+      }
+    ],
+    "originalBytes": 53593
+  },
+  "/assets/hero-sequence/frame-029.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-029-274e1e59b7b2-480.webp",
+        "width": 480,
+        "bytes": 6362
+      },
+      {
+        "src": "/optimized/frame-029-274e1e59b7b2-960.webp",
+        "width": 960,
+        "bytes": 21860
+      },
+      {
+        "src": "/optimized/frame-029-274e1e59b7b2-1600.webp",
+        "width": 1600,
+        "bytes": 54668
+      }
+    ],
+    "originalBytes": 52695
+  },
+  "/assets/hero-sequence/frame-030.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-030-516e011b95f4-480.webp",
+        "width": 480,
+        "bytes": 6354
+      },
+      {
+        "src": "/optimized/frame-030-516e011b95f4-960.webp",
+        "width": 960,
+        "bytes": 21520
+      },
+      {
+        "src": "/optimized/frame-030-516e011b95f4-1600.webp",
+        "width": 1600,
+        "bytes": 53828
+      }
+    ],
+    "originalBytes": 51663
+  },
+  "/assets/hero-sequence/frame-031.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-031-2b9b2554b412-480.webp",
+        "width": 480,
+        "bytes": 6304
+      },
+      {
+        "src": "/optimized/frame-031-2b9b2554b412-960.webp",
+        "width": 960,
+        "bytes": 21090
+      },
+      {
+        "src": "/optimized/frame-031-2b9b2554b412-1600.webp",
+        "width": 1600,
+        "bytes": 52522
+      }
+    ],
+    "originalBytes": 50343
+  },
+  "/assets/hero-sequence/frame-032.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-032-6ef241f01ea1-480.webp",
+        "width": 480,
+        "bytes": 6398
+      },
+      {
+        "src": "/optimized/frame-032-6ef241f01ea1-960.webp",
+        "width": 960,
+        "bytes": 20624
+      },
+      {
+        "src": "/optimized/frame-032-6ef241f01ea1-1600.webp",
+        "width": 1600,
+        "bytes": 51186
+      }
+    ],
+    "originalBytes": 49491
+  },
+  "/assets/hero-sequence/frame-033.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-033-ae56115fb37e-480.webp",
+        "width": 480,
+        "bytes": 6356
+      },
+      {
+        "src": "/optimized/frame-033-ae56115fb37e-960.webp",
+        "width": 960,
+        "bytes": 20618
+      },
+      {
+        "src": "/optimized/frame-033-ae56115fb37e-1600.webp",
+        "width": 1600,
+        "bytes": 50956
+      }
+    ],
+    "originalBytes": 49431
+  },
+  "/assets/hero-sequence/frame-034.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-034-4d8a643a6a9b-480.webp",
+        "width": 480,
+        "bytes": 6724
+      },
+      {
+        "src": "/optimized/frame-034-4d8a643a6a9b-960.webp",
+        "width": 960,
+        "bytes": 21344
+      },
+      {
+        "src": "/optimized/frame-034-4d8a643a6a9b-1600.webp",
+        "width": 1600,
+        "bytes": 51334
+      }
+    ],
+    "originalBytes": 50154
+  },
+  "/assets/hero-sequence/frame-035.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-035-8e7f3a992e67-480.webp",
+        "width": 480,
+        "bytes": 6762
+      },
+      {
+        "src": "/optimized/frame-035-8e7f3a992e67-960.webp",
+        "width": 960,
+        "bytes": 20816
+      },
+      {
+        "src": "/optimized/frame-035-8e7f3a992e67-1600.webp",
+        "width": 1600,
+        "bytes": 48896
+      }
+    ],
+    "originalBytes": 48784
+  },
+  "/assets/hero-sequence/frame-036.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-036-d5bfa264dd1e-480.webp",
+        "width": 480,
+        "bytes": 6122
+      },
+      {
+        "src": "/optimized/frame-036-d5bfa264dd1e-960.webp",
+        "width": 960,
+        "bytes": 18850
+      },
+      {
+        "src": "/optimized/frame-036-d5bfa264dd1e-1600.webp",
+        "width": 1600,
+        "bytes": 42138
+      }
+    ],
+    "originalBytes": 44570
+  },
+  "/assets/hero-sequence/frame-037.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-037-9420203badb6-480.webp",
+        "width": 480,
+        "bytes": 6106
+      },
+      {
+        "src": "/optimized/frame-037-9420203badb6-960.webp",
+        "width": 960,
+        "bytes": 18674
+      },
+      {
+        "src": "/optimized/frame-037-9420203badb6-1600.webp",
+        "width": 1600,
+        "bytes": 42728
+      }
+    ],
+    "originalBytes": 45674
+  },
+  "/assets/hero-sequence/frame-038.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-038-ae6de09e08ab-480.webp",
+        "width": 480,
+        "bytes": 5854
+      },
+      {
+        "src": "/optimized/frame-038-ae6de09e08ab-960.webp",
+        "width": 960,
+        "bytes": 17856
+      },
+      {
+        "src": "/optimized/frame-038-ae6de09e08ab-1600.webp",
+        "width": 1600,
+        "bytes": 39696
+      }
+    ],
+    "originalBytes": 43311
+  },
+  "/assets/hero-sequence/frame-039.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-039-45ce4f570815-480.webp",
+        "width": 480,
+        "bytes": 5936
+      },
+      {
+        "src": "/optimized/frame-039-45ce4f570815-960.webp",
+        "width": 960,
+        "bytes": 18160
+      },
+      {
+        "src": "/optimized/frame-039-45ce4f570815-1600.webp",
+        "width": 1600,
+        "bytes": 40052
+      }
+    ],
+    "originalBytes": 43221
+  },
+  "/assets/hero-sequence/frame-040.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-040-cf09fd68d65f-480.webp",
+        "width": 480,
+        "bytes": 5938
+      },
+      {
+        "src": "/optimized/frame-040-cf09fd68d65f-960.webp",
+        "width": 960,
+        "bytes": 17896
+      },
+      {
+        "src": "/optimized/frame-040-cf09fd68d65f-1600.webp",
+        "width": 1600,
+        "bytes": 39784
+      }
+    ],
+    "originalBytes": 43095
+  },
+  "/assets/hero-sequence/frame-041.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-041-58d2f590d2aa-480.webp",
+        "width": 480,
+        "bytes": 5852
+      },
+      {
+        "src": "/optimized/frame-041-58d2f590d2aa-960.webp",
+        "width": 960,
+        "bytes": 17750
+      },
+      {
+        "src": "/optimized/frame-041-58d2f590d2aa-1600.webp",
+        "width": 1600,
+        "bytes": 39038
+      }
+    ],
+    "originalBytes": 42558
+  },
+  "/assets/hero-sequence/frame-042.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-042-097db3c60181-480.webp",
+        "width": 480,
+        "bytes": 5896
+      },
+      {
+        "src": "/optimized/frame-042-097db3c60181-960.webp",
+        "width": 960,
+        "bytes": 17402
+      },
+      {
+        "src": "/optimized/frame-042-097db3c60181-1600.webp",
+        "width": 1600,
+        "bytes": 37986
+      }
+    ],
+    "originalBytes": 41820
+  },
+  "/assets/hero-sequence/frame-043.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-043-6acf1e80a4ce-480.webp",
+        "width": 480,
+        "bytes": 5808
+      },
+      {
+        "src": "/optimized/frame-043-6acf1e80a4ce-960.webp",
+        "width": 960,
+        "bytes": 16550
+      },
+      {
+        "src": "/optimized/frame-043-6acf1e80a4ce-1600.webp",
+        "width": 1600,
+        "bytes": 35024
+      }
+    ],
+    "originalBytes": 39367
+  },
+  "/assets/hero-sequence/frame-044.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-044-ee6e300b94a0-480.webp",
+        "width": 480,
+        "bytes": 5844
+      },
+      {
+        "src": "/optimized/frame-044-ee6e300b94a0-960.webp",
+        "width": 960,
+        "bytes": 16574
+      },
+      {
+        "src": "/optimized/frame-044-ee6e300b94a0-1600.webp",
+        "width": 1600,
+        "bytes": 35328
+      }
+    ],
+    "originalBytes": 39177
+  },
+  "/assets/hero-sequence/frame-045.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-045-86531636e386-480.webp",
+        "width": 480,
+        "bytes": 5880
+      },
+      {
+        "src": "/optimized/frame-045-86531636e386-960.webp",
+        "width": 960,
+        "bytes": 16498
+      },
+      {
+        "src": "/optimized/frame-045-86531636e386-1600.webp",
+        "width": 1600,
+        "bytes": 34756
+      }
+    ],
+    "originalBytes": 38419
+  },
+  "/assets/hero-sequence/frame-046.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-046-47d80f674111-480.webp",
+        "width": 480,
+        "bytes": 5800
+      },
+      {
+        "src": "/optimized/frame-046-47d80f674111-960.webp",
+        "width": 960,
+        "bytes": 16324
+      },
+      {
+        "src": "/optimized/frame-046-47d80f674111-1600.webp",
+        "width": 1600,
+        "bytes": 34016
+      }
+    ],
+    "originalBytes": 37838
+  },
+  "/assets/hero-sequence/frame-047.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-047-68f92499d33b-480.webp",
+        "width": 480,
+        "bytes": 5810
+      },
+      {
+        "src": "/optimized/frame-047-68f92499d33b-960.webp",
+        "width": 960,
+        "bytes": 15650
+      },
+      {
+        "src": "/optimized/frame-047-68f92499d33b-1600.webp",
+        "width": 1600,
+        "bytes": 31388
+      }
+    ],
+    "originalBytes": 35946
+  },
+  "/assets/hero-sequence/frame-048.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-048-ab9b00e1b8a4-480.webp",
+        "width": 480,
+        "bytes": 5734
+      },
+      {
+        "src": "/optimized/frame-048-ab9b00e1b8a4-960.webp",
+        "width": 960,
+        "bytes": 15934
+      },
+      {
+        "src": "/optimized/frame-048-ab9b00e1b8a4-1600.webp",
+        "width": 1600,
+        "bytes": 32750
+      }
+    ],
+    "originalBytes": 36999
+  },
+  "/assets/hero-sequence/frame-049.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-049-5d68a3e01945-480.webp",
+        "width": 480,
+        "bytes": 5754
+      },
+      {
+        "src": "/optimized/frame-049-5d68a3e01945-960.webp",
+        "width": 960,
+        "bytes": 16080
+      },
+      {
+        "src": "/optimized/frame-049-5d68a3e01945-1600.webp",
+        "width": 1600,
+        "bytes": 32934
+      }
+    ],
+    "originalBytes": 37396
+  },
+  "/assets/hero-sequence/frame-050.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-050-2e917116de45-480.webp",
+        "width": 480,
+        "bytes": 5824
+      },
+      {
+        "src": "/optimized/frame-050-2e917116de45-960.webp",
+        "width": 960,
+        "bytes": 15782
+      },
+      {
+        "src": "/optimized/frame-050-2e917116de45-1600.webp",
+        "width": 1600,
+        "bytes": 32438
+      }
+    ],
+    "originalBytes": 36879
+  },
+  "/assets/hero-sequence/frame-051.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-051-c54bdb131eed-480.webp",
+        "width": 480,
+        "bytes": 5726
+      },
+      {
+        "src": "/optimized/frame-051-c54bdb131eed-960.webp",
+        "width": 960,
+        "bytes": 15434
+      },
+      {
+        "src": "/optimized/frame-051-c54bdb131eed-1600.webp",
+        "width": 1600,
+        "bytes": 30832
+      }
+    ],
+    "originalBytes": 35637
+  },
+  "/assets/hero-sequence/frame-052.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-052-8acfbfc53345-480.webp",
+        "width": 480,
+        "bytes": 5596
+      },
+      {
+        "src": "/optimized/frame-052-8acfbfc53345-960.webp",
+        "width": 960,
+        "bytes": 15232
+      },
+      {
+        "src": "/optimized/frame-052-8acfbfc53345-1600.webp",
+        "width": 1600,
+        "bytes": 30960
+      }
+    ],
+    "originalBytes": 35583
+  },
+  "/assets/hero-sequence/frame-053.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-053-cbbcd9808aa8-480.webp",
+        "width": 480,
+        "bytes": 5778
+      },
+      {
+        "src": "/optimized/frame-053-cbbcd9808aa8-960.webp",
+        "width": 960,
+        "bytes": 14968
+      },
+      {
+        "src": "/optimized/frame-053-cbbcd9808aa8-1600.webp",
+        "width": 1600,
+        "bytes": 29992
+      }
+    ],
+    "originalBytes": 34718
+  },
+  "/assets/hero-sequence/frame-054.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-054-c55c5ea2536b-480.webp",
+        "width": 480,
+        "bytes": 5590
+      },
+      {
+        "src": "/optimized/frame-054-c55c5ea2536b-960.webp",
+        "width": 960,
+        "bytes": 14404
+      },
+      {
+        "src": "/optimized/frame-054-c55c5ea2536b-1600.webp",
+        "width": 1600,
+        "bytes": 28646
+      }
+    ],
+    "originalBytes": 33846
+  },
+  "/assets/hero-sequence/frame-055.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-055-f8d375196bb2-480.webp",
+        "width": 480,
+        "bytes": 5438
+      },
+      {
+        "src": "/optimized/frame-055-f8d375196bb2-960.webp",
+        "width": 960,
+        "bytes": 13834
+      },
+      {
+        "src": "/optimized/frame-055-f8d375196bb2-1600.webp",
+        "width": 1600,
+        "bytes": 27800
+      }
+    ],
+    "originalBytes": 32784
+  },
+  "/assets/hero-sequence/frame-056.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-056-6488eb95e841-480.webp",
+        "width": 480,
+        "bytes": 5552
+      },
+      {
+        "src": "/optimized/frame-056-6488eb95e841-960.webp",
+        "width": 960,
+        "bytes": 14080
+      },
+      {
+        "src": "/optimized/frame-056-6488eb95e841-1600.webp",
+        "width": 1600,
+        "bytes": 28108
+      }
+    ],
+    "originalBytes": 33287
+  },
+  "/assets/hero-sequence/frame-057.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-057-cdcd96ce128f-480.webp",
+        "width": 480,
+        "bytes": 5602
+      },
+      {
+        "src": "/optimized/frame-057-cdcd96ce128f-960.webp",
+        "width": 960,
+        "bytes": 14650
+      },
+      {
+        "src": "/optimized/frame-057-cdcd96ce128f-1600.webp",
+        "width": 1600,
+        "bytes": 28858
+      }
+    ],
+    "originalBytes": 34433
+  },
+  "/assets/hero-sequence/frame-058.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-058-247606f114ff-480.webp",
+        "width": 480,
+        "bytes": 5638
+      },
+      {
+        "src": "/optimized/frame-058-247606f114ff-960.webp",
+        "width": 960,
+        "bytes": 14610
+      },
+      {
+        "src": "/optimized/frame-058-247606f114ff-1600.webp",
+        "width": 1600,
+        "bytes": 28840
+      }
+    ],
+    "originalBytes": 34311
+  },
+  "/assets/hero-sequence/frame-059.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-059-3fd71f967414-480.webp",
+        "width": 480,
+        "bytes": 5806
+      },
+      {
+        "src": "/optimized/frame-059-3fd71f967414-960.webp",
+        "width": 960,
+        "bytes": 15480
+      },
+      {
+        "src": "/optimized/frame-059-3fd71f967414-1600.webp",
+        "width": 1600,
+        "bytes": 31792
+      }
+    ],
+    "originalBytes": 36681
+  },
+  "/assets/hero-sequence/frame-060.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-060-aa3c77b65a72-480.webp",
+        "width": 480,
+        "bytes": 6110
+      },
+      {
+        "src": "/optimized/frame-060-aa3c77b65a72-960.webp",
+        "width": 960,
+        "bytes": 16066
+      },
+      {
+        "src": "/optimized/frame-060-aa3c77b65a72-1600.webp",
+        "width": 1600,
+        "bytes": 33472
+      }
+    ],
+    "originalBytes": 38286
+  },
+  "/assets/hero-sequence/frame-061.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-061-49e3ac23c0c5-480.webp",
+        "width": 480,
+        "bytes": 6168
+      },
+      {
+        "src": "/optimized/frame-061-49e3ac23c0c5-960.webp",
+        "width": 960,
+        "bytes": 16598
+      },
+      {
+        "src": "/optimized/frame-061-49e3ac23c0c5-1600.webp",
+        "width": 1600,
+        "bytes": 33094
+      }
+    ],
+    "originalBytes": 38010
+  },
+  "/assets/hero-sequence/frame-062.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-062-40926f6b9812-480.webp",
+        "width": 480,
+        "bytes": 6286
+      },
+      {
+        "src": "/optimized/frame-062-40926f6b9812-960.webp",
+        "width": 960,
+        "bytes": 16580
+      },
+      {
+        "src": "/optimized/frame-062-40926f6b9812-1600.webp",
+        "width": 1600,
+        "bytes": 33114
+      }
+    ],
+    "originalBytes": 38817
+  },
+  "/assets/hero-sequence/frame-063.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-063-7b3fa05923b2-480.webp",
+        "width": 480,
+        "bytes": 6446
+      },
+      {
+        "src": "/optimized/frame-063-7b3fa05923b2-960.webp",
+        "width": 960,
+        "bytes": 17104
+      },
+      {
+        "src": "/optimized/frame-063-7b3fa05923b2-1600.webp",
+        "width": 1600,
+        "bytes": 35682
+      }
+    ],
+    "originalBytes": 40431
+  },
+  "/assets/hero-sequence/frame-064.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-064-70c85c31b84f-480.webp",
+        "width": 480,
+        "bytes": 6596
+      },
+      {
+        "src": "/optimized/frame-064-70c85c31b84f-960.webp",
+        "width": 960,
+        "bytes": 18116
+      },
+      {
+        "src": "/optimized/frame-064-70c85c31b84f-1600.webp",
+        "width": 1600,
+        "bytes": 37384
+      }
+    ],
+    "originalBytes": 42277
+  },
+  "/assets/hero-sequence/frame-065.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-065-626875abc429-480.webp",
+        "width": 480,
+        "bytes": 6794
+      },
+      {
+        "src": "/optimized/frame-065-626875abc429-960.webp",
+        "width": 960,
+        "bytes": 17548
+      },
+      {
+        "src": "/optimized/frame-065-626875abc429-1600.webp",
+        "width": 1600,
+        "bytes": 35400
+      }
+    ],
+    "originalBytes": 41071
+  },
+  "/assets/hero-sequence/frame-066.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-066-2cfe63e78a15-480.webp",
+        "width": 480,
+        "bytes": 6906
+      },
+      {
+        "src": "/optimized/frame-066-2cfe63e78a15-960.webp",
+        "width": 960,
+        "bytes": 17380
+      },
+      {
+        "src": "/optimized/frame-066-2cfe63e78a15-1600.webp",
+        "width": 1600,
+        "bytes": 33282
+      }
+    ],
+    "originalBytes": 40482
+  },
+  "/assets/hero-sequence/frame-067.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-067-a3eb00b9cbab-480.webp",
+        "width": 480,
+        "bytes": 6806
+      },
+      {
+        "src": "/optimized/frame-067-a3eb00b9cbab-960.webp",
+        "width": 960,
+        "bytes": 17568
+      },
+      {
+        "src": "/optimized/frame-067-a3eb00b9cbab-1600.webp",
+        "width": 1600,
+        "bytes": 33674
+      }
+    ],
+    "originalBytes": 40181
+  },
+  "/assets/hero-sequence/frame-068.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-068-b40e7ad5b386-480.webp",
+        "width": 480,
+        "bytes": 6920
+      },
+      {
+        "src": "/optimized/frame-068-b40e7ad5b386-960.webp",
+        "width": 960,
+        "bytes": 17070
+      },
+      {
+        "src": "/optimized/frame-068-b40e7ad5b386-1600.webp",
+        "width": 1600,
+        "bytes": 33874
+      }
+    ],
+    "originalBytes": 40474
+  },
+  "/assets/hero-sequence/frame-069.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-069-e4c71a99fe8f-480.webp",
+        "width": 480,
+        "bytes": 7000
+      },
+      {
+        "src": "/optimized/frame-069-e4c71a99fe8f-960.webp",
+        "width": 960,
+        "bytes": 17626
+      },
+      {
+        "src": "/optimized/frame-069-e4c71a99fe8f-1600.webp",
+        "width": 1600,
+        "bytes": 33516
+      }
+    ],
+    "originalBytes": 40106
+  },
+  "/assets/hero-sequence/frame-070.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-070-708f93f92dfc-480.webp",
+        "width": 480,
+        "bytes": 7004
+      },
+      {
+        "src": "/optimized/frame-070-708f93f92dfc-960.webp",
+        "width": 960,
+        "bytes": 17552
+      },
+      {
+        "src": "/optimized/frame-070-708f93f92dfc-1600.webp",
+        "width": 1600,
+        "bytes": 34106
+      }
+    ],
+    "originalBytes": 40573
+  },
+  "/assets/hero-sequence/frame-071.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-071-7cb4a32da32a-480.webp",
+        "width": 480,
+        "bytes": 7384
+      },
+      {
+        "src": "/optimized/frame-071-7cb4a32da32a-960.webp",
+        "width": 960,
+        "bytes": 18230
+      },
+      {
+        "src": "/optimized/frame-071-7cb4a32da32a-1600.webp",
+        "width": 1600,
+        "bytes": 35584
+      }
+    ],
+    "originalBytes": 41545
+  },
+  "/assets/hero-sequence/frame-072.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-072-5a8b8f9d112e-480.webp",
+        "width": 480,
+        "bytes": 7856
+      },
+      {
+        "src": "/optimized/frame-072-5a8b8f9d112e-960.webp",
+        "width": 960,
+        "bytes": 18582
+      },
+      {
+        "src": "/optimized/frame-072-5a8b8f9d112e-1600.webp",
+        "width": 1600,
+        "bytes": 35966
+      }
+    ],
+    "originalBytes": 42332
+  },
+  "/assets/hero-sequence/frame-073.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-073-ad7ef2ecea8b-480.webp",
+        "width": 480,
+        "bytes": 8466
+      },
+      {
+        "src": "/optimized/frame-073-ad7ef2ecea8b-960.webp",
+        "width": 960,
+        "bytes": 19188
+      },
+      {
+        "src": "/optimized/frame-073-ad7ef2ecea8b-1600.webp",
+        "width": 1600,
+        "bytes": 37376
+      }
+    ],
+    "originalBytes": 43465
+  },
+  "/assets/hero-sequence/frame-074.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-074-e38a360a2727-480.webp",
+        "width": 480,
+        "bytes": 8930
+      },
+      {
+        "src": "/optimized/frame-074-e38a360a2727-960.webp",
+        "width": 960,
+        "bytes": 20340
+      },
+      {
+        "src": "/optimized/frame-074-e38a360a2727-1600.webp",
+        "width": 1600,
+        "bytes": 37686
+      }
+    ],
+    "originalBytes": 44764
+  },
+  "/assets/hero-sequence/frame-075.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-075-09f4b9268b04-480.webp",
+        "width": 480,
+        "bytes": 9714
+      },
+      {
+        "src": "/optimized/frame-075-09f4b9268b04-960.webp",
+        "width": 960,
+        "bytes": 22424
+      },
+      {
+        "src": "/optimized/frame-075-09f4b9268b04-1600.webp",
+        "width": 1600,
+        "bytes": 42500
+      }
+    ],
+    "originalBytes": 48441
+  },
+  "/assets/hero-sequence/frame-076.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-076-8098a8264f54-480.webp",
+        "width": 480,
+        "bytes": 10356
+      },
+      {
+        "src": "/optimized/frame-076-8098a8264f54-960.webp",
+        "width": 960,
+        "bytes": 23776
+      },
+      {
+        "src": "/optimized/frame-076-8098a8264f54-1600.webp",
+        "width": 1600,
+        "bytes": 46716
+      }
+    ],
+    "originalBytes": 51243
+  },
+  "/assets/hero-sequence/frame-077.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-077-03bec68bb4eb-480.webp",
+        "width": 480,
+        "bytes": 11622
+      },
+      {
+        "src": "/optimized/frame-077-03bec68bb4eb-960.webp",
+        "width": 960,
+        "bytes": 27650
+      },
+      {
+        "src": "/optimized/frame-077-03bec68bb4eb-1600.webp",
+        "width": 1600,
+        "bytes": 51990
+      }
+    ],
+    "originalBytes": 56652
+  },
+  "/assets/hero-sequence/frame-078.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-078-6353a441af1b-480.webp",
+        "width": 480,
+        "bytes": 12572
+      },
+      {
+        "src": "/optimized/frame-078-6353a441af1b-960.webp",
+        "width": 960,
+        "bytes": 30638
+      },
+      {
+        "src": "/optimized/frame-078-6353a441af1b-1600.webp",
+        "width": 1600,
+        "bytes": 58214
+      }
+    ],
+    "originalBytes": 61550
+  },
+  "/assets/hero-sequence/frame-079.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-079-09d5871a10c2-480.webp",
+        "width": 480,
+        "bytes": 13598
+      },
+      {
+        "src": "/optimized/frame-079-09d5871a10c2-960.webp",
+        "width": 960,
+        "bytes": 33966
+      },
+      {
+        "src": "/optimized/frame-079-09d5871a10c2-1600.webp",
+        "width": 1600,
+        "bytes": 67032
+      }
+    ],
+    "originalBytes": 68548
+  },
+  "/assets/hero-sequence/frame-080.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-080-e00899f62a89-480.webp",
+        "width": 480,
+        "bytes": 15300
+      },
+      {
+        "src": "/optimized/frame-080-e00899f62a89-960.webp",
+        "width": 960,
+        "bytes": 36500
+      },
+      {
+        "src": "/optimized/frame-080-e00899f62a89-1600.webp",
+        "width": 1600,
+        "bytes": 73236
+      }
+    ],
+    "originalBytes": 73809
+  },
+  "/assets/hero-sequence/frame-081.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-081-351e12891cf0-480.webp",
+        "width": 480,
+        "bytes": 16410
+      },
+      {
+        "src": "/optimized/frame-081-351e12891cf0-960.webp",
+        "width": 960,
+        "bytes": 40016
+      },
+      {
+        "src": "/optimized/frame-081-351e12891cf0-1600.webp",
+        "width": 1600,
+        "bytes": 80712
+      }
+    ],
+    "originalBytes": 80127
+  },
+  "/assets/hero-sequence/frame-082.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-082-8648cbc5175b-480.webp",
+        "width": 480,
+        "bytes": 18142
+      },
+      {
+        "src": "/optimized/frame-082-8648cbc5175b-960.webp",
+        "width": 960,
+        "bytes": 45318
+      },
+      {
+        "src": "/optimized/frame-082-8648cbc5175b-1600.webp",
+        "width": 1600,
+        "bytes": 93474
+      }
+    ],
+    "originalBytes": 91232
+  },
+  "/assets/hero-sequence/frame-083.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-083-7239ce3fe026-480.webp",
+        "width": 480,
+        "bytes": 19244
+      },
+      {
+        "src": "/optimized/frame-083-7239ce3fe026-960.webp",
+        "width": 960,
+        "bytes": 52366
+      },
+      {
+        "src": "/optimized/frame-083-7239ce3fe026-1600.webp",
+        "width": 1600,
+        "bytes": 108904
+      }
+    ],
+    "originalBytes": 106332
+  },
+  "/assets/hero-sequence/frame-084.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-084-90b3d8b0fc16-480.webp",
+        "width": 480,
+        "bytes": 20260
+      },
+      {
+        "src": "/optimized/frame-084-90b3d8b0fc16-960.webp",
+        "width": 960,
+        "bytes": 58624
+      },
+      {
+        "src": "/optimized/frame-084-90b3d8b0fc16-1600.webp",
+        "width": 1600,
+        "bytes": 121450
+      }
+    ],
+    "originalBytes": 117535
+  },
+  "/assets/hero-sequence/frame-085.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-085-22d45070ccc5-480.webp",
+        "width": 480,
+        "bytes": 20702
+      },
+      {
+        "src": "/optimized/frame-085-22d45070ccc5-960.webp",
+        "width": 960,
+        "bytes": 61834
+      },
+      {
+        "src": "/optimized/frame-085-22d45070ccc5-1600.webp",
+        "width": 1600,
+        "bytes": 130386
+      }
+    ],
+    "originalBytes": 125307
+  },
+  "/assets/hero-sequence/frame-086.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-086-7cbdfa6441dc-480.webp",
+        "width": 480,
+        "bytes": 20876
+      },
+      {
+        "src": "/optimized/frame-086-7cbdfa6441dc-960.webp",
+        "width": 960,
+        "bytes": 63448
+      },
+      {
+        "src": "/optimized/frame-086-7cbdfa6441dc-1600.webp",
+        "width": 1600,
+        "bytes": 134688
+      }
+    ],
+    "originalBytes": 129186
+  },
+  "/assets/hero-sequence/frame-087.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-087-160354139c03-480.webp",
+        "width": 480,
+        "bytes": 21034
+      },
+      {
+        "src": "/optimized/frame-087-160354139c03-960.webp",
+        "width": 960,
+        "bytes": 65210
+      },
+      {
+        "src": "/optimized/frame-087-160354139c03-1600.webp",
+        "width": 1600,
+        "bytes": 143888
+      }
+    ],
+    "originalBytes": 136495
+  },
+  "/assets/hero-sequence/frame-088.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-088-ebf18f519238-480.webp",
+        "width": 480,
+        "bytes": 20950
+      },
+      {
+        "src": "/optimized/frame-088-ebf18f519238-960.webp",
+        "width": 960,
+        "bytes": 66344
+      },
+      {
+        "src": "/optimized/frame-088-ebf18f519238-1600.webp",
+        "width": 1600,
+        "bytes": 147124
+      }
+    ],
+    "originalBytes": 138817
+  },
+  "/assets/hero-sequence/frame-089.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-089-322d2424ef20-480.webp",
+        "width": 480,
+        "bytes": 21080
+      },
+      {
+        "src": "/optimized/frame-089-322d2424ef20-960.webp",
+        "width": 960,
+        "bytes": 69266
+      },
+      {
+        "src": "/optimized/frame-089-322d2424ef20-1600.webp",
+        "width": 1600,
+        "bytes": 157834
+      }
+    ],
+    "originalBytes": 147338
+  },
+  "/assets/hero-sequence/frame-090.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-090-7c4642ec65f7-480.webp",
+        "width": 480,
+        "bytes": 21018
+      },
+      {
+        "src": "/optimized/frame-090-7c4642ec65f7-960.webp",
+        "width": 960,
+        "bytes": 69216
+      },
+      {
+        "src": "/optimized/frame-090-7c4642ec65f7-1600.webp",
+        "width": 1600,
+        "bytes": 158214
+      }
+    ],
+    "originalBytes": 147939
+  },
+  "/assets/hero-sequence/frame-091.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-091-9a2b69b2c606-480.webp",
+        "width": 480,
+        "bytes": 20954
+      },
+      {
+        "src": "/optimized/frame-091-9a2b69b2c606-960.webp",
+        "width": 960,
+        "bytes": 68900
+      },
+      {
+        "src": "/optimized/frame-091-9a2b69b2c606-1600.webp",
+        "width": 1600,
+        "bytes": 158734
+      }
+    ],
+    "originalBytes": 148394
+  },
+  "/assets/hero-sequence/frame-092.jpg": {
+    "width": 1600,
+    "height": 817,
+    "variants": [
+      {
+        "src": "/optimized/frame-092-bc4f93900a85-480.webp",
+        "width": 480,
+        "bytes": 20986
+      },
+      {
+        "src": "/optimized/frame-092-bc4f93900a85-960.webp",
+        "width": 960,
+        "bytes": 69744
+      },
+      {
+        "src": "/optimized/frame-092-bc4f93900a85-1600.webp",
+        "width": 1600,
+        "bytes": 157256
+      }
+    ],
+    "originalBytes": 146437
+  },
+  "/assets/model-colors/bike_1_red_transparent.png": {
+    "width": 115,
+    "height": 138,
+    "variants": [
+      {
+        "src": "/optimized/bike_1_red_transparent-d5403294f113-115.webp",
+        "width": 115,
+        "bytes": 4616
+      }
+    ],
+    "originalBytes": 24871
+  },
+  "/assets/model-colors/bike_2_light_blue_transparent.png": {
+    "width": 112,
+    "height": 138,
+    "variants": [
+      {
+        "src": "/optimized/bike_2_light_blue_transparent-65eeaf30d992-112.webp",
+        "width": 112,
+        "bytes": 4730
+      }
+    ],
+    "originalBytes": 24809
+  },
+  "/assets/model-colors/bike_4_silver_transparent.png": {
+    "width": 107,
+    "height": 138,
+    "variants": [
+      {
+        "src": "/optimized/bike_4_silver_transparent-740845ccdbb0-107.webp",
+        "width": 107,
+        "bytes": 4652
+      }
+    ],
+    "originalBytes": 23954
+  },
+  "/assets/model-colors/bike_5_black_transparent.png": {
+    "width": 116,
+    "height": 138,
+    "variants": [
+      {
+        "src": "/optimized/bike_5_black_transparent-08a15d78a0c9-116.webp",
+        "width": 116,
+        "bytes": 4850
+      }
+    ],
+    "originalBytes": 23736
+  },
+  "/assets/model-colors/bike_6_blue_transparent.png": {
+    "width": 113,
+    "height": 138,
+    "variants": [
+      {
+        "src": "/optimized/bike_6_blue_transparent-80dc07f40cda-113.webp",
+        "width": 113,
+        "bytes": 4272
+      }
+    ],
+    "originalBytes": 24293
+  },
+  "/assets/models/premium-colors-layout/power-blue-angle-layout.png": {
+    "width": 1800,
+    "height": 1800,
+    "variants": [
+      {
+        "src": "/optimized/power-blue-angle-layout-7497ea345bd6-480.webp",
+        "width": 480,
+        "bytes": 21984
+      },
+      {
+        "src": "/optimized/power-blue-angle-layout-7497ea345bd6-960.webp",
+        "width": 960,
+        "bytes": 59916
+      },
+      {
+        "src": "/optimized/power-blue-angle-layout-7497ea345bd6-1600.webp",
+        "width": 1600,
+        "bytes": 126538
+      }
+    ],
+    "originalBytes": 1441512
+  },
+  "/assets/models/premium-colors-layout/power-blue-angle-layout.webp": {
+    "width": 1200,
+    "height": 1200,
+    "variants": [
+      {
+        "src": "/optimized/power-blue-angle-layout-2d4a61453fb4-480.webp",
+        "width": 480,
+        "bytes": 21688
+      },
+      {
+        "src": "/optimized/power-blue-angle-layout-2d4a61453fb4-960.webp",
+        "width": 960,
+        "bytes": 57026
+      },
+      {
+        "src": "/optimized/power-blue-angle-layout-2d4a61453fb4-1200.webp",
+        "width": 1200,
+        "bytes": 73192
+      }
+    ],
+    "originalBytes": 70832
+  },
+  "/assets/models/premium-colors-layout/power-blue-front-layout.png": {
+    "width": 1800,
+    "height": 1800,
+    "variants": [
+      {
+        "src": "/optimized/power-blue-front-layout-3094dcf10c5c-480.webp",
+        "width": 480,
+        "bytes": 14348
+      },
+      {
+        "src": "/optimized/power-blue-front-layout-3094dcf10c5c-960.webp",
+        "width": 960,
+        "bytes": 41350
+      },
+      {
+        "src": "/optimized/power-blue-front-layout-3094dcf10c5c-1600.webp",
+        "width": 1600,
+        "bytes": 85456
+      }
+    ],
+    "originalBytes": 973269
+  },
+  "/assets/models/premium-colors-layout/power-blue-front-layout.webp": {
+    "width": 1200,
+    "height": 1200,
+    "variants": [
+      {
+        "src": "/optimized/power-blue-front-layout-5938121dd7b8-480.webp",
+        "width": 480,
+        "bytes": 14210
+      },
+      {
+        "src": "/optimized/power-blue-front-layout-5938121dd7b8-960.webp",
+        "width": 960,
+        "bytes": 39466
+      },
+      {
+        "src": "/optimized/power-blue-front-layout-5938121dd7b8-1200.webp",
+        "width": 1200,
+        "bytes": 49866
+      }
+    ],
+    "originalBytes": 47264
+  },
+  "/assets/models/premium-colors-layout/power-maroon-angle-layout.png": {
+    "width": 1800,
+    "height": 1800,
+    "variants": [
+      {
+        "src": "/optimized/power-maroon-angle-layout-ecc77431d6ee-480.webp",
+        "width": 480,
+        "bytes": 22740
+      },
+      {
+        "src": "/optimized/power-maroon-angle-layout-ecc77431d6ee-960.webp",
+        "width": 960,
+        "bytes": 65884
+      },
+      {
+        "src": "/optimized/power-maroon-angle-layout-ecc77431d6ee-1600.webp",
+        "width": 1600,
+        "bytes": 144710
+      }
+    ],
+    "originalBytes": 1573214
+  },
+  "/assets/models/premium-colors-layout/power-maroon-angle-layout.webp": {
+    "width": 1200,
+    "height": 1200,
+    "variants": [
+      {
+        "src": "/optimized/power-maroon-angle-layout-fdf390dfcc01-480.webp",
+        "width": 480,
+        "bytes": 22618
+      },
+      {
+        "src": "/optimized/power-maroon-angle-layout-fdf390dfcc01-960.webp",
+        "width": 960,
+        "bytes": 63608
+      },
+      {
+        "src": "/optimized/power-maroon-angle-layout-fdf390dfcc01-1200.webp",
+        "width": 1200,
+        "bytes": 82052
+      }
+    ],
+    "originalBytes": 79352
+  },
+  "/assets/models/premium-colors-layout/power-maroon-front-layout.png": {
+    "width": 1800,
+    "height": 1800,
+    "variants": [
+      {
+        "src": "/optimized/power-maroon-front-layout-1081d8bc7c83-480.webp",
+        "width": 480,
+        "bytes": 12756
+      },
+      {
+        "src": "/optimized/power-maroon-front-layout-1081d8bc7c83-960.webp",
+        "width": 960,
+        "bytes": 36886
+      },
+      {
+        "src": "/optimized/power-maroon-front-layout-1081d8bc7c83-1600.webp",
+        "width": 1600,
+        "bytes": 76778
+      }
+    ],
+    "originalBytes": 801034
+  },
+  "/assets/models/premium-colors-layout/power-maroon-front-layout.webp": {
+    "width": 1200,
+    "height": 1200,
+    "variants": [
+      {
+        "src": "/optimized/power-maroon-front-layout-81c4efe19deb-480.webp",
+        "width": 480,
+        "bytes": 12572
+      },
+      {
+        "src": "/optimized/power-maroon-front-layout-81c4efe19deb-960.webp",
+        "width": 960,
+        "bytes": 35330
+      },
+      {
+        "src": "/optimized/power-maroon-front-layout-81c4efe19deb-1200.webp",
+        "width": 1200,
+        "bytes": 44706
+      }
+    ],
+    "originalBytes": 42814
+  },
+  "/assets/models/premium-colors-layout/power-silver-angle-layout.png": {
+    "width": 1800,
+    "height": 1800,
+    "variants": [
+      {
+        "src": "/optimized/power-silver-angle-layout-4d60e393d2f5-480.webp",
+        "width": 480,
+        "bytes": 17870
+      },
+      {
+        "src": "/optimized/power-silver-angle-layout-4d60e393d2f5-960.webp",
+        "width": 960,
+        "bytes": 50192
+      },
+      {
+        "src": "/optimized/power-silver-angle-layout-4d60e393d2f5-1600.webp",
+        "width": 1600,
+        "bytes": 106276
+      }
+    ],
+    "originalBytes": 1217914
+  },
+  "/assets/models/premium-colors-layout/power-silver-angle-layout.webp": {
+    "width": 1200,
+    "height": 1200,
+    "variants": [
+      {
+        "src": "/optimized/power-silver-angle-layout-1ba7f45fedc7-480.webp",
+        "width": 480,
+        "bytes": 17854
+      },
+      {
+        "src": "/optimized/power-silver-angle-layout-1ba7f45fedc7-960.webp",
+        "width": 960,
+        "bytes": 48172
+      },
+      {
+        "src": "/optimized/power-silver-angle-layout-1ba7f45fedc7-1200.webp",
+        "width": 1200,
+        "bytes": 60472
+      }
+    ],
+    "originalBytes": 57936
+  },
+  "/assets/models/premium-colors-layout/power-silver-front-layout.png": {
+    "width": 1800,
+    "height": 1800,
+    "variants": [
+      {
+        "src": "/optimized/power-silver-front-layout-822d32091d14-480.webp",
+        "width": 480,
+        "bytes": 12110
+      },
+      {
+        "src": "/optimized/power-silver-front-layout-822d32091d14-960.webp",
+        "width": 960,
+        "bytes": 34642
+      },
+      {
+        "src": "/optimized/power-silver-front-layout-822d32091d14-1600.webp",
+        "width": 1600,
+        "bytes": 73124
+      }
+    ],
+    "originalBytes": 829482
+  },
+  "/assets/models/premium-colors-layout/power-silver-front-layout.webp": {
+    "width": 1200,
+    "height": 1200,
+    "variants": [
+      {
+        "src": "/optimized/power-silver-front-layout-7a6011762092-480.webp",
+        "width": 480,
+        "bytes": 12136
+      },
+      {
+        "src": "/optimized/power-silver-front-layout-7a6011762092-960.webp",
+        "width": 960,
+        "bytes": 33492
+      },
+      {
+        "src": "/optimized/power-silver-front-layout-7a6011762092-1200.webp",
+        "width": 1200,
+        "bytes": 42452
+      }
+    ],
+    "originalBytes": 40098
+  },
+  "/assets/products/back-common.png": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/optimized/back-common-a95ef5fd03fd-480.webp",
+        "width": 480,
+        "bytes": 38768
+      },
+      {
+        "src": "/optimized/back-common-a95ef5fd03fd-960.webp",
+        "width": 960,
+        "bytes": 139892
+      },
+      {
+        "src": "/optimized/back-common-a95ef5fd03fd-1024.webp",
+        "width": 1024,
+        "bytes": 150214
+      }
+    ],
+    "originalBytes": 2185930
+  },
+  "/assets/products/bluefr1.png": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/optimized/bluefr1-a32d19d9d4bf-480.webp",
+        "width": 480,
+        "bytes": 48610
+      },
+      {
+        "src": "/optimized/bluefr1-a32d19d9d4bf-960.webp",
+        "width": 960,
+        "bytes": 163744
+      },
+      {
+        "src": "/optimized/bluefr1-a32d19d9d4bf-1024.webp",
+        "width": 1024,
+        "bytes": 173292
+      }
+    ],
+    "originalBytes": 2304292
+  },
+  "/assets/products/bluefront.png": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/optimized/bluefront-3462197c48a4-480.webp",
+        "width": 480,
+        "bytes": 46340
+      },
+      {
+        "src": "/optimized/bluefront-3462197c48a4-960.webp",
+        "width": 960,
+        "bytes": 161252
+      },
+      {
+        "src": "/optimized/bluefront-3462197c48a4-1024.webp",
+        "width": 1024,
+        "bytes": 170456
+      }
+    ],
+    "originalBytes": 1818169
+  },
+  "/assets/products/bluelef.png": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/bluelef-cb3f5050adaf-480.webp",
+        "width": 480,
+        "bytes": 28390
+      },
+      {
+        "src": "/optimized/bluelef-cb3f5050adaf-960.webp",
+        "width": 960,
+        "bytes": 89710
+      },
+      {
+        "src": "/optimized/bluelef-cb3f5050adaf-1536.webp",
+        "width": 1536,
+        "bytes": 176466
+      }
+    ],
+    "originalBytes": 2281268
+  },
+  "/assets/products/bluerig.png": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/bluerig-0f5b79e3d0cc-480.webp",
+        "width": 480,
+        "bytes": 22078
+      },
+      {
+        "src": "/optimized/bluerig-0f5b79e3d0cc-960.webp",
+        "width": 960,
+        "bytes": 69702
+      },
+      {
+        "src": "/optimized/bluerig-0f5b79e3d0cc-1536.webp",
+        "width": 1536,
+        "bytes": 134908
+      }
+    ],
+    "originalBytes": 2192860
+  },
+  "/assets/products/classic-black-left.png": {
+    "width": 1800,
+    "height": 1273,
+    "variants": [
+      {
+        "src": "/optimized/classic-black-left-3fa79a47e410-480.webp",
+        "width": 480,
+        "bytes": 13020
+      },
+      {
+        "src": "/optimized/classic-black-left-3fa79a47e410-960.webp",
+        "width": 960,
+        "bytes": 34794
+      },
+      {
+        "src": "/optimized/classic-black-left-3fa79a47e410-1600.webp",
+        "width": 1600,
+        "bytes": 69518
+      }
+    ],
+    "originalBytes": 807578
+  },
+  "/assets/products/classic-black-left2.png": {
+    "width": 1800,
+    "height": 1273,
+    "variants": [
+      {
+        "src": "/optimized/classic-black-left2-6a1315ac730e-480.webp",
+        "width": 480,
+        "bytes": 16760
+      },
+      {
+        "src": "/optimized/classic-black-left2-6a1315ac730e-960.webp",
+        "width": 960,
+        "bytes": 45460
+      },
+      {
+        "src": "/optimized/classic-black-left2-6a1315ac730e-1600.webp",
+        "width": 1600,
+        "bytes": 89566
+      }
+    ],
+    "originalBytes": 1060861
+  },
+  "/assets/products/classic-black-right.png": {
+    "width": 1800,
+    "height": 1273,
+    "variants": [
+      {
+        "src": "/optimized/classic-black-right-ed31e1703428-480.webp",
+        "width": 480,
+        "bytes": 16078
+      },
+      {
+        "src": "/optimized/classic-black-right-ed31e1703428-960.webp",
+        "width": 960,
+        "bytes": 43394
+      },
+      {
+        "src": "/optimized/classic-black-right-ed31e1703428-1600.webp",
+        "width": 1600,
+        "bytes": 87224
+      }
+    ],
+    "originalBytes": 986526
+  },
+  "/assets/products/classic-black-throttle.png": {
+    "width": 1800,
+    "height": 1273,
+    "variants": [
+      {
+        "src": "/optimized/classic-black-throttle-6ecec206b477-480.webp",
+        "width": 480,
+        "bytes": 9866
+      },
+      {
+        "src": "/optimized/classic-black-throttle-6ecec206b477-960.webp",
+        "width": 960,
+        "bytes": 26102
+      },
+      {
+        "src": "/optimized/classic-black-throttle-6ecec206b477-1600.webp",
+        "width": 1600,
+        "bytes": 55144
+      }
+    ],
+    "originalBytes": 1044494
+  },
+  "/assets/products/classic-gold-left.png": {
+    "width": 1800,
+    "height": 1273,
+    "variants": [
+      {
+        "src": "/optimized/classic-gold-left-9831acd0fa85-480.webp",
+        "width": 480,
+        "bytes": 15262
+      },
+      {
+        "src": "/optimized/classic-gold-left-9831acd0fa85-960.webp",
+        "width": 960,
+        "bytes": 39006
+      },
+      {
+        "src": "/optimized/classic-gold-left-9831acd0fa85-1600.webp",
+        "width": 1600,
+        "bytes": 75384
+      }
+    ],
+    "originalBytes": 908261
+  },
+  "/assets/products/classic-gold-rearwheel.png": {
+    "width": 1800,
+    "height": 1273,
+    "variants": [
+      {
+        "src": "/optimized/classic-gold-rearwheel-245d33b16267-480.webp",
+        "width": 480,
+        "bytes": 26562
+      },
+      {
+        "src": "/optimized/classic-gold-rearwheel-245d33b16267-960.webp",
+        "width": 960,
+        "bytes": 74500
+      },
+      {
+        "src": "/optimized/classic-gold-rearwheel-245d33b16267-1600.webp",
+        "width": 1600,
+        "bytes": 161004
+      }
+    ],
+    "originalBytes": 2151984
+  },
+  "/assets/products/classic-gold-right.png": {
+    "width": 1800,
+    "height": 1273,
+    "variants": [
+      {
+        "src": "/optimized/classic-gold-right-76acc89a11d9-480.webp",
+        "width": 480,
+        "bytes": 19370
+      },
+      {
+        "src": "/optimized/classic-gold-right-76acc89a11d9-960.webp",
+        "width": 960,
+        "bytes": 52246
+      },
+      {
+        "src": "/optimized/classic-gold-right-76acc89a11d9-1600.webp",
+        "width": 1600,
+        "bytes": 104222
+      }
+    ],
+    "originalBytes": 1222558
+  },
+  "/assets/products/classic-gold-tail.png": {
+    "width": 1800,
+    "height": 1273,
+    "variants": [
+      {
+        "src": "/optimized/classic-gold-tail-cd78cf39fc97-480.webp",
+        "width": 480,
+        "bytes": 22726
+      },
+      {
+        "src": "/optimized/classic-gold-tail-cd78cf39fc97-960.webp",
+        "width": 960,
+        "bytes": 64074
+      },
+      {
+        "src": "/optimized/classic-gold-tail-cd78cf39fc97-1600.webp",
+        "width": 1600,
+        "bytes": 149186
+      }
+    ],
+    "originalBytes": 2032791
+  },
+  "/assets/products/classic-gray-left.png": {
+    "width": 1800,
+    "height": 1273,
+    "variants": [
+      {
+        "src": "/optimized/classic-gray-left-8cecf4c5f13c-480.webp",
+        "width": 480,
+        "bytes": 16082
+      },
+      {
+        "src": "/optimized/classic-gray-left-8cecf4c5f13c-960.webp",
+        "width": 960,
+        "bytes": 43588
+      },
+      {
+        "src": "/optimized/classic-gray-left-8cecf4c5f13c-1600.webp",
+        "width": 1600,
+        "bytes": 86346
+      }
+    ],
+    "originalBytes": 992873
+  },
+  "/assets/products/flame-red-front.jpg": {
+    "width": 1200,
+    "height": 1800,
+    "variants": [
+      {
+        "src": "/optimized/flame-red-front-97bfcd1e7af7-480.webp",
+        "width": 480,
+        "bytes": 19666
+      },
+      {
+        "src": "/optimized/flame-red-front-97bfcd1e7af7-960.webp",
+        "width": 960,
+        "bytes": 54556
+      },
+      {
+        "src": "/optimized/flame-red-front-97bfcd1e7af7-1200.webp",
+        "width": 1200,
+        "bytes": 76868
+      }
+    ],
+    "originalBytes": 103954
+  },
+  "/assets/products/flame-red-left.jpg": {
+    "width": 1800,
+    "height": 1200,
+    "variants": [
+      {
+        "src": "/optimized/flame-red-left-644f940f8b34-480.webp",
+        "width": 480,
+        "bytes": 14418
+      },
+      {
+        "src": "/optimized/flame-red-left-644f940f8b34-960.webp",
+        "width": 960,
+        "bytes": 38916
+      },
+      {
+        "src": "/optimized/flame-red-left-644f940f8b34-1600.webp",
+        "width": 1600,
+        "bytes": 81254
+      }
+    ],
+    "originalBytes": 136873
+  },
+  "/assets/products/flame-red-right.jpeg": {
+    "width": 1600,
+    "height": 1066,
+    "variants": [
+      {
+        "src": "/optimized/flame-red-right-fe4bfd0139e7-480.webp",
+        "width": 480,
+        "bytes": 11718
+      },
+      {
+        "src": "/optimized/flame-red-right-fe4bfd0139e7-960.webp",
+        "width": 960,
+        "bytes": 31038
+      },
+      {
+        "src": "/optimized/flame-red-right-fe4bfd0139e7-1600.webp",
+        "width": 1600,
+        "bytes": 67792
+      }
+    ],
+    "originalBytes": 130707
+  },
+  "/assets/products/frntslate.png": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/optimized/frntslate-16ebaa6d4610-480.webp",
+        "width": 480,
+        "bytes": 65078
+      },
+      {
+        "src": "/optimized/frntslate-16ebaa6d4610-960.webp",
+        "width": 960,
+        "bytes": 229264
+      },
+      {
+        "src": "/optimized/frntslate-16ebaa6d4610-1024.webp",
+        "width": 1024,
+        "bytes": 214314
+      }
+    ],
+    "originalBytes": 2347763
+  },
+  "/assets/products/frntslate1.png": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/optimized/frntslate1-dec0278c5659-480.webp",
+        "width": 480,
+        "bytes": 48080
+      },
+      {
+        "src": "/optimized/frntslate1-dec0278c5659-960.webp",
+        "width": 960,
+        "bytes": 157772
+      },
+      {
+        "src": "/optimized/frntslate1-dec0278c5659-1024.webp",
+        "width": 1024,
+        "bytes": 164674
+      }
+    ],
+    "originalBytes": 2306087
+  },
+  "/assets/products/mint-left1.png": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/mint-left1-03c58b5f55fe-480.webp",
+        "width": 480,
+        "bytes": 27222
+      },
+      {
+        "src": "/optimized/mint-left1-03c58b5f55fe-960.webp",
+        "width": 960,
+        "bytes": 89402
+      },
+      {
+        "src": "/optimized/mint-left1-03c58b5f55fe-1536.webp",
+        "width": 1536,
+        "bytes": 200758
+      }
+    ],
+    "originalBytes": 2268740
+  },
+  "/assets/products/mint-right.png": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/mint-right-8e3d98f0731c-480.webp",
+        "width": 480,
+        "bytes": 25288
+      },
+      {
+        "src": "/optimized/mint-right-8e3d98f0731c-960.webp",
+        "width": 960,
+        "bytes": 81574
+      },
+      {
+        "src": "/optimized/mint-right-8e3d98f0731c-1536.webp",
+        "width": 1536,
+        "bytes": 163902
+      }
+    ],
+    "originalBytes": 2260838
+  },
+  "/assets/products/mintfront.png": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/optimized/mintfront-c14b81a97a2c-480.webp",
+        "width": 480,
+        "bytes": 66632
+      },
+      {
+        "src": "/optimized/mintfront-c14b81a97a2c-960.webp",
+        "width": 960,
+        "bytes": 233252
+      },
+      {
+        "src": "/optimized/mintfront-c14b81a97a2c-1024.webp",
+        "width": 1024,
+        "bytes": 222716
+      }
+    ],
+    "originalBytes": 2411807
+  },
+  "/assets/products/mintfront1.png": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/optimized/mintfront1-796fd99fce9b-480.webp",
+        "width": 480,
+        "bytes": 53858
+      },
+      {
+        "src": "/optimized/mintfront1-796fd99fce9b-960.webp",
+        "width": 960,
+        "bytes": 189282
+      },
+      {
+        "src": "/optimized/mintfront1-796fd99fce9b-1024.webp",
+        "width": 1024,
+        "bytes": 201070
+      }
+    ],
+    "originalBytes": 2304448
+  },
+  "/assets/products/ocean-blue-front.jpeg": {
+    "width": 1066,
+    "height": 1600,
+    "variants": [
+      {
+        "src": "/optimized/ocean-blue-front-237506f1e79f-480.webp",
+        "width": 480,
+        "bytes": 27210
+      },
+      {
+        "src": "/optimized/ocean-blue-front-237506f1e79f-960.webp",
+        "width": 960,
+        "bytes": 73844
+      },
+      {
+        "src": "/optimized/ocean-blue-front-237506f1e79f-1066.webp",
+        "width": 1066,
+        "bytes": 89404
+      }
+    ],
+    "originalBytes": 172554
+  },
+  "/assets/products/ocean-blue-left.jpg": {
+    "width": 1800,
+    "height": 1200,
+    "variants": [
+      {
+        "src": "/optimized/ocean-blue-left-32f493866e1e-480.webp",
+        "width": 480,
+        "bytes": 10966
+      },
+      {
+        "src": "/optimized/ocean-blue-left-32f493866e1e-960.webp",
+        "width": 960,
+        "bytes": 30302
+      },
+      {
+        "src": "/optimized/ocean-blue-left-32f493866e1e-1600.webp",
+        "width": 1600,
+        "bytes": 64798
+      }
+    ],
+    "originalBytes": 103490
+  },
+  "/assets/products/ocean-blue-right.jpg": {
+    "width": 1800,
+    "height": 1200,
+    "variants": [
+      {
+        "src": "/optimized/ocean-blue-right-8d84d23fe677-480.webp",
+        "width": 480,
+        "bytes": 14222
+      },
+      {
+        "src": "/optimized/ocean-blue-right-8d84d23fe677-960.webp",
+        "width": 960,
+        "bytes": 40006
+      },
+      {
+        "src": "/optimized/ocean-blue-right-8d84d23fe677-1600.webp",
+        "width": 1600,
+        "bytes": 85742
+      }
+    ],
+    "originalBytes": 134234
+  },
+  "/assets/products/power-black-front.png": {
+    "width": 1200,
+    "height": 1800,
+    "variants": [
+      {
+        "src": "/optimized/power-black-front-cbd6d79b7e3e-480.webp",
+        "width": 480,
+        "bytes": 22970
+      },
+      {
+        "src": "/optimized/power-black-front-cbd6d79b7e3e-960.webp",
+        "width": 960,
+        "bytes": 60642
+      },
+      {
+        "src": "/optimized/power-black-front-cbd6d79b7e3e-1200.webp",
+        "width": 1200,
+        "bytes": 81438
+      }
+    ],
+    "originalBytes": 861350
+  },
+  "/assets/products/power-black-front1.jpeg": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/optimized/power-black-front1-c3a3c980b85b-480.webp",
+        "width": 480,
+        "bytes": 24820
+      },
+      {
+        "src": "/optimized/power-black-front1-c3a3c980b85b-960.webp",
+        "width": 960,
+        "bytes": 72912
+      },
+      {
+        "src": "/optimized/power-black-front1-c3a3c980b85b-1024.webp",
+        "width": 1024,
+        "bytes": 82636
+      }
+    ],
+    "originalBytes": 147476
+  },
+  "/assets/products/power-black-front2.png": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/optimized/power-black-front2-143d7d15f16b-480.webp",
+        "width": 480,
+        "bytes": 45284
+      },
+      {
+        "src": "/optimized/power-black-front2-143d7d15f16b-960.webp",
+        "width": 960,
+        "bytes": 153100
+      },
+      {
+        "src": "/optimized/power-black-front2-143d7d15f16b-1024.webp",
+        "width": 1024,
+        "bytes": 163338
+      }
+    ],
+    "originalBytes": 2287230
+  },
+  "/assets/products/power-black-frontclose.png": {
+    "width": 1800,
+    "height": 1029,
+    "variants": [
+      {
+        "src": "/optimized/power-black-frontclose-e4514cd40e20-480.webp",
+        "width": 480,
+        "bytes": 9748
+      },
+      {
+        "src": "/optimized/power-black-frontclose-e4514cd40e20-960.webp",
+        "width": 960,
+        "bytes": 24888
+      },
+      {
+        "src": "/optimized/power-black-frontclose-e4514cd40e20-1600.webp",
+        "width": 1600,
+        "bytes": 48286
+      }
+    ],
+    "originalBytes": 694332
+  },
+  "/assets/products/power-black-headlight.png": {
+    "width": 1800,
+    "height": 1273,
+    "variants": [
+      {
+        "src": "/optimized/power-black-headlight-fa1a26e59084-480.webp",
+        "width": 480,
+        "bytes": 18834
+      },
+      {
+        "src": "/optimized/power-black-headlight-fa1a26e59084-960.webp",
+        "width": 960,
+        "bytes": 47224
+      },
+      {
+        "src": "/optimized/power-black-headlight-fa1a26e59084-1600.webp",
+        "width": 1600,
+        "bytes": 90608
+      }
+    ],
+    "originalBytes": 1433590
+  },
+  "/assets/products/power-black-left.png": {
+    "width": 1800,
+    "height": 1273,
+    "variants": [
+      {
+        "src": "/optimized/power-black-left-d834ea6eac47-480.webp",
+        "width": 480,
+        "bytes": 13078
+      },
+      {
+        "src": "/optimized/power-black-left-d834ea6eac47-960.webp",
+        "width": 960,
+        "bytes": 34804
+      },
+      {
+        "src": "/optimized/power-black-left-d834ea6eac47-1600.webp",
+        "width": 1600,
+        "bytes": 68664
+      }
+    ],
+    "originalBytes": 781768
+  },
+  "/assets/products/power-black-left1.png": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/power-black-left1-b599a0f4e705-480.webp",
+        "width": 480,
+        "bytes": 21824
+      },
+      {
+        "src": "/optimized/power-black-left1-b599a0f4e705-960.webp",
+        "width": 960,
+        "bytes": 69888
+      },
+      {
+        "src": "/optimized/power-black-left1-b599a0f4e705-1536.webp",
+        "width": 1536,
+        "bytes": 138028
+      }
+    ],
+    "originalBytes": 2234040
+  },
+  "/assets/products/power-black-right.png": {
+    "width": 1800,
+    "height": 1273,
+    "variants": [
+      {
+        "src": "/optimized/power-black-right-5e0cd23ed445-480.webp",
+        "width": 480,
+        "bytes": 12198
+      },
+      {
+        "src": "/optimized/power-black-right-5e0cd23ed445-960.webp",
+        "width": 960,
+        "bytes": 31598
+      },
+      {
+        "src": "/optimized/power-black-right-5e0cd23ed445-1600.webp",
+        "width": 1600,
+        "bytes": 62042
+      }
+    ],
+    "originalBytes": 753088
+  },
+  "/assets/products/power-black-right1.png": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/power-black-right1-30515638c2bd-480.webp",
+        "width": 480,
+        "bytes": 26528
+      },
+      {
+        "src": "/optimized/power-black-right1-30515638c2bd-960.webp",
+        "width": 960,
+        "bytes": 86950
+      },
+      {
+        "src": "/optimized/power-black-right1-30515638c2bd-1536.webp",
+        "width": 1536,
+        "bytes": 173020
+      }
+    ],
+    "originalBytes": 2306287
+  },
+  "/assets/products/power-blue-left.png": {
+    "width": 1800,
+    "height": 1273,
+    "variants": [
+      {
+        "src": "/optimized/power-blue-left-4131d8febb9a-480.webp",
+        "width": 480,
+        "bytes": 14944
+      },
+      {
+        "src": "/optimized/power-blue-left-4131d8febb9a-960.webp",
+        "width": 960,
+        "bytes": 41192
+      },
+      {
+        "src": "/optimized/power-blue-left-4131d8febb9a-1600.webp",
+        "width": 1600,
+        "bytes": 84392
+      }
+    ],
+    "originalBytes": 866401
+  },
+  "/assets/products/power-blue-left1.png": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/power-blue-left1-852faabf78a4-480.webp",
+        "width": 480,
+        "bytes": 27286
+      },
+      {
+        "src": "/optimized/power-blue-left1-852faabf78a4-960.webp",
+        "width": 960,
+        "bytes": 93706
+      },
+      {
+        "src": "/optimized/power-blue-left1-852faabf78a4-1536.webp",
+        "width": 1536,
+        "bytes": 175956
+      }
+    ],
+    "originalBytes": 2329511
+  },
+  "/assets/products/power-blue-left2.png": {
+    "width": 1800,
+    "height": 1273,
+    "variants": [
+      {
+        "src": "/optimized/power-blue-left2-762dbdefc895-480.webp",
+        "width": 480,
+        "bytes": 20172
+      },
+      {
+        "src": "/optimized/power-blue-left2-762dbdefc895-960.webp",
+        "width": 960,
+        "bytes": 54450
+      },
+      {
+        "src": "/optimized/power-blue-left2-762dbdefc895-1600.webp",
+        "width": 1600,
+        "bytes": 108438
+      }
+    ],
+    "originalBytes": 1293909
+  },
+  "/assets/products/power-blue-right.png": {
+    "width": 1800,
+    "height": 1273,
+    "variants": [
+      {
+        "src": "/optimized/power-blue-right-dae98366dcc6-480.webp",
+        "width": 480,
+        "bytes": 19294
+      },
+      {
+        "src": "/optimized/power-blue-right-dae98366dcc6-960.webp",
+        "width": 960,
+        "bytes": 53004
+      },
+      {
+        "src": "/optimized/power-blue-right-dae98366dcc6-1600.webp",
+        "width": 1600,
+        "bytes": 107936
+      }
+    ],
+    "originalBytes": 1155869
+  },
+  "/assets/products/power-blue-right1.png": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/power-blue-right1-9a755be8983a-480.webp",
+        "width": 480,
+        "bytes": 41266
+      },
+      {
+        "src": "/optimized/power-blue-right1-9a755be8983a-960.webp",
+        "width": 960,
+        "bytes": 137690
+      },
+      {
+        "src": "/optimized/power-blue-right1-9a755be8983a-1536.webp",
+        "width": 1536,
+        "bytes": 301684
+      }
+    ],
+    "originalBytes": 2291385
+  },
+  "/assets/products/power-gold-front.png": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/optimized/power-gold-front-6863e86d0d0b-480.webp",
+        "width": 480,
+        "bytes": 52166
+      },
+      {
+        "src": "/optimized/power-gold-front-6863e86d0d0b-960.webp",
+        "width": 960,
+        "bytes": 189352
+      },
+      {
+        "src": "/optimized/power-gold-front-6863e86d0d0b-1024.webp",
+        "width": 1024,
+        "bytes": 197732
+      }
+    ],
+    "originalBytes": 2295967
+  },
+  "/assets/products/power-gold-left.png": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/optimized/power-gold-left-a43b0ff4d96f-480.webp",
+        "width": 480,
+        "bytes": 59118
+      },
+      {
+        "src": "/optimized/power-gold-left-a43b0ff4d96f-960.webp",
+        "width": 960,
+        "bytes": 206938
+      },
+      {
+        "src": "/optimized/power-gold-left-a43b0ff4d96f-1024.webp",
+        "width": 1024,
+        "bytes": 216272
+      }
+    ],
+    "originalBytes": 2298591
+  },
+  "/assets/products/power-gold-left1.png": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/power-gold-left1-445832c70f8a-480.webp",
+        "width": 480,
+        "bytes": 32650
+      },
+      {
+        "src": "/optimized/power-gold-left1-445832c70f8a-960.webp",
+        "width": 960,
+        "bytes": 105156
+      },
+      {
+        "src": "/optimized/power-gold-left1-445832c70f8a-1536.webp",
+        "width": 1536,
+        "bytes": 220014
+      }
+    ],
+    "originalBytes": 2338379
+  },
+  "/assets/products/power-gold-right.png": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/power-gold-right-e7983b9bae8b-480.webp",
+        "width": 480,
+        "bytes": 40600
+      },
+      {
+        "src": "/optimized/power-gold-right-e7983b9bae8b-960.webp",
+        "width": 960,
+        "bytes": 128550
+      },
+      {
+        "src": "/optimized/power-gold-right-e7983b9bae8b-1536.webp",
+        "width": 1536,
+        "bytes": 278630
+      }
+    ],
+    "originalBytes": 2501423
+  },
+  "/assets/products/power-gold-right1.png": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/power-gold-right1-61c4326f1550-480.webp",
+        "width": 480,
+        "bytes": 40408
+      },
+      {
+        "src": "/optimized/power-gold-right1-61c4326f1550-960.webp",
+        "width": 960,
+        "bytes": 128738
+      },
+      {
+        "src": "/optimized/power-gold-right1-61c4326f1550-1536.webp",
+        "width": 1536,
+        "bytes": 281632
+      }
+    ],
+    "originalBytes": 2513147
+  },
+  "/assets/products/power-green-front.png": {
+    "width": 1800,
+    "height": 1273,
+    "variants": [
+      {
+        "src": "/optimized/power-green-front-09e45e970e6e-480.webp",
+        "width": 480,
+        "bytes": 13948
+      },
+      {
+        "src": "/optimized/power-green-front-09e45e970e6e-960.webp",
+        "width": 960,
+        "bytes": 36662
+      },
+      {
+        "src": "/optimized/power-green-front-09e45e970e6e-1600.webp",
+        "width": 1600,
+        "bytes": 72502
+      }
+    ],
+    "originalBytes": 932262
+  },
+  "/assets/products/power-green-front1.png": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/optimized/power-green-front1-cd9118b8c028-480.webp",
+        "width": 480,
+        "bytes": 50326
+      },
+      {
+        "src": "/optimized/power-green-front1-cd9118b8c028-960.webp",
+        "width": 960,
+        "bytes": 166602
+      },
+      {
+        "src": "/optimized/power-green-front1-cd9118b8c028-1024.webp",
+        "width": 1024,
+        "bytes": 174344
+      }
+    ],
+    "originalBytes": 2319800
+  },
+  "/assets/products/power-green-headlight.png": {
+    "width": 1800,
+    "height": 1273,
+    "variants": [
+      {
+        "src": "/optimized/power-green-headlight-d4093b2330c1-480.webp",
+        "width": 480,
+        "bytes": 17610
+      },
+      {
+        "src": "/optimized/power-green-headlight-d4093b2330c1-960.webp",
+        "width": 960,
+        "bytes": 45986
+      },
+      {
+        "src": "/optimized/power-green-headlight-d4093b2330c1-1600.webp",
+        "width": 1600,
+        "bytes": 94846
+      }
+    ],
+    "originalBytes": 1528628
+  },
+  "/assets/products/power-green-left.png": {
+    "width": 1800,
+    "height": 1273,
+    "variants": [
+      {
+        "src": "/optimized/power-green-left-02a96da2f988-480.webp",
+        "width": 480,
+        "bytes": 16214
+      },
+      {
+        "src": "/optimized/power-green-left-02a96da2f988-960.webp",
+        "width": 960,
+        "bytes": 42988
+      },
+      {
+        "src": "/optimized/power-green-left-02a96da2f988-1600.webp",
+        "width": 1600,
+        "bytes": 83766
+      }
+    ],
+    "originalBytes": 967103
+  },
+  "/assets/products/power-green-left1.png": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/power-green-left1-03c58b5f55fe-480.webp",
+        "width": 480,
+        "bytes": 27222
+      },
+      {
+        "src": "/optimized/power-green-left1-03c58b5f55fe-960.webp",
+        "width": 960,
+        "bytes": 89402
+      },
+      {
+        "src": "/optimized/power-green-left1-03c58b5f55fe-1536.webp",
+        "width": 1536,
+        "bytes": 200758
+      }
+    ],
+    "originalBytes": 2268740
+  },
+  "/assets/products/power-green-right.png": {
+    "width": 1800,
+    "height": 1273,
+    "variants": [
+      {
+        "src": "/optimized/power-green-right-237d1065cc4f-480.webp",
+        "width": 480,
+        "bytes": 18394
+      },
+      {
+        "src": "/optimized/power-green-right-237d1065cc4f-960.webp",
+        "width": 960,
+        "bytes": 50472
+      },
+      {
+        "src": "/optimized/power-green-right-237d1065cc4f-1600.webp",
+        "width": 1600,
+        "bytes": 101036
+      }
+    ],
+    "originalBytes": 1132020
+  },
+  "/assets/products/power-green-right1.png": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/power-green-right1-d803d348dc26-480.webp",
+        "width": 480,
+        "bytes": 30114
+      },
+      {
+        "src": "/optimized/power-green-right1-d803d348dc26-960.webp",
+        "width": 960,
+        "bytes": 95854
+      },
+      {
+        "src": "/optimized/power-green-right1-d803d348dc26-1536.webp",
+        "width": 1536,
+        "bytes": 193746
+      }
+    ],
+    "originalBytes": 2359925
+  },
+  "/assets/products/power-red-front.png": {
+    "width": 1800,
+    "height": 1273,
+    "variants": [
+      {
+        "src": "/optimized/power-red-front-44eae0778143-480.webp",
+        "width": 480,
+        "bytes": 16076
+      },
+      {
+        "src": "/optimized/power-red-front-44eae0778143-960.webp",
+        "width": 960,
+        "bytes": 43526
+      },
+      {
+        "src": "/optimized/power-red-front-44eae0778143-1600.webp",
+        "width": 1600,
+        "bytes": 86490
+      }
+    ],
+    "originalBytes": 1007187
+  },
+  "/assets/products/power-red-front1.png": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/optimized/power-red-front1-5f2b3d7b5dd8-480.webp",
+        "width": 480,
+        "bytes": 45198
+      },
+      {
+        "src": "/optimized/power-red-front1-5f2b3d7b5dd8-960.webp",
+        "width": 960,
+        "bytes": 151836
+      },
+      {
+        "src": "/optimized/power-red-front1-5f2b3d7b5dd8-1024.webp",
+        "width": 1024,
+        "bytes": 163192
+      }
+    ],
+    "originalBytes": 2257005
+  },
+  "/assets/products/power-red-left.png": {
+    "width": 1800,
+    "height": 1273,
+    "variants": [
+      {
+        "src": "/optimized/power-red-left-9e5c9dc2c8cd-480.webp",
+        "width": 480,
+        "bytes": 17858
+      },
+      {
+        "src": "/optimized/power-red-left-9e5c9dc2c8cd-960.webp",
+        "width": 960,
+        "bytes": 50538
+      },
+      {
+        "src": "/optimized/power-red-left-9e5c9dc2c8cd-1600.webp",
+        "width": 1600,
+        "bytes": 103348
+      }
+    ],
+    "originalBytes": 1023284
+  },
+  "/assets/products/power-red-left1.png": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/power-red-left1-27f62644e6da-480.webp",
+        "width": 480,
+        "bytes": 31402
+      },
+      {
+        "src": "/optimized/power-red-left1-27f62644e6da-960.webp",
+        "width": 960,
+        "bytes": 104248
+      },
+      {
+        "src": "/optimized/power-red-left1-27f62644e6da-1536.webp",
+        "width": 1536,
+        "bytes": 206592
+      }
+    ],
+    "originalBytes": 2403779
+  },
+  "/assets/products/power-red-left2.png": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/power-red-left2-41b1252e2eaf-480.webp",
+        "width": 480,
+        "bytes": 29618
+      },
+      {
+        "src": "/optimized/power-red-left2-41b1252e2eaf-960.webp",
+        "width": 960,
+        "bytes": 97714
+      },
+      {
+        "src": "/optimized/power-red-left2-41b1252e2eaf-1536.webp",
+        "width": 1536,
+        "bytes": 193692
+      }
+    ],
+    "originalBytes": 2333202
+  },
+  "/assets/products/power-red-right.png": {
+    "width": 1800,
+    "height": 1273,
+    "variants": [
+      {
+        "src": "/optimized/power-red-right-d85119992942-480.webp",
+        "width": 480,
+        "bytes": 22812
+      },
+      {
+        "src": "/optimized/power-red-right-d85119992942-960.webp",
+        "width": 960,
+        "bytes": 63378
+      },
+      {
+        "src": "/optimized/power-red-right-d85119992942-1600.webp",
+        "width": 1600,
+        "bytes": 130924
+      }
+    ],
+    "originalBytes": 1346159
+  },
+  "/assets/products/power-red-right1.png": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/power-red-right1-cf69ed429a54-480.webp",
+        "width": 480,
+        "bytes": 41066
+      },
+      {
+        "src": "/optimized/power-red-right1-cf69ed429a54-960.webp",
+        "width": 960,
+        "bytes": 130296
+      },
+      {
+        "src": "/optimized/power-red-right1-cf69ed429a54-1536.webp",
+        "width": 1536,
+        "bytes": 257854
+      }
+    ],
+    "originalBytes": 2520593
+  },
+  "/assets/products/power-red-right2.png": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/power-red-right2-a15437d24900-480.webp",
+        "width": 480,
+        "bytes": 37104
+      },
+      {
+        "src": "/optimized/power-red-right2-a15437d24900-960.webp",
+        "width": 960,
+        "bytes": 121602
+      },
+      {
+        "src": "/optimized/power-red-right2-a15437d24900-1536.webp",
+        "width": 1536,
+        "bytes": 261480
+      }
+    ],
+    "originalBytes": 2389132
+  },
+  "/assets/products/rapid-black-left.png": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/rapid-black-left-ee843427af21-480.webp",
+        "width": 480,
+        "bytes": 21018
+      },
+      {
+        "src": "/optimized/rapid-black-left-ee843427af21-960.webp",
+        "width": 960,
+        "bytes": 66722
+      },
+      {
+        "src": "/optimized/rapid-black-left-ee843427af21-1536.webp",
+        "width": 1536,
+        "bytes": 133302
+      }
+    ],
+    "originalBytes": 2194908
+  },
+  "/assets/products/rapid-black-right.png": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/rapid-black-right-08120b8e9b1d-480.webp",
+        "width": 480,
+        "bytes": 25072
+      },
+      {
+        "src": "/optimized/rapid-black-right-08120b8e9b1d-960.webp",
+        "width": 960,
+        "bytes": 82534
+      },
+      {
+        "src": "/optimized/rapid-black-right-08120b8e9b1d-1536.webp",
+        "width": 1536,
+        "bytes": 164436
+      }
+    ],
+    "originalBytes": 2259238
+  },
+  "/assets/products/rapidblackfr.png": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/optimized/rapidblackfr-d747302f1bb0-480.webp",
+        "width": 480,
+        "bytes": 37206
+      },
+      {
+        "src": "/optimized/rapidblackfr-d747302f1bb0-960.webp",
+        "width": 960,
+        "bytes": 143050
+      },
+      {
+        "src": "/optimized/rapidblackfr-d747302f1bb0-1024.webp",
+        "width": 1024,
+        "bytes": 138314
+      }
+    ],
+    "originalBytes": 2214082
+  },
+  "/assets/products/red-front-update.png": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/optimized/red-front-update-fc0a0cf3d969-480.webp",
+        "width": 480,
+        "bytes": 25940
+      },
+      {
+        "src": "/optimized/red-front-update-fc0a0cf3d969-960.webp",
+        "width": 960,
+        "bytes": 82664
+      },
+      {
+        "src": "/optimized/red-front-update-fc0a0cf3d969-1024.webp",
+        "width": 1024,
+        "bytes": 97380
+      }
+    ],
+    "originalBytes": 1798272
+  },
+  "/assets/products/red-right.png": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/red-right-5866496a5baa-480.webp",
+        "width": 480,
+        "bytes": 14096
+      },
+      {
+        "src": "/optimized/red-right-5866496a5baa-960.webp",
+        "width": 960,
+        "bytes": 42334
+      },
+      {
+        "src": "/optimized/red-right-5866496a5baa-1536.webp",
+        "width": 1536,
+        "bytes": 107280
+      }
+    ],
+    "originalBytes": 1844143
+  },
+  "/assets/products/red.png": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/red-54fdc4ea6719-480.webp",
+        "width": 480,
+        "bytes": 28712
+      },
+      {
+        "src": "/optimized/red-54fdc4ea6719-960.webp",
+        "width": 960,
+        "bytes": 92476
+      },
+      {
+        "src": "/optimized/red-54fdc4ea6719-1536.webp",
+        "width": 1536,
+        "bytes": 181740
+      }
+    ],
+    "originalBytes": 1009020
+  },
+  "/assets/products/redfront.png": {
+    "width": 1023,
+    "height": 1537,
+    "variants": [
+      {
+        "src": "/optimized/redfront-b08d8ae4a36c-480.webp",
+        "width": 480,
+        "bytes": 32504
+      },
+      {
+        "src": "/optimized/redfront-b08d8ae4a36c-960.webp",
+        "width": 960,
+        "bytes": 69392
+      },
+      {
+        "src": "/optimized/redfront-b08d8ae4a36c-1023.webp",
+        "width": 1023,
+        "bytes": 74048
+      }
+    ],
+    "originalBytes": 1071684
+  },
+  "/assets/products/redright.png": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/redright-9de9ebc43ed3-480.webp",
+        "width": 480,
+        "bytes": 21806
+      },
+      {
+        "src": "/optimized/redright-9de9ebc43ed3-960.webp",
+        "width": 960,
+        "bytes": 69398
+      },
+      {
+        "src": "/optimized/redright-9de9ebc43ed3-1536.webp",
+        "width": 1536,
+        "bytes": 144626
+      }
+    ],
+    "originalBytes": 2171347
+  },
+  "/assets/products/redupfront.png": {
+    "width": 1023,
+    "height": 1537,
+    "variants": [
+      {
+        "src": "/optimized/redupfront-b78c33532fd4-480.webp",
+        "width": 480,
+        "bytes": 70474
+      },
+      {
+        "src": "/optimized/redupfront-b78c33532fd4-960.webp",
+        "width": 960,
+        "bytes": 167150
+      },
+      {
+        "src": "/optimized/redupfront-b78c33532fd4-1023.webp",
+        "width": 1023,
+        "bytes": 180600
+      }
+    ],
+    "originalBytes": 1729643
+  },
+  "/assets/products/rigslate.png": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/rigslate-3cfe5b8df187-480.webp",
+        "width": 480,
+        "bytes": 24974
+      },
+      {
+        "src": "/optimized/rigslate-3cfe5b8df187-960.webp",
+        "width": 960,
+        "bytes": 79948
+      },
+      {
+        "src": "/optimized/rigslate-3cfe5b8df187-1536.webp",
+        "width": 1536,
+        "bytes": 153572
+      }
+    ],
+    "originalBytes": 2229482
+  },
+  "/assets/products/rigslate1.png": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/rigslate1-422a61c3ee0b-480.webp",
+        "width": 480,
+        "bytes": 37122
+      },
+      {
+        "src": "/optimized/rigslate1-422a61c3ee0b-960.webp",
+        "width": 960,
+        "bytes": 121878
+      },
+      {
+        "src": "/optimized/rigslate1-422a61c3ee0b-1536.webp",
+        "width": 1536,
+        "bytes": 268924
+      }
+    ],
+    "originalBytes": 2383926
+  },
+  "/assets/products/slate-grey-front.jpg": {
+    "width": 1200,
+    "height": 1800,
+    "variants": [
+      {
+        "src": "/optimized/slate-grey-front-4509d3e56ba0-480.webp",
+        "width": 480,
+        "bytes": 26462
+      },
+      {
+        "src": "/optimized/slate-grey-front-4509d3e56ba0-960.webp",
+        "width": 960,
+        "bytes": 69870
+      },
+      {
+        "src": "/optimized/slate-grey-front-4509d3e56ba0-1200.webp",
+        "width": 1200,
+        "bytes": 97510
+      }
+    ],
+    "originalBytes": 140704
+  },
+  "/assets/products/slate-grey-left.jpg": {
+    "width": 1800,
+    "height": 1200,
+    "variants": [
+      {
+        "src": "/optimized/slate-grey-left-27b2fcc3aa89-480.webp",
+        "width": 480,
+        "bytes": 9888
+      },
+      {
+        "src": "/optimized/slate-grey-left-27b2fcc3aa89-960.webp",
+        "width": 960,
+        "bytes": 26068
+      },
+      {
+        "src": "/optimized/slate-grey-left-27b2fcc3aa89-1600.webp",
+        "width": 1600,
+        "bytes": 54702
+      }
+    ],
+    "originalBytes": 93573
+  },
+  "/assets/products/slate-grey-right.jpg": {
+    "width": 1800,
+    "height": 1200,
+    "variants": [
+      {
+        "src": "/optimized/slate-grey-right-5002786b4514-480.webp",
+        "width": 480,
+        "bytes": 11944
+      },
+      {
+        "src": "/optimized/slate-grey-right-5002786b4514-960.webp",
+        "width": 960,
+        "bytes": 32954
+      },
+      {
+        "src": "/optimized/slate-grey-right-5002786b4514-1600.webp",
+        "width": 1600,
+        "bytes": 70738
+      }
+    ],
+    "originalBytes": 116142
+  },
+  "/assets/products/slateleft.png": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/slateleft-4452cee629ef-480.webp",
+        "width": 480,
+        "bytes": 20014
+      },
+      {
+        "src": "/optimized/slateleft-4452cee629ef-960.webp",
+        "width": 960,
+        "bytes": 65744
+      },
+      {
+        "src": "/optimized/slateleft-4452cee629ef-1536.webp",
+        "width": 1536,
+        "bytes": 128030
+      }
+    ],
+    "originalBytes": 2188371
+  },
+  "/assets/products/slaterig.png": {
+    "width": 1535,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/optimized/slaterig-f1d32221ff24-480.webp",
+        "width": 480,
+        "bytes": 32112
+      },
+      {
+        "src": "/optimized/slaterig-f1d32221ff24-960.webp",
+        "width": 960,
+        "bytes": 71330
+      },
+      {
+        "src": "/optimized/slaterig-f1d32221ff24-1535.webp",
+        "width": 1535,
+        "bytes": 118688
+      }
+    ],
+    "originalBytes": 1321385
+  },
+  "/assets/products/upred.png": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/optimized/upred-38a9baded4cb-480.webp",
+        "width": 480,
+        "bytes": 40400
+      },
+      {
+        "src": "/optimized/upred-38a9baded4cb-960.webp",
+        "width": 960,
+        "bytes": 131616
+      },
+      {
+        "src": "/optimized/upred-38a9baded4cb-1024.webp",
+        "width": 1024,
+        "bytes": 143640
+      }
+    ],
+    "originalBytes": 2186395
+  },
+  "/assets/scroll-frames/powerplus-front.jpg": {
+    "width": 1800,
+    "height": 1800,
+    "variants": [
+      {
+        "src": "/optimized/powerplus-front-7cf42b0ffc8f-480.webp",
+        "width": 480,
+        "bytes": 14076
+      },
+      {
+        "src": "/optimized/powerplus-front-7cf42b0ffc8f-960.webp",
+        "width": 960,
+        "bytes": 39226
+      },
+      {
+        "src": "/optimized/powerplus-front-7cf42b0ffc8f-1600.webp",
+        "width": 1600,
+        "bytes": 84776
+      }
+    ],
+    "originalBytes": 144024
+  },
+  "/assets/scroll-frames/powerplus-left-profile.jpg": {
+    "width": 1800,
+    "height": 1800,
+    "variants": [
+      {
+        "src": "/optimized/powerplus-left-profile-a88a7102ad3b-480.webp",
+        "width": 480,
+        "bytes": 20596
+      },
+      {
+        "src": "/optimized/powerplus-left-profile-a88a7102ad3b-960.webp",
+        "width": 960,
+        "bytes": 60678
+      },
+      {
+        "src": "/optimized/powerplus-left-profile-a88a7102ad3b-1600.webp",
+        "width": 1600,
+        "bytes": 135110
+      }
+    ],
+    "originalBytes": 214369
+  },
+  "/assets/scroll-frames/powerplus-rear-angle.jpg": {
+    "width": 1800,
+    "height": 1800,
+    "variants": [
+      {
+        "src": "/optimized/powerplus-rear-angle-9d99f2113212-480.webp",
+        "width": 480,
+        "bytes": 22180
+      },
+      {
+        "src": "/optimized/powerplus-rear-angle-9d99f2113212-960.webp",
+        "width": 960,
+        "bytes": 65256
+      },
+      {
+        "src": "/optimized/powerplus-rear-angle-9d99f2113212-1600.webp",
+        "width": 1600,
+        "bytes": 143524
+      }
+    ],
+    "originalBytes": 231062
+  },
+  "/assets/scroll-frames/powerplus-side.jpg": {
+    "width": 1800,
+    "height": 1800,
+    "variants": [
+      {
+        "src": "/optimized/powerplus-side-a6b26bb6835e-480.webp",
+        "width": 480,
+        "bytes": 18068
+      },
+      {
+        "src": "/optimized/powerplus-side-a6b26bb6835e-960.webp",
+        "width": 960,
+        "bytes": 52748
+      },
+      {
+        "src": "/optimized/powerplus-side-a6b26bb6835e-1600.webp",
+        "width": 1600,
+        "bytes": 120222
+      }
+    ],
+    "originalBytes": 198388
+  }
+}

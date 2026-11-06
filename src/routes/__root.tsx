@@ -1,4 +1,3 @@
-
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
@@ -10,7 +9,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, useRef, type ReactNode } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, MotionConfig, motion } from "framer-motion";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -20,7 +19,10 @@ import { FloatingDock } from "../components/FloatingDock";
 
 // Set VITE_SITE_URL to the final https:// domain before building for a new domain.
 // The production domain remains the safe default for GoDaddy deployments.
-const siteUrl = (import.meta.env.VITE_SITE_URL || "https://www.franklinev.co.in").replace(/\/$/, "");
+const siteUrl = (import.meta.env.VITE_SITE_URL || "https://www.franklinev.co.in").replace(
+  /\/$/,
+  "",
+);
 const socialImageUrl = `${siteUrl}/assets/hero-powerplus.jpg`;
 
 const organizationSchema = {
@@ -291,11 +293,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", type: "image/png", sizes: "32x32", href: "/assets/favicon-32.png" },
       { rel: "icon", type: "image/png", sizes: "16x16", href: "/assets/favicon-16.png" },
       { rel: "apple-touch-icon", sizes: "180x180", href: "/assets/favicon-180.png" },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap",
+        rel: "preload",
+        as: "font",
+        type: "font/woff2",
+        href: "/fonts/inter-latin-variable.woff2",
+        crossOrigin: "anonymous",
+      },
+      {
+        rel: "preload",
+        as: "font",
+        type: "font/woff2",
+        href: "/fonts/space-grotesk-latin-variable.woff2",
+        crossOrigin: "anonymous",
       },
     ],
   }),
@@ -345,25 +355,27 @@ function RootComponent() {
   useSiteMotion(location.pathname);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <ScrollProgressBar />
-      <Navbar />
-      <main id="main-content" className="pt-16 pb-0">
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div
-            key={location.pathname}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <Outlet />
-          </motion.div>
-        </AnimatePresence>
-      </main>
-      <Footer />
-      <FloatingDock />
-    </QueryClientProvider>
+    <MotionConfig reducedMotion="user">
+      <QueryClientProvider client={queryClient}>
+        <ScrollProgressBar />
+        <Navbar />
+        <main id="main-content" className="pt-16 pb-0">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={location.pathname}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <Outlet />
+            </motion.div>
+          </AnimatePresence>
+        </main>
+        <Footer />
+        <FloatingDock />
+      </QueryClientProvider>
+    </MotionConfig>
   );
 }
 
@@ -390,8 +402,11 @@ function ScrollProgressBar() {
     };
 
     const requestProgress = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(updateProgress);
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        updateProgress();
+      });
     };
 
     updateProgress();
@@ -414,8 +429,22 @@ function useSiteMotion(pathname: string) {
     let revealObserver: IntersectionObserver | null = null;
     let statObserver: IntersectionObserver | null = null;
     const animationFrames = new Set<number>();
+    const motionObserver = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries)
+          entry.target.classList.toggle("motion-offscreen", !entry.isIntersecting);
+      },
+      { rootMargin: "100px" },
+    );
+    const syncVisibility = () =>
+      document.body.classList.toggle("motion-background", document.hidden);
+    document.addEventListener("visibilitychange", syncVisibility);
+    syncVisibility();
 
     const startObservers = () => {
+      document
+        .querySelectorAll("main section")
+        .forEach((section) => motionObserver.observe(section));
       revealObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -455,7 +484,10 @@ function useSiteMotion(pathname: string) {
               });
 
               if (progress < 1) {
-                const frame = requestAnimationFrame(tick);
+                const frame = requestAnimationFrame((now) => {
+                  animationFrames.delete(frame);
+                  tick(now);
+                });
                 animationFrames.add(frame);
               } else {
                 entry.target.textContent = target.toLocaleString("en-IN", {
@@ -466,7 +498,10 @@ function useSiteMotion(pathname: string) {
             };
 
             entry.target.textContent = decimals > 0 ? "0.0" : "0";
-            const frame = requestAnimationFrame(tick);
+            const frame = requestAnimationFrame((now) => {
+              animationFrames.delete(frame);
+              tick(now);
+            });
             animationFrames.add(frame);
             statObserver?.unobserve(entry.target);
           });
@@ -486,6 +521,9 @@ function useSiteMotion(pathname: string) {
 
     return () => {
       window.clearTimeout(startTimer);
+      motionObserver.disconnect();
+      document.removeEventListener("visibilitychange", syncVisibility);
+      document.body.classList.remove("motion-background");
       revealObserver?.disconnect();
       statObserver?.disconnect();
       animationFrames.forEach((frame) => cancelAnimationFrame(frame));

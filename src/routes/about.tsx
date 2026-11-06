@@ -1,7 +1,17 @@
-
+import { responsiveImage } from "@/lib/media";
+import { ResponsiveImage } from "@/components/ResponsiveImage";
 
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Check, Leaf, VolumeX, Sparkles, MapPin, CheckCircle2, Bike } from "lucide-react";
+import {
+  ArrowRight,
+  Check,
+  Leaf,
+  VolumeX,
+  Sparkles,
+  MapPin,
+  CheckCircle2,
+  Bike,
+} from "lucide-react";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import { Counter } from "@/components/Counter";
 
@@ -48,7 +58,7 @@ function AboutPage() {
           </Reveal>
           <Reveal delay={0.1}>
             <figure className="about-hero-image">
-              <img
+              <ResponsiveImage
                 src="/assets/editorial/dual-riders-underpass.jpg"
                 alt="Two Franklin EV riders on electric scooters in an urban underpass."
                 width={1672}
@@ -119,7 +129,7 @@ function AboutPage() {
           ))}
         </StaggerGroup>
       </section>
-{/* 
+      {/*
       <section className="max-w-7xl mx-auto px-5 lg:px-8 py-16">
         <div className="rounded-[2.5rem] bg-hero-gradient p-10 lg:p-14 border border-border">
           <StaggerGroup className="grid grid-cols-2 lg:grid-cols-4 gap-6">
@@ -177,8 +187,12 @@ function AboutPage() {
         <Reveal delay={0.1}>
           <figure className="about-journey-visual">
             <picture>
-              <source srcSet="/assets/editorial/blue-cafe-parking.jpg" type="image/jpeg" />
-              <img
+              <source
+                srcSet={responsiveImage("/assets/editorial/blue-cafe-parking.jpg").srcSet}
+                sizes="(max-width: 767px) 100vw, 50vw"
+                type="image/webp"
+              />
+              <ResponsiveImage
                 src="/assets/products/power-blue-left.png"
                 alt="Franklin EV POWER electric scooter in Ocean Blue — left side view."
                 width={1330}
@@ -239,7 +253,7 @@ function AboutPage() {
           <div className="about-showroom-card p-6 lg:p-10 rounded-3xl bg-surface border border-border shadow-soft">
             <div className="grid lg:grid-cols-2 gap-8 items-center">
               <figure className="flex justify-center">
-                <img
+                <ResponsiveImage
                   src="/assets/products/power-green-left.png"
                   alt="Franklin EV POWER electric scooter in Mint Green — left side view."
                   width={1376}
@@ -362,7 +376,7 @@ function AboutPage() {
                 key={img.src}
                 className="rounded-2xl overflow-hidden border border-border bg-zinc-50"
               >
-                <img
+                <ResponsiveImage
                   src={img.src}
                   alt={img.alt}
                   loading="lazy"
@@ -375,29 +389,29 @@ function AboutPage() {
         </Reveal>
       </section>
 
-     <section className="max-w-7xl mx-auto px-5 lg:px-8 py-20">
-  <Reveal>
-    <div className="rounded-[2.5rem] p-12 lg:p-20 text-center">
-      <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink">
-        Join the electric shift
-      </h2>
-      <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-        Compare the Franklin EV ride experience, charging support and model features in
-        person.
-      </p>
-      <Link
-        to="/contact"
-        className="mt-8 inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-white font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-[1.03]"
-        style={{
-          background: 'linear-gradient(90deg, #18BFEA 0%, #24CFA0 50%, #52E636 100%)',
-          boxShadow: '0 8px 24px rgba(36, 207, 160, 0.35)',
-        }}
-      >
-        Book a Test Ride <ArrowRight className="w-4 h-4" />
-      </Link>
-    </div>
-  </Reveal>
-</section>
+      <section className="max-w-7xl mx-auto px-5 lg:px-8 py-20">
+        <Reveal>
+          <div className="rounded-[2.5rem] p-12 lg:p-20 text-center">
+            <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink">
+              Join the electric shift
+            </h2>
+            <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+              Compare the Franklin EV ride experience, charging support and model features in
+              person.
+            </p>
+            <Link
+              to="/contact"
+              className="mt-8 inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-white font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-[1.03]"
+              style={{
+                background: "linear-gradient(90deg, #18BFEA 0%, #24CFA0 50%, #52E636 100%)",
+                boxShadow: "0 8px 24px rgba(36, 207, 160, 0.35)",
+              }}
+            >
+              Book a Test Ride <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </Reveal>
+      </section>
     </>
   );
 }

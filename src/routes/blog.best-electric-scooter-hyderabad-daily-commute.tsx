@@ -1,3 +1,4 @@
+import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check, ChevronLeft } from "lucide-react";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
@@ -22,8 +23,7 @@ export const Route = createFileRoute("/blog/best-electric-scooter-hyderabad-dail
       },
       {
         property: "og:url",
-        content:
-          "https://www.franklinev.co.in/blog/best-electric-scooter-hyderabad-daily-commute",
+        content: "https://www.franklinev.co.in/blog/best-electric-scooter-hyderabad-daily-commute",
       },
     ],
     links: [
@@ -89,7 +89,7 @@ function ArticleHyderabadGuide() {
 
       <Reveal delay={0.1}>
         <figure className="my-10 rounded-2xl overflow-hidden border border-border">
-          <img
+          <ResponsiveImage
             src="/assets/editorial/dual-riders-underpass.jpg"
             alt="Two Franklin EV riders on electric scooters in Hyderabad."
             className="w-full object-cover"
@@ -184,7 +184,7 @@ function ArticleHyderabadGuide() {
         </h2>
         <div className="grid sm:grid-cols-2 gap-5 mt-4">
           <div className="p-6 rounded-2xl bg-surface border border-primary/30">
-            <img
+            <ResponsiveImage
               src="/assets/products/power-black-left.png"
               alt="Franklin EV POWER"
               className="h-28 w-full object-contain mb-4"
@@ -205,7 +205,7 @@ function ArticleHyderabadGuide() {
             </ul>
           </div>
           <div className="p-6 rounded-2xl bg-surface border border-border">
-            <img
+            <ResponsiveImage
               src="/assets/products/classic-gold-left.png"
               alt="Franklin EV Classic"
               className="h-28 w-full object-contain mb-4"

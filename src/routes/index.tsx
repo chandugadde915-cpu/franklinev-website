@@ -1,3 +1,6 @@
+import { ResponsiveImage } from "@/components/ResponsiveImage";
+import { ViewportVideo } from "@/components/ViewportVideo";
+import { imageSource, responsiveImage } from "@/lib/media";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
@@ -22,198 +25,7 @@ import {
 } from "lucide-react";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import { motion } from "framer-motion";
-import "leaflet/dist/leaflet.css";
-
-// ---------- MAP COORDINATES ----------
-const cityCoordinates: Record<string, [number, number]> = {
-  "AS Rao Nagar": [17.4589, 78.5738],
-  Kanajiguda: [17.4567, 78.5521],
-  Boduppal: [17.4285, 78.5739],
-  Chintal: [17.4817, 78.4104],
-  Champapet: [17.3659, 78.5405],
-  Malkajgiri: [17.4519, 78.5432],
-  "Hayath Nagar": [17.3278, 78.6044],
-  Manikonda: [17.4079, 78.3747],
-  Nalgonda: [17.0517, 79.2676],
-  Karimnagar: [18.4392, 79.129],
-  Mancherial: [18.8709, 79.4386],
-  Vikarabad: [17.3388, 77.904],
-  Kothagudem: [17.5533, 80.6186],
-  Bhupalpally: [18.4345, 79.8584],
-  Khammam: [17.2473, 80.1514],
-  Kollapur: [16.1202, 78.2826],
-  Vemulawada: [18.5534, 78.7931],
-  Jammikunta: [18.3456, 79.0566],
-  Srikakulam: [18.2985, 83.8978],
-  Visakhapatnam: [17.6868, 83.2185],
-};
-
-const allCities = Object.keys(cityCoordinates);
-
-// ---------- Client‑only Premium Map Component ----------
-function DealerMap() {
-  const [isClient, setIsClient] = useState(false);
-  const [MapComponent, setMapComponent] = useState<(() => JSX.Element) | null>(null);
-  const [mapError, setMapError] = useState(false);
-
-  useEffect(() => {
-    let isMounted = true;
-    setIsClient(true);
-
-    const loadMap = async () => {
-      try {
-        const leafletModule = await import("react-leaflet");
-        const LModule = await import("leaflet");
-
-        if (!isMounted) return;
-
-        const { MapContainer, TileLayer, Marker, Popup, useMap } = leafletModule;
-        const L = LModule.default;
-
-        // Fix default icon
-        delete (L.Icon.Default.prototype as any)._getIconUrl;
-        L.Icon.Default.mergeOptions({
-          iconRetinaUrl:
-            "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png",
-          iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png",
-          shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png",
-        });
-
-      // Premium custom marker
-     const createCustomMarker = (color: string = "#e67e22") => {
-  return L.divIcon({
-    className: "custom-marker custom-marker-shadow", // ✅ merged classes
-    html: `<svg width="28" height="40" viewBox="0 0 28 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M14 0C6.268 0 0 6.268 0 14c0 9 14 26 14 26s14-17 14-26c0-7.732-6.268-14-14-14z" fill="${color}" stroke="white" stroke-width="2.5"/>
-      <circle cx="14" cy="14" r="5" fill="white"/>
-      <circle cx="14" cy="14" r="2.5" fill="${color}" opacity="0.6"/>
-    </svg>`,
-    iconSize: [28, 40],
-    iconAnchor: [14, 40],
-    popupAnchor: [0, -40],
-  });
-};
-
-      const ScrollZoomControl = () => {
-        const map = useMap();
-        const [active, setActive] = useState(false);
-
-        useEffect(() => {
-          map.scrollWheelZoom.disable();
-
-          const container = map.getContainer();
-          const enable = () => {
-            map.scrollWheelZoom.enable();
-            setActive(true);
-          };
-          const disable = () => {
-            map.scrollWheelZoom.disable();
-            setActive(false);
-          };
-
-          container.addEventListener("click", enable);
-          container.addEventListener("mouseleave", disable);
-
-          return () => {
-            container.removeEventListener("click", enable);
-            container.removeEventListener("mouseleave", disable);
-          };
-        }, [map]);
-
-        if (active) {
-          return null;
-        }
-
-        return (
-          <div className="map-scroll-hint" aria-hidden="true">
-            Click map to zoom &amp; pan
-          </div>
-        );
-      };
-
-      const Map = () => (
-        <MapContainer
-          center={[17.385, 78.4867]}
-          zoom={9}
-          scrollWheelZoom={false}
-          wheelPxPerZoomLevel={140}
-          zoomControl={true}
-          className="w-full h-full min-h-[400px] rounded-3xl"
-          style={{ background: "#e8ecf1" }}
-        >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            maxZoom={19}
-          />
-          <ScrollZoomControl />
-
-          <>
-            {allCities.map((city) => {
-              const coords = cityCoordinates[city];
-              if (!coords) return null;
-              return (
-                <Marker key={city} position={coords} icon={createCustomMarker("#e67e22")}>
-                  <Popup closeButton={false} className="dealer-popup">
-                    <div className="flex flex-col items-start gap-0.5 px-1 py-0.5">
-                      <strong className="text-ink text-base font-bold">{city}</strong>
-                      <span className="text-xs text-muted-foreground">📍 Franklin EV Dealer</span>
-                      <button className="mt-1 text-xs font-semibold text-primary hover:underline">
-                        Get Directions →
-                      </button>
-                    </div>
-                  </Popup>
-                </Marker>
-              );
-            })}
-          </>
-        </MapContainer>
-      );
-
-        setMapComponent(() => Map);
-      } catch (error) {
-        console.error("Failed to load dealer map", error);
-        if (isMounted) setMapError(true);
-      }
-    };
-
-    loadMap();
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
-
-  if (mapError) {
-    return (
-      <div className="min-h-[400px] flex flex-col items-center justify-center gap-4 bg-muted/20 rounded-3xl p-6 text-center">
-        <MapPin className="h-10 w-10 text-primary" />
-        <div>
-          <h3 className="font-display text-xl font-bold text-ink">Dealer map is unavailable</h3>
-          <p className="mt-2 text-sm text-muted-foreground max-w-sm">
-            Franklin EV dealers are listed across Hyderabad, Telangana and Andhra Pradesh.
-          </p>
-        </div>
-        <Link to="/contact" className="cinema-btn cinema-btn-primary">
-          View dealer locations
-        </Link>
-      </div>
-    );
-  }
-
-  if (!isClient || !MapComponent) {
-    return (
-      <div className="min-h-[400px] flex items-center justify-center bg-muted/20 rounded-3xl">
-        <div className="flex flex-col items-center gap-3">
-          <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
-          <span className="text-sm text-muted-foreground">Loading map…</span>
-        </div>
-      </div>
-    );
-  }
-
-  return <MapComponent />;
-}
+import { DeferredDealerMap } from "@/components/DeferredDealerMap";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -273,8 +85,19 @@ export const Route = createFileRoute("/")({
     ],
     links: [
       { rel: "canonical", href: "https://www.franklinev.co.in/" },
-      { rel: "preload", as: "image", href: "/assets/hero-powerplus.jpg" },
-      { rel: "preload", as: "image", href: "/assets/hero-sequence/frame-001.jpg" },
+      {
+        rel: "preload",
+        as: "image",
+        href: imageSource("/assets/hero-powerplus.jpg", 960),
+        imageSrcSet: responsiveImage("/assets/hero-powerplus.jpg").srcSet,
+        imageSizes: "(max-width: 767px) max(100vw, 150vh), 100vw",
+      },
+      {
+        rel: "preload",
+        as: "image",
+        href: imageSource("/assets/hero-sequence/frame-001.jpg", 1600),
+        media: "(max-width: 768px)",
+      },
     ],
   }),
   component: Home,
@@ -476,6 +299,7 @@ function HeroSection() {
   const heroImageCacheRef = useRef<(HTMLImageElement | null)[]>([]);
   const lastDrawnHeroFrameRef = useRef(-1);
   const heroFrameProgressRef = useRef(0);
+  const previousFrameRef = useRef(0);
   const heroScrollFrameRef = useRef(0);
   const [heroFrameIndex, setHeroFrameIndex] = useState(0);
   const [isHeroFrameReady, setIsHeroFrameReady] = useState(false);
@@ -524,8 +348,23 @@ function HeroSection() {
     if ("fetchPriority" in image) {
       image.fetchPriority = priority;
     }
-    image.src = src;
+    // Cover-style portrait canvases need the source height as well as its width.
+    const coverWidth = Math.max(
+      window.innerWidth,
+      (window.innerHeight * heroSequenceSize.width) / heroSequenceSize.height,
+    );
+    image.src = imageSource(src, Math.min(heroSequenceSize.width, Math.ceil(coverWidth)));
     heroImageCacheRef.current[index] = image;
+    // Bound decoded frame memory; the browser HTTP cache still supports reversal.
+    const limit = window.innerWidth <= 768 ? 16 : 28;
+    const cachedIndices = heroImageCacheRef.current.flatMap((entry, i) => (entry ? [i] : []));
+    cachedIndices.sort((a, b) => Math.abs(b - index) - Math.abs(a - index));
+    while (cachedIndices.length > limit) {
+      const evicted = cachedIndices.shift()!;
+      const old = heroImageCacheRef.current[evicted];
+      if (old && !old.complete) old.src = "";
+      heroImageCacheRef.current[evicted] = null;
+    }
     return image;
   }, []);
 
@@ -551,11 +390,18 @@ function HeroSection() {
         return false;
       }
 
-      const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+      const pixelRatio = Math.min(window.devicePixelRatio || 1, window.innerWidth <= 768 ? 1.5 : 2);
       const displayWidth = canvas.clientWidth || window.innerWidth;
       const displayHeight = canvas.clientHeight || window.innerHeight;
       const canvasWidth = Math.max(1, Math.round(displayWidth * pixelRatio));
       const canvasHeight = Math.max(1, Math.round(displayHeight * pixelRatio));
+
+      if (
+        lastDrawnHeroFrameRef.current === index &&
+        canvas.width === canvasWidth &&
+        canvas.height === canvasHeight
+      )
+        return true;
 
       if (canvas.width !== canvasWidth || canvas.height !== canvasHeight) {
         canvas.width = canvasWidth;
@@ -687,124 +533,61 @@ function HeroSection() {
   }, [setHeroProgress, useCompactHero]);
 
   useEffect(() => {
-    if (useCompactHero) {
+    const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
+      ?.saveData;
+    if (useCompactHero || saveData || matchMedia("(prefers-reduced-motion: reduce)").matches)
       return;
-    }
-
-    const preloadStart = Math.max(0, activeHeroFrame - 2);
-    const preloadEnd = Math.min(heroSequenceFrames.length, activeHeroFrame + 9);
-
-    for (let index = preloadStart; index < preloadEnd; index += 1) {
-      const image = loadHeroFrameImage(index, index <= activeHeroFrame + 2 ? "high" : "low");
+    const pending: { image: HTMLImageElement; listener: () => void }[] = [];
+    const drawCurrent = () => {
+      const current = Math.round(heroFrameProgressRef.current * (heroSequenceFrameCount - 1));
+      drawHeroFrame(current);
+    };
+    // Demand first, then neighbors biased in the current scroll direction.
+    const direction = activeHeroFrame >= previousFrameRef.current ? 1 : -1;
+    previousFrameRef.current = activeHeroFrame;
+    for (const offset of [
+      0,
+      direction,
+      -direction,
+      2 * direction,
+      -2 * direction,
+      3 * direction,
+      4 * direction,
+    ]) {
+      const index = activeHeroFrame + offset;
+      if (index < 0 || index >= heroSequenceFrameCount) continue;
+      const image = loadHeroFrameImage(index, offset === 0 ? "high" : "low");
+      if (!image) continue;
       decodeHeroFrameImage(image);
-
-      if (index === activeHeroFrame && image && !image.complete) {
-        image.addEventListener(
-          "load",
-          () => {
-            drawHeroFrame(index);
-          },
-          { once: true },
-        );
+      if (!image.complete) {
+        image.addEventListener("load", drawCurrent, { once: true });
+        pending.push({ image, listener: drawCurrent });
       }
     }
-
-    if (!drawHeroFrame(activeHeroFrame)) {
-      const image = loadHeroFrameImage(activeHeroFrame, "high");
-      decodeHeroFrameImage(image);
-      if (image) {
-        image.addEventListener(
-          "load",
-          () => {
-            drawHeroFrame(activeHeroFrame);
-          },
-          { once: true },
-        );
-      }
-    }
-  }, [activeHeroFrame, decodeHeroFrameImage, drawHeroFrame, loadHeroFrameImage, useCompactHero]);
+    drawCurrent();
+    return () =>
+      pending.forEach(({ image, listener }) => image.removeEventListener("load", listener));
+  }, [activeHeroFrame, useCompactHero, drawHeroFrame, loadHeroFrameImage, decodeHeroFrameImage]);
 
   useEffect(() => {
-    if (useCompactHero) {
-      return;
-    }
-
-    let cancelled = false;
-    let idleCallbackId = 0;
-    let warmupTimer = 0;
-    let nextIndex = Math.min(6, heroSequenceFrames.length);
-    // Background-warm only a bounded head of the sequence on load. The rest
-    // is fetched on demand by the scroll-driven windowed preloader above, so
-    // a visitor who never scrolls the hero never pays for the remaining
-    // frames — this was previously fetching all 92 frames shortly after
-    // every page load regardless of scroll intent.
-    const backgroundWarmupCap = Math.min(30, heroSequenceFrames.length);
-
-    for (let index = 0; index < nextIndex; index += 1) {
-      decodeHeroFrameImage(loadHeroFrameImage(index, index < 4 ? "high" : "low"));
-    }
-
-    const warmRemainingFrames = (deadline?: IdleDeadline) => {
-      if (cancelled) {
-        return;
-      }
-
-      let framesProcessed = 0;
-
-      while (
-        nextIndex < backgroundWarmupCap &&
-        framesProcessed < 4 &&
-        (deadline ? deadline.timeRemaining() > 6 : true)
-      ) {
-        decodeHeroFrameImage(loadHeroFrameImage(nextIndex, "low"));
-        nextIndex += 1;
-        framesProcessed += 1;
-      }
-
-      if (nextIndex >= backgroundWarmupCap || cancelled) {
-        return;
-      }
-
-      if ("requestIdleCallback" in window) {
-        idleCallbackId = window.requestIdleCallback(warmRemainingFrames, { timeout: 2000 });
-      } else {
-        warmupTimer = window.setTimeout(() => warmRemainingFrames(), 320);
-      }
+    const redraw = () => {
+      lastDrawnHeroFrameRef.current = -1;
+      drawHeroFrame(Math.round(heroFrameProgressRef.current * (heroSequenceFrameCount - 1)));
     };
+    window.addEventListener("resize", redraw);
+    return () => window.removeEventListener("resize", redraw);
+  }, [drawHeroFrame]);
 
-    if ("requestIdleCallback" in window) {
-      idleCallbackId = window.requestIdleCallback(warmRemainingFrames, { timeout: 1500 });
-    } else {
-      warmupTimer = window.setTimeout(() => warmRemainingFrames(), 400);
-    }
-
-    return () => {
-      cancelled = true;
-      if (idleCallbackId) {
-        window.cancelIdleCallback(idleCallbackId);
-      }
-      if (warmupTimer) {
-        window.clearTimeout(warmupTimer);
-      }
-    };
-  }, [decodeHeroFrameImage, loadHeroFrameImage, useCompactHero]);
-
-  useEffect(() => {
-    if (useCompactHero) {
-      return;
-    }
-
-    const redrawCurrentFrame = () => {
-      const frameToDraw =
-        lastDrawnHeroFrameRef.current >= 0 ? lastDrawnHeroFrameRef.current : activeHeroFrame;
-      drawHeroFrame(frameToDraw);
-    };
-
-    redrawCurrentFrame();
-    window.addEventListener("resize", redrawCurrentFrame);
-
-    return () => window.removeEventListener("resize", redrawCurrentFrame);
-  }, [activeHeroFrame, drawHeroFrame, useCompactHero]);
+  useEffect(
+    () => () => {
+      heroImageCacheRef.current.forEach((image) => {
+        if (image) image.src = "";
+      });
+      heroImageCacheRef.current = [];
+      cancelAnimationFrame(heroScrollFrameRef.current);
+    },
+    [],
+  );
 
   return (
     <section
@@ -823,7 +606,8 @@ function HeroSection() {
           height={heroSequenceSize.height}
           aria-hidden="true"
         />
-        <img
+        <ResponsiveImage
+          sizes="(max-width: 767px) max(100vw, 150vh), 100vw"
           src="/assets/hero-powerplus.jpg"
           alt=""
           className="cinema-hero-poster"
@@ -959,79 +743,6 @@ function Home() {
   const monthlySavings = Math.max(0, monthlyFuelCost - monthlyEvCost);
   const threeYearSavings = monthlySavings * 36;
 
-  useEffect(() => {
-    const videos = Array.from(
-      document.querySelectorAll<HTMLVideoElement>("video[data-lazy-video]"),
-    );
-
-    if (videos.length === 0) {
-      return;
-    }
-
-    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const navigatorWithConnection = navigator as Navigator & {
-      connection?: { saveData?: boolean };
-    };
-    const keepPostersOnly =
-      reducedMotionQuery.matches || navigatorWithConnection.connection?.saveData === true;
-
-    if (keepPostersOnly) {
-      videos.forEach((video) => {
-        video.pause();
-        video.removeAttribute("autoplay");
-        video.preload = "none";
-      });
-      return;
-    }
-
-    const loadVideo = (video: HTMLVideoElement, mode: "metadata" | "full" = "full") => {
-      if (video.dataset.loaded === "full") {
-        return;
-      }
-
-      if (mode === "metadata" && video.dataset.loaded === "metadata") {
-        return;
-      }
-
-      video.querySelectorAll<HTMLSourceElement>("source[data-src]").forEach((source) => {
-        const sourcePath = source.dataset.src;
-        if (sourcePath && source.getAttribute("src") !== sourcePath) {
-          source.setAttribute("src", sourcePath);
-        }
-      });
-      video.preload = mode === "metadata" ? "metadata" : "auto";
-      video.load();
-      video.dataset.loaded = mode;
-
-      if (mode === "full" && video.autoplay) {
-        void video.play().catch(() => undefined);
-      }
-    };
-
-    if (!("IntersectionObserver" in window)) {
-      videos.forEach(loadVideo);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.target instanceof HTMLVideoElement) {
-            loadVideo(entry.target, "full");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { rootMargin: "360px 0px", threshold: 0.01 },
-    );
-
-    videos.forEach((video) => observer.observe(video));
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
   return (
     <div className="cinema-home">
       <AmbientDepthBackdrop />
@@ -1056,18 +767,14 @@ function Home() {
           </div>
         </Reveal>
         <Reveal className="cinema-media-frame" delay={0.1}>
-          <video
+          <ViewportVideo
             autoPlay
             muted
             loop
             playsInline
-            preload="none"
             poster="/assets/detail-battery.jpg"
-            data-lazy-video
-            data-src="/frames/battery-charge-optimized.mp4"
-          >
-            <source data-src="/frames/battery-charge-optimized.mp4" type="video/mp4" />
-          </video>
+            src="/frames/battery-charge-optimized.mp4"
+          />
         </Reveal>
       </section>
 
@@ -1083,18 +790,14 @@ function Home() {
           </p>
         </Reveal>
         <div className="motor-stage">
-          <video
+          <ViewportVideo
             autoPlay
             muted
             loop
             playsInline
-            preload="none"
             poster="/assets/detail-brakes.jpg"
-            data-lazy-video
-            data-src="/frames/motor-explode-scrub.mp4"
-          >
-            <source data-src="/frames/motor-explode-scrub.mp4" type="video/mp4" />
-          </video>
+            src="/frames/motor-explode-scrub.mp4"
+          />
           <div className="motor-callout-row">
             {[
               "Smart battery technology",
@@ -1149,7 +852,7 @@ function Home() {
                         className="relative w-full h-full flex items-center justify-center animate-[float_4s_ease-in-out_infinite] transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6"
                         style={{ perspective: "800px" }}
                       >
-                        <img
+                        <ResponsiveImage
                           src={pkg.image}
                           alt={pkg.alt}
                           className="max-h-full w-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)] transition-all duration-700"
@@ -1202,7 +905,7 @@ function Home() {
                 name: "Franklin EV POWER PLUS",
                 badge: "Sporty",
                 tagline: "Sport-aggressive design. Built to stand out.",
-                video: "/assets/products/power-black-left.mp4",   // 👈 video file
+                video: "/assets/products/power-black-left.mp4", // 👈 video file
                 poster: "/assets/products/power-black-left.png", // fallback image
                 accentColor: "#e67e22",
                 heroStat: "0–60 in 4.2s",
@@ -1239,7 +942,7 @@ function Home() {
                       {model.badge}
                     </span>
                     {/* 🎥 VIDEO instead of IMAGE */}
-                    <video
+                    <ViewportVideo
                       className="max-h-full w-auto object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-105"
                       src={model.video}
                       poster={model.poster}
@@ -1247,7 +950,6 @@ function Home() {
                       loop
                       muted
                       playsInline
-                      loading="lazy"
                     />
                   </div>
                   <div className="p-6 pt-4 border-t border-border/50">
@@ -1314,7 +1016,6 @@ function Home() {
 
           {/* Premium gallery grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 auto-rows-[200px] md:auto-rows-[280px]">
-            
             {/* ── HERO IMAGE (col-span-2, row-span-2) ── */}
             <motion.div
               className="relative col-span-1 md:col-span-2 row-span-2 rounded-[32px] overflow-hidden group"
@@ -1327,11 +1028,12 @@ function Home() {
               <div className="relative w-full h-full bg-[#1a2332] flex items-center justify-center overflow-hidden">
                 {/* Floating gradient glow behind hero */}
                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/20 via-cyan-400/10 to-emerald-400/5 blur-3xl scale-150 animate-pulse" />
-                
+
                 {/* Parallax wrapper */}
                 <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
                   <motion.img
-                    src="/assets/editorial/silver-rider-arrival.jpg"
+                    {...responsiveImage("/assets/editorial/silver-rider-arrival.jpg")}
+                    decoding="async"
                     alt="Franklin EV Power"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"
@@ -1339,15 +1041,17 @@ function Home() {
                     transition={{ duration: 0.6 }}
                   />
                 </div>
-                
+
                 {/* Glassmorphism overlay */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
                   <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl px-5 py-3 inline-block">
-                    <p className="text-white font-semibold text-lg tracking-wide">Franklin EV Power</p>
+                    <p className="text-white font-semibold text-lg tracking-wide">
+                      Franklin EV Power
+                    </p>
                     <p className="text-gray-300 text-sm">Built for the open road</p>
                   </div>
                 </div>
-                
+
                 {/* Badge */}
                 {/* <span className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-emerald-400/20 backdrop-blur-sm border border-emerald-400/30 text-emerald-400 text-xs font-bold uppercase tracking-wider">
                   ★ Hero
@@ -1366,7 +1070,8 @@ function Home() {
             >
               <div className="relative w-full h-full bg-[#1a2332] flex items-center justify-center overflow-hidden">
                 <motion.img
-                  src="/assets/editorial/blue-cafe-parking.jpg"
+                  {...responsiveImage("/assets/editorial/blue-cafe-parking.jpg")}
+                  decoding="async"
                   alt="Smart Mobility"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
@@ -1392,7 +1097,8 @@ function Home() {
             >
               <div className="relative w-full h-full bg-[#1a2332] flex items-center justify-center overflow-hidden">
                 <motion.img
-                  src="/assets/editorial/red-apartment-front.jpg"
+                  {...responsiveImage("/assets/editorial/red-apartment-front.jpg")}
+                  decoding="async"
                   alt="City Ready"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
@@ -1419,7 +1125,8 @@ function Home() {
             >
               <div className="relative w-full h-[280px] md:h-[320px] bg-[#1a2332] flex items-center justify-center overflow-hidden">
                 <motion.img
-                  src="/assets/editorial/silver-apartment-front.jpg"
+                  {...responsiveImage("/assets/editorial/silver-apartment-front.jpg")}
+                  decoding="async"
                   alt="Built for Everyday Freedom"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
@@ -1433,7 +1140,6 @@ function Home() {
                 </div>
               </div>
             </motion.div>
-
           </div>
 
           {/* CTA */}
@@ -1460,7 +1166,7 @@ function Home() {
             Simple to own. <br />
             <span className="text-primary-gradient">Easy to love.</span>
           </h2>
-{/* 
+          {/*
           <div className="mt-10">
             <div className="relative">
               <div className="absolute top-8 left-8 right-8 h-[2px] bg-gradient-to-r from-primary via-cyan-400 to-primary" />
@@ -1478,46 +1184,39 @@ function Home() {
                     <div className="w-16 h-16 rounded-full border-4 border-primary bg-white shadow-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl">
                       <Icon className="w-7 h-7 text-primary" />
                     </div>
-                    <h4 className="mt-4 text-sm font-semibold text-ink max-w-[140px]">
+                    <h3 className="mt-4 text-sm font-semibold text-ink max-w-[140px]">
                       {title}
-                    </h4>
+                    </h3>
                   </div>
                 ))}
               </div>
             </div>
           </div> */}
           <div className="mt-10">
-  <div className="relative">
+            <div className="relative">
+              {/* Hide line on mobile, show on tablet/laptop */}
+              <div className="hidden md:block absolute top-8 left-8 right-8 h-[2px] bg-gradient-to-r from-primary via-cyan-400 to-primary" />
 
-    {/* Hide line on mobile, show on tablet/laptop */}
-    <div className="hidden md:block absolute top-8 left-8 right-8 h-[2px] bg-gradient-to-r from-primary via-cyan-400 to-primary" />
+              <div className="grid grid-cols-2 md:grid-cols-6 gap-8 relative z-10">
+                {[
+                  { icon: HomeIcon, title: "Charge at home" },
+                  { icon: Gauge, title: "Smart diagnostics" },
+                  { icon: ShieldCheck, title: "Warranty coverage" },
+                  { icon: Settings, title: "Service support" },
+                  { icon: Apple, title: "App Store" },
+                  { icon: Play, title: "Google Play" },
+                ].map(({ icon: Icon, title }) => (
+                  <div key={title} className="flex flex-col items-center text-center group">
+                    <div className="w-16 h-16 rounded-full border-4 border-primary bg-white shadow-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl">
+                      <Icon className="w-7 h-7 text-primary" />
+                    </div>
 
-    <div className="grid grid-cols-2 md:grid-cols-6 gap-8 relative z-10">
-      {[
-        { icon: HomeIcon, title: "Charge at home" },
-        { icon: Gauge, title: "Smart diagnostics" },
-        { icon: ShieldCheck, title: "Warranty coverage" },
-        { icon: Settings, title: "Service support" },
-        { icon: Apple, title: "App Store" },
-        { icon: Play, title: "Google Play" },
-      ].map(({ icon: Icon, title }) => (
-        <div
-          key={title}
-          className="flex flex-col items-center text-center group"
-        >
-          <div className="w-16 h-16 rounded-full border-4 border-primary bg-white shadow-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl">
-            <Icon className="w-7 h-7 text-primary" />
+                    <h3 className="mt-4 text-sm font-semibold text-ink max-w-[140px]">{title}</h3>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-
-          <h4 className="mt-4 text-sm font-semibold text-ink max-w-[140px]">
-            {title}
-          </h4>
-        </div>
-      ))}
-    </div>
-
-  </div>
-</div>
 
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
@@ -1607,12 +1306,12 @@ function Home() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-stretch">
             <div className="relative rounded-3xl border border-border bg-surface shadow-soft overflow-hidden group h-full min-h-[400px]">
-              <DealerMap />
+              <DeferredDealerMap />
             </div>
 
             <div className="relative rounded-3xl border border-border bg-surface shadow-soft overflow-hidden group h-full min-h-[400px]">
               <div className="relative w-full h-full">
-                <img
+                <ResponsiveImage
                   src="/assets/editorial/dual-riders-underpass.jpg"
                   alt="Find a Franklin EV dealer near you"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -1652,65 +1351,15 @@ function Home() {
           </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-            {faqItems.map((item, index) => {
-              const [isOpen, setIsOpen] = useState(false);
-              return (
-                <Reveal key={item.question} delay={index * 0.03}>
-                  <div
-                    className={`group rounded-2xl border transition-all duration-300 ${
-                      isOpen
-                        ? "border-primary/30 bg-white shadow-xl shadow-primary/5"
-                        : "border-border bg-surface/80 hover:border-primary/20 hover:shadow-md"
-                    }`}
-                  >
-                    <button
-                      onClick={() => setIsOpen(!isOpen)}
-                      className="w-full px-6 py-4 flex items-center justify-between gap-4 text-left"
-                      aria-expanded={isOpen}
-                    >
-                      <div className="flex items-start gap-3">
-                        <span className="mt-0.5 flex-shrink-0 w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold">
-                          {index + 1}
-                        </span>
-                        <h3 className="font-display text-sm font-semibold text-ink group-hover:text-primary transition-colors">
-                          {item.question}
-                        </h3>
-                      </div>
-                      <span className="flex-shrink-0 w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-                        <svg
-                          className={`w-4 h-4 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth={2}
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </span>
-                    </button>
-
-                    <div
-                      className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                        isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-                      }`}
-                    >
-                      <div className="px-6 pb-5 pt-1">
-                        <div className="h-px w-full bg-gradient-to-r from-primary/20 via-primary/5 to-transparent mb-3" />
-                        <p className="text-sm text-muted-foreground leading-relaxed pr-4">
-                          {item.answer}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </Reveal>
-              );
-            })}
+            {faqItems.map((item, index) => (
+              <FaqItem key={item.question} item={item} index={index} />
+            ))}
           </div>
         </div>
       </section>
 
       {/* ── TEST RIDE PANEL (commented out) ── */}
-      {/* 
+      {/*
       <section className="cinema-section test-ride-panel" id="test-ride" data-animate="fade-up">
         <Reveal>
           <div className="cinema-eyebrow">Experience It Yourself</div>
@@ -1766,5 +1415,58 @@ function RideControl({
         onChange={(event) => onChange(Number(event.target.value))}
       />
     </label>
+  );
+}
+function FaqItem({ item, index }: { item: { question: string; answer: string }; index: number }) {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <Reveal delay={index * 0.03}>
+      <div
+        className={`group rounded-2xl border transition-all duration-300 ${
+          isOpen
+            ? "border-primary/30 bg-white shadow-xl shadow-primary/5"
+            : "border-border bg-surface/80 hover:border-primary/20 hover:shadow-md"
+        }`}
+      >
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="w-full px-6 py-4 flex items-center justify-between gap-4 text-left"
+          aria-expanded={isOpen}
+          aria-controls={`faq-answer-${index}`}
+        >
+          <div className="flex items-start gap-3">
+            <span className="mt-0.5 flex-shrink-0 w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold">
+              {index + 1}
+            </span>
+            <h3 className="font-display text-sm font-semibold text-ink group-hover:text-primary transition-colors">
+              {item.question}
+            </h3>
+          </div>
+          <span className="flex-shrink-0 w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+            <svg
+              className={`w-4 h-4 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </span>
+        </button>
+
+        <div
+          id={`faq-answer-${index}`}
+          className={`overflow-hidden transition-all duration-300 ease-in-out ${
+            isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          }`}
+        >
+          <div className="px-6 pb-5 pt-1">
+            <div className="h-px w-full bg-gradient-to-r from-primary/20 via-primary/5 to-transparent mb-3" />
+            <p className="text-sm text-muted-foreground leading-relaxed pr-4">{item.answer}</p>
+          </div>
+        </div>
+      </div>
+    </Reveal>
   );
 }

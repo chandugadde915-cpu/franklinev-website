@@ -1,3 +1,5 @@
+import { responsiveImage } from "@/lib/media";
+import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef, useCallback } from "react";
@@ -456,12 +458,12 @@ const vehicles: VehicleModel[] = [
             alt: "Franklin EV RAPID Ocean Blue – front view",
             label: "Front",
           },
-           {
+          {
             src: "/assets/products/bluerig.png",
             alt: "Franklin EV RAPID Ocean Blue – right side view",
             label: "Right",
           },
-           {
+          {
             src: "/assets/products/bluelef.png",
             alt: "Franklin EV RAPID Ocean Blue – left side view",
             label: "Left",
@@ -493,12 +495,12 @@ const vehicles: VehicleModel[] = [
             alt: "Franklin EV RAPID Mint Green – front view",
             label: "Front",
           },
-           {
+          {
             src: "/assets/products/mint-left1.png",
             alt: "Franklin EV RAPID Mint Green – left side view",
             label: "Left",
           },
-            {
+          {
             src: "/assets/products/mint-right.png",
             alt: "Franklin EV RAPID Mint Green – right side view",
             label: "Right",
@@ -651,11 +653,17 @@ function VehiclesPage() {
 
   // ── Auto‑play slideshow ──
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const galleryVisibleRef = useRef(true);
   const slideInterval = 2000; // 2 seconds
 
   const startTimer = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);
-    if (images.length <= 1) {
+    if (
+      images.length <= 1 ||
+      document.hidden ||
+      !galleryVisibleRef.current ||
+      matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
       timerRef.current = null;
       return;
     }
@@ -681,11 +689,26 @@ function VehiclesPage() {
 
   // Start timer on mount and when images change
   useEffect(() => {
-    startTimer();
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => {
+      if (document.hidden || reduced.matches) pauseTimer();
+      else startTimer();
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      galleryVisibleRef.current = !!entry?.isIntersecting;
+      sync();
+    });
+    if (showcaseSectionRef.current) observer.observe(showcaseSectionRef.current);
+    document.addEventListener("visibilitychange", sync);
+    reduced.addEventListener("change", sync);
+    sync();
     return () => {
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", sync);
+      reduced.removeEventListener("change", sync);
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [startTimer]);
+  }, [startTimer, pauseTimer]);
 
   // ── Handlers ──
   const handleVariantChange = (key: VariantKey) => {
@@ -760,6 +783,7 @@ function VehiclesPage() {
             <button
               key={v.key}
               type="button"
+              aria-pressed={activeVariant === v.key}
               onClick={() => handleVariantChange(v.key)}
               className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all ${
                 activeVariant === v.key
@@ -841,7 +865,9 @@ function VehiclesPage() {
               <AnimatePresence mode="wait">
                 <motion.img
                   key={`${activeVariant}-${activeColorId}-${activeImageIndex}`}
-                  src={currentImage.src}
+                  {...responsiveImage(currentImage.src, "(max-width: 767px) 100vw, 60vw")}
+                  fetchPriority="high"
+                  decoding="async"
                   alt={currentImage.alt}
                   initial={{ opacity: 0, scale: 0.94 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -849,7 +875,6 @@ function VehiclesPage() {
                   transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
                   className="relative z-10 max-h-[600px] w-full object-contain p-10 drop-shadow-2xl"
                   loading="eager"
-                  decoding="async"
                 />
               </AnimatePresence>
               {images.length > 1 && (
@@ -908,7 +933,7 @@ function VehiclesPage() {
                     }`}
                     style={{ background: "#f8fafc" }}
                   >
-                    <img
+                    <ResponsiveImage
                       src={img.src}
                       alt={img.alt}
                       className="w-full h-full object-contain p-1"
@@ -945,6 +970,7 @@ function VehiclesPage() {
                     type="button"
                     onClick={() => handleColorChange(c.id)}
                     aria-label={`Select ${c.name}`}
+                    aria-pressed={activeColorId === c.id}
                     title={c.name}
                     className="group relative"
                   >
@@ -967,7 +993,10 @@ function VehiclesPage() {
               target="_blank"
               rel="noopener noreferrer"
               className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-semibold shadow-lg transition-all hover:shadow-xl hover:scale-[1.02]"
-              style={{ background: premiumGradient, boxShadow: "0 10px 30px rgba(36, 207, 160, 0.35)" }}
+              style={{
+                background: premiumGradient,
+                boxShadow: "0 10px 30px rgba(36, 207, 160, 0.35)",
+              }}
             >
               <MessageCircle className="w-4 h-4" />
               Book a Test Ride — {vehicle.name} in {color.name}
@@ -981,7 +1010,7 @@ function VehiclesPage() {
         <div
           className="absolute inset-0"
           style={{
-            background: 'linear-gradient(135deg, #020617 0%, #0B2545 100%)',
+            background: "linear-gradient(135deg, #020617 0%, #0B2545 100%)",
           }}
         />
         <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-cyan-500/10 blur-3xl rounded-full pointer-events-none" />
@@ -993,7 +1022,10 @@ function VehiclesPage() {
               Crafted for Every Ride
             </span>
             <h2 className="font-display text-4xl sm:text-5xl font-bold text-white mt-3 leading-tight">
-              Crafted for <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Every Ride</span>
+              Crafted for{" "}
+              <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+                Every Ride
+              </span>
             </h2>
             <p className="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">
               Every detail is designed to enhance comfort, control, and confidence on the road.
@@ -1014,13 +1046,14 @@ function VehiclesPage() {
                 <div className="absolute inset-0 bg-teal-500/20 blur-3xl rounded-full scale-110 -z-10" />
                 <div className="absolute inset-0 bg-emerald-500/10 blur-3xl rounded-full scale-125 -z-20" />
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-8 bg-black/30 blur-xl rounded-full -z-5" />
-                <img
+                <ResponsiveImage
                   src="/assets/editorial/franklin5.webp"
                   alt="Franklin EV – Hero"
                   className="w-full h-auto object-contain drop-shadow-2xl relative z-10"
-                  style={{ filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.6))' }}
+                  style={{ filter: "drop-shadow(0 30px 60px rgba(0,0,0,0.6))" }}
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect width="400" height="300" fill="%231e293b"/%3E%3Ctext x="200" y="150" font-family="sans-serif" font-size="18" fill="%2394a3b8" text-anchor="middle" dominant-baseline="middle"%3EImage%20not%20found%3C/text%3E%3C/svg%3E';
+                    (e.target as HTMLImageElement).src =
+                      'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect width="400" height="300" fill="%231e293b"/%3E%3Ctext x="200" y="150" font-family="sans-serif" font-size="18" fill="%2394a3b8" text-anchor="middle" dominant-baseline="middle"%3EImage%20not%20found%3C/text%3E%3C/svg%3E';
                   }}
                 />
               </motion.div>
@@ -1031,14 +1064,15 @@ function VehiclesPage() {
                 transition={{ duration: 0.4 }}
               >
                 <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/5 to-emerald-500/5 blur-2xl" />
-                <img
+                <ResponsiveImage
                   src="/assets/editorial/model.png"
                   alt="Franklin EV Model"
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500 drop-shadow-2xl"
-                  style={{ filter: 'drop-shadow(0 10px 30px rgba(0,0,0,0.3))' }}
+                  style={{ filter: "drop-shadow(0 10px 30px rgba(0,0,0,0.3))" }}
                   loading="lazy"
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect width="400" height="300" fill="%231e293b"/%3E%3Ctext x="200" y="150" font-family="sans-serif" font-size="18" fill="%2394a3b8" text-anchor="middle" dominant-baseline="middle"%3EModel%20not%20found%3C/text%3E%3C/svg%3E';
+                    (e.target as HTMLImageElement).src =
+                      'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect width="400" height="300" fill="%231e293b"/%3E%3Ctext x="200" y="150" font-family="sans-serif" font-size="18" fill="%2394a3b8" text-anchor="middle" dominant-baseline="middle"%3EModel%20not%20found%3C/text%3E%3C/svg%3E';
                   }}
                 />
               </motion.div>
@@ -1054,10 +1088,14 @@ function VehiclesPage() {
             Battery Technology
           </span>
           <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink mt-3">
-            Choose Your <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Power</span>
+            Choose Your{" "}
+            <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+              Power
+            </span>
           </h2>
           <p className="mt-3 text-muted-foreground max-w-xl mx-auto">
-            Two battery chemistries, one intelligent choice. Pick the variant that matches your riding style.
+            Two battery chemistries, one intelligent choice. Pick the variant that matches your
+            riding style.
           </p>
         </Reveal>
 
@@ -1085,6 +1123,16 @@ function VehiclesPage() {
                   className={`relative bg-white/70 backdrop-blur-xl border ${
                     isActive ? "border-primary/40" : "border-white/80"
                   } rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-400 hover:-translate-y-2 cursor-pointer p-8 lg:p-10 overflow-hidden`}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Use ${b.name}`}
+                  aria-pressed={isActive}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      setActiveBattery(b.key);
+                    }
+                  }}
                   onClick={() => setActiveBattery(b.key)}
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.98 }}
@@ -1170,7 +1218,7 @@ function VehiclesPage() {
               className="mt-5 inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-semibold shadow-lg transition-all hover:shadow-xl hover:scale-[1.02]"
               style={{
                 background: premiumGradient,
-                boxShadow: '0 10px 30px rgba(36, 207, 160, 0.35)',
+                boxShadow: "0 10px 30px rgba(36, 207, 160, 0.35)",
               }}
             >
               Book a Test Ride Now <ArrowRight className="w-4 h-4" />

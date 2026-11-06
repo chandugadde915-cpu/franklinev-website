@@ -1,3 +1,4 @@
+import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check, ChevronLeft } from "lucide-react";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
@@ -27,9 +28,7 @@ export const Route = createFileRoute("/blog/power-plus-vs-rapid")({
         content: "https://www.franklinev.co.in/blog/power-plus-vs-rapid",
       },
     ],
-    links: [
-      { rel: "canonical", href: "https://www.franklinev.co.in/blog/power-plus-vs-rapid" },
-    ],
+    links: [{ rel: "canonical", href: "https://www.franklinev.co.in/blog/power-plus-vs-rapid" }],
   }),
   component: ArticlePowerVsClassic,
 });
@@ -59,7 +58,7 @@ function ArticlePowerVsClassic() {
 
       <Reveal delay={0.1}>
         <figure className="my-10 rounded-2xl overflow-hidden border border-border">
-          <img
+          <ResponsiveImage
             src="/assets/products/power-black-left.png"
             alt="Franklin EV POWER electric scooter in Midnight Black"
             className="w-full object-contain bg-zinc-900 p-8"
@@ -100,7 +99,7 @@ function ArticlePowerVsClassic() {
 
       <Reveal>
         <figure className="my-10 rounded-2xl overflow-hidden border border-border">
-          <img
+          <ResponsiveImage
             src="/assets/products/classic-gold-left.png"
             alt="Franklin EV Classic electric scooter in Champagne Gold"
             className="w-full object-contain bg-zinc-50 p-8"

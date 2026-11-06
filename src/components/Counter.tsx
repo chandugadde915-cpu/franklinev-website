@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { useInView, useMotionValue, useSpring } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { useInView, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
 
 export function Counter({
   value,
@@ -12,21 +12,25 @@ export function Counter({
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "120px 0px" });
+  const reduced = useReducedMotion();
   const mv = useMotionValue(0);
   const spring = useSpring(mv, { stiffness: 90, damping: 24 });
-  const [display, setDisplay] = useState("0");
+  const textRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    if (inView) mv.set(value);
-  }, [inView, mv, value]);
+    if (inView && reduced && textRef.current) textRef.current.textContent = value.toFixed(decimals);
+    else if (inView) mv.set(value);
+  }, [inView, mv, value, reduced, decimals]);
 
   useEffect(() => {
-    return spring.on("change", (v) => setDisplay(v.toFixed(decimals)));
+    return spring.on("change", (v) => {
+      if (textRef.current) textRef.current.textContent = v.toFixed(decimals);
+    });
   }, [spring, decimals]);
 
   return (
     <span ref={ref}>
-      {display}
+      <span ref={textRef}>0</span>
       {suffix}
     </span>
   );

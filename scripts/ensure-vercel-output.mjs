@@ -57,6 +57,16 @@ await writeFile(
       overrides: {},
       routes: [
         {
+          src: "/optimized/(.*)",
+          headers: { "cache-control": "public, max-age=31536000, immutable" },
+          continue: true,
+        },
+        {
+          src: "/fonts/(.*)",
+          headers: { "cache-control": "public, max-age=86400, stale-while-revalidate=604800" },
+          continue: true,
+        },
+        {
           src: "/assets/(.*)",
           headers: {
             "cache-control": "public, max-age=31536000, immutable",

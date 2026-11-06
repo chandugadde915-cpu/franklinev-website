@@ -167,14 +167,12 @@ function WhyUs() {
 
   return (
     <div className="min-h-screen bg-white text-gray-800">
-
       {/* ── SECTION 1: ENGINEERED AROUND REAL RIDERS ── */}
       <section className="py-16 px-5 lg:px-8 max-w-7xl mx-auto">
         <Reveal className="text-center max-w-3xl mx-auto mb-8">
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mt-4 leading-tight">
-            Engineered around{" "}
-            <span style={brandGradientStyle}>real riders</span>.
-          </h2>
+          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mt-4 leading-tight">
+            Engineered around <span style={brandGradientStyle}>real riders</span>.
+          </h1>
           <p className="mt-4 text-lg text-gray-600">
             Every Franklin EV scooter is designed around practical features that improve everyday
             riding for professionals, students, families and business owners across Hyderabad.
@@ -219,11 +217,11 @@ function WhyUs() {
               Cost Comparison
             </span>
             <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 leading-tight">
-              Save more with{" "}
-              <span style={brandGradientStyle}>every ride</span>.
+              Save more with <span style={brandGradientStyle}>every ride</span>.
             </h2>
             <p className="mt-4 text-lg text-gray-600 max-w-lg">
-              Save more on every ride with Franklin EV. Adjust your daily distance and fuel cost to see your estimated monthly savings.
+              Save more on every ride with Franklin EV. Adjust your daily distance and fuel cost to
+              see your estimated monthly savings.
             </p>
 
             {/* Savings cards – three cards, all same size */}
@@ -231,8 +229,8 @@ function WhyUs() {
               {[
                 { label: "Monthly Savings", value: `₹${monthlySavings}`, icon: TrendingUp },
                 { label: "Range per Charge", value: `${range} km`, icon: RouteIcon },
-                { 
-                  label: "3‑Year Savings", 
+                {
+                  label: "3‑Year Savings",
                   value: `₹${threeYearSavings.toLocaleString("en-IN")}`,
                   icon: Coins,
                 },
@@ -260,10 +258,7 @@ function WhyUs() {
                     <strong>Rs. {monthlyFuelCost.toLocaleString("en-IN")}/mo</strong>
                   </div>
                   <div className="w-full h-2.5 bg-gray-200 rounded-full mt-1 overflow-hidden">
-                    <div
-                      className="h-full bg-red-500 rounded-full"
-                      style={{ width: "92%" }}
-                    />
+                    <div className="h-full bg-red-500 rounded-full" style={{ width: "92%" }} />
                   </div>
                 </div>
                 <div>
@@ -284,14 +279,7 @@ function WhyUs() {
               <div className="mt-8 flex items-center justify-center gap-4">
                 <div className="relative w-24 h-24">
                   <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
-                    <circle
-                      cx="50"
-                      cy="50"
-                      r="42"
-                      fill="none"
-                      stroke="#e5e7eb"
-                      strokeWidth="8"
-                    />
+                    <circle cx="50" cy="50" r="42" fill="none" stroke="#e5e7eb" strokeWidth="8" />
                     <circle
                       cx="50"
                       cy="50"
@@ -391,8 +379,7 @@ function WhyUs() {
             India Electric Future
           </span>
           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mt-4 leading-tight">
-            Proudly powering{" "}
-            <span style={brandGradientStyle}>India's electric future</span>.
+            Proudly powering <span style={brandGradientStyle}>India's electric future</span>.
           </h2>
         </Reveal>
 

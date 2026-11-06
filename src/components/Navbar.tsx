@@ -1,3 +1,4 @@
+import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
@@ -42,6 +43,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const scrolledRef = useRef(false);
   const scrollFrameRef = useRef(0);
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const mobileQuery = window.matchMedia("(max-width: 768px)");
@@ -84,14 +86,39 @@ export function Navbar() {
       return;
     }
 
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const links = Array.from(document.querySelectorAll<HTMLAnchorElement>("#site-mobile-menu a"));
+    links[0]?.focus();
     const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Tab" && links.length) {
+        const first = links[0],
+          last = links[links.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
       if (event.key === "Escape") {
         setOpen(false);
+        toggleRef.current?.focus();
       }
     };
 
+    const closeIfDesktop = () => {
+      if (toggleRef.current && getComputedStyle(toggleRef.current).display === "none")
+        setOpen(false);
+    };
+    window.addEventListener("resize", closeIfDesktop);
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    return () => {
+      window.removeEventListener("resize", closeIfDesktop);
+      window.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
   }, [open]);
 
   return (
@@ -103,7 +130,9 @@ export function Navbar() {
           onClick={() => setOpen(false)}
           aria-label="Franklin EV — Electric Scooters India"
         >
-          <img
+          <ResponsiveImage
+            loading="eager"
+            sizes="180px"
             src="/assets/franklin-ev-logo.png"
             alt="Franklin EV"
             className="site-logo-image"
@@ -140,6 +169,7 @@ export function Navbar() {
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
+            ref={toggleRef}
             aria-controls="site-mobile-menu"
             className="site-menu-button"
             onClick={() => setOpen((value) => !value)}
