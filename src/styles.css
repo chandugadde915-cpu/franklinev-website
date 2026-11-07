@@ -9672,8 +9672,7 @@ picture {
   .cinema-home::after,
   .cinema-hero-rings,
   .cinema-frame-hud,
-  .cinema-road,
-  .scroll-hint {
+  .cinema-road {
     display: none !important;
   }
 
@@ -10050,8 +10049,7 @@ picture {
   .premium-gallery-rail button,
   .model-stage img,
   .model-glow,
-  .model-platform,
-  .scroll-hint {
+  .model-platform {
     animation: none !important;
     transition: none !important;
   }
@@ -12150,4 +12148,37 @@ body {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto !important; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+/* The scroll hint is an interactive control within the sticky hero stage. */
+.cinema-hero .scroll-hint {
+  display: inline-flex !important;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: color 0.2s ease, outline-color 0.2s ease;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 0;
+  background: transparent;
+  bottom: calc(max(1.35rem, env(safe-area-inset-bottom)) + var(--hero-viewport-offset, 76px));
+}
+.cinema-hero .scroll-hint:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+  border-radius: 999px;
+}
+@media (max-width: 768px) {
+  .cinema-hero .scroll-hint {
+    bottom: calc(max(0.85rem, env(safe-area-inset-bottom)) + var(--hero-viewport-offset, 64px));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cinema-hero .scroll-hint { animation: none !important; }
+}
+
+.cinema-hero .scroll-hint:hover,
+.cinema-hero .scroll-hint:focus-visible,
+.cinema-hero .scroll-hint:active {
+  animation-play-state: paused;
 }

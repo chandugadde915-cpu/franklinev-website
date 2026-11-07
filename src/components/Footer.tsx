@@ -293,7 +293,7 @@ export function Footer() {
                 <br />
                 +91 89770 40936
                 <br />
-                +91 89770 07062
+                +91 9989189777
               </span>
             </div>
           </div>

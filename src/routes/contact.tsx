@@ -122,8 +122,8 @@ function ContactPage() {
                   <a href="tel:+918977040936" className="block hover:text-primary">
                     +91 89770 40936
                   </a>
-                  <a href="tel:+918977007062" className="block hover:text-primary">
-                    +91 89770 07062
+                  <a href="tel:+919989189777" className="block hover:text-primary">
+                    +91 9989189777
                   </a>
                 </div>
               </li>

@@ -91,3 +91,23 @@ test("hashed image caching and compression work on the Node hosting target", asy
   const response = await fetch(base + src);
   assert.match(response.headers.get("cache-control"), /immutable/);
 });
+
+test("homepage exposes a native Scroll Down button for the battery section", async () => {
+  const html = await fetch(base).then((response) => response.text());
+  assert.match(
+    html,
+    /<button[^>]*class="scroll-hint"[^>]*aria-label="Scroll down to the next section"[^>]*aria-controls="battery"/,
+  );
+});
+
+for (const path of ["/", "/contact"]) {
+  test(`updated phone number is rendered at ${path}`, async () => {
+    const html = await fetch(base + path).then((response) => response.text());
+    assert.ok(html.includes("+91 9989189777"));
+    assert.ok(!html.includes("+91 89770 07062"));
+    assert.ok(!html.includes("tel:+918977007062"));
+    assert.ok(html.includes("+91 89770 40935"));
+    assert.ok(html.includes("+91 89770 40936"));
+    if (path === "/contact") assert.ok(html.includes('href="tel:+919989189777"'));
+  });
+}

@@ -1,8 +1,9 @@
+import { useHeroSequence } from "@/hooks/use-hero-sequence";
 import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { ViewportVideo } from "@/components/ViewportVideo";
 import { imageSource, responsiveImage } from "@/lib/media";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import type { CSSProperties } from "react";
 import {
   ArrowRight,
@@ -91,12 +92,6 @@ export const Route = createFileRoute("/")({
         href: imageSource("/assets/hero-powerplus.jpg", 960),
         imageSrcSet: responsiveImage("/assets/hero-powerplus.jpg").srcSet,
         imageSizes: "(max-width: 767px) max(100vw, 150vh), 100vw",
-      },
-      {
-        rel: "preload",
-        as: "image",
-        href: imageSource("/assets/hero-sequence/frame-001.jpg", 1600),
-        media: "(max-width: 768px)",
       },
     ],
   }),
@@ -294,313 +289,39 @@ const warrantyPackages = [
 ] as const;
 
 function HeroSection() {
-  const heroRef = useRef<HTMLElement | null>(null);
-  const heroCanvasRef = useRef<HTMLCanvasElement | null>(null);
-  const heroImageCacheRef = useRef<(HTMLImageElement | null)[]>([]);
-  const lastDrawnHeroFrameRef = useRef(-1);
-  const heroFrameProgressRef = useRef(0);
-  const previousFrameRef = useRef(0);
-  const heroScrollFrameRef = useRef(0);
-  const [heroFrameIndex, setHeroFrameIndex] = useState(0);
-  const [isHeroFrameReady, setIsHeroFrameReady] = useState(false);
-  const [useCompactHero, setUseCompactHero] = useState(false);
-  const [heroLaunchProgress, setHeroLaunchProgress] = useState(1);
-
-  const activeHeroFrame = heroFrameIndex;
-
-  const syncHeroLaunchProgress = useCallback((progress: number) => {
-    const nextProgress = Math.min(Math.max(progress * 1.05, 0), 1);
-    setHeroLaunchProgress((current) =>
-      Math.abs(current - nextProgress) < 0.012 ? current : nextProgress,
-    );
-  }, []);
-
-  const setHeroProgress = useCallback(
-    (nextProgress: number) => {
-      const clampedProgress = Math.min(Math.max(nextProgress, 0), 1);
-      heroFrameProgressRef.current = clampedProgress;
-      syncHeroLaunchProgress(clampedProgress);
-      const nextFrameIndex = Math.min(
-        heroSequenceFrameCount - 1,
-        Math.round(clampedProgress * (heroSequenceFrameCount - 1)),
-      );
-      setHeroFrameIndex((current) => (current !== nextFrameIndex ? nextFrameIndex : current));
-    },
-    [syncHeroLaunchProgress],
+  const { heroRef, canvasRef, contentRef, ready, compact } = useHeroSequence(
+    heroSequenceFrames,
+    heroSequenceSize,
   );
-
-  const loadHeroFrameImage = useCallback((index: number, priority: "high" | "low" = "low") => {
-    const src = heroSequenceFrames[index];
-    if (!src) {
-      return null;
+  const scrollToBattery = () => {
+    let section: HTMLElement | null = document.getElementById("battery");
+    if (!section) return;
+    const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // Reduced-motion navigation must not wait for the deferred reveal observer.
+    if (reducedMotion) section.classList.add("visible");
+    let top = 0;
+    while (section) {
+      top += section.offsetTop;
+      section = section.offsetParent as HTMLElement | null;
     }
-
-    const cached = heroImageCacheRef.current[index];
-    if (cached) {
-      if (priority === "high" && "fetchPriority" in cached) {
-        cached.fetchPriority = "high";
-      }
-      return cached;
-    }
-
-    const image = new Image();
-    image.decoding = "async";
-    if ("fetchPriority" in image) {
-      image.fetchPriority = priority;
-    }
-    // Cover-style portrait canvases need the source height as well as its width.
-    const coverWidth = Math.max(
-      window.innerWidth,
-      (window.innerHeight * heroSequenceSize.width) / heroSequenceSize.height,
-    );
-    image.src = imageSource(src, Math.min(heroSequenceSize.width, Math.ceil(coverWidth)));
-    heroImageCacheRef.current[index] = image;
-    // Bound decoded frame memory; the browser HTTP cache still supports reversal.
-    const limit = window.innerWidth <= 768 ? 16 : 28;
-    const cachedIndices = heroImageCacheRef.current.flatMap((entry, i) => (entry ? [i] : []));
-    cachedIndices.sort((a, b) => Math.abs(b - index) - Math.abs(a - index));
-    while (cachedIndices.length > limit) {
-      const evicted = cachedIndices.shift()!;
-      const old = heroImageCacheRef.current[evicted];
-      if (old && !old.complete) old.src = "";
-      heroImageCacheRef.current[evicted] = null;
-    }
-    return image;
-  }, []);
-
-  const decodeHeroFrameImage = useCallback((image: HTMLImageElement | null) => {
-    if (!image || typeof image.decode !== "function") {
-      return;
-    }
-
-    void image.decode().catch(() => undefined);
-  }, []);
-
-  const drawHeroFrame = useCallback(
-    (index: number) => {
-      const canvas = heroCanvasRef.current;
-      const image = loadHeroFrameImage(index);
-
-      if (!canvas || !image || !image.complete || image.naturalWidth === 0) {
-        return false;
-      }
-
-      const context = canvas.getContext("2d", { alpha: false });
-      if (!context) {
-        return false;
-      }
-
-      const pixelRatio = Math.min(window.devicePixelRatio || 1, window.innerWidth <= 768 ? 1.5 : 2);
-      const displayWidth = canvas.clientWidth || window.innerWidth;
-      const displayHeight = canvas.clientHeight || window.innerHeight;
-      const canvasWidth = Math.max(1, Math.round(displayWidth * pixelRatio));
-      const canvasHeight = Math.max(1, Math.round(displayHeight * pixelRatio));
-
-      if (
-        lastDrawnHeroFrameRef.current === index &&
-        canvas.width === canvasWidth &&
-        canvas.height === canvasHeight
-      )
-        return true;
-
-      if (canvas.width !== canvasWidth || canvas.height !== canvasHeight) {
-        canvas.width = canvasWidth;
-        canvas.height = canvasHeight;
-      }
-
-      const imageAspect = image.naturalWidth / image.naturalHeight;
-      const canvasAspect = canvasWidth / canvasHeight;
-      let sourceX = 0;
-      let sourceY = 0;
-      let sourceWidth = image.naturalWidth;
-      let sourceHeight = image.naturalHeight;
-
-      if (imageAspect > canvasAspect) {
-        sourceWidth = sourceHeight * canvasAspect;
-        sourceX = (image.naturalWidth - sourceWidth) / 2;
-      } else {
-        sourceHeight = sourceWidth / canvasAspect;
-        sourceY = (image.naturalHeight - sourceHeight) / 2;
-      }
-
-      context.imageSmoothingEnabled = true;
-      context.imageSmoothingQuality = "high";
-      context.drawImage(
-        image,
-        sourceX,
-        sourceY,
-        sourceWidth,
-        sourceHeight,
-        0,
-        0,
-        canvasWidth,
-        canvasHeight,
-      );
-      lastDrawnHeroFrameRef.current = index;
-      setIsHeroFrameReady(true);
-      return true;
-    },
-    [loadHeroFrameImage],
-  );
-
-  useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
-    }
-
-    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const navigatorWithConnection = navigator as Navigator & {
-      connection?: { effectiveType?: string; saveData?: boolean };
-    };
-
-    const syncHeroMode = () => {
-      const connection = navigatorWithConnection.connection;
-      const saveData = connection?.saveData === true;
-      const slowNetwork = /(^|-)2g$/.test(connection?.effectiveType ?? "");
-      const compact = reducedMotionQuery.matches || saveData || slowNetwork;
-
-      setUseCompactHero(compact);
-      if (compact) {
-        setHeroProgress(1);
-        setHeroLaunchProgress(1);
-      }
-    };
-
-    syncHeroMode();
-    reducedMotionQuery.addEventListener("change", syncHeroMode);
-
-    return () => {
-      reducedMotionQuery.removeEventListener("change", syncHeroMode);
-    };
-  }, [setHeroProgress]);
-
-  useEffect(() => {
-    const hero = heroRef.current;
-
-    if (!hero) {
-      return;
-    }
-
-    if (useCompactHero) {
-      setHeroProgress(1);
-      return;
-    }
-
-    const syncHeroProgressFromViewport = () => {
-      const rect = hero.getBoundingClientRect();
-
-      if (rect.top >= 0) {
-        setHeroProgress(0);
-        return;
-      }
-
-      if (rect.bottom <= window.innerHeight) {
-        setHeroProgress(1);
-        return;
-      }
-
-      // Use the section's actual pinned scroll room (its height beyond one
-      // viewport) rather than a hardcoded ratio, so this always matches
-      // whatever height styles.css gives .cinema-hero at the current
-      // breakpoint — a mismatch here is what causes the frame sequence to
-      // jump-cut to the last frame before it's actually scrubbed through.
-      const singleScrollTravel = Math.max(hero.offsetHeight - window.innerHeight, 1);
-      const traveled = Math.min(Math.max(-rect.top, 0), singleScrollTravel);
-      setHeroProgress(traveled / singleScrollTravel);
-    };
-
-    const requestHeroProgressSync = () => {
-      if (heroScrollFrameRef.current) {
-        return;
-      }
-
-      heroScrollFrameRef.current = requestAnimationFrame(() => {
-        heroScrollFrameRef.current = 0;
-        syncHeroProgressFromViewport();
-      });
-    };
-
-    syncHeroProgressFromViewport();
-    window.addEventListener("scroll", requestHeroProgressSync, { passive: true });
-    window.addEventListener("resize", requestHeroProgressSync);
-
-    return () => {
-      cancelAnimationFrame(heroScrollFrameRef.current);
-      heroScrollFrameRef.current = 0;
-      window.removeEventListener("scroll", requestHeroProgressSync);
-      window.removeEventListener("resize", requestHeroProgressSync);
-    };
-  }, [setHeroProgress, useCompactHero]);
-
-  useEffect(() => {
-    const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
-      ?.saveData;
-    if (useCompactHero || saveData || matchMedia("(prefers-reduced-motion: reduce)").matches)
-      return;
-    const pending: { image: HTMLImageElement; listener: () => void }[] = [];
-    const drawCurrent = () => {
-      const current = Math.round(heroFrameProgressRef.current * (heroSequenceFrameCount - 1));
-      drawHeroFrame(current);
-    };
-    // Demand first, then neighbors biased in the current scroll direction.
-    const direction = activeHeroFrame >= previousFrameRef.current ? 1 : -1;
-    previousFrameRef.current = activeHeroFrame;
-    for (const offset of [
-      0,
-      direction,
-      -direction,
-      2 * direction,
-      -2 * direction,
-      3 * direction,
-      4 * direction,
-    ]) {
-      const index = activeHeroFrame + offset;
-      if (index < 0 || index >= heroSequenceFrameCount) continue;
-      const image = loadHeroFrameImage(index, offset === 0 ? "high" : "low");
-      if (!image) continue;
-      decodeHeroFrameImage(image);
-      if (!image.complete) {
-        image.addEventListener("load", drawCurrent, { once: true });
-        pending.push({ image, listener: drawCurrent });
-      }
-    }
-    drawCurrent();
-    return () =>
-      pending.forEach(({ image, listener }) => image.removeEventListener("load", listener));
-  }, [activeHeroFrame, useCompactHero, drawHeroFrame, loadHeroFrameImage, decodeHeroFrameImage]);
-
-  useEffect(() => {
-    const redraw = () => {
-      lastDrawnHeroFrameRef.current = -1;
-      drawHeroFrame(Math.round(heroFrameProgressRef.current * (heroSequenceFrameCount - 1)));
-    };
-    window.addEventListener("resize", redraw);
-    return () => window.removeEventListener("resize", redraw);
-  }, [drawHeroFrame]);
-
-  useEffect(
-    () => () => {
-      heroImageCacheRef.current.forEach((image) => {
-        if (image) image.src = "";
-      });
-      heroImageCacheRef.current = [];
-      cancelAnimationFrame(heroScrollFrameRef.current);
-    },
-    [],
-  );
+    const headerBottom =
+      document.querySelector(".site-navbar")?.getBoundingClientRect().bottom ?? 0;
+    window.scrollTo({
+      top: Math.max(0, top - headerBottom - 16),
+      behavior: reducedMotion ? "instant" : "smooth",
+    });
+  };
 
   return (
     <section
-      className={`cinema-hero${useCompactHero ? " is-compact" : ""}${
-        isHeroFrameReady ? " is-sequence-ready" : ""
-      }`}
+      className={`cinema-hero${compact ? " is-compact" : ""}${ready ? " is-sequence-ready" : ""}`}
       id="hero"
       ref={heroRef}
       aria-label="Franklin EV hero - smart electric scooters in India"
     >
       <div className="cinema-hero-stage">
         <canvas
-          ref={heroCanvasRef}
+          ref={canvasRef}
           className="cinema-hero-video"
           width={heroSequenceSize.width}
           height={heroSequenceSize.height}
@@ -627,8 +348,9 @@ function HeroSection() {
         <div className="cinema-hero-shade" aria-hidden="true" />
 
         <div
-          className={`cinema-hero-content${heroLaunchProgress > 0.04 ? " is-launching" : ""}`}
-          style={{ "--launch-progress": heroLaunchProgress } as CSSProperties}
+          ref={contentRef}
+          className="cinema-hero-content"
+          style={{ "--launch-progress": compact ? 1 : 0 } as CSSProperties}
         >
           <div className="cinema-hero-copy">
             <div className="cinema-eyebrow">
@@ -695,10 +417,16 @@ function HeroSection() {
             ))}
           </div>
         </div>
-      </div>
-      <div className="scroll-hint" aria-hidden="true">
-        <span>Scroll</span>
-        <b>↓</b>
+        <button
+          type="button"
+          className="scroll-hint"
+          aria-label="Scroll down to the next section"
+          aria-controls="battery"
+          onClick={scrollToBattery}
+        >
+          <span>Scroll</span>
+          <b aria-hidden="true">↓</b>
+        </button>
       </div>
     </section>
   );
